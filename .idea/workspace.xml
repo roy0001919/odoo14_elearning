@@ -2,217 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7786d992-f2e1-417d-9bca-88ecc7469947" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_auto_assign/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_auto_assign/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_auto_assign/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_auto_assign/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_auto_assign/models/mrp_production.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_auto_assign/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_auto_assign/tests/test_auto_assign.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/am.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/ar.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/ca.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/cs.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/de.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/el_GR.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/es.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/es_CR.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/es_EC.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/es_ES.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/es_MX.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/es_VE.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/et.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/fi.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/fr.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/gl.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/it.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/lt.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/mrp_bom_dismantling.pot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/nl.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/nl_BE.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/pl.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/pt.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/pt_BR.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/pt_PT.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/ro.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/ru.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/sl.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/th.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/tr.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/vi.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/i18n/zh_CN.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/models/mrp_bom.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/models/product_product.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/models/product_template.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/models/res_config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/models/stock_move.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/tests/test_bom.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/tests/test_product.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/tests/test_product_produce.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/tests/test_template.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/views/mrp_bom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/views/product_template.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/views/res_config.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/wizards/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/wizards/dismantling_product_choice.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/wizards/dismantling_product_choice.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/wizards/mrp_product_produce.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_dismantling/wizards/mrp_product_produce.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_note/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_note/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_note/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_note/i18n/de.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_note/i18n/es.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_note/i18n/mrp_bom_notes.pot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_note/i18n/pt_BR.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_note/i18n/zh_CN.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_note/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_note/models/mrp_bom.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_note/views/mrp_bom_view.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_product_details/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_product_details/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_product_details/mrp_bom_product_details.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_product_details/mrp_bom_product_details.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/i18n/fr.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/i18n/mrp_bom_reference_selection.pot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/models/mrp_bom.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/models/mrp_bom_line.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/models/mrp_bom_reference.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/models/mrp_production.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/models/stock_production_lot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/security/ir.model.access.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/tests/test_mrp_bom.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/views/mrp_bom_view.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/views/mrp_product_produce_view.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/views/stock_production_lot_view.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/wizards/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_bom_reference_selection/wizards/mrp_product_produce.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_industrial_design_bom/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_industrial_design_bom/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_industrial_design_bom/i18n/fr.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_industrial_design_bom/i18n/mrp_industrial_design_bom.pot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_industrial_design_bom/industrial_design.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_industrial_design_bom/mrp_industrial_design.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_industrial_design_bom/report/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_industrial_design_bom/report/bom_structure_industrial_design.odt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_industrial_design_bom/report/bom_structure_industrial_design.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_industrial_design_bom/report/bom_structure_industrial_design.rml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_mto_with_stock/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_mto_with_stock/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_mto_with_stock/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_mto_with_stock/demo/product.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_mto_with_stock/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_mto_with_stock/models/mrp_production.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_mto_with_stock/models/product_template.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_mto_with_stock/models/stock_warehouse.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_mto_with_stock/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_mto_with_stock/tests/test_mrp_mto_with_stock.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_mto_with_stock/views/product_template_view.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_mto_with_stock/views/stock_warehouse.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_note/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_note/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_note/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_note/i18n/de.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_note/i18n/es.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_note/i18n/fr.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_note/i18n/hr_HR.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_note/i18n/mrp_production_notes.pot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_note/i18n/nl_NL.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_note/i18n/pt_BR.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_note/i18n/zh_CN.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_note/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_note/models/mrp_production.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_note/views/mrp_production_view.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/i18n/de.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/i18n/es.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/i18n/fr.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/i18n/mrp_partner_note.pot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/i18n/nl.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/i18n/pt_BR.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/i18n/sl.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/i18n/zh_CN.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/images/partner_note.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/models/procurement_order.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/models/res_partner.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/tests/test_mrp_production_partner_note.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_partner_note/views/res_partner_view.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_properties/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_properties/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_properties/i18n/it.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_properties/i18n/mrp_production_properties.pot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_properties/mrp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_properties/mrp_view.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_production_properties/test/mrp_production_properties.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_progress_button/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_progress_button/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_progress_button/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_progress_button/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_progress_button/models/mrp_production.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_progress_button/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_progress_button/tests/test_progress_button.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_progress_button/views/production.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_calendar_view/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_calendar_view/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_calendar_view/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_calendar_view/i18n/fr.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_calendar_view/i18n/hr_HR.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_calendar_view/i18n/it.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_calendar_view/i18n/nl_NL.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_calendar_view/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_calendar_view/models/mrp_repair.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_calendar_view/static/description/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_calendar_view/views/mrp_repair_view.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_discount/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_discount/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_discount/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_discount/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_discount/models/mrp_repair.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_discount/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_discount/tests/test_mrp_repair_discount.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_repair_discount/views/mrp_repair_view.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_sale_info/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_sale_info/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_sale_info/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_sale_info/i18n/de.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_sale_info/i18n/es.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_sale_info/i18n/fr.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_sale_info/i18n/pt_BR.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_sale_info/i18n/zh_CN.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_sale_info/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_sale_info/models/mrp_production.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_sale_info/models/mrp_production_workcenter_line.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_sale_info/static/description/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_sale_info/views/mrp_production.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/mrp_sale_info/views/mrp_production_workcenter_line.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/product_quick_bom/README.rst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/product_quick_bom/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/product_quick_bom/__manifest__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/product_quick_bom/i18n/fr.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/product_quick_bom/i18n/product_quick_bom.pot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/product_quick_bom/i18n/zh_TW.po" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/product_quick_bom/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/product_quick_bom/models/bom.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/product_quick_bom/models/product.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/product_quick_bom/static/description/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/product_quick_bom/static/description/icon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/product_quick_bom/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/product_quick_bom/tests/test_quick_bom.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mrp/product_quick_bom/views/product_view.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -290,7 +79,21 @@
       <option name="project" value="LOCAL" />
       <updated>1611548327490</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="odoo14 elearning">
+      <created>1611548528566</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1611548528566</updated>
+    </task>
+    <task id="LOCAL-00005" summary="odoo14 elearning">
+      <created>1611548700420</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1611548700420</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -315,17 +118,17 @@
       <screen x="1920" y="0" width="2560" height="1040" />
     </state>
     <state x="2654" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/1920.0.2560.1040@1920.0.2560.1040" timestamp="1611545179867" />
-    <state x="2596" y="105" key="CommitChangelistDialog2" timestamp="1611548522386">
+    <state x="2596" y="105" key="CommitChangelistDialog2" timestamp="1611548689102">
       <screen x="1920" y="0" width="2560" height="1040" />
     </state>
-    <state x="2596" y="105" key="CommitChangelistDialog2/0.0.1536.824/1920.0.2560.1040@1920.0.2560.1040" timestamp="1611548522386" />
+    <state x="2596" y="105" key="CommitChangelistDialog2/0.0.1536.824/1920.0.2560.1040@1920.0.2560.1040" timestamp="1611548689102" />
     <state x="2701" y="162" key="SettingsEditor" timestamp="1611545424803">
       <screen x="1920" y="0" width="2560" height="1040" />
     </state>
     <state x="2701" y="162" key="SettingsEditor/0.0.1536.824/1920.0.2560.1040@1920.0.2560.1040" timestamp="1611545424803" />
-    <state x="2152" y="253" key="Vcs.Push.Dialog.v2" timestamp="1611548581960">
+    <state x="2152" y="253" key="Vcs.Push.Dialog.v2" timestamp="1611548737656">
       <screen x="1920" y="0" width="2560" height="1040" />
     </state>
-    <state x="2152" y="253" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.2560.1040@1920.0.2560.1040" timestamp="1611548581960" />
+    <state x="2152" y="253" key="Vcs.Push.Dialog.v2/0.0.1536.824/1920.0.2560.1040@1920.0.2560.1040" timestamp="1611548737656" />
   </component>
 </project>

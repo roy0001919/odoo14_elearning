@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="export_sepa_wiz_form">
+        <field name="name">export_sepa_wiz_form</field>
+        <field name="model">account.export_sepa_wiz</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Confirm Draft Invoices">
+                <p class="oe_grey">
+                    Only the outbound and internal payments with a status "Posted" will be exported. One SEPA file will 
+                    be created for each journal under concern.                    
+                </p>
+                <footer>
+                    <button string="Export SEPA Files" name="export_sepa" type="object" 
+                            default_focus="1" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <!-- 
+    =======================
+        MENUS & ACTIONS
+    =======================
+    --> 
+
+    <act_window id="action_export_sepa"
+        key2="client_action_multi" name="Export To SEPA"
+        res_model="account.export_sepa_wiz" src_model="account.payment"
+        view_mode="form" target="new" view_type="form" />
+    
+</odoo>

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_atlas_line_tree" model="ir.ui.view">
+            <field name="name">tokiku.atlas_line.tree</field>
+            <field name="model">tokiku.atlas_line</field>
+            <field name="arch" type="xml">
+                <tree string="Atlas Line List" create="false" import="true">
+                    <field name="atlas_id"/>
+                    <field name="bom_no"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="cutting_length"/>
+                    <field name="cutting_width"/>
+                    <field name="description"/>
+                    <field name="coating"/>
+                    <field name="color_code"/>
+                    <field name="heating"/>
+                    <field name="unit_qty"/>
+                    <field name="qty"/>
+                    <field name="assembly_section"/>
+                    <!-- <field name="panel_categ_id" invisible="1"/> -->
+                    <!-- <field name="categ_id"/> -->
+                    <!-- <field name="material" invisible="1"/> -->
+                </tree>
+            </field>
+        </record>
+        <record id="view_atlas_line_form" model="ir.ui.view">
+            <field name="name">tokiku.atlas_line.from</field>
+            <field name="model">tokiku.atlas_line</field>
+            <field name="arch" type="xml">
+                <form string="Atlas Line Form">
+                    <group>
+                        <group>
+                            <field name="bom_no"/>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="cutting_length"/>
+                            <field name="cutting_width"/>
+                            <field name="description"/>
+                        <group>
+                            <field name="unit_qty"/>
+                            <field name="qty"/>
+                            <field name="coating"/>
+                            <field name="color_code"/>
+                            <field name="heating"/></group>
+                            <field name="assembly_section"/>
+                            <field name="panel_categ_id" invisible="1"/>
+                            <field name="categ_id" readonly="1"/>
+                            <field name="material" invisible="1"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_atlas_tree" model="ir.ui.view">
+            <field name="name">tokiku.atlas.tree</field>
+            <field name="model">tokiku.atlas</field>
+            <field name="arch" type="xml">
+                <tree string="Atlas" create="true" import="false">
+                    <field name="contract_id"/>
+                    <field name="building" string="Building Number"/>
+                    <field name="sequence" widget="handle"/>
+                    <field name="name" string="Atlas"/>
+                    <field name="last_design_change_ver"/>
+                    <field name="last_atlas_version" string="Updated Times"/>
+                    <!--<field name="file_date"/>-->
+                    <field name="write_uid"/>
+                    <field name="write_date"/>
+                    <!--<field name="create_uid" string="Input User" readonly="1"/>-->
+                    <!--<field name="create_date" string="Input Date" readonly="1"/>-->
+                    <field name="purchase_status"/>
+                    <field name="assembly_status"/>
+                    <!--<field name="last_atlas_id" invisible="1"/>-->
+                    <!--<field name="last_write_date"/>-->
+                    <!--<field name="last_write_uid"/>-->
+                    <!--<field name="last_design_change_ver"/>-->
+                    <button name="open_atlas_history" string="Atlas History" type="object"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_atlas_history_tree" model="ir.ui.view">
+            <field name="name">tokiku.atlas.history.tree</field>
+            <field name="model">tokiku.atlas</field>
+            <field name="arch" type="xml">
+                <tree string="Atlas">
+                    <!--<field name="contract_id"/>-->
+                    <!--<field name="building"/>-->
+                    <field name="sequence" widget="handle"/>
+                    <field name="short_name"/>
+                    <field name="name" string="Atlas"/>
+                    <field name="atlas_version" readonly="1"/>
+                    <field name="design_change_atlas_version"/>
+                    <field name="new_version_atlas_reason" string="New Version Atlas Reason" readonly="1" style="width:30%%"/>
+                    <!--<field name="design_change_atlas_version"/>-->
+                    <field name="file_date"/>
+                    <field name="write_uid" string="Input User" readonly="1"/>
+                    <!--<field name="create_uid" string="Input User" readonly="1"/>-->
+                    <field name="create_date" string="Input Date" readonly="1"/>
+                    <!--<button name="open_atlas_history" string="Atlas History" type="object"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_atlas_form" model="ir.ui.view">
+            <field name="name">tokiku.atlas.form</field>
+            <field name="model">tokiku.atlas</field>
+            <field name="arch" type="xml">
+                <form string="Atlas" edit="false">
+                    <header>
+                        <button name="act_import" string="Import to Panels" type="object" class="btn btn-sm btn-primary oe_read_only"
+                                options='{"always_reload": True}'
+                                attrs="{'invisible': [('is_imported', '=', True)]}"/>
+                        <!--&lt;!&ndash;TODO:&ndash;&gt;-->
+                        <!--<button name="act_production" invisible="0" string="Production" type="object" class="btn btn-sm btn-primary"-->
+                                <!--options='{"always_reload": True}'/>-->
+                                <!--attrs="{'invisible': ['|', ('is_imported', '=', False)]}"-->
+                        <button name="act_edit" string="Edit Atlas" type="object" class="btn btn-sm btn-primary"/>
+                                <!--attrs="{'invisible': ['|', ('is_imported', '=', False)]}"-->
+                        <!--<button name="create_po_wizard" type="object" string="Create PO Wizard" groups="purchase.group_purchase_manager" context="{'picking_id':id}"/>-->
+                        <!--<button name="act_production" string="production" type="object" class="btn btn-sm btn-primary"/>-->
+                        
+                    </header>
+                    <notebook>
+                        <page string="Atlas Line">
+                            <field name="atlas_line_ids" widget="grid">
+                                <tree editable="bottom">
+                                    <field name="bom_no"/>
+                                    <field name="name"/>
+                                    <field name="code"/>
+                                    <field name="cutting_length"/>
+                                    <field name="cutting_width"/>
+                                    <field name="description"/>
+                                    <field name="coating"/>
+                                    <field name="color_code"/>
+                                    <field name="heating"/>
+                                    <field name="unit_qty"/>
+                                    <field name="qty"/>
+                                    <field name="assembly_section"/>
+                                    <field name="assembly_categ" invisible="1"/>
+                                    <field name="panel_categ_id" readonly="1"/>
+                                    <field name="categ_id" invisible="1"/>
+                                    <field name="material" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Atlas Information">
+                            <sheet>
+                            <field name="is_imported" invisible="1"/>
+                            <field name="is_production" invisible="1"/>
+                            <field name="contract_id" invisible="1"/>
+                        <!--<group>-->
+                            <!--<group>-->
+                                <!--<label for="name" string="Atlas" style="width:5%%"/>-->
+                                <!--<field name="name" string="Atlas" style="width:45%%" />-->
+                                <!--<label for="contract_id"/>-->
+                                <!--<field name="contract_id" domain="[('id', 'in', [self.project_id.contract_ids])]" style="width:30%%"/>-->
+                                <!--<field name="contract_item" string="Contract Item"/>-->
+                                <!--<field name="contract_item" string="Contract Item" domain="[('contract_id', '=', user.contract_id.id)]"/>-->
+                            <!--</group>-->
+                            <!--<group>-->
+                                <!--<label for="file_date" style="width:10%%"/>-->
+                                <!--<field name="file_date" style="width:30%%"/>-->
+                                <!--<field name="create_uid" string="Input User" readonly="1"/>-->
+                                <!--<field name="create_date" string="Input Date" readonly="1"/>-->
+                            <!--</group>-->
+                            <field name="production_ids" widget="many2many_tags" invisible="1"/>
+                            <group>
+                                <group style="width:30%%">
+                                    <field name="name"/>
+                                    <field name="construction_section" widget="many2one"/>
+                                    <field name="purchase_status"/>
+                                    <field name="assembly_status"/>
+                                </group>
+                                <group style="width:30%%">
+                                    <field name="short_name"/>
+                                    <field name="file_date"/>
+                                    <field name="building"/>
+                                </group>
+                                <group style="width:40%%">
+                                    <field name="atlas_version" readonly="1"/>
+                                    <field name="design_change_atlas_version"/>
+                                    <field name="new_version_atlas_reason"/>
+                                </group>
+                            </group>
+                            </sheet>
+                        </page>
+                        <!--</group>-->
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_atlas_edit_form" model="ir.ui.view">
+            <field name="name">tokiku.atlas.form</field>
+            <field name="model">tokiku.atlas</field>
+            <field name="arch" type="xml">
+                <form string="Atlas">
+                    <header>
+                        <button name="act_file_import" string="File Import" type="object" class="btn btn-sm btn-primary"/>
+                        <button name="check_demand_qty" string="Check Demand Qty" type="object" class="btn btn-sm btn-primary"/>
+                        <button name="act_imports" string="Import to Panels" type="object" class="btn btn-sm btn-primary oe_read_only"
+                                options='{"always_reload": True}'/>
+                                <!--attrs="{'invisible': [('is_imported', '=', True)]}"-->
+                        <!--attrs="{'invisible': ['|', ('is_imported', '=', False)]}"-->
+                        <button name="act_edit" string="Edit Atlas" type="object" class="btn btn-sm btn-primary"
+                                attrs="{'invisible': [('atlas_version', '=', 0)]}"/>
+                        <!--TODO: production-->
+                        <button name="act_assembly_gen" invisible="0" string="Import to Assembly Panel" type="object" class="btn btn-sm btn-primary oe_read_only"
+                                options='{"always_reload": True}'/>
+                        <!--attrs="{'invisible': [('atlas_version', '=', 0)]}"-->
+                        <!--<button name="create_po_wizard" type="object" string="Create PO Wizard" groups="purchase.group_purchase_manager" context="{'picking_id':id}"/>-->
+                        <!--<button name="act_production" string="production" type="object" class="btn btn-sm btn-primary"/>-->
+                    </header>
+                    <notebook>
+                        <page string="Atlas Line">
+                            <field name="atlas_line_ids" widget="grid">
+                                <tree editable="bottom">
+                                    <field name="bom_no" pinned="left"/>
+                                    <field name="name" pinned="left"/>
+                                    <field name="code"/>
+                                    <field name="cutting_length"/>
+                                    <field name="cutting_width"/>
+                                    <field name="description"/>
+                                    <field name="material"/>
+                                    <field name="coating"/>
+                                    <field name="color_code"/>
+                                    <field name="heating"/>
+                                    <field name="unit_qty"/>
+                                    <field name="qty"/>
+                                    <field name="assembly_section"/>
+                                    <field name="building"/>
+                                    <!--<field name="frame_length"/>-->
+                                    <!--<field name="frame_width"/>-->
+                                    <!--<field name="frame_area"/>-->
+                                    <!--<field name="frame_type_description"/>-->
+                                    <field name="assembly_categ" invisible="1"/>
+                                    <field name="panel_categ_id" readonly="1"/>
+                                    <field name="categ_id" invisible="1"/>
+                                    <field name="invalid_fields" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Atlas Information">
+                            <sheet>
+                            <field name="is_imported" invisible="1"/>
+                            <field name="is_production" invisible="1"/>
+                            <field name="contract_id" invisible="1"/>
+                        <!--<group>-->
+                            <!--<group>-->
+                                <!--<label for="name" string="Atlas" style="width:5%%"/>-->
+                                <!--<field name="name" string="Atlas" style="width:45%%" />-->
+                                <!--<label for="contract_id"/>-->
+                                <!--<field name="contract_id" domain="[('id', 'in', [self.project_id.contract_ids])]" style="width:30%%"/>-->
+                                <!--<field name="contract_item" string="Contract Item"/>-->
+                                <!--<field name="contract_item" string="Contract Item" domain="[('contract_id', '=', user.contract_id.id)]"/>-->
+                            <!--</group>-->
+                            <!--<group>-->
+                                <!--<label for="file_date" style="width:10%%"/>-->
+                                <!--<field name="file_date" style="width:30%%"/>-->
+                                <!--<field name="create_uid" string="Input User" readonly="1"/>-->
+                                <!--<field name="create_date" string="Input Date" readonly="1"/>-->
+                            <!--</group>-->
+                            <field name="production_ids" widget="many2many_tags" invisible="1"/>
+                            <group>
+                                <group style="width:30%%">
+                                    <field name="name"/>
+                                    <field name="short_name"/>
+                                    <field name="file_date"/>
+                                </group>
+                                <group style="width:30%%">
+                                    <field name="partner_id" domain="[('id', 'in', context.get('factories', False))]"/>
+                                    <field name="construction_section" widget="many2one"/>
+                                    <field name="purchase_status"/>
+                                    <field name="assembly_status"/>
+                                    <!--<field name="building"/>-->
+                                </group>
+                                <group style="width:40%%">
+                                    <field name="atlas_version" invisible="1"/>
+                                    <field name="last_atlas_version" string="Atlas Version" readonly="1"/>
+                                    <field name="design_change_atlas_version"/>
+                                    <field name="new_version_atlas_reason"/>
+                                </group>
+                            </group>
+                            </sheet>
+                        </page>
+<!--                        <page string="Building Demands">-->
+<!--                           <field name="assembly_panel_line_ids" widget="x2many_2d_matrix" field_x_axis="building_id"-->
+<!--                                   field_y_axis="bom_id" field_value="total_demand"/>-->
+<!--                        </page>-->
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_atlas_tree_filter" model="ir.ui.view">
+            <field name="name">tokiku.atlas.tree.filter</field>
+            <field name="model">tokiku.atlas</field>
+            <field name="arch" type="xml">
+                <search string="Filter Atlas">
+                    <filter name="name" string="Name" context="{'group_by':'name'}"/>
+                    <!--<field name="name" string="Name" context="{'group_by':'name'}"/>-->
+                </search>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="assembly_details_tree_view" model="ir.ui.view">
+            <field name="name">mrp.bom.tree</field>
+            <field name="model">mrp.bom.line</field>
+            <field name="field_parent">child_line_ids</field>
+            <field name="arch" type="xml">
+                <tree string="Bill of Materials" class="grid">
+                    <field name="sequence" invisible="1"/>
+                    <field name="default_code"/>
+                    <field name="assembly_section"/>
+                    <field name="shared_mat_demand"/>
+                    <field name="atlas_order_qty"/>
+                    <field name="atlas_rest_demand_qty"/>
+                    <field name="qty_demand"/>
+                    <field name="qty_stock"/>
+                    <field name="qty_refined"/>
+                    <field name="qty_heat"/>
+                    <field name="qty_paint"/>
+                    <field name="qty_assembly"/>
+<!--                    <field name="product_qty"/>-->
+<!--                    <field name="product_uom_id" options="{'no_open':True,'no_create':True}"-->
+<!--                           groups="product.group_uom"/>-->
+<!--                    <field name="routing_id" groups="mrp.group_mrp_routings"/>-->
+                </tree>
+            </field>
+        </record>
+        <record id="assembly_details" model="ir.actions.act_window">
+            <field name="name">Assembly Details</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.bom.line</field>
+            <field name="domain">[('bom_id', 'in', active_ids)]</field>
+            <field name="view_type">tree</field>
+            <field name="view_id" ref="assembly_details_tree_view"/>
+            <field name="view_type">tree</field>
+        </record>
+        <record id="ir_assembly_details" model="ir.values">
+            <field eval="'client_action_multi'" name="key2"/>
+            <field eval="'mrp.bom'" name="model"/>
+            <field name="name">Assembly Details</field>
+            <field eval="'ir.actions.act_window,'+str(assembly_details)" name="value"/>
+        </record>
+        <!--        <record id="assembly_details_tree_view" model="ir.ui.view">-->
+        <!--            <field name="name">tokiku.assembly_details.tree</field>-->
+        <!--            <field name="model">stock.move</field>-->
+        <!--            <field name="field_parent">child_move_ids</field>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <tree editable="bottom" delete="0" default_order="is_done desc,sequence" decoration-muted="is_done"-->
+        <!--                      decoration-warning="quantity_done&gt;product_uom_qty"-->
+        <!--                      decoration-success="quantity_done==product_uom_qty"-->
+        <!--                      decoration-danger="quantity_available &lt; product_uom_qty" create="0" class="grid">-->
+        <!--                    <field name="product_id" required="1" invisible="1"/>-->
+        <!--&lt;!&ndash;                    <field name="product_uom" groups="product.group_uom"/>&ndash;&gt;-->
+
+        <!--                    <field name="default_code"/>-->
+        <!--                    <field name="assembly_section"/>-->
+        <!--                    <field name="shared_mat_demand"/>-->
+        <!--                    <field name="atlas_order_qty"/>-->
+        <!--                    <field name="atlas_rest_demand_qty"/>-->
+        <!--                    <field name="qty_demand"/>-->
+        <!--&lt;!&ndash;                    <field name="product_uom_qty" readonly="1" attrs="{'required': [('product_id', '!=', False)]}"&ndash;&gt;-->
+        <!--&lt;!&ndash;                           string="Demand Total"/>&ndash;&gt;-->
+        <!--                    <field name="qty_stock"/>-->
+        <!--                    <field name="qty_refined"/>-->
+        <!--                    <field name="qty_heat"/>-->
+        <!--                    <field name="qty_paint"/>-->
+        <!--                    <field name="qty_assembly"/>-->
+
+        <!--                    <field name="has_tracking" invisible="1"/>-->
+        <!--                    <field name="is_done" invisible="1"/>-->
+        <!--                    <field name="sequence" invisible="1"/>-->
+        <!--                    <field name="location_id" domain="[('id', 'child_of', parent.location_id)]" invisible="1"/>-->
+        <!--                    <field name="location_dest_id" domain="[('id', 'child_of', parent.location_dest_id)]"-->
+        <!--                           invisible="1"/>-->
+        <!--                    <field name="state" invisible="1"/>-->
+        <!--&lt;!&ndash;                    <field name="quantity_available" attrs="{'invisible': [('is_done', '=', True)]}"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                    <field name="quantity_done"&ndash;&gt;-->
+        <!--&lt;!&ndash;                           attrs="{'readonly': ['|', ('is_done', '=', True), ('has_tracking', 'in', ['lot','serial'])]}"&ndash;&gt;-->
+        <!--&lt;!&ndash;                           string="Consumed"/>&ndash;&gt;-->
+        <!--                </tree>-->
+        <!--            </field>-->
+        <!--        </record>-->
+        <!--        <record id="assembly_details" model="ir.actions.act_window">-->
+        <!--            <field name="name">Assembly Details</field>-->
+        <!--            <field name="type">ir.actions.act_window</field>-->
+        <!--            <field name="res_model">stock.move</field>-->
+        <!--            <field name="domain">[('parent_move_ids', 'in', active_ids)]</field>-->
+        <!--            <field name="view_type">tree</field>-->
+        <!--            <field name="view_id" ref="assembly_details_tree_view"/>-->
+        <!--            <field name="view_type">tree</field>-->
+        <!--        </record>-->
+        <!--        <record id="ir_assembly_details" model="ir.values">-->
+        <!--            <field eval="'client_action_multi'" name="key2"/>-->
+        <!--            <field eval="'mrp.bom'" name="model"/>-->
+        <!--            <field name="name">Assembly Details</field>-->
+        <!--            <field eval="'ir.actions.act_window,'+str(assembly_details)" name="value"/>-->
+        <!--        </record>-->
+
+
+    </data>
+</odoo>

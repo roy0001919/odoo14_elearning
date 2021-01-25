@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_project_form" model="ir.ui.view">
+        <field name="name">tokiku.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="replace">
+                <form string="Project">
+                    <header>
+                        <button name="act_set" string="Set Project" type="object" class="btn btn-sm btn-primary"/>
+                        <!--<button name="open_mold" string="Mold Panel" type="object" class="btn btn-sm btn-primary"/>-->
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,construction,done,warranty,expired" clickable="True" attrs="{'readonly':[('actual_complete_date','=',False)]}"/>
+                    </header>
+                    <sheet string="Project">
+                        <field name="analytic_account_id" invisible="1" required="0"/>
+                        <div class="oe_button_box" name="button_box" groups="base.group_user">
+                            <button class="oe_stat_button" name="attachment_tree_view" type="object" icon="fa-files-o">
+                                <field string="Documents" name="doc_count" widget="statinfo"/>
+                            </button>
+                            <!--<button class="oe_stat_button" type="action" attrs="{'invisible':[('use_tasks','=', False)]}"-->
+                            <!--name="%(project.act_project_project_2_project_task_all)d" icon="fa-tasks">-->
+                            <!--<field string="Tasks" name="task_count" widget="statinfo" options="{'label_field': 'label_tasks'}"/>-->
+                            <!--</button>-->
+                            <button name="toggle_active" type="object"
+                                    confirm="(Un)archiving a project automatically (un)archives its tasks and issues. Do you want to proceed?"
+                                    class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button"
+                                       options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="project_code" placeholder="Project Code" required="1"/>
+                            </h1>
+                            <div name="options_active" class="oe_edit_only">
+                                <div attrs="{'invisible':True}">
+                                    <field name="use_tasks" class="oe_inline"/>
+                                    <label for="use_tasks" class="oe_inline" string="Tasks"/>
+                                    <span attrs="{'invisible':[('use_tasks', '=', False)]}">as</span>
+                                    <field name="label_tasks" class="oe_inline oe_input_align"
+                                           attrs="{'invisible': [('use_tasks', '=', False)]}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" string="Project Full Name"/>
+                                <field name="short_name"/>
+                                <field name="partner_id" string="Customer Name" options="{'create_edit': false}"
+                                       domain="[('customer','=',True),
+                                    ('parent_id','=',False),('active','=',True),('ref','!=',False)]"/>
+                                <field name="date_contract"/>
+                            </group>
+                            <group>
+                                <field name="date_start" string="Build Start Date"/>
+                                <field name="scheduled_complete_date"/>
+                                <field name="actual_complete_date"/>
+                                <field name="has_contract_maintenance_ticket_date" invisible="1"/>
+                                <field name="date_warranty_start"
+                                       attrs="{'readonly': [('has_contract_maintenance_ticket_date', '=', False)]}"/>
+                                <field name="date_warranty_end"
+                                       attrs="{'readonly': [('date_warranty_start', '=', False)]}"/>
+                                <field name="project_start_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Contract List">
+                                <field name="contract_ids">
+                                    <tree string="Contracts" editable="bottom">
+                                        <field name="name" string="Contract Name"/>
+                                        <field name="owner_contract_number"/>
+                                        <field name="date_signing"/>
+                                        <field name="Performance_bond"/>
+                                        <field name="guarantee_ticket_number"/>
+                                        <field name="guarantee_ticket_delivery_date"/>
+                                        <field name="guarantee_ticket_retrieval_date"/>
+                                        <field name="maintenance_bond"/>
+                                        <field name="maintenance_ticket_number"/>
+                                        <field name="maintenance_ticket_delivery_date"/>
+                                        <field name="maintenance_ticket_retrieval_date"/>
+                                        <field name="remark"/>
+                                        <!--<button name="open_rec" string="Open" type="object"/>-->
+                                    </tree>
+                                </field>
+                            </page>
+                            <!--<page string="Construction Atlas">-->
+                                <!--<field name="const_atlas_ids">-->
+                                    <!--<tree string="Construction Atlas">-->
+                                        <!--<field name="name"/>-->
+                                        <!--<field name="version"/>-->
+                                        <!--<field name="date_submission"/>-->
+                                        <!--<field name="submission_number"/>-->
+                                        <!--<field name="date_reply"/>-->
+                                        <!--<field name="reply_number"/>-->
+                                        <!--<field name="reply_content"/>-->
+                                        <!--<field name="drawing_confirm"/>-->
+                                        <!--<field name="write_uid" string="Modified User" readonly="1"/>-->
+                                    <!--</tree>-->
+                                    <!--<form string="Construction Atlas">-->
+                                        <!--<group>-->
+                                            <!--<group>-->
+                                                <!--<field name="name"/>-->
+                                                <!--<field name="date_submission"/>-->
+                                                <!--<field name="submission_number"/>-->
+                                                <!--<field name="drawing_confirm"/>-->
+                                                <!--<field name="note"/>-->
+                                                <!--<field name="write_uid" string="Modified User" readonly="1"/>-->
+                                            <!--</group>-->
+                                            <!--<group>-->
+                                                <!--<field name="version"/>-->
+                                                <!--<field name="date_reply"/>-->
+                                                <!--<field name="reply_number"/>-->
+                                                <!--<field name="reply_content"/>-->
+                                                <!--<field name="reply_note"/>-->
+                                            <!--</group>-->
+                                        <!--</group>-->
+                                    <!--</form>-->
+                                <!--</field>-->
+                            <!--</page>-->
+                            <page string="Customer List">
+                                <field name="customer_info_ids" >
+                                    <!--context="{'show_function': 1}"-->
+                                    <!--<tree editable="bottom">-->
+                                    <tree>
+                                        <field name="customer_id" options="{'always_reload': True}" domain="[('customer','=',True), ('parent_id','=',False)]"/>
+                                        <field name="system_type"/>
+                                        <!--<field name="main_contact_ids" domain="[('customer','=',True), ('parent_id','=',customer_id)]" string="Main Contacts"/>-->
+                                        <!--<field name="work_place" string="Work Place"/>-->
+                                        <!--widget="many2many_tags"-->
+                                        <!--<field name="fullName"/>-->
+                                        <!--<field name="companyTel"/>-->
+                                        <!--<field name="firstContact"/>-->
+                                        <!--<field name="owner"/>-->
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="customer_id"
+                                                   options="{'create_edit': false, 'no_create': True}"
+                                                   domain="[('customer','=',True), ('parent_id','=',False)]"/>
+                                            <field name="system_type"/>
+                                            <!--'no_open': True-->
+                                            <!--<field name="main_contact_ids" domain="[('customer','=',True), ('parent_id','=',customer_id)]" string="Main Contacts"/>-->
+                                            <!--<field name="work_place" string="Work Place"/>-->
+                                            <!--<tree>-->
+                                                    <!--<field name="name"/>-->
+                                                    <!--<field name="function"/>-->
+                                                    <!--<field name="email"/>-->
+                                                    <!--<field name="phone"/>-->
+                                                    <!--<field name="phone_ext"/>-->
+                                                <!--</tree>-->
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Customer Main Contacts">
+                                <field name="main_contact_ids">
+                                    <tree editable="bottom">
+                                        <field name="project_id" invisible="1"/>
+                                        <field name="external_partner_domain" invisible="1"/>
+                                        <field name="customer_id" readonly="1"/>
+                                        <field name="main_contact_id"
+                                               options="{'create_edit': False}"
+                                               domain="external_partner_domain"
+                                               widget="many2one"/>
+                                        <field name="function"/>
+                                        <field name="work_place"/>
+                                        <field name="phone"/>
+                                        <field name="mobile"/>
+                                        <!--<field name="system_type"/>-->
+                                        <!--<field name="main_contact_ids" domain="[('customer','=',True), ('parent_id','=',customer_id)]" string="Main Contacts"/>-->
+                                        <!--<field name="work_place" string="Work Place"/>-->
+                                        <!--widget="many2many_tags"-->
+                                        <!--<field name="fullName"/>-->
+                                        <!--<field name="companyTel"/>-->
+                                        <!--<field name="firstContact"/>-->
+                                        <!--<field name="owner"/>-->
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <!--<field name="name"/>-->
+                                            <!--<field name="system_type"/>-->
+                                            <!--<field name="main_contact_ids" domain="[('customer','=',True), ('parent_id','=',customer_id)]" string="Main Contacts"/>-->
+                                            <!--<field name="work_place" string="Work Place"/>-->
+                                            <!--<tree>-->
+                                                    <!--<field name="name"/>-->
+                                                    <!--<field name="function"/>-->
+                                                    <!--<field name="email"/>-->
+                                                    <!--<field name="phone"/>-->
+                                                    <!--<field name="phone_ext"/>-->
+                                                <!--</tree>-->
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Supplier List">
+                                <field name="supplier_info_ids" >
+                                    <!--context="{'show_function': 1}"-->
+                                    <tree name="Supplier Info">
+                                        <field name="prod_catg" string="Sup Work Item" options="{'create_edit': false, 'create': false}"/>
+                                        <field name="supplier_id" string="Supplier"
+                                               options="{'create_edit': False}"
+                                               domain="[('supplier','=',True), ('parent_id','=',False)]"/>
+                                        <field name="tx_category"/>
+                                        <field name="pay_method"/>
+                                        <field name="payment"/>
+                                        <field name="main_contact_ids"/>
+                                        <!--'no_open': True-->
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="prod_catg" string="Sup Work Item"
+                                                options="{'create_edit': False, 'create': false}"/>
+                                            <field name="supplier_id"
+                                                   options="{'create_edit': False, 'create': false}"
+                                                   domain="[('supplier','=',True), ('parent_id','=',False), ('prod_catg_ids','=',prod_catg)]"
+                                                   attrs="{'readonly': [('prod_catg', '=', False)]}"/>
+                                            <field name="tx_category" options="{'create_edit': False}"/>
+                                            <field name="pay_method"/>
+                                            <field name="payment"/>
+                                            <field name="main_contact_ids" domain="[('supplier','=',True), ('parent_id','=',supplier_id)]"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Site Info">
+                                <group>
+                                    <group>
+                                        <field name="total_area"/>
+                                        <field name="system_type"/>
+                                        <field name="system_developer"/>
+                                        <field name="site_address"/>
+                                        <field name="site_contact"/>
+                                        <field name="site_phone"/>
+                                        <field name="site_mobile"/>
+                                    </group>
+                                    <group>
+                                        <field name="building_ids">
+                                            <tree editable="bottom">
+                                                <field name="name"/>
+                                                <field name="floor"/>
+                                                <field name="underground"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Stakeholder">
+                                <field name="related_company_ids">
+                                    <tree string="Related Department" editable="bottom">
+                                        <field name="related_department" string="Related Department"/>
+                                        <field name="company_name" string="Company Name"/>
+                                        <field name="main_contact"/>
+                                        <field name="phone" string="Phone"/>
+                                        <field name="phone_ext" string="Phone Ext"/>
+                                        <field name="mobile" string="Mobile"/>
+                                    </tree>
+                                </field>
+                                <!--<group>-->
+                                    <!--<field name="owner_advisor"/>-->
+                                    <!--<field name="architect"/>-->
+                                    <!--<field name="architect_advisor"/>-->
+                                    <!--<field name="construction_company"/>-->
+                                    <!--<field name="construction_advisor"/>-->
+                                    <!--<field name="supervision"/>-->
+                                <!--</group>-->
+                            </page>
+                            <page string="Financial Info">
+                                <group>
+                                    <field name="settle_day"/>
+                                    <field name="payment_day"/>
+                                </group>
+                            </page>
+                            <page string="Remark">
+                                <field name="remark"/>
+                            </page>
+                            <page string="Product category">
+                                <field name="estimate_ids">
+                                    <tree string="Product Categories" editable="bottom">
+                                        <field name="product_categ_id" options="{'create_edit': false}"/>
+                                        <field name="estimate_amount"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"
+                               help="Follow this project to automatically track the events associated to tasks and issues of this project."
+                               groups="base.group_user"/>
+                    </div>
+                </form>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_project" model="ir.ui.view">
+        <field name="name">tokiku.project.tree</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="replace">
+                <tree decoration-bf="message_needaction==True" decoration-muted="active == False" string="Projects" colors="red:warranty_warning == True">
+                    <field name="sequence" widget="handle"/>
+                    <field name="message_needaction" invisible="1"/>
+                    <field name="active" invisible="1"/>
+                    <field name="project_code" string="Project Code"/>
+                    <field name="short_name" string="Project Name" />
+                    <!--fg_color="red:is_warranty_overdue==True;"-->
+                    <!--<field name="user_id" string="Project Manager"/>-->
+                    <!--<field name="partner_id"/>-->
+                    <field name="show_first_customer"/>
+                    <field name="system_type"/>
+                    <!--<field name="date_start"/>-->
+                    <!--<field name="date"/>-->
+                    <field name="date_contract"/>
+                    <field name="scheduled_complete_date"/>
+                    <field name="state"/>
+                    <field name="date_warranty_end"/>
+                    <field name="warranty_warning" invisible="1"/>
+                    <button name="act_set" string="Set Project" type="object"/>
+                </tree>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- const_atlas -->
+    <record id="view_tokiku_const_atlas_tree" model="ir.ui.view">
+        <field name="name">tokiku.const_atlas.tree</field>
+        <field name="model">tokiku.const_atlas</field>
+        <field name="arch" type="xml">
+            <tree default_order="date_submission desc">
+                <field name="name"/>
+                <field name="version"/>
+                <field name="date_submission"/>
+                <field name="submission_number"/>
+                <field name="date_reply"/>
+                <field name="reply_number"/>
+                <field name="examining_result"/>
+                <field name="reply_content"/>
+                <field name="drawing_confirm"/>
+                <field name="remark"/>
+                <field name="write_uid" string="Modified User" readonly="1"/>
+                <field name="write_date" string="Modified Date" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_tokiku_const_atlas_form" model="ir.ui.view">
+        <field name="name">tokiku.const_atlas.form</field>
+        <field name="model">tokiku.const_atlas</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="version"/>
+                        <field name="date_submission"/>
+                        <field name="submission_number"/>
+                        <field name="remark"/>
+                    </group>
+                    <group>
+                        <field name="date_reply"/>
+                        <field name="reply_number"/>
+                        <field name="reply_content"/>
+                        <field name="drawing_confirm"/>
+                        <field name="examining_result"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tokiku_const_atlas_filter" model="ir.ui.view">
+        <field name="name">tokiku.const_atlas.filter</field>
+        <field name="model">tokiku.const_atlas</field>
+        <field name="arch" type="xml">
+            <search>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_tokiku_const_atlas" model="ir.actions.act_window">
+        <field name="name">Const Atlas</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tokiku.const_atlas</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+    </record>
+
+</odoo>

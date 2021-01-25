@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="invoice_supplier_form" model="ir.ui.view">
+        <field name="name">tokiku.account.invoice.supplier.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence']" position="after">
+                <field name="atlas_id" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='quantity']" position="before">
+                <field name="qty_done" string='Arrival quantity'/>
+                <field name="qty_invoiced" string="Purchase Qty"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

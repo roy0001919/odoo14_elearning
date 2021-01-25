@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="new_version_atlas_view" model="ir.ui.view">
+        <field name="name">tokiku.new_version_atlas_view</field>
+        <field name="model">tokiku.version_wizard</field>
+        <field name="arch" type="xml">
+            <form string="New Version Atlas Import">
+                <group>
+                    <!--<field name="last_design_change_ver" invisible="1"/>-->
+                    <field name="design_change_atlas_version"/>
+                    <!--<field name="design_change_atlas_version" options="{'always_reload': True}"/>-->
+                    <field name="new_version_atlas_reason" placeholder="Please input reason." required="1"/>
+                    <!--<field name="new_version_atlas_reason" placeholder="Please input reason."/>-->
+                </group>
+                <footer>
+                    <button name="act_confirm" string="Import" type="object" class="oe_highlight"/> or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <!--<record id="action_reserved_payment" model="ir.actions.act_window">-->
+        <!--<field name="name">Reserved Payment</field>-->
+        <!--<field name="res_model">reserved.payment</field>-->
+        <!--<field name="view_type">form</field>-->
+        <!--<field name="view_mode">form</field>-->
+        <!--<field name="view_id" ref="reserved_payment_view"/>-->
+        <!--<field name="target">new</field>-->
+    <!--</record>-->
+</odoo>

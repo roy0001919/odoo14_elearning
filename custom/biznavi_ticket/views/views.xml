@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="products_calendar" inherit_id="website_booking_calendar.products_calendar" customize_show="True" name="Product Calendar">
+            <xpath expr="//div[@class='row'][1]" position="replace">
+                <div class="row hidden-xs">
+                    <div class="col-sm-4">
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <span>Select booking Date / Batch</span>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="col-sm-3 mb8">
+                        <t t-call="website_sale.search" />
+                    </div>
+                    <div id="website_published_button" class="col-sm-3">
+                        <t t-call="website.publish_management" groups="sales_team.group_sale_manager">
+                            <t t-set="object" t-value="product" />
+                            <t t-set="publish_edit" t-value="True" />
+                            <t t-set="action" t-value="'product.product_template_action'" /></t>
+                    </div>
+                    <div class="col-sm-2 text-right">
+                        <t t-call="website_sale.pricelist_list" />
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//div[@class='js_product']" position="before">
+                <span type="text" id="booking_info" name="booking_info" class="badge"></span>
+            </xpath>
+        </template>
+        <!--<template id="variants" inherit_id="website_sale.variants">-->
+            <!--<xpath expr="//ul[@class='list-unstyled']" position="replace">-->
+                <!--<t t-set="inc" t-value="0"/>-->
+                <!--<t t-if="variant_id_index==0">-->
+                    <!--<table style="border:2px #cccccc solid;width:100%" id="variant_1">-->
+                        <!--<t t-foreach="variant_id.value_ids" t-as="value_id">-->
+                            <!--<tr class="form-group js_attribute_value" t-att-style="'color:#fff;background-color:%s;' % value_id.html_color">-->
+                                <!--<td style="padding-top:10px;width:30%;text-align:center;">-->
+                                    <!--<label class="control-label" style="margin: 0 20px;">-->
+                                        <!--<input type="checkbox" t-att-class="'js_variant_change' if variant_id.attribute_id.create_variant else None" t-att-checked="'checked' if not inc else None" t-att-name="'attribute-%s-%s' % (product.id, variant_id.attribute_id.id)" t-att-value="value_id.id" style="vertical-align: top; margin-right: 10px;display:none;"/>-->
+                                        <!--<span t-field="value_id.name"/>-->
+                                        <!--<span class="badge" t-if="value_id.price_extra">-->
+                                            <!--<t t-esc="value_id.price_extra > 0 and '+' or ''"/><span t-field="value_id.price_extra" style="white-space: nowrap;" t-options='{-->
+                                                    <!--"widget": "monetary",-->
+                                                    <!--"from_currency": product.currency_id,-->
+                                                    <!--"display_currency": website.currency_id-->
+                                                <!--}'/>-->
+                                        <!--</span>-->
+                                        <!--<input name="product_id" class="product_id" style="color:black;" type="text" value=""/>-->
+                                    <!--</label>-->
+                                <!--</td>-->
+                                <!--<td style="padding-top:10px;width:15%;text-align:left;">-->
+                                    <!--&lt;!&ndash;<t t-call="website_sale.product_price" />&ndash;&gt;-->
+                                    <!--<b class="oe_price" style="white-space: nowrap;" t-esc="product.website_price" t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>-->
+                                <!--</td>-->
+                                <!--<td style="width:40%;padding-top:10px;text-align:center;">-->
+                                    <!--<div class="css_quantity input-group oe_website_spinner" contenteditable="false">-->
+                                        <!--<a t-attf-href="#" class="mb8 input-group-addon js_add_cart_json">-->
+                                            <!--<i class="fa fa-minus"></i>-->
+                                        <!--</a>-->
+                                        <!--<input type="text" class="form-control" data-min="1" name="add_qty" value="1"/>-->
+                                        <!--<a t-attf-href="#" class="mb8 input-group-addon float_left js_add_cart_json">-->
+                                            <!--<i class="fa fa-plus"></i>-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                <!--</td>-->
+                                <!--<td style="padding-top:10px;text-align:left;">-->
+                                    <!--<label class="control-label" style="padding-left:5px">人</label>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--<tr t-att-style="'color:#fff;background-color:%s;' % value_id.html_color"> -->
+                                <!--<td colspan="4" style="padding:5px;">-->
+                                    <!--<span style="color:#fff;font-size:12px;margin-left:20px;" t-if="value_id.id==9" t-esc="' (一般參訪人適用之)'"/>-->
+                                    <!--<span style="color:#fff;font-size:12px;margin-left:20px;" t-if="value_id.id==11" t-esc="' (應購買全票者三十人以上之團體適用之)'"/>-->
+                                    <!--<span style="color:#fff;font-size:12px;margin-left:20px;" t-if="value_id.id==10" t-esc="' (適用對象詳參網站注意事項收費標準)'"/>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                            <!--<t t-set="inc" t-value="inc+1"/>-->
+                        <!--</t>-->
+                    <!--</table>-->
+                <!--</t>-->
+                <!--<t t-if="variant_id_index!=0">-->
+                    <!--&lt;!&ndash;<ul class="list-unstyled">&ndash;&gt;-->
+                    <!--<table style="border:2px #cccccc solid;width:100%">-->
+                        <!--<tr>-->
+                        <!--<t t-foreach="variant_id.value_ids" t-as="value_id">-->
+                            <!--<td class="form-group js_attribute_value" t-att-style="'padding:10px;width:50%%;text-align:center;color:#000;background-color:%s;' % value_id.html_color">-->
+                                <!--<label class="control-label" style="margin: 0 20px;">-->
+                                    <!--<input type="radio" t-att-class="'js_variant_change' if variant_id.attribute_id.create_variant else None" t-att-checked="'checked' if not inc else None" t-att-name="'attribute-%s-%s' % (product.id, variant_id.attribute_id.id)" t-att-value="value_id.id" style="vertical-align: top; margin-right: 10px;"/>-->
+                                    <!--<span t-field="value_id.name"/>-->
+                                    <!--<span class="badge" t-if="value_id.price_extra">-->
+                                        <!--<t t-esc="value_id.price_extra > 0 and '+' or ''"/><span t-field="value_id.price_extra" style="white-space: nowrap;" t-options='{-->
+                                                <!--"widget": "monetary",-->
+                                                <!--"from_currency": product.currency_id,-->
+                                                <!--"display_currency": website.currency_id-->
+                                            <!--}'/>-->
+                                    <!--</span>-->
+                                <!--</label>-->
+                            <!--</td>-->
+                            <!--<t t-set="inc" t-value="inc+1"/>-->
+                        <!--</t>-->
+                        <!--</tr>-->
+                    <!--</table>-->
+                    <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                <!--</t>-->
+            <!--</xpath>-->
+        <!--</template>-->
+        <template id="contact_usr" inherit_id="website_sale.product_quantity" customize_show="True" name="Contact Name">
+            <xpath expr="//div[@class='css_quantity input-group oe_website_spinner']" position="after">
+                <div id="contact_usr">
+                    <div name="contact_usr">
+                        <label class="control-label" for="contact_usr"><span name="contact_usr_title">Visitor</span> <span name="contact_usr_msg"/>
+                        </label>
+                        <input type="text" name="contact_usr" class="form-control" t-att-value="user_id.name if website.user_id != user_id else ''"/>
+                    </div>
+                    <div name="contact_tel">
+                        <label class="control-label" for="contact_tel"><span name="contact_tel_title">Visitor Tel</span> <span name="contact_tel_msg"/>
+                        </label>
+                        <input type="text" name="contact_tel" class="form-control" t-att-value="user_id.phone if website.user_id != user_id else ''"/>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+        <template id="assets_frontend" inherit_id="website_booking_calendar.assets_frontend" name="Liou Li Bridge Assets Include">
+            <xpath expr="//link[@href='/website_booking_calendar/static/src/css/website_booking_calendar.css']" position="attributes">
+                <attribute name="href">/biznavi_ticket/static/src/css/website_booking_calendar.css</attribute>
+            </xpath>
+            <xpath expr="//script[@src='/website_booking_calendar/static/src/js/website_booking_calendar.js']" position="attributes">
+                <attribute name="src">/biznavi_ticket/static/src/js/website_booking_calendar.js</attribute>
+            </xpath>
+            <xpath expr="." position="inside">
+                <script src="/biznavi_ticket/static/src/js/jquery.qrcode.min.js"></script>
+            </xpath>
+        </template>
+        <template id="search" inherit_id="website_sale.search" name="Search hidden fields">
+            <xpath expr="//form" position="replace"></xpath>
+        </template>
+        <template id="orders_followup" inherit_id="biznavi_website_sale.orders_followup" name="Sales Order">
+            <xpath expr="//div[@class='panel-heading']" position="inside">
+                <div class="text-center" id="ticket" name="ticket" style="display:none">
+                    <t t-esc="order.ticket"/>
+                </div>
+                <div class="text-center" id="qrcode" name="qrcode"></div>
+            </xpath>
+        </template>
+        <template id="portal_my_home_menu_sale" name="Portal layout : sales menu entries" inherit_id="website_portal_sale.portal_my_home_menu_sale" priority="25">
+            <xpath expr="//ul[contains(@class,'o_portal_submenu')]" position="replace">
+
+                <!--<li>-->
+                <!--<a href="/my/orders">Orders</a>-->
+                <!--</li>-->
+                <ul class="nav navbar-nav o_portal_submenu">
+                    <!--<li>-->
+                        <!--<a href="/my/quotes">Bookings</a>-->
+                    <!--</li>-->
+                    <li>
+                        <a href="/my/orders">Tickets</a>
+                    </li>
+                    <!--<li>-->
+                    <!--<a href="/my/invoices">Invoices</a>-->
+                    <!--</li>-->
+                </ul>
+            </xpath>
+        </template>
+        <template id="portal_my_home_sale" name="Portal My Home : sales entries" inherit_id="website_portal_sale.portal_my_home_sale" priority="25">
+            <xpath expr="//div[contains(@class,'o_my_home_content')]" position="replace">
+                <div class="o_my_home_content">
+                    <div class="oe_structure">
+                        <!--<h3 class="page-header">-->
+                            <!--<a href="/my/quotes">My Bookings-->
+                                <!--<small class="ml8">-->
+                                    <!--<t t-if="quotation_count">-->
+                                        <!--<span class='badge'>-->
+                                            <!--<t t-esc="quotation_count"/>-->
+                                        <!--</span>-->
+                                    <!--</t>-->
+                                    <!--<t t-if="not quotation_count">                                        There are currently no bookings for your account.                                    </t>-->
+                                <!--</small>-->
+                            <!--</a>-->
+                        <!--</h3>-->
+                        <h3 class="page-header">
+                            <a href="/my/orders">My Tickets                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                <small class="ml8">
+                                    <t t-if="order_count">
+                                        <span class='badge'>
+                                            <t t-esc="order_count"/>
+                                        </span>
+                                    </t>
+                                    <t t-if="not order_count">                                        There are currently no orders for your account.                                    </t>
+                                </small>
+                            </a>
+                        </h3>
+                        <!--<h3 class="page-header">-->
+                        <!--<a href="/my/invoices">My Invoices-->
+                        <!--<small class="ml8">-->
+                        <!--<t t-if="invoice_count">-->
+                        <!--<span class='badge'>-->
+                        <!--<t t-esc="invoice_count"/>-->
+                        <!--</span>-->
+                        <!--</t>-->
+                        <!--<t t-if="not invoice_count">-->
+                        <!--There are currently no invoices for your account.-->
+                        <!--</t>-->
+                        <!--</small>-->
+                        <!--</a>-->
+                        <!--</h3>-->
+                    </div>
+                </div>
+            </xpath>
+        </template>
+        <template id="website_portal_sale.portal_my_quotations" name="My Bookings">
+            <t t-call="website_portal.portal_layout">
+                <h3 class="page-header hidden-xs">My Bookings</h3>
+                <t t-if="not quotations">
+                    <p>There are currently no booking for your account.</p>
+                </t>
+                <t t-if="quotations">
+                    <section class="s_faq_collapse">
+                        <div class="container">
+                            <div class="panel-group" role="tablist" id="ticketCollapse">
+                                <t t-foreach="quotations" t-as="quotation">
+                                    <t t-foreach="quotation.order_line" t-as="line">
+                                        <div class="panel panel-default">
+                                            <t t-set="bgcolor" t-value="line.product_id.attribute_value_ids[1].html_color" t-if="len(line.product_id.attribute_value_ids) >= 2"/>
+                                            <t t-set="bgcolor" t-value="'Lavender'" t-if="not line.product_id.attribute_value_ids"/>
+                                            <div class="panel-heading collapsed text-center" role="tab" t-att-style="'background-color: %s' %  bgcolor" data-toggle="collapse" data-parent="#ticketCollapse" t-att-data-target="'#ticketCollapseTab%s' % line.id" aria-expanded="false">
+                                                <span t-if="line.state=='cancel'" class="pull-left badge" style="background-color:gray;">Cancelled</span>
+                                                <span t-if="not line.state=='cancel' and not line.checkin_time and line.booking_start and (datetime.datetime.strptime(line.booking_start, '%Y-%m-%d %H:%M:%S') - datetime.datetime.now()).total_seconds() &gt;= 0" class="pull-left badge" style="background-color:green;">Active</span>
+                                                <span t-if="not line.state=='cancel' and not line.checkin_time and line.booking_start and (datetime.datetime.strptime(line.booking_start, '%Y-%m-%d %H:%M:%S') - datetime.datetime.now()).total_seconds() &lt; 0" class="pull-left badge" style="background-color:lightcoral;">Expired</span>
+                                                <span t-if="line.checkin_time" class="pull-left badge" style="background-color:gray;">Used                                                </span>
+                                                <form name="cancel_form" t-if="line.check_refundable()" t-att-action="'/booking/calendar/cancel_booking/%s' % quotation.id" method="post" target="_self">
+                                                    <button name="booking_cancel_btn" type="submit" width="100px" class="btn btn-default pull-right btn-xs">
+                                                        <span>Booking Cancel</span>
+                                                    </button>
+                                                </form>
+                                                <h4 class="panel-title o_default_snippet_text">
+                                                    <t t-set="ticket_name" t-value="line.product_id.with_context(display_default_code=False).display_name" />
+                                                    <t t-esc="ticket_name[:ticket_name.find('(')]"/>
+                                                    <br/>
+                                                    <t t-esc="ticket_name[ticket_name.find('('):]"/>
+                                                    <br/>
+                                                    <small>人數:</small>
+                                                    <span style="color:navy">
+                                                        <t t-esc="int(line.product_uom_qty)"/>
+                                                    </span>
+                                                    <br/>
+                                                    <form name="contact_modify_form" t-att-action="'/booking/calendar/contact_modify/%s' % line.id" method="post" target="_self">
+                                                        <button name="contact_modify_btn" type="button" width="100px" class="btn btn-default pull-right btn-xs">
+                                                            <span>Modify</span>
+                                                        </button>
+                                                        <button name="contact_cancel_btn" type="button" width="100px" class="btn btn-default pull-right btn-xs" style="margin-left:3px;display:none;">
+                                                            <span>Cancel</span>
+                                                        </button>
+                                                        <button name="contact_save_btn" type="submit" width="100px" class="btn btn-default pull-right btn-xs" style="display:none;">
+                                                            <span>Save</span>
+                                                        </button>
+                                                        <span style="color:navy" id="contact_span">
+                                                            <small t-if="line.product_cate=='優待票'" style="color:#2d2d2d">團體帶隊人:</small>
+                                                            <small t-if="line.product_cate!='優待票'" style="color:#2d2d2d">參訪人:</small>
+                                                            <t t-esc="line.contact_usr"/>
+                                                        </span>
+                                                        <span style="color:navy;display:none;" id="contact_editor">
+                                                            <input name="contact_usr" t-if="line.product_cate=='優待票'" placeholder="團體帶隊人" type="text" t-att-value="line.contact_usr" size="11"/>
+                                                            <input name="contact_usr" t-if="line.product_cate!='優待票'" placeholder="參訪人" type="text" t-att-value="line.contact_usr" size="11"/>
+                                                            <input name="contact_tel" placeholder="聯絡電話" type="text" t-att-value="line.contact_tel" size="20"/>
+                                                        </span>
+                                                    </form>
+                                                    <small>
+                                                        <t t-esc="line.batch_info"/>
+                                                    </small>
+                                                    <div class="text-center">
+                                                        預約號碼: <t t-esc="quotation.name"/>
+                                                    </div>
+                                                </h4>
+                                             </div>
+                                        </div>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                    </section>
+                    <div t-if="pager" class="o_portal_pager text-center">
+                        <t t-call="website.pager"/>
+                    </div>
+                </t>
+            </t>
+        </template>
+        <template id="website_portal_sale.portal_my_orders" name="My Tickets">
+            <t t-call="website_portal.portal_layout">
+                <h3 class="page-header hidden-xs">My Tickets</h3>
+                <t t-if="not orders">
+                    <p>There are currently no tickets for your account.</p>
+                </t>
+                <t t-if="orders">
+                    <section class="s_faq_collapse">
+                        <div class="container">
+                            <div class="panel-group" role="tablist" id="ticketCollapse">
+                                <t t-foreach="orders" t-as="order">
+                                    <t t-foreach="order.order_line" t-as="line">
+                                        <div class="panel panel-default">
+                                            <t t-set="bgcolor" t-value="line.product_id.html_color" t-if="line.product_id.html_color and line.product_id.html_color != ''"/>
+                                            <t t-set="bgcolor" t-value="line.product_id.attribute_value_ids[1].html_color" t-if="len(line.product_id.attribute_value_ids) >= 2"/>
+                                            <t t-set="bgcolor" t-value="'Lavender'" t-if="not line.product_id.attribute_value_ids"/>
+                                            <div class="panel-heading collapsed text-center" role="tab" t-att-style="'background-color: %s' % bgcolor" data-toggle="collapse" data-parent="#ticketCollapse" t-att-data-target="'#ticketCollapseTab%s' % line.id" aria-expanded="false">
+                                                <span t-if="order.state == 'sale' and order.payment_tx_id.state != 'pending' and not line.checkin_time and line.booking_start and (datetime.datetime.strptime(line.booking_start, '%Y-%m-%d %H:%M:%S') - datetime.datetime.now()).total_seconds() &gt;= 0" class="pull-left badge" style="background-color:green;">Active                                                </span>
+                                                <span t-if="order.state == 'sale' and order.payment_tx_id.state == 'pending' and (datetime.datetime.strptime(line.booking_start, '%Y-%m-%d %H:%M:%S') - datetime.datetime.now()).total_seconds() &gt;= 0" class="pull-left badge" style="background-color:SlateBlue;" t-att-name="'lbl_pending_%s' % order.id">Pending</span>
+                                                <span t-if="order.state == 'sale' and not line.checkin_time and line.booking_start and (datetime.datetime.strptime(line.booking_start, '%Y-%m-%d %H:%M:%S') - datetime.datetime.now()).total_seconds() &lt; 0" class="pull-left badge" style="background-color:lightcoral;">Expired</span>
+                                                <span t-if="order.state == 'sale' and line.checkin_time" class="pull-left badge" style="background-color:gray;">Used                                                </span>
+                                                <span t-if="order.state == 'cancel' and order.payment_tx_id.state == 'refund'" class="pull-left badge" style="background-color:#4582ec;">Refund</span>
+                                                <span t-if="order.state == 'cancel' and order.payment_tx_id.state == 'done'" class="pull-left badge" style="background-color:#e68a00;">Refunded</span>
+                                                <form name="refund_form" t-if="line.check_refundable()" t-att-action="'/booking/calendar/refund/%s' % order.id" method="post" target="_self">
+                                                    <button name="refund_btn" type="submit" width="100px" class="btn btn-default pull-right btn-xs">
+                                                        <span>Ticket Refund</span>
+                                                    </button>
+                                                </form>
+                                                <h4 class="panel-title o_default_snippet_text">
+                                                    <t t-set="ticket_name" t-value="line.product_id.with_context(display_default_code=False).display_name" />
+                                                    <t t-esc="ticket_name[:ticket_name.find('(')]"/>
+                                                    <br/>
+                                                    <t t-esc="ticket_name[ticket_name.find('('):]"/>
+                                                    <br/>
+                                                    <!--<small>預約人:</small>
+                                                    <span style="color:navy">
+                                                        <t t-esc="line.buyer"/>
+                                                    </span>-->
+                                                    <small>人數:</small>
+                                                    <span style="color:navy">
+                                                        <t t-esc="int(line.product_uom_qty)"/>
+                                                    </span>
+                                                    <br/>
+                                                    <form name="contact_modify_form" t-att-action="'/booking/calendar/contact_modify/%s' % line.id" method="post" target="_self">
+                                                        <button name="contact_modify_btn" type="button" width="100px" class="btn btn-default pull-right btn-xs">
+                                                            <span>Modify</span>
+                                                        </button>
+                                                        <button name="contact_cancel_btn" type="button" width="100px" class="btn btn-default pull-right btn-xs" style="margin-left:3px;display:none;">
+                                                            <span>Cancel</span>
+                                                        </button>
+                                                        <button name="contact_save_btn" type="submit" width="100px" class="btn btn-default pull-right btn-xs" style="display:none;">
+                                                            <span>Save</span>
+                                                        </button>
+                                                        <span style="color:navy" id="contact_span">
+                                                            <small t-if="line.product_cate=='優待票'" style="color:#2d2d2d">團體帶隊人:</small>
+                                                            <small t-if="line.product_cate!='優待票'" style="color:#2d2d2d">參訪人:</small>
+                                                            <t t-esc="line.contact_usr"/>
+                                                        </span>
+                                                        <span style="color:navy;display:none;" id="contact_editor">
+                                                            <input name="contact_usr" t-if="line.product_cate=='優待票'" placeholder="團體帶隊人" type="text" t-att-value="line.contact_usr" size="11"/>
+                                                            <input name="contact_usr" t-if="line.product_cate!='優待票'" placeholder="參訪人" type="text" t-att-value="line.contact_usr" size="11"/>
+                                                            <input name="contact_tel" placeholder="聯絡電話" type="text" t-att-value="line.contact_tel" size="20"/>
+                                                        </span>
+                                                    </form>
+                                                    <small>
+                                                        <t t-esc="line.batch_info"/>
+                                                    </small>
+                                                </h4>
+                                            </div>
+                                            <div class="panel-collapse collapse" role="tabpanel" t-att-id="'ticketCollapseTab%s' % line.id" aria-expanded="false" style="height: 0px;">
+                                                <div t-att-style="'width:100%%%%;height:20px;background-color: %s' % line.product_id.attribute_value_ids[0].html_color"/>
+                                                <div class="panel-body">
+                                                    <!--<p class="o_default_snippet_text">-->
+                                                    <div id="ticket" style="display:none" t-esc="line.ticket"/>
+
+                                                    <t t-if="order.state != 'cancel' and (order.payment_tx_id.state != 'pending' or order.note =='')">
+                                                        <div class="text-center" id="qrcode" name="qrcode"/>
+                                                        <div class="text-center">
+                                                            <t t-esc="line.sale_order_name"/>
+                                                        </div>
+                                                    </t>
+                                                    <t t-if="ticket_name[:2]=='套票' and order.state != 'cancel' and order.payment_tx_id.state != 'pending' and line.booking_start and (datetime.datetime.strptime(line.booking_start, '%Y-%m-%d %H:%M:%S').date() - datetime.date.today()).total_seconds() &gt;= 0">
+                                                        <br/>
+                                                        <form name="enter_bus_form" t-att-action="'/booking/calendar/coupon/A%s' % line.id" method="post" target="_self">
+                                                            <div style="height:100px;background-color:LightSkyBlue;border-width:1px;border-style:dashed;vertical-align:middle;">
+                                                                <div style="font-size:25px;margin:32px;display:inline-block;">入園車票</div>
+                                                                <button name="contact_modify_btn" type="button" style="height:98px;width:100px;" class="btn btn-default pull-right btn-xs">使用</button>
+                                                            </div>
+                                                        </form>
+                                                        <form name="exit_bus_form" t-att-action="'/booking/calendar/coupon/B%s' % line.id" method="post" target="_self">
+                                                            <div style="height:100px;background-color:pink;border-width:1px;border-style:dashed;vertical-align:middle;">
+                                                                <div style="font-size:25px;margin:32px;display:inline-block;">出園車票</div>
+                                                                <button name="contact_modify_btn" type="button" style="height:98px;width:100px;" class="btn btn-default pull-right btn-xs">使用</button>
+                                                            </div>
+                                                        </form>
+                                                    </t>
+                                                    <t t-if="order.state == 'cancel' and order.payment_tx_id.state == 'done'" class="pull-left badge" style="background-color:#e68a00;">
+                                                        <div class="text-center">
+                                                            退款申請日期: <t t-esc="order.payment_tx_id.refund_date"/>
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <br/>金額: <t t-esc="'%.0f' % order.amount_total"/>
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <br/><t t-esc="line.sale_order_name"/>
+                                                        </div>
+                                                    </t>
+                                                    <t t-if="order.payment_tx_id.state == 'pending' and order.note != ''">
+                                                        <div class="text-center">
+                                                            請於 <span style="color:red;font-weight:bold" t-esc="order.payment_tx_id.deadline"/> 前完成轉帳或匯款<br/>
+                                                            逾時本訂單將會自動取消<br/><br/>
+
+                                                            <table align="center">
+                                                                    <tr><td class="text-left"><b>　　收款銀行: 永豐銀行台北分行</b></td></tr>
+                                                                    <tr><td class="text-left"><b>　　銀行代號: 807</b></td></tr>
+                                                                    <tr><td class="text-left"><b>匯款分行代號: 0210</b></td></tr>
+                                                                    <tr><td class="text-left"><b>　　匯款戶名: 其他應付款-代收-網路收款</b></td></tr>
+                                                                    <tr><td class="text-left"><b>轉帳<t t-esc="order.note"/></b></td></tr>
+                                                                <tr><td class="text-left"><b>　　　　金額: <t t-esc="'%.0f' % order.amount_total"/></b></td></tr>
+                                                            </table>
+                                                            <br/>
+                                                            <i>請留意每筆訂單皆有專屬匯款帳號</i><br/>
+                                                            單號: <t t-esc="order.name"/>
+                                                        </div>
+                                                    </t>
+                                                    <t t-if="order.payment_tx_id.state == 'refund' and order.state == 'cancel'">
+                                                        <div name="refund_info_modify" class="text-center" t-att-style="'display:none' if order.payment_tx_id.refund_account else 'display:block'">
+                                                            請填寫退款帳號資訊<br/><br/>
+                                                            <form name="refund_info_form" t-att-action="'/booking/calendar/refund_info/%s' % order.payment_tx_id.id" method="post" target="_self">
+                                                                <table align="center">
+                                                                    <tr>
+                                                                        <td class="text-right">您的銀行：</td><td><input name="refund_bank" placeholder="如: 永豐銀行台北分行" type="text" t-att-value="order.payment_tx_id.refund_bank" size="20"/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="text-right">您的銀行代碼：</td><td><input name="refund_bank_code" placeholder="如: 807" type="text" t-att-value="order.payment_tx_id.refund_bank_code" size="20"/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="text-right">您的分行代碼：</td><td><input name="refund_branch_code" placeholder="如: 0210 (郵局免填)" type="text" t-att-value="order.payment_tx_id.refund_branch_code" size="20"/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="text-right">您的戶名：</td><td><input name="refund_name" placeholder="如: 王小明" type="text" t-att-value="order.payment_tx_id.refund_name" size="20"/></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="text-right">您的銀行帳號：</td><td><input name="refund_account" placeholder="如: 99936800123456" type="text" t-att-value="order.payment_tx_id.refund_account" size="20"/></td>
+                                                                    </tr>
+                                                                </table>
+                                                                <br/>
+                                                                <button name="refund_info_btn" type="submit" width="100px" class="btn btn-primary btn-xs">
+                                                                    <span>Submit Refund Info</span>
+                                                                </button>
+                                                                <button name="refund_cancel_btn" type="button" width="100px" class="btn btn-default btn-xs" t-att-style="'display:none' if not order.payment_tx_id.refund_account else ''">
+                                                                    <span>Cancel</span>
+                                                                </button>
+                                                            </form>
+                                                            <br/><br/>
+                                                            票號: <t t-esc="line.sale_order_name"/><br/>
+                                                            請填寫好完整匯款資料以進行退款
+                                                        </div>
+                                                        <div name="refund_info_show" class="text-center" t-att-style="'display:none' if not order.payment_tx_id.refund_account else 'display:block'">
+                                                            已收到您的退款帳號資訊<br/><br/>
+                                                            <table align="center">
+                                                                <tr>
+                                                                    <td class="text-right">您的銀行：</td><td class="text-left"><t t-esc="order.payment_tx_id.refund_bank"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-right">您的銀行代碼：</td><td class="text-left"><t t-esc="order.payment_tx_id.refund_bank_code"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-right">您的分行代碼：</td><td class="text-left"><t t-esc="order.payment_tx_id.refund_branch_code"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-right">您的戶名：</td><td class="text-left"><t t-esc="order.payment_tx_id.refund_name"/></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-right">您的銀行帳號：</td><td class="text-left"><t t-esc="order.payment_tx_id.refund_account"/></td>
+                                                                </tr>
+                                                            </table>
+                                                            <br/>
+                                                            <button name="refund_edit_btn" type="submit" width="100px" class="btn btn-primary btn-xs">
+                                                                <span>Modify Refund Info</span>
+                                                            </button>
+                                                            <br/><br/>
+                                                            票號: <t t-esc="line.sale_order_name"/><br/>
+                                                            將扣除退票手續費每筆20元<br/>
+                                                            款項將於十個工作天內退回以上帳戶
+                                                        </div>
+                                                    </t>
+                                                    <!--</p>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </t>
+                            </div>
+                        </div>
+                    </section>
+                    <div t-if="pager" class="o_portal_pager text-center">
+                        <t t-call="website.pager"/>
+                    </div>
+                </t>
+            </t>
+        </template>
+        <template id="continue_shopping" inherit_id="website_sale.continue_shopping" customize_show="True" name="Continue Shopping Button">
+            <xpath expr="//a[@href='/shop']" position="replace">
+                <a t-att-href="'/booking/product/%d' % website_sale_order.order_line[0].product_id.product_tmpl_id.id" class="btn btn-default mb32">
+                    <span class="fa fa-long-arrow-left" />
+                    <span class="hidden-xs">Rebooking Ticket</span>
+                    <span class="visible-xs-inline">Rebooking</span>
+                </a>
+            </xpath>
+        </template>
+        <template id="confirmation" inherit_id="website_sale.confirmation" name="Confirmation">
+            <xpath expr="//div[@class='thanks_msg']" position="inside">
+                <a t-if="not order.pay_online" href="/my/quotes">Show My Bookings</a>
+                <a t-if="order.pay_online" href="/my/orders">Show My Tickets</a>
+            </xpath>
+        </template>
+        <template id="address" inherit_id="website_sale.address" name="Address Management">
+            <xpath expr="//t[@t-call='website.layout']" position="replace">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container oe_website_sale">
+                            <t t-call="website_sale.wizard_checkout">
+                                <t t-set="step" t-value="20"/></t>
+                            <div class="row">
+                                <div class="col-md-9 oe_cart">
+                                    <div class="row">
+                                        <t t-if="mode == ('new', 'billing')">
+                                            <h3 class="page-header mt16">
+                                                <t t-set='connect' t-value="request.env['ir.config_parameter'].sudo().get_param('auth_signup.allow_uninvited') == 'True' and ('signup', 'Sign Up') or ('login', 'Log In')"/>
+                                                <a t-attf-href='/web/{{connect[0]}}?redirect=/shop/checkout' class='btn btn-primary' style="margin-top: -11px">
+                                                    <t t-esc='connect[1]'/>
+                                                </a>
+                                            </h3>
+                                        </t>
+                                        <t t-if="mode == ('edit', 'billing')">
+                                            <h3 class="page-header mt16">Your Address</h3>
+                                        </t>
+                                        <t t-if="mode[1] == 'shipping'">
+                                            <h3 class="page-header mt16">Shipping Address</h3>
+                                        </t>
+                                        <t t-if="error" t-foreach="error.get('error_message', [])" t-as="err">
+                                            <h4 class="text-danger" t-esc="err"/>
+                                        </t>
+                                        <form name="/shop/checkout" method="post" class="checkout_autoformat">
+                                            <div t-attf-class="form-group #{error.get('name') and 'has-error' or ''} col-md-12 div_name">
+                                                <label class="control-label" for="name">Appointee/Travel Agency</label>
+                                                <input type="text" name="name" class="form-control" t-att-value="'name' in checkout and checkout['name']"/>
+                                            </div>
+                                            <div class="clearfix"/>
+                                            <t t-if="mode[1] == 'billing'">
+                                                <div t-attf-class="form-group #{error.get('email') and 'has-error' or ''} col-md-6" id="div_email">
+                                                    <label class="control-label" for="email">Email</label>
+                                                    <input type="email" name="email" class="form-control" t-att-value="'email' in checkout and checkout['email']"/>
+                                                </div>
+                                            </t>
+                                            <div t-attf-class="form-group #{error.get('phone') and 'has-error' or ''} col-md-6" id="div_phone">
+                                                <label class="control-label" for="phone">Phone</label>
+                                                <input type="tel" name="phone" class="form-control" t-att-value="'phone' in checkout and checkout['phone']"/>
+                                            </div>
+                                            <div class="clearfix"/>
+                                            <!--<t t-if="mode == ('new', 'billing')"><div t-attf-class="form-group #{error.get('company_name') and 'has-error' or ''} col-md-6"><label class="control-label" for="company_name">Company Name</label><input type="text" name="company_name" class="form-control" t-att-value="'company_name' in checkout and checkout['company_name']"/></div><div t-attf-class="form-group #{error.get('vat') and 'has-error' or ''} col-md-6 div_vat"><label class="control-label" for="vat">TIN / VAT</label><input type="text" name="vat" class="form-control" t-att-value="'vat' in checkout and checkout['vat']"/></div></t>-->
+                                            <div class="clearfix"/>
+                                            <div t-attf-class="form-group #{error.get('country_id') and 'has-error' or ''} col-md-6 div_country">
+                                                <label class="control-label" for="country_id">Country</label>
+                                                <select id="country_id" name="country_id" class="form-control">
+                                                    <option value="">Country...</option>
+                                                    <t t-foreach="countries" t-as="c">
+                                                        <option t-att-value="c.id" t-att-selected="c.id == (country and country.id or 229)">
+                                                            <t t-esc="c.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                            <div t-attf-class="form-group #{error.get('state_id') and 'has-error' or ''} col-md-6 div_state" t-att-style="(not country or not country.state_ids) and 'display: block'">
+                                                <label class="control-label" for="state_id">State / Province</label>
+                                                <select name="state_id" class="form-control" data-init="1">
+                                                    <option value="">State / Province...</option>
+                                                    <t t-foreach="country and country.state_ids or []" t-as="s">
+                                                        <option t-att-value="s.id" t-att-selected="s.id == ('state_id' in checkout and country and checkout['state_id'] != '' and int(checkout['state_id']))">
+                                                            <t t-esc="s.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                            <div class="clearfix"/>
+                                            <t t-set='zip_city' t-value='country and [x for x in country.get_address_fields() if x in ["zip", "city"]] or ["city", "zip"]'/>
+                                            <t t-if="'zip' in zip_city and zip_city.index('zip') &lt; zip_city.index('city')">
+                                                <div t-attf-class="form-group #{error.get('zip') and 'has-error' or ''} col-sm-4 div_zip">
+                                                    <label class="control-label" for="zip">Zip Code</label>
+                                                    <input type="text" name="zip" class="form-control" t-att-value="'zip' in checkout and checkout['zip']"/>
+                                                </div>
+                                            </t>
+                                            <t t-if="'zip' in zip_city and zip_city.index('zip') &gt; zip_city.index('city')">
+                                                <div t-attf-class="form-group #{error.get('zip') and 'has-error' or ''} col-sm-4 div_zip">
+                                                    <label class="control-label" for="zip">Zip Code</label>
+                                                    <input type="text" name="zip" class="form-control" t-att-value="'zip' in checkout and checkout['zip']"/>
+                                                </div>
+                                            </t>
+                                            <div t-attf-class="form-group #{error.get('city') and 'has-error' or ''} col-sm-8 div_city">
+                                                <label class="control-label" for="city">Township</label>
+                                                <input type="text" name="city" class="form-control" t-att-value="'city' in checkout and checkout['city']"/>
+                                            </div>
+                                            <div class="clearfix"/>
+                                            <div t-attf-class="form-group #{error.get('street') and 'has-error' or ''} col-md-12 div_street">
+                                                <label class="control-label" for="street">Street                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                                    <span class="hidden-xs">and Number</span>
+                                                </label>
+                                                <input type="text" name="street" class="form-control" t-att-value="'street' in checkout and checkout['street']"/>
+                                            </div>
+                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                            <input type="hidden" name="submitted" value="1"/>
+                                            <input type="hidden" name="partner_id" t-att-value="partner_id or '0'"/>
+                                            <input type="hidden" name="callback" t-att-value="callback"/>
+                                            <!-- Example -->
+                                            <input type="hidden" name="field_required" t-att-value="mode[1] == 'billing' and 'phone,name' or ''"/>
+                                            <div class="clearfix"/>
+                                            <div>
+                                                <a t-att-href="mode == ('new', 'billing') and '/shop/cart' or '/shop/checkout'" class="btn btn-default mb32">
+                                                    <span class="fa fa-long-arrow-left"/>                                                    Back                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                                </a>
+                                                <a class="btn btn-default btn-primary pull-right mb32 a-submit">
+                                                    <span>Next</span>
+                                                    <span class="fa fa-long-arrow-right"/>
+                                                </a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 text-muted">
+                                    <h3 class="page-header mt16 text-center">Your Order</h3>
+                                    <t t-set="website_sale_order" t-value="website.sale_get_order()"/>
+                                    <t t-call="website_sale.total"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </xpath>
+        </template>
+
+        <menuitem name="Ticket"
+            id="menu_main_ticket"
+            web_icon="biznavi_ticket,static/description/icon.png"
+            groups="biznavi_website.group_biznavi_website_announcement"
+            sequence="1"/>
+
+        <menuitem name="Tickets"
+              action="booking_calendar.all_orders_lines_list_action"
+              id="menu_action_tickets"
+              parent="menu_main_ticket"
+              sequence="1"/>
+
+        <menuitem name="Announcement"
+              action="biznavi_website.action_announcement"
+              id="menu_action_announcement"
+              groups="biznavi_website.group_biznavi_website_announcement"
+              parent="menu_main_ticket"
+              sequence="2"/>
+
+        <menuitem name="Booking"
+              action="booking_calendar.booking_orders_lines_list_action"
+              id="menu_action_reservations"
+              parent="menu_main_ticket"
+              sequence="3"/>
+
+        <menuitem name="POS"
+              action="booking_calendar.pos_orders_lines_list_action"
+              id="menu_action_pos"
+              parent="menu_main_ticket"
+              sequence="4"/>
+
+        <menuitem
+            action='payment.action_payment_transaction'
+            id='payment_transaction_menu'
+            parent='menu_main_ticket'
+            sequence='10' />
+    </data>
+</odoo>

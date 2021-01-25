@@ -1,0 +1,209 @@
+<t t-name="website.ticket1">
+  <t t-call="website.layout">
+    <div id="wrap" class="oe_structure oe_empty">
+      <section class="s_comparisons" style="background-color:#4e82d8">
+        <div class="container">
+          <h2 class="text-center"/>
+          <p style="text-align: center; margin-top: 30px; margin-bottom: 30px; font-size: 24px; font-weight: bold; color: rgb(51, 51, 51); font-family: &quot;segoe ui&quot;, &quot;microsoft jhenghei&quot;, &quot;microsoft mhei&quot;, stheititc, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;">
+            <span class="tick_disable" style="color: white;font-size: large;">購票前請詳閱
+                            <a href="/page/traffic" style="color: #ce0000" data-original-title="" title="">交通指南</a> 及
+                            <a href="/page/buy-infomation" style="color: #ce0000" data-original-title="" title="">購票指南</a>
+                        </span>
+          </p>
+          <p style="text-align: center; margin-top: 30px; margin-bottom: 30px; font-size: 24px; font-weight: bold; color: rgb(51, 51, 51); font-family: &quot;segoe ui&quot;, &quot;microsoft jhenghei&quot;, &quot;microsoft mhei&quot;, stheititc, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;">
+            <span class="tick_disable" style="color: white;font-size: large;">第一次使用購票系統請先註冊帳號或使用Facebook或google帳號登入 ！</span>
+            <br/>
+          </p>
+          <div class="row">
+            <div class="col-md-4 col-xs-12">
+              <div class="panel panel-info">
+                <div class="panel-heading text-center">
+                  <h3 style="margin: 0">一般民眾</h3>
+                  <p style="margin: 0" class="text-muted">
+                    <font class="text-white" style=""> 全票、半票、免費票</font>
+                  </p>
+                </div>
+                <div class="panel-body text-center text-muted" style="background-color: rgba(0,0,0,0.1)">
+                  <h3 style="margin: 0"><span>全票 $</span><b style="font-size: 60px">60</b>&amp;nbsp;
+                                        <span style="font-size: 18.2px; font-weight: 400;">元</span><br/>半票 $&amp;nbsp;
+                                        <b style="font-size: 60px;">30</b>&amp;nbsp;
+                                        <span style="font-size: 18.2px; font-weight: 400;">元</span>
+                                        <br/>
+                                    </h3>
+                  <h3 style="color: rgb(179, 179, 179); margin: 0px;">免費票 $&amp;nbsp;
+                                        <b style="font-size: 60px;">0</b>&amp;nbsp;
+                                        <span style="font-size: 18.2px; font-weight: 400;">元</span>
+                                    </h3>
+                  <h3 style="margin: 0">
+                    <br/>
+                  </h3>
+                  <a href="/shop/product/5" class="btn btn-lg btn-primary" data-original-title="" title="">立即訂票</a>
+                </div>
+                <ul class="list-group">
+                  <li class="list-group-item">適用於非團體旅遊民眾</li>
+                  <li class="list-group-item">全票: 適用於一般民眾
+                                        <br/>
+                                    </li>
+                  <li class="list-group-item">半票: 適用於六歲以上未滿十二歲兒童、在學學生及持高屏澎好玩卡者</li>
+                  <li class="list-group-item">免費票: 適用於未滿六歲之兒童、年滿六十五歲之人、身心障礙者及其監護人或必要之陪伴者一人、設籍岡山區及燕巢區居民、本市低收入戶、經核准立案之社會福利機構主辦之活動、本府或本府所屬機關主辦之活動及其他依法得予免費者</li>
+                  <li class="list-group-item">購買半票或免費參觀者，應出示相關證明文件。免費參觀之社會福利機構或本府、本府所屬機關應於參觀前一週向主管機關提出申請；教學活動，學校應於參觀前一週向主管機關提出申請</li>
+                </ul>
+                <div class="panel-footer text-center">
+                  <p class="text-muted">
+                    <i>當日票，限當日單次使用</i>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-xs-12">
+              <div class="panel panel-warning">
+                <div class="panel-heading text-center" style="background-color:#E6B8B8;">
+                  <h3 style="margin: 0">崗山之眼仲夏夜音樂響宴套票(門票+接駁)</h3>
+                  <p style="margin: 0"/>
+                </div>
+                <div class="panel-body text-center text-muted" style="background-color: rgba(0,0,0,0.1)">
+                  <h3 style="color: rgb(179, 179, 179); margin: 0px;"><span>套票 $</span>&amp;nbsp;
+                                        <span style="font-size: 60px;">100</span>&amp;nbsp;
+                                        <span style="font-size: 18.2px; font-weight: 400;">元</span><br/><br/></h3>
+                  <a href="/shop/product/14?i=0" class="btn btn-primary btn-lg" data-original-title="" title="">立即訂票</a>
+                </div>
+                <ul class="list-group">
+                  <li class="list-group-item">套票含一張優惠門票及往返接駁車票(原價50元)，限量200個名額，每人限購4張，售完為止。</li>
+                  <li class="list-group-item">活動時間:18:00-20:00
+                                        <br/>(演奏期間為18:30-19:30)
+                                        <br/>
+                                    </li>
+                  <li class="list-group-item">本套票僅能以信用卡付款。</li>
+                  <li class="list-group-item">活動當日如遇雨天，則取消活動退票。</li>
+                  <li class="list-group-item" style="color: red">當日請至阿公店水庫管理中心接駁處搭乘接駁車。</li>
+                </ul>
+                <div class="panel-footer text-center">
+                  <p class="text-muted">
+                    <i>*活動當日憑票於「遇見真愛」咖啡館可享有:
+                                            <br/>「蛋糕+咖啡」幸福組合價150元。
+                                            <br/>「簡餐或小火鍋」幸福優惠價8折。
+                                            <br/>歡迎提前來電預定餐點
+                                            <br/>(預定專線:0981-675-668)
+                                        </i>
+                    <br/>
+                  </p>
+                </div>
+              </div>
+              <div class="panel panel-info">
+                <div class="panel-heading text-center">
+                  <h3 style="margin: 0">團體票(20人以上)</h3>
+                  <p style="margin: 0">適用20~100人團體</p>
+                </div>
+                <div class="panel-body text-center text-muted" style="background-color: rgba(0,0,0,0.1)">
+                  <h3 style="color: rgb(179, 179, 179); margin: 0px;"><span>全票 $</span>&amp;nbsp;
+                                        <span style="font-size: 60px;">48</span>&amp;nbsp;
+                                        <span style="font-size: 18.2px; font-weight: 400;">元</span><br/>半票 $
+                                        <span style="font-size: 60px;">24</span>&amp;nbsp;
+                                        <span style="font-size: 18.2px; font-weight: 400;">元</span>
+                                        <br/>
+                                        <br/>
+                                    </h3>
+                  <a href="/shop/product/20-6" class="btn btn-lg btn-primary" data-original-title="" title="">立即訂票</a>
+                </div>
+                <ul class="list-group">
+                  <li class="list-group-item">適用於二十人以上之團體
+                                        <br/>
+                                    </li>
+                  <li class="list-group-item">全票: 適用於一般民眾
+                                        <br/>
+                                    </li>
+                  <li class="list-group-item">半票: 適用於六歲以上未滿十二歲兒童、在學學生及持高屏澎好玩卡者</li>
+                  <li class="list-group-item">購買半票應出示相關證明文件</li>
+                  <li class="list-group-item">
+                    <font class="text-gamma" style="">團體票只接受匯款，並於預約入場日前十日完成預約並匯款，逾期將取消預約</font>
+                    <br/>
+                  </li>
+                </ul>
+                <div class="panel-footer text-center">
+                  <p class="text-muted">
+                    <i>當日票，限當日單次使用</i>
+                    <br/>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-xs-12">
+              <div class="panel panel-primary">
+                <div class="panel-heading text-center">
+                  <h3 style="margin: 0">套票(門票+接駁車)</h3>
+                  <p style="margin: 0">全票、半票</p>
+                </div>
+                <div class="panel-body text-center text-muted" style="background-color: rgba(0,0,0,0.1)">
+                  <h3 style="color: rgb(179, 179, 179); margin: 0px;"><span>全票 $</span>&amp;nbsp;
+                                        <span style="font-size: 60px;">100</span>&amp;nbsp;
+                                        <span style="font-size: 18.2px; font-weight: 400;">元</span><br/>半票 $
+                                        <span style="font-size: 60px;">50</span>&amp;nbsp;
+                                        <span style="font-size: 18.2px; font-weight: 400;">元</span>
+                                        <br/>
+                                        <br/>
+                                    </h3>
+                  <a href="/shop/product/10" class="btn btn-lg btn-primary" data-original-title="" title="">立即訂票</a>
+                </div>
+                <ul class="list-group">
+                  <li class="list-group-item">含一張優惠門票及由阿公店水庫往返接駁車(原價50元)</li>
+                  <li class="list-group-item">全票: 適用於一般民眾
+                                        <br/>
+                                    </li>
+                  <li class="list-group-item">半票: 適用於六歲以上未滿十二歲兒童、在學學生及持高屏澎好玩卡者</li>
+                  <li class="list-group-item">購買半票應出示相關證明文件</li>
+                </ul>
+                <div class="panel-footer text-center">
+                  <p class="text-muted">
+                    <i>當日票，限當日單次使用</i>
+                    <br/>
+                  </p>
+                </div>
+              </div>
+              <div class="panel panel-primary">
+                <div class="panel-heading text-center">
+                  <h3 style="color: rgb(255, 255, 255); margin: 0px;">團體票(100人以上)</h3>
+                  <p style="margin: 0" class="text-muted">
+                    <font class="text-white" style="">適用100人以上團體</font>
+                  </p>
+                </div>
+                <div class="panel-body text-center text-muted" style="background-color: rgba(0,0,0,0.1)">
+                  <h3 style="color: rgb(179, 179, 179); margin: 0px;"><span>全票 $</span>&amp;nbsp;
+                                        <span style="font-size: 60px;">36</span>&amp;nbsp;
+                                        <span style="font-size: 18.2px; font-weight: 400;">元</span><br/>半票 $
+                                        <span style="font-size: 60px;">18</span>&amp;nbsp;
+                                        <span style="font-size: 18.2px; font-weight: 400;">元</span>
+                                        <br/>
+                                        <br/>
+                                    </h3>
+                  <a href="/shop/product/100-7" class="btn btn-lg btn-primary" data-original-title="" title="">立即訂票</a>
+                </div>
+                <ul class="list-group">
+                  <li class="list-group-item">適用於一百人以上之團體
+                                        <br/>
+                                    </li>
+                  <li class="list-group-item">全票: 適用於一般民眾
+                                        <br/>
+                                    </li>
+                  <li class="list-group-item">半票: 適用於六歲以上未滿十二歲兒童、在學學生及持高屏澎好玩卡者</li>
+                  <li class="list-group-item">購買半票應出示相關證明文件</li>
+                  <li class="list-group-item">
+                    <font class="text-gamma" style="">團體票只接受匯款，並於預約入場日前十日完成預約並匯款，逾期將取消預約</font>
+                  </li>
+                </ul>
+                <div class="panel-footer text-center">
+                  <p class="text-muted"><i>當日購票，當日單次使用</i>&amp;nbsp;
+                                        <br/></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+        <script>
+             $(document).ready(function () {
+                booking_calendar.info('<p class="Default" align="center"> <span style="font-size: 18px;"> <b>崗山之眼園區特定休園時機</b> <span lang="EN-US"/> </span> </p><p/> <p/> <p class="Default"> <span style="font-size:10.0pt">高雄市政府為確保園區遇天然及其他災害可能面臨之遊客安全，特公告相關措施如下<span lang="EN-US">:</span></span> </p><p/> <p/> <p class="Default"> <span style="font-size:10.0pt">一、下列情況將停止園區營運：<span lang="EN-US"/></span> </p><p/> <p/> <p class="Default"> &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<span lang="EN-US" style="font-size:10.0pt">(</span> <span style="font-size:10.0pt">一<span lang="EN-US">)</span>、 經高雄市政府發布停止上班或上課。<span lang="EN-US"/></span> </p><p/> <p/><p class="Default"> &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<span lang="EN-US" style="font-size:10.0pt">(</span> <span style="font-size:10.0pt">二<span lang="EN-US">)</span>、 突發災害性天候或地震，視情況關閉廊道或園區。<span lang="EN-US"/></span> </p><p/> <p/> <p class="Default"> &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<span lang="EN-US" style="font-size:10.0pt">(</span> <span style="font-size:10.0pt">三<span lang="EN-US">)</span>、 其他不可抗力之因素造成須暫停營運。<span lang="EN-US"/></span> </p><p/> <p/> <p class="Default"> <span lang="EN-US" style="font-size:10.0pt"> </span> </p><p/> <p class="Default"> <span style="font-size:10.0pt">二、因上述情形之退票方式：<span lang="EN-US"/></span> </p><p/> <p/> <p class="Default"> &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<span lang="EN-US" style="font-size:10.0pt">(</span> <span style="font-size:10.0pt">一<span lang="EN-US">)</span>、 線上預購門票部分<span lang="EN-US">:</span></span> <span style="font-size:10.0pt">就封閉時段已預購之民眾，提供線上退票申請。<span lang="EN-US"/></span> </p><p/> <p/> <p class="Default"> &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<span lang="EN-US" style="font-size:10.0pt">( </span><span style="font-size:10.0pt">二<span lang="EN-US">)</span>、 現場購買門票部分<span lang="EN-US">:</span></span> <span style="font-size:10.0pt">現場暫停售票，已購票之遊客直接於現場進行退票作業。</span> <span lang="EN-US" style="font-size:10.0pt"> </span> </p><p/> <p/>');
+            });
+        </script>
+  </t>
+</t>

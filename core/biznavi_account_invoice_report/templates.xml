@@ -1,0 +1,572 @@
+<openerp>
+    <data>
+        <template id="report_biznavi_invoice_document" inherit_id="sale_stock.report_invoice_document_inherit_sale_stock">
+            <xpath expr="//t[@t-call='report.external_layout']" position="replace">
+                <t t-if="o and 'company_id' in o">
+                    <t t-set="company" t-value="o.company_id"/>
+                </t>
+                <div class="page">
+                    <t t-call="biznavi.page_style"/>
+                    <div class="row" t-foreach="['green','orange','navy']" t-as="p" style="vertical-align:top;">
+                        <div t-if="p_index" style="width:100%;height:1px;border-bottom: 1px dashed black;"/>
+                        <div style="height:30px;"> </div>
+                        <table style="width:100%;margin:0;" rules="none">
+                            <tr>
+                                <td rowspan="2" t-att-style="'color:%s' % p">
+                                    <span style="margin-top:70px;width:13px;font-size:12px;float: left;">
+                                        扣抵外，其餘均得扣抵，並在各該適當欄內打﹁﹂符號。
+                                    </span>
+                                    <span style="margin-top:70px;width:13px;font-size:12px;float: left;">
+                                        ﹁固定資產﹂，其進項稅額，除營業稅法第十九條第一項屬不可
+                                    </span>
+                                    <span style="margin-top:70px;width:13px;font-size:12px;float: left;">
+                                        營業人購進貨物或勞務應先按其用途區分為﹁進貨及費用﹂與
+                                    </span>
+                                    <span style="margin-top:70px;width:13px;font-size:12px;float: left;">
+                                        買受人註記欄之註記方法：
+                                    </span>
+                                    <span style="margin-top:70px;width:10px;font-size:12px;float: left;"> </span>
+                                </td>
+                                <td t-att-style="'height:30px;vertical-align:top;font-size:16px;color:%s' % p">
+                                    <table t-att-style="'width:100%%%%;font-size:16px;color:%s' % p">
+                                        <tr>
+                                            <td style="width:50%;vertical-align:middle;">
+                                                <img t-if="company.logo and company.show_logo"
+                                                     t-att-src="'data:image/png;base64,%s' % company.logo"
+                                                     style="float:left;max-height:60px;max-width:200px;vertical-align:middle;"/>
+                                            </td>
+                                            <td colspan="2" style="width:100%;text-align:center;vertical-align:middle;height:60px;">
+                                                <nobr t-att-style="'font-size:32px;font-weight: bold;color:%s' % p"
+                                                      t-field="company.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="vertical-align:bottom;">
+                                                <div style="float:left;">
+                                                    <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">
+                                                        發票號碼:
+                                                    </span>
+                                                    <span t-if="o.type == 'out_invoice' and o.state == 'proforma2'">
+                                                        PRO-FORMA
+                                                    </span>
+                                                    <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Draft
+                                                        Invoice
+                                                    </span>
+                                                    <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">
+                                                        Cancelled Invoice
+                                                    </span>
+                                                    <span t-if="o.type == 'out_refund'">Refund</span>
+                                                    <span t-if="o.type == 'in_refund'">Supplier Refund</span>
+                                                    <span t-if="o.type == 'in_invoice'">Supplier Invoice</span>
+                                                    <span style="color:black" t-field="o.number"/>
+                                                </div>
+                                            </td>
+                                            <td style="width:100%;text-align:center;">
+                                                <span t-att-style="'font-size:25px;color:%s' % p">電子計算機統一發票</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left;">
+                                                <nobr>買受人:<font style="color:black;" t-field="o.partner_id.name"/></nobr>
+                                            </td>
+                                            <td style="width:100%;text-align:center;">
+                                                <t t-if="o.date_invoice">
+                                                    <span t-att-style="'font-size:16px;color:%s' % p">中華民國
+                                                    </span>
+                                                    <span style="font-size:16px;color:black"
+                                                          t-esc="o._taiwanYear(o.date_invoice)"/>
+                                                    <span t-att-style="'font-size:16px;color:%s' % p">年
+                                                    </span>
+                                                    <span style="font-size:16px;color:black"
+                                                          t-esc="o.date_invoice[5:7]"/>
+                                                    <span t-att-style="'font-size:16px;color:%s' % p">月
+                                                    </span>
+                                                    <span style="font-size:16px;color:black"
+                                                          t-esc="o.date_invoice[8:10]"/>
+                                                    <span t-att-style="'font-size:16px;color:%s' % p">
+                                                        日
+                                                    </span>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left" colspan="2">
+                                                <sapn>統一編號:</sapn>
+                                                <t t-if="o.partner_id.vat">
+                                                    <span style="color:black;display:inline;"
+                                                          t-esc="o.partner_id.vat[2:]"/>
+                                                </t>
+                                                <span style="color:black;float:right;font-size:12px;margin-right:-45px;"
+                                                      t-esc="o.check_code"/>
+                                                <span t-att-style="'float:right;margin-right:-20px;font-size:16px;color:%s' % p">
+                                                    檢查號碼:
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align:left" colspan="2" nowarp="nowarp">
+                                                <nobr>地址:
+                                                <font style="color:black;display:inline;" t-field="o.partner_id.city"/>
+                                                <font style="color:black;display:inline;"
+                                                      t-field="o.partner_id.street"/>
+                                                <font style="color:black;display:inline;"
+                                                      t-field="o.partner_id.street2"/></nobr>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style="width:10%">
+                                    <p/>
+                                </td>
+                                <td style="width:20%;vertical-align:middle;">
+                                    <table t-att-style="'width:200px;border: 2px solid;color:%s' % p" rules="all">
+                                        <thead>
+                                            <tr colspan="3">
+                                                <th colspan="3" style="font-size:16px;text-align:center">買 受 人 註 記 欄
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="border: 1px solid;font-size:13px">
+                                            <tr>
+                                                <td class="text-center" style="border: 1px solid;">區　　分</td>
+                                                <td class="text-center" style="border: 1px solid;">進貨及費用</td>
+                                                <td class="text-center" style="border: 1px solid;">固定資產</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" style="border: 1px solid;">得 扣 抵</td>
+                                                <td class="text-center" style="border: 1px solid;"/>
+                                                <td class="text-center" style="border: 1px solid;"/>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center" style="border: 1px solid;">不得扣抵</td>
+                                                <td class="text-center" style="border: 1px solid;"/>
+                                                <td class="text-center" style="border: 1px solid;"/>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align:top;" colspan="3">
+                                    <table style="width:100%;font-size:16px;">
+                                        <tr>
+                                            <td style="width:100%;">
+                                                <table t-att-style="'border:2px solid;font-size:16px;width:100%%%%;height:280px;color:%s' % p"
+                                                       rules="cols">
+                                                    <thead>
+                                                        <tr style="border:2px solid;">
+                                                            <th style="text-align:center;border-right: 1px solid;">品名
+                                                            </th>
+                                                            <th style="text-align:center;border-right: 1px solid;">數量
+                                                            </th>
+                                                            <th style="text-align:center;border-right: 1px solid;">單價
+                                                            </th>
+                                                            <th style="text-align:center;">金額</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!--<tr t-foreach="o.invoice_line" t-as="l"> odoo:8-->
+                                                        <tr t-foreach="o.invoice_line_ids" t-as="l">
+                                                            <td style="padding-left:3px;border-right: 1px solid;">
+                                                                <span style="color:black" t-field="l.name"/>
+                                                            </td>
+                                                            <td style="text-align:right;padding-right:3px;border-right: 1px solid;">
+                                                                <span style="color:black" t-field="l.quantity"/>
+                                                                <span style="color:black" t-field="l.uos_id"
+                                                                      groups="product.group_uom"/>
+                                                            </td>
+                                                            <td style="text-align:right;padding-right:3px;border-right: 1px solid;">
+                                                                <span style="color:black"
+                                                                      t-esc="o._currencyFmt(l.price_unit)"/>
+                                                            </td>
+                                                            <td style="text-align:right;padding-right:3px;">
+                                                                <span style="color:black"
+                                                                      t-esc="o._currencyFmt(l.price_subtotal)"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr height="100%">
+                                                            <td style="border-right: 1px solid;"/>
+                                                            <td style="border-right: 1px solid;"/>
+                                                            <td style="border-right: 1px solid;"/>
+                                                            <td/>
+                                                        </tr>
+                                                        <tr style="width:100%;border-top:2px solid;">
+                                                            <td colspan="3"
+                                                                style="text-align:center;border-right: 1px solid;">銷售額合計
+                                                            </td>
+                                                            <td style="text-align:right;padding-right:3px;">
+                                                                <span style="color:black"
+                                                                      t-esc="o._currencyFmt(o.amount_untaxed)"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="border-top:2px solid;">
+                                                            <td colspan="3" style="border-right: 1px solid;">
+                                                                <table colspan="3"
+                                                                       t-att-style="'text-align:center;width:100%%%%;border-top:0px hidden;border-bottom:0px hidden;border-left:0px hidden;border-right:0px hidden;color:%s' % p"
+                                                                       rules="cols">
+                                                                    <tr>
+                                                                        <td t-att-style="'border-right: 1px solid %s;' % p">
+                                                                            營業稅
+                                                                        </td>
+                                                                        <td width="10%"
+                                                                            t-att-style="'border-right: 1px solid %s;' % p">
+                                                                            應稅
+                                                                        </td>
+                                                                        <td width="10%"
+                                                                            t-att-style="'color:black;border-right: 1px solid %s;' % p">
+                                                                            ✓
+                                                                        </td>
+                                                                        <td width="10%"
+                                                                            t-att-style="'border-right: 1px solid %s;' % p">
+                                                                            零稅率
+                                                                        </td>
+                                                                        <td width="10%"
+                                                                            t-att-style="'border-right: 1px solid %s;' % p"/>
+                                                                        <td width="10%"
+                                                                            t-att-style="'border-right: 1px solid %s;' % p">
+                                                                            免稅
+                                                                        </td>
+                                                                        <td width="10%" style="text-align:center;"/>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                            <td style="text-align:right;padding-right:3px;">
+                                                                <span style="color:black"
+                                                                      t-esc="o._currencyFmt(o.amount_tax)"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="border-top:2px solid;">
+                                                            <td colspan="3"
+                                                                style="text-align:center;border-right: 1px solid;">總計
+                                                            </td>
+                                                            <td style="text-align:right;padding-right:3px;">
+                                                                <span style="color:black"
+                                                                      t-esc="o._currencyFmt(o.amount_total)"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr style="border-top:2px solid;">
+                                                            <td colspan="4" style="padding-left:30px;">
+                                                                <table colspan="3"
+                                                                       t-att-style="'width:100%%%%;border-top:0px hidden;border-bottom:0px hidden;border-left:0px hidden;border-right:0px hidden;color:%s' % p"
+                                                                       rules="cols">
+                                                                    <tr>
+                                                                        <td width="40%"
+                                                                            style="text-align:center;border-right: 1px solid;">
+                                                                            總計新台幣(中文大寫)
+                                                                        </td>
+                                                                        <td style="text-align:center">
+                                                                            <span style="color:black"
+                                                                                  t-esc="'%s 元整' % o._chineseNumber(o.amount_total)"/>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <table t-att-style="'border:2px solid;border-left: 0px hidden;font-size:16px;width:200px;height:280px;color:%s' % p"
+                                                       rules="all">
+                                                    <thead>
+                                                        <tr style="border:2px solid;">
+                                                            <th style="text-align:center;">備註</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="height:100%;color:black;">
+                                                                <span t-field="o.comment"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="height:25px;text-align:center;vertical-align:middle;border-top: 2px solid;border-bottom: 2px solid;">
+                                                                營業人蓋用統一發票專用章
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="height:130px;text-align:center;">
+                                                                <img t-if="company.vat_img"
+                                                                     t-att-src="'data:image/png;base64,%s' % company.vat_img"
+                                                                     style="max-height: 100px;"/>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="row">
+                                        <table t-att-style="'margin-left:30px;font-size:13px;color:%s' % p">
+                                            <tr>
+                                                <td>※ 應稅、零稅率、免稅之銷售額應分別開立統一發票，並應於各該欄打「 ✓ 」。</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <t t-if="company.issue_info">
+                                                        <span t-field="company.issue_info"/>
+                                                    </t>
+                                                    <t t-if="not company.issue_info">
+                                                        本發票依○○○國稅局○○分局（稽徵所）　　年　　月　　日○○○○字第　　　號函核准使用。
+                                                    </t>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td t-att-style="'height:100%%%%;vertical-align:top;color:%s' % p">
+                                    <span t-if="p_index == 0" style="width:30px;float: right;font-size:16px;">第一聯：存根聯</span>
+                                    <span t-if="p_index == 1" style="width:30px;float: right;font-size:16px;">第二聯：扣抵聯</span>
+                                    <span t-if="p_index == 2" style="width:30px;float: right;font-size:16px;">第三聯：收執聯</span>
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="height:30px;"> </div>
+                        <p/>
+                    </div>
+                    <div>
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="height:1100px;"></td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    <table style="width:900px;font-size:16px;">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align:center;font-size:25px;" colspan="3">
+                                                    <p>統 一 發 票 領 獎 注 意 事 項</p>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td style="width:400px;vertical-align:top;">
+                                                    <div>一、統一發票之給獎，依統一發票給獎辦法之規定辦理。</div>
+                                                    <div>二、各期統一發票開獎日期及領獎期間，領獎末日如遇假日順延至次一上班日。</div>
+                                                    <div>
+                                                        <p/>
+                                                        <table style="width:400px;border:2px solid;" cellpadding="0"
+                                                               cellspacing="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td align="center" style="border: 1px solid;">期　別
+                                                                    </td>
+                                                                    <td align="center" style="border: 1px solid;">開獎日期
+                                                                    </td>
+                                                                    <td align="center" style="border: 1px solid;">領獎期間
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="center" style="border: 1px solid;">1～2月
+                                                                    </td>
+                                                                    <td align="center" style="border: 1px solid;">3/25
+                                                                    </td>
+                                                                    <td align="center" style="border: 1px solid;">
+                                                                        4/6～7/5
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="center" style="border: 1px solid;">3～4月
+                                                                    </td>
+                                                                    <td align="center" style="border: 1px solid;">5/25
+                                                                    </td>
+                                                                    <td align="center" style="border: 1px solid;">
+                                                                        6/6～9/5
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="center" style="border: 1px solid;">5～6月
+                                                                    </td>
+                                                                    <td align="center" style="border: 1px solid;">7/25
+                                                                    </td>
+                                                                    <td align="center" style="border: 1px solid;">
+                                                                        8/6～11/5
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="center" style="border: 1px solid;">7～8月
+                                                                    </td>
+                                                                    <td align="center" style="border: 1px solid;">9/25
+                                                                    </td>
+                                                                    <td align="center" style="border: 1px solid;">
+                                                                        10/6～1/5
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="center" style="border: 1px solid;">
+                                                                        9～10月
+                                                                    </td>
+                                                                    <td align="center" style="border: 1px solid;">
+                                                                        11/25
+                                                                    </td>
+                                                                    <td align="center" style="border: 1px solid;">
+                                                                        12/6～3/5
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="center" style="border: 1px solid;">
+                                                                        11～12月
+                                                                    </td>
+                                                                    <td align="center" style="border: 1px solid;">1/25
+                                                                    </td>
+                                                                    <td align="center" style="border: 1px solid;">
+                                                                        2/6～5/5
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <p/>
+                                                    </div>
+                                                    <div>三、中獎人請於領獎期間內攜帶國民身分證
+                                                        （非本國國籍人士得以護照、居留證等文件替代）及中獎統一發票收執聯，向下列郵局兌領，並應於公告之兌獎營業時間內為之，逾期則不得領獎。
+                                                    </div>
+                                                    <div>（一）特別獎、特獎、頭獎、二獎及三獎為各直轄市及各縣、市經指定之郵局。</div>
+                                                    <div>（二）四獎、五獎、六獎為各地郵局。</div>
+                                                    <div>四、兌獎若有疑義，請洽郵局服務專線
+
+
+                                                        <div>電話：（02）2396-1651</div>
+                                                    </div>
+                                                </td>
+                                                <td style="width:100px;">
+                                                    <p/>
+                                                </td>
+                                                <td style="width:400px;">
+                                                    <div>
+                                                        <table style="width:400px;font-size:16px;border:2px solid;"
+                                                               cellpadding="0" cellspacing="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td colspan="12"
+                                                                        style="width:196px;height:30px;font-size:20px;text-align:center;border: 1px solid;vertical-align:middle;">
+                                                                        領　　獎　　收　　據
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="12"
+                                                                        style="width:196px;height:30px;font-size:20px;text-align:center;border: 1px solid;vertical-align:middle;">
+                                                                        貼　　用　　印　　花
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="width:60px;height:35px;text-align:center;border: 1px solid;vertical-align:middle;">
+                                                                        金　 額
+                                                                    </td>
+                                                                    <td colspan="11"
+                                                                        style="width:148px;height:35px;text-align:center;border: 1px solid;vertical-align:middle;">
+                                                                        新臺幣　　　　　　　　 元整
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="width:60px;height:39px;text-align:center;border: 1px solid;vertical-align:middle;">
+                                                                        中獎人
+                                                                    </td>
+                                                                    <td colspan="5"
+                                                                        style="width:65px;height:39px;border: 1px solid;">
+                                                                        <p/>
+                                                                    </td>
+                                                                    <td colspan="2"
+                                                                        style="width:40px;height:39px;text-align:center;border: 1px solid;vertical-align:middle;">
+                                                                        <div>簽名或</div>
+                                                                        <div>蓋章</div>
+                                                                    </td>
+                                                                    <td colspan="4"
+                                                                        style="width:55px;height:39px;border: 1px solid;">
+                                                                        <p align="center"/>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="2"
+                                                                        style="width:58px;height:25px;text-align:center;border: 1px solid;vertical-align:middle;">
+                                                                        <div>國民身分證</div>
+                                                                        <div>統 一 編 號</div>
+                                                                    </td>
+                                                                    <td style="width:20px;height:25px;border: 1px solid;">
+                                                                        <p style="margin-left:10.4pt;"/>
+                                                                    </td>
+                                                                    <td style="width:20px;height:25px;border: 1px solid;">
+                                                                        <p style="margin-left:10.4pt;"/>
+                                                                    </td>
+                                                                    <td style="width:20px;height:25px;border: 1px solid;">
+                                                                        <p style="margin-left:10.4pt;"/>
+                                                                    </td>
+                                                                    <td style="width:20px;height:25px;border: 1px solid;">
+                                                                        <p style="margin-left:10.4pt;"/>
+                                                                    </td>
+                                                                    <td style="width:20px;height:25px;border: 1px solid;">
+                                                                        <p style="margin-left:10.4pt;"/>
+                                                                    </td>
+                                                                    <td style="width:20px;height:25px;border: 1px solid;">
+                                                                        <p style="margin-left:10.4pt;"/>
+                                                                    </td>
+                                                                    <td style="width:20px;height:25px;border: 1px solid;">
+                                                                        <p style="margin-left:10.4pt;"/>
+                                                                    </td>
+                                                                    <td style="width:20px;height:25px;border: 1px solid;">
+                                                                        <p style="margin-left:10.4pt;"/>
+                                                                    </td>
+                                                                    <td style="width:20px;height:25px;border: 1px solid;">
+                                                                        <p style="margin-left:10.4pt;"/>
+                                                                    </td>
+                                                                    <td style="width:20px;height:25px;border: 1px solid;">
+                                                                        <p style="margin-left:10.4pt;"/>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="width:60px;height:30px;text-align:center;border: 1px solid;vertical-align:middle;">
+                                                                        <div>戶 籍</div>
+                                                                        <div>地 址</div>
+                                                                    </td>
+                                                                    <td colspan="11"
+                                                                        style="width:148px;height:30px;border: 1px solid;">
+                                                                        <p/>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="width:60px;height:30px;text-align:center;border: 1px solid;vertical-align:middle;">
+                                                                        <div>電 話</div>
+                                                                    </td>
+                                                                    <td colspan="11"
+                                                                        style="width:148px;height:30px;border: 1px solid;">
+                                                                        <p/>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div style="margin-top:10px;margin-bottom:5px;">
+                                                        <table style="border:1px dotted black;font-size:16px;width:400px;">
+                                                            <tr>
+                                                                <td>
+                                                                    <div>
+                                                                        檢舉不法逃漏稅，請寫真實姓名地址，寄營業人所在地稽徵機關。
+                                                                    </div>
+                                                                    <div>
+                                                                        國稅局全國免費服務專線：0800-000-321
+                                                                    </div>
+                                                                    <div>
+                                                                        檢舉貪瀆不法信箱：台北郵政5-75號信箱
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div style="text-align:center">
+                                                        <div>查詢中獎號碼網址:</div>
+                                                        <div>http://www.dot.gov.tw</div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</openerp>

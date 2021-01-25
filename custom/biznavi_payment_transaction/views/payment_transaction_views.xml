@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="transaction" model="ir.ui.view">
+            <field name="name">biznavi.payment.transaction.search</field>
+            <field name="model">payment.transaction</field>
+            <field name="inherit_id" ref="payment.transaction"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='reference']" position="replace">
+                    <field name="reference" string="Keyword" filter_domain="[
+                    '|', ('reference','ilike', self),
+                    '|', ('state_message','ilike', self),
+                    '|', ('sale_order_id','ilike', self),
+                    '|', ('partner_id','ilike', self),
+                    '|', ('partner_name','ilike',self),
+                    '|', ('partner_phone','ilike',self),
+                    '|', ('partner_email','ilike',self), ('acquirer_id','ilike',self)]"/>
+                    <field name="state_message"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="transaction_form" model="ir.ui.view">
+            <field name="name">biznavi.payment.transaction.form</field>
+            <field name="model">payment.transaction</field>
+            <field name="inherit_id" ref="payment.transaction_form"/>
+            <field name="arch" type="xml">
+                <field name="date_validate" position="after">
+                    <field name="pay_no"/>
+                    <field name="tx_no"/>
+                    <field name="exp_date"/>
+                    <field name="pay_date"/>
+                    <field name="refund_date"/>
+                    <field name="refund_bank"/>
+                    <field name="refund_bank_code"/>
+                    <field name="refund_branch_code"/>
+                    <field name="refund_name"/>
+                    <field name="refund_account"/>
+                    <field name="trace_no"/>
+                </field>
+                <field name="partner_id" position="after">
+                    <field name="partner_oauth"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

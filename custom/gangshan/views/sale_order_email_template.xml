@@ -1,0 +1,81 @@
+<odoo>
+    <data>
+        <template id="report_quotation_inherit" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//p[@id='customize_order_note']" position="replace">
+                <p id="customize_order_note">
+                    預約參訪民眾配合事項:
+                    <br/>
+                    1. 團體預約入場者，請於入場前10日完成匯款。
+                    <br/>
+                    2. 請持電子票券搭乘接駁車至園區入口(需付費)，由現場人員驗票後始得入園參觀，另為加速通行，建議先行下載或列印本通知信附檔的 PDF 電子票劵(QR code)。
+                    <br/>
+                    3. 購買免費票遊客請攜帶相關證明俾現場驗票人員查驗，團體帶隊人員須帶身份證明文件及團員名單資料以縮短預約團體身份資料辨識時間，倘有無法辨識情形將取消預約資格。
+                    <br/>
+                    4. 請於預約參訪時間前10分鐘至入口處排隊等候入場,逾時不候。
+                    <br/><br/>
+                    緊急聯絡電話：<br/>
+                    園區：6282100<br/>
+                    觀光局：7409823<br/>
+                </p>
+            </xpath>
+
+            <xpath expr="//p[@t-field='doc.note']" position="replace">
+                <t t-if="doc.payment_tx_id and doc.payment_tx_id.state != 'authorized'">
+                    <p id="customize_payment_info">
+                        收款銀行：永豐銀行台北分行
+                        <br/>
+                        銀行代號: 807
+                        <br/>
+                        匯款分行代號: 0210
+                        <br/>
+                        匯款戶名: 其他應付款-代收-網路收款
+                        <br/>
+                        轉帳<span t-field="doc.note" />
+                        <br/><br/>
+                        請於 <t t-esc="doc.payment_tx_id.deadline" /> 前完成轉帳或匯款，逾時本訂單將會自動取消
+                    </p>
+                </t>
+            </xpath>
+        </template>
+
+        <template id="external_layout_header_inherit" inherit_id="report.external_layout_header">
+            <xpath expr="//div[@name='company_address']" position="replace">
+                <div class="col-xs-6" name="company_address">
+                    <span t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"
+                          style="border-bottom: 1px solid black; display:inline-block;">
+                        崗山之眼
+                    </span>
+                </div>
+            </xpath>
+        </template>
+
+        <template id="wizard_checkout" inherit_id="website_sale.wizard_checkout">
+            <xpath expr="//ul[@class='wizard pull-right']" position="replace">
+                <ul class="wizard pull-right">
+                    <li t-att-class="step==10 and 'text-primary' or 'text-muted'" id="step10">
+                        <t t-if="step&gt;10 and step&lt;50">
+                            <a href="/shop/cart" class="text-success">
+                                Review Order
+                                <span class="chevron"></span>
+                            </a>
+                        </t>
+                        <t t-if="not (step&gt;10 and step&lt;50)">
+                            Review Order
+                            <span class="chevron"></span>
+                        </t>
+                    </li>
+                    <li t-att-class="(step==20 and 'text-primary') or 'text-muted'" id="step20">
+                        Reserve
+                        <span class="chevron"></span>
+                    </li>
+                    <li t-att-class="(step==50 and 'text-primary') or 'text-muted'" id="step50">
+                        Confirmation
+                        <span class="chevron"></span>
+                    </li>
+                </ul>
+            </xpath>
+        </template>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data noupdate="0">
+       <!--<record id="tokiku_paperformat" model="report.paperformat">-->
+           <!--<field name="name">Tokiku Paper Format</field>-->
+           <!--<field name="default" eval="True"/>-->
+           <!--<field name="format">A4</field>-->
+       <!--</record>-->
+       <!--paperformat="tokiku_paperformat"-->
+       <report id="preparation_order"
+             model="tokiku.preparation_order"
+             string="Preparation Order"
+             report_type="qweb-pdf"
+             name="tokiku.report_preparation_order"
+       />
+
+       <template id="report_preparation_order">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <h2 style="text-align: center">
+                                <span >備料派工單</span>
+                            </h2>
+
+                            <div class="row mt32 mb32" id="preparation_info">
+                                <div class="col-xs-6">
+                                    <strong>組裝單號: <span t-esc="o.order_num"/></strong>
+                                </div>
+                                <div class="col-xs-6">
+                                    <strong>專案: <span t-esc="o.project_id.name"/></strong>
+                                </div>
+                                <div class="col-xs-6">
+                                    <strong>組裝廠: <span t-esc="o.factory_id.name"/></strong>
+                                </div>
+                                <div class="col-xs-6">
+                                    <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+                                </div>
+                                <div class="col-xs-6">
+                                    <strong>製單日期: <span t-esc="o.file_date"/></strong>
+                                </div>
+                                <div class="col-xs-6">
+                                    <strong>施作日期: <span t-esc="o.run_date"/></strong>
+                                </div>
+                                <div class="col-xs-6">
+                                    <strong>製單人員: <span t-esc="o.create_uid.name"/></strong>
+                                </div>
+                                <div class="col-xs-6">
+                                    <strong>組裝工段: <span t-esc="o.assembly_section"/></strong>
+                                </div>
+                            </div>
+                            <div class="row" id="preparation_line_info">
+                                <div class="col-xs-12">
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr style="border-top: 1px solid black">
+                                                <th>棟別</th>
+                                                <th>加工圖集</th>
+                                                <th>組合編號</th>
+                                                <th>數量</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-foreach="get_lines(o)" t-as="l">
+                                                <td>
+                                                    <span t-esc="l['building']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="l['atlas_id']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="l['name']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="l['demand_qty']"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+       </template>
+
+       <report id="assembly_order"
+             model="tokiku.assembly_order"
+             string="Assembly Order"
+             report_type="qweb-pdf"
+             name="tokiku.report_assembly_order"
+             file="tokiku.report_assembly_order"
+       />
+
+       <template id="report_assembly_order">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="report.external_layout">
+                        <div class="page">
+                            <div class="oe_structure"/>
+                            <h2 style="text-align: center">
+                                <span >組裝派工單</span>
+                            </h2>
+
+                            <div class="row mt32 mb32" id="production_record_info">
+                                <div class="col-xs-6">
+                                    <strong>組裝單號: <span t-esc="o.order_num"/></strong>
+                                </div>
+                                <div class="col-xs-6">
+                                    <strong>專案: <span t-esc="o.project_id.name"/></strong>
+                                </div>
+                                <div class="col-xs-6">
+                                    <strong>組裝廠: <span t-esc="o.factory_id.name"/></strong>
+                                </div>
+                                <div class="col-xs-6">
+                                    <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+                                </div>
+                                <div class="col-xs-6">
+                                    <strong>製單日期: <span t-esc="o.file_date"/></strong>
+                                </div>
+                                <div class="col-xs-6">
+                                    <strong>施作日期: <span t-esc="o.run_date"/></strong>
+                                </div>
+                                <div class="col-xs-6">
+                                    <strong>製單人員: <span t-esc="o.create_uid.name"/></strong>
+                                </div>
+                                <div class="col-xs-6">
+                                    <strong>組裝工段: <span t-esc="o.assembly_section"/></strong>
+                                </div>
+                            </div>
+                            <div class="row" id="production_record_line_info">
+                                <div class="col-xs-12">
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr style="border-top: 1px solid black">
+                                                <th>棟別</th>
+                                                <th>加工圖集</th>
+                                                <th>組合編號</th>
+                                                <th>組裝派工數</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr t-foreach="get_lines(o)" t-as="l">
+                                                <td>
+                                                    <span t-esc="l['building']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="l['atlas_id']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="l['name']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="l['demand_qty']"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+       </template>
+   </data>
+</odoo>

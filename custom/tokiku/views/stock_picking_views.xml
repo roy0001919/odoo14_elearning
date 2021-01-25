@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="name">tokiku.stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <!--<button name="create_po_wizard" type="object" string="Create PO Wizard" groups="purchase.group_purchase_manager" context="{'picking_id':id}"/>-->
+                <button name="picking_product_select" type="object" string="Picking Product Select"
+                        groups="purchase.group_purchase_manager" context="{'picking_id':id}"/>
+            </xpath>
+            <xpath expr="//field[@name='location_id']" position="replace">
+                <field name="stage" invisible="1"/>
+                <field name="location_id" groups="stock.group_stock_multi_locations"
+                       options="{'create': False, 'create_edit': False}"
+                       attrs="{'invisible': [('picking_type_code', '=', 'outgoing')]}"
+                       domain="[('id','in', context.get('location_ids', False))]"/>
+            </xpath>
+            <xpath expr="//field[@name='location_dest_id']" position="replace">
+                <field name="location_dest_id" groups="stock.group_stock_multi_locations"
+                       options="{'create': False, 'create_edit': False}"
+                       attrs="{'invisible': [('picking_type_code', '=', 'incoming')]}"/>
+                <field name="project_id" invisible="1"/>
+                <field name="atlas_ids" widget="many2many_tags"
+                       domain="[('project_id','=', project_id), ('atlas_version', '=', 0)]"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="replace">
+                <field name="partner_id"
+                       attrs="{'invisible': [('stage', '=', 'ship')], 'required': [('stage', '!=', 'material'), ('stage', '!=', 'ship')]}"
+                       options="{'create': False, 'create_edit': False}" domain="[('name','=', False)]"/>
+
+            </xpath>
+            <xpath expr="//field[@name='owner_id']" position="replace">
+                <field name="owner_id" attrs="{'required': [('stage', '!=', 'material'), ('stage', '!=', 'installation')]}"
+                       options="{'create': False, 'create_edit': False}"/>
+            </xpath>
+            <xpath expr="//button[@name='do_new_transfer']" position="replace">
+                <button name="do_new_transfer" states="assigned" string="Validate" groups="stock.group_stock_user"
+                        type="object" class="oe_highlight"/>
+            </xpath>
+            <xpath expr="//field[@name='move_lines']" position="attributes">
+                <attribute name="context">{'display_default_code':False, 'address_in_id': partner_id,
+                    'form_view_ref':'stock.view_move_picking_form', 'tree_view_ref':'stock.view_move_picking_tree',
+                    'default_picking_type_id': picking_type_id, 'default_location_id': location_id,
+                    'default_location_dest_id': location_dest_id}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='pack_operation_product_ids']" position="attributes">
+                <attribute name="context">{'display_default_code':False, 'default_picking_id': id,
+                    'default_location_id': location_id, 'default_location_dest_id': location_dest_id}
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='pack_operation_product_ids']//field[@name='product_id']" position="replace">
+                <field name="atlas_id" invisible="context.get('categ_code') in ['installation','raw'] or not context.get('categ_code')"/>
+                <field name="install_atlas" string="Install atlas" invisible="context.get('categ_code') not in ['installation']"/>
+                <field name="default_code" invisible="context.get('categ_code') in ['raw'] or not context.get('categ_code')"/>
+                <field name="new_default_code" invisible="context.get('categ_code') in ['aluminum','glass','plate','steel','iron','stone','silicon','rubber','mineral','accessories','others']"/>
+                <field name="code" invisible="context.get('categ_code') in ['raw','glass'] or not context.get('categ_code')"/>
+                <field name="product_id" string="Product Description"/>
+                <field name="floor" string="Floor" invisible="context.get('categ_code') not in ['installation']"/>
+            </xpath>
+            <xpath expr="//field[@name='pack_operation_product_ids']//field[@name='product_qty']" position="replace">
+                <field name="product_qty" sum="Total p_qty amount" readonly="0"
+                       attrs="{'required': [('product_id', '!=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='pack_operation_product_ids']//field[@name='qty_done']" position="replace">
+                <field name="qty_done" sum="Total qty amount" attrs="{'readonly': [('lots_visible', '=', True)]}"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_picking_internal_search" model="ir.ui.view">
+        <field name="name">stock.picking.internal.search</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='done']" position="replace">
+                <filter string="Done" name="done"
+                        domain="[('min_date','&gt;=', time.strftime('%Y-%m-%d 00:00:00')),('min_date', '&lt;=', time.strftime('%Y-%m-%d 23:59:59')),('state','=','done')]"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="vpicktree" model="ir.ui.view">
+        <field name="name">tokiku.stock.picking.tree</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="replace">
+                <tree decoration-info="state == 'draft'" decoration-muted="state == 'cancel'"
+                      decoration-danger="state not in ('cancel', 'done') and min_date &lt; current_date"
+                      string="Picking list">
+                    <field name="name"/>
+                    <field name="atlas_ids"/>
+                    <field name="partner_id"/>
+                    <field name="location_id"/>
+                    <field name="owner_id"/>
+                    <field name="location_dest_id"/>
+                    <field name="date" invisible="1"/>
+                    <field name="min_date"/>
+                    <field name="origin"/>
+                    <field name="group_id" invisible="1"/>
+                    <field name="backorder_id"/>
+                    <field name="state"/>
+                    <field name="priority" invisible="1"/>
+                    <field name="picking_type_id" invisible="1"/>
+                </tree>
+            </xpath>
+        </field>
+    </record>
+</odoo>

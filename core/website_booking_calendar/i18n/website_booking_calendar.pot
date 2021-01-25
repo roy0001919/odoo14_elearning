@@ -1,0 +1,148 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* website_booking_calendar
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-03 06:50+0000\n"
+"PO-Revision-Date: 2018-10-03 06:50+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_booking_calendar
+#: model:mail.template,body_html:website_booking_calendar.sale_order_refund_email_template
+msgid "\n"
+"            \n"
+"	      Dear ${object.partner_id.name},\n"
+"	          A Refund has been processed under your account for the amount of ${object.amount_total}\n"
+"	          Please reference ${object.name} should you need to contact us.\n"
+"\n"
+"          Regards,<br/>\n"
+"          ${(object.company_id.name)}\n"
+"\n"
+"	    \n"
+"	  "
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.cart
+#: model:ir.ui.view,arch_db:website_booking_calendar.confirmation
+#: model:ir.ui.view,arch_db:website_booking_calendar.payment
+msgid "Batch"
+msgstr ""
+
+#. module: website_booking_calendar
+#. openerp-web
+#: code:addons/website_booking_calendar/static/src/js/website_booking_calendar.js:90
+#, python-format
+msgid "Book"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.confirm_form
+msgid "Date and Time"
+msgstr ""
+
+#. module: website_booking_calendar
+#: code:addons/website_booking_calendar/controllers/main.py:210
+#, python-format
+msgid "Not Cancelable"
+msgstr ""
+
+#. module: website_booking_calendar
+#: code:addons/website_booking_calendar/controllers/main.py:136
+#: code:addons/website_booking_calendar/models.py:36
+#, python-format
+msgid "Not Refundable"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.confirm_form
+msgid "Package"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.model.fields,field_description:website_booking_calendar.field_sale_order_pay_online
+msgid "Pay Online"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:mail.template,subject:website_booking_calendar.sale_order_refund_email_template
+msgid "Payment Refund notification"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.confirm_form
+msgid "Price"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.model,name:website_booking_calendar.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.booking_search_view
+msgid "Refund Booking Condition"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.confirm_form
+msgid "Resource"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.actions.server,name:website_booking_calendar.action_sale_order_line_refund
+msgid "Sale Order Refund"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.model,name:website_booking_calendar.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.model,name:website_booking_calendar.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: website_booking_calendar
+#: code:addons/website_booking_calendar/controllers/main.py:213
+#, python-format
+msgid "Ticket Cancelled!"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.model.fields,field_description:website_booking_calendar.field_product_pricelist_ticket_promote_end
+msgid "Ticket Promote End"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.model.fields,field_description:website_booking_calendar.field_product_pricelist_ticket_promote_start
+msgid "Ticket Promote Start"
+msgstr ""
+
+#. module: website_booking_calendar
+#: code:addons/website_booking_calendar/controllers/main.py:186
+#: code:addons/website_booking_calendar/controllers/main.py:201
+#: code:addons/website_booking_calendar/models.py:88
+#: code:addons/website_booking_calendar/models.py:104
+#, python-format
+msgid "Ticket Refund Processing!"
+msgstr ""
+
+#. module: website_booking_calendar
+#: code:addons/website_booking_calendar/controllers/main.py:179
+#: code:addons/website_booking_calendar/controllers/main.py:204
+#: code:addons/website_booking_calendar/models.py:80
+#: code:addons/website_booking_calendar/models.py:108
+#, python-format
+msgid "Ticket Refunded!"
+msgstr ""
+

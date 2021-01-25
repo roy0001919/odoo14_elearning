@@ -1,0 +1,87 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_tokiku_mold,tokiku.mold,model_tokiku_mold,group_tokiku_admin,1,1,1,1
+access_tokiku_business_item,tokiku.business_item,model_tokiku_business_item,group_tokiku_admin,1,1,1,1
+access_tokiku_factory,tokiku.factory,model_tokiku_factory,group_tokiku_admin,1,1,1,1
+access_tokiku_tx_category,tokiku.tx_category,model_tokiku_tx_category,group_tokiku_admin,1,1,1,1
+access_tokiku_payment,tokiku.payment,model_tokiku_payment,group_tokiku_admin,1,1,1,1
+access_tokiku_pay_method,tokiku.pay_method,model_tokiku_pay_method,group_tokiku_admin,1,1,1,1
+access_tokiku_building,tokiku.building,model_tokiku_building,group_tokiku_admin,1,1,1,1
+access_tokiku_panel,tokiku.panel,model_tokiku_panel,group_tokiku_admin,1,1,1,1
+access_tokiku_order,tokiku.order,model_tokiku_order,group_tokiku_admin,1,1,1,1
+access_tokiku_demand,tokiku.demand,model_tokiku_demand,group_tokiku_admin,1,1,1,1
+access_tokiku_demand_line,tokiku.demand_line,model_tokiku_demand_line,group_tokiku_admin,1,1,1,1
+
+
+access_product_category_tokiku,product.category tokiku,product.model_product_category,group_tokiku_admin,1,1,1,1
+access_product_product_tokiku,product.product tokiku,product.model_product_product,group_tokiku_admin,1,1,1,1
+access_product_template_tokiku,product.template tokiku,product.model_product_template,group_tokiku_admin,1,1,1,1
+
+access_stock_move_tokiku,stock.move,stock.model_stock_move,group_tokiku_admin,1,1,1,1
+access_stock_warehouse_orderpoint_tokiku,stock.warehouse.orderpoint,stock.model_stock_warehouse_orderpoint,group_tokiku_admin,1,1,1,1
+
+access_mrp_bom_tokiku,mrp.bom,mrp.model_mrp_bom,group_tokiku_admin,1,1,1,1
+access_mrp_production_tokiku,mrp.production,mrp.model_mrp_production,group_tokiku_admin,1,1,1,1
+
+
+
+account_analytic_contract_tokiku,account.analytic.account contract,model_account_analytic_contract,group_tokiku_admin,1,1,1,1
+access_account_journal_tokiku,account.journal,account.model_account_journal,group_tokiku_admin,1,1,1,1
+
+access_project_task_tokiku,project.task,project.model_project_task,group_tokiku_admin,1,1,1,1
+access_partner_task user_tokiku,base.res.partner user,base.model_res_partner,group_tokiku_admin,1,0,0,0
+access_resource_calendar_tokiku,project.resource_calendar user,resource.model_resource_calendar,group_tokiku_admin,1,0,0,0
+access_resource_calendar_attendance_tokiku,project.resource_calendar_attendance user,resource.model_resource_calendar_attendance,group_tokiku_admin,1,0,0,0
+access_resource_calendar_leaves_user_tokiku,resource.calendar.leaves user,resource.model_resource_calendar_leaves,group_tokiku_admin,1,1,1,1
+
+access_project_project_tokiku,project.project,model_project_project,group_tokiku_admin,1,1,1,1
+access_account_analytic_account_tokiku,account.analytic.account,analytic.model_account_analytic_account,group_tokiku_admin,1,1,1,1
+access_project_task_type_tokiku,project.task.type,project.model_project_task_type,group_tokiku_admin,1,1,1,1
+access_report_project_task_user_tokiku,report.project.task.user,project.model_report_project_task_user,group_tokiku_admin,1,1,1,1
+access_account_analytic_line_project_tokiku,account.analytic.line,analytic.model_account_analytic_line,group_tokiku_admin,1,1,1,1
+access_project_tags_tokiku,project.project_tags_manager,project.model_project_tags,group_tokiku_admin,1,1,1,1
+access_mail_alias_tokiku,mail.alias,mail.model_mail_alias,group_tokiku_admin,1,1,1,1
+
+
+
+access_tokiku_mold,tokiku.mold,model_tokiku_mold,group_tokiku_user,1,1,1,1
+access_tokiku_business_item,tokiku.business_item,model_tokiku_business_item,group_tokiku_user,1,1,1,1
+access_tokiku_factory,tokiku.factory,model_tokiku_factory,group_tokiku_user,1,1,1,1
+access_tokiku_tx_category,tokiku.tx_category,model_tokiku_tx_category,group_tokiku_user,1,1,1,1
+access_tokiku_payment,tokiku.payment,model_tokiku_payment,group_tokiku_user,1,1,1,1
+access_tokiku_pay_method,tokiku.pay_method,model_tokiku_pay_method,group_tokiku_user,1,1,1,1
+access_tokiku_building,tokiku.building,model_tokiku_building,group_tokiku_user,1,1,1,1
+access_tokiku_panel,tokiku.panel,model_tokiku_panel,group_tokiku_user,1,1,1,1
+access_tokiku_order,tokiku.order,model_tokiku_order,group_tokiku_user,1,1,1,1
+access_tokiku_demand,tokiku.demand,model_tokiku_demand,group_tokiku_user,1,1,1,1
+access_tokiku_demand_line,tokiku.demand_line,model_tokiku_demand_line,group_tokiku_user,1,1,1,1
+
+
+access_product_category_tokiku,product.category tokiku,product.model_product_category,group_tokiku_user,1,1,1,1
+access_product_product_tokiku,product.product tokiku,product.model_product_product,group_tokiku_user,1,1,1,1
+access_product_template_tokiku,product.template tokiku,product.model_product_template,group_tokiku_user,1,1,1,1
+
+access_stock_move_tokiku,stock.move,stock.model_stock_move,group_tokiku_user,1,1,1,1
+access_stock_warehouse_orderpoint_tokiku,stock.warehouse.orderpoint,stock.model_stock_warehouse_orderpoint,group_tokiku_user,1,1,1,1
+
+access_mrp_bom_tokiku,mrp.bom,mrp.model_mrp_bom,group_tokiku_user,1,1,1,1
+access_mrp_production_tokiku,mrp.production,mrp.model_mrp_production,group_tokiku_user,1,1,1,1
+
+
+
+account_analytic_contract_tokiku,account.analytic.account contract,model_account_analytic_contract,group_tokiku_user,1,1,1,1
+access_account_journal_tokiku,account.journal,account.model_account_journal,group_tokiku_user,1,1,1,1
+
+access_project_task_tokiku,project.task,project.model_project_task,group_tokiku_user,1,1,1,1
+access_partner_task user_tokiku,base.res.partner user,base.model_res_partner,group_tokiku_user,1,0,0,0
+access_resource_calendar_tokiku,project.resource_calendar user,resource.model_resource_calendar,group_tokiku_user,1,0,0,0
+access_resource_calendar_attendance_tokiku,project.resource_calendar_attendance user,resource.model_resource_calendar_attendance,group_tokiku_user,1,0,0,0
+access_resource_calendar_leaves_user_tokiku,resource.calendar.leaves user,resource.model_resource_calendar_leaves,group_tokiku_user,1,1,1,1
+
+access_project_project_tokiku,project.project,model_project_project,group_tokiku_user,1,1,1,1
+access_account_analytic_account_tokiku,account.analytic.account,analytic.model_account_analytic_account,group_tokiku_user,1,1,1,1
+access_project_task_type_tokiku,project.task.type,project.model_project_task_type,group_tokiku_user,1,1,1,1
+access_report_project_task_user_tokiku,report.project.task.user,project.model_report_project_task_user,group_tokiku_user,1,1,1,1
+access_account_analytic_line_project_tokiku,account.analytic.line,analytic.model_account_analytic_line,group_tokiku_user,1,1,1,1
+access_project_tags_tokiku,project.project_tags_manager,project.model_project_tags,group_tokiku_user,1,1,1,1
+access_mail_alias_tokiku,mail.alias,mail.model_mail_alias,group_tokiku_user,1,1,1,1

@@ -1,0 +1,22 @@
+<ATMOrIBonClientRequest xmlns="http://schemas.datacontract.org/2004/07/SinoPacWebAPI.Contract">
+	<ShopNO>AB0427</ShopNO>
+	<KeyNum>1</KeyNum>
+	<OrderNO>S10000001</OrderNO>
+	<Amount>60.0</Amount>
+	<CurrencyID>NTD</CurrencyID>
+	<ExpireDate>20180210</ExpireDate>
+	<PayType>A</PayType>
+	<PrdtName>Ticket</PrdtName>
+	<Memo></Memo>
+	<PayerName></PayerName>
+	<PayerMobile></PayerMobile>
+	<PayerAddress></PayerAddress>
+	<PayerEmail></PayerEmail>
+	<ReceiverName></ReceiverName>
+	<ReceiverMobile></ReceiverMobile>
+	<ReceiverAddress></ReceiverAddress>
+	<ReceiverEmail></ReceiverEmail>
+	<Param1></Param1>
+	<Param2></Param2>
+	<Param3></Param3>
+</ATMOrIBonClientRequest>

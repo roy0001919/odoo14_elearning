@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="booking_calendar_report_saleorder_document" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//table[@class='table table-condensed']/thead/tr" position="replace">
+                <tr>
+                    <th>Product</th>
+                    <th>Contact Usr</th>
+                    <th>Contact Tel</th>
+                    <th>Date</th>
+                    <th>Batch</th>
+                    <th>Date start</th>
+                    <th>Date end</th>
+                    <th class="text-right">Qty</th>
+                    <th class="text-right">Unit Price</th>
+                    <th class="text-right">Price</th>
+                </tr>
+            </xpath>
+            <xpath expr="//tbody[@class='sale_tbody']/t" position="replace">
+                <t t-foreach="doc.order_line" t-as="l">
+                <tr>
+                    <td>
+                        <span t-field="l.product_id"/>
+                    </td>
+                    <td>
+                        <span t-field="l.contact_usr"/>
+                    </td>
+                    <td>
+                        <span t-field="l.contact_tel"/>
+                    </td>
+                    <td>
+                        <span t-field="l.booking_start" t-field-options='{"format": "yyyy-MM-dd"}'/>
+                    </td>
+                    <td>
+                        <span t-field="l.booking_batch"/>
+                    </td>
+                    <td>
+                        <span t-field="l.booking_start" t-field-options='{"format": "HH:mm"}'/>
+                    </td>
+                    <td>
+                        <span t-field="l.booking_end" t-field-options='{"format": "HH:mm"}'/>
+                    </td>
+                    <td class="text-right">
+                        <span t-field="l.product_uom_qty"/>
+                    </td>
+                    <td class="text-right">
+                        <span t-field="l.price_unit"/>
+                    </td>
+                    <td class="text-right">
+                        <!--<span t-field="l.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;doc.pricelist_id.currency_id&quot;}"/>-->
+                        <span t-field="l.price_subtotal" t-options='{"widget": "monetary", "display_currency": "doc.pricelist_id.currency_id"}'/>
+                    </td>
+                </tr>
+                <t t-if="doc.state=='sale' and (not doc.payment_tx_id or (doc.payment_tx_id and doc.payment_tx_id.state == 'authorized'))">
+                    <tr>
+                        <td colspan="10" class="text-center">
+                            <img t-att-src="'%s' % l.ticket_qr" style="max-height: 200px;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="10" class="text-center">
+                            <span t-field="l.sale_order_name"/>
+                        </td>
+                    </tr>
+                </t>
+                </t>
+            </xpath>
+            <xpath expr="//div[@class='oe_structure'][last()]" position="before">
+                <p id="customize_order_note">
+                    預約參訪民眾配合事項: <br/>
+                    1. 請持電子票券至吊橋入口，由現場人員驗票後始得入橋參觀，另為加速通行，建議先行下載或列印電子票劵(QR code)。<br/>
+                    2. 購買優待票及特惠票遊客請攜帶相關證明俾現場驗票人員查驗，團體帶隊人員須帶身份證明文件及團員名單資料以縮短預約團體身份資料辨識時間，倘有無法辨識情形將取消預約資格。<br/>
+                    3. 請於預約參訪時間前10分鐘至吊橋入口處等候入場,逾時不候。<br/>
+                </p>
+            </xpath>
+        </template>
+    </data>
+</openerp>

@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_panel_order_material_unit_price" model="ir.ui.view">
+        <field name="name">Material Unit Price</field>
+        <field name="model">tokiku.material_unit_price</field>
+        <field name="arch" type="xml">
+            <form string="Select PO from Wizard">
+                <group>
+                    <field name="partner_id" invisible="1"/>
+                    <!--<button name="compute_price_total" string="Price Total" type="object" class="oe_highlight"/>-->
+                </group>
+                <field name="tmp_grid">
+                   <tree editable="top" create="false">
+                        <field name="name" string="Material" readonly="1"/>
+                        <field name="raw_pricing_total_weight"/>
+                        <field name="price_unit"/>
+                        <field name="total_price" options='{"always_reload": True}'/>
+                        <field name="product_id" invisible="1"/>
+                        <!--<field name="product_uom" invisible="1"/>-->
+                        <!--<field name="demand_qty"/>-->
+                        <!--<field name="product_qty"/>-->
+                        <!--<field name="date_planned" invisible="1"/>-->
+                        <!--<field name="order_id" invisible="1"/>-->
+                    </tree>
+                </field>
+                <footer>
+                    <button name="back_po" string="Apply" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

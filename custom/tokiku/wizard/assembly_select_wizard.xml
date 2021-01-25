@@ -1,0 +1,151 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="assembly_po_select_wizard_view" model="ir.ui.view">
+        <field name="name">Assembly PO Select Wizard</field>
+        <field name="model">tokiku.assembly_po_select_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select Assembly item from Wizard">
+                <group>
+                    <field name="project_id" invisible="1"/>
+                </group>
+                <div>
+                    請按表格左上鉤鉤，刪除非訂購商品。
+                    此表僅保留欲訂購商品。
+                </div>
+                <field name="tmp_grid" widget="grid">
+                    <tree>
+                        <field name="order_id" invisible="1"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="state" invisible="1"/>
+                        <field name="name" invisible="1"/>
+                        <field name="building_id" readonly="1"/>
+                        <field name="partner_id" string="Assembly Factory" readonly="1"/>
+                        <field name="atlas_id" readonly="1"/>
+                        <field name="bom_id" readonly="1"/>
+                        <field name="product_id" readonly="1"/>
+                        <field name="product_uom" invisible="1"/>
+                        <field name="demand_qty" readonly="1"/>
+                        <field name="order_qty" readonly="1"/>
+                        <field name="date_planned" invisible="1"/>
+                        <field name="single_surface"/>
+                        <field name="price_unit"/>
+<!--                        <field name="value_unit"/>-->
+                        <field name="total_surface_qty" readonly="1"/>
+                        <field name="price_per_set" readonly="1"/>
+                        <field name="total" readonly="1"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="act_select_item" string="Select Item" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="preparation_select_wizard_view" model="ir.ui.view">
+        <field name="name">Preparation Order Select Wizard</field>
+        <field name="model">tokiku.preparation_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select Assembly item from Wizard">
+                <group>
+                    <field name="project_id" invisible="1"/>
+                </group>
+                <div>
+                    請按表格左上鉤鉤，刪除非訂購商品。
+                    此表僅保留欲訂購商品。
+                </div>
+                <field name="tmp_grid" widget="grid">
+                    <tree>
+                        <field name="preparation_id" invisible="1" readonly="1"/>
+                        <field name="assembly_panel_line_id" invisible="1" readonly="1"/>
+                        <field name="atlas_id" readonly="1"/>
+                        <field name="building_id" readonly="1"/>
+                        <field name="bom_id" readonly="1"/>
+                        <field name="demand_qty" readonly="1"/>
+                        <field name="estimated_qty" readonly="1"/>
+                        <field name="prepared_qty" readonly="1" invisible="1"/>
+                        <field name="rest_qty" readonly="1"/>
+                        <field name="done_qty" readonly="1"/>
+                        <field name="due_qty" readonly="1"/>
+
+                    </tree>
+                </field>
+                <footer>
+                    <button name="act_select_item" string="Select Item" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="assembly_select_wizard_view" model="ir.ui.view">
+        <field name="name">Assembly Order Select Wizard</field>
+        <field name="model">tokiku.assembly_select_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select Assembly item from Wizard">
+                <group>
+                    <field name="project_id" invisible="1"/>
+                </group>
+                <div>
+                    請按表格左上鉤鉤，刪除非訂購商品。
+                    此表僅保留欲訂購商品。
+                </div>
+                <field name="tmp_grid" widget="grid">
+                    <tree>
+                        <field name="assembly_order_id" invisible="1" readonly="1"/>
+                        <field name="assembly_panel_line_id" invisible="1" readonly="1"/>
+                        <field name="atlas_id" readonly="1"/>
+                        <field name="building_id" readonly="1"/>
+                        <field name="bom_id" readonly="1"/>
+                        <field name="estimated_qty" readonly="1"/>
+                        <field name="assembly_qty" invisible="1" readonly="1"/>
+                        <field name="done_qty" readonly="1"/>
+                        <field name="due_qty" readonly="1"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="act_select_item" string="Select Item" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="production_record_select_wizard_view" model="ir.ui.view">
+        <field name="name">Production Record Select Wizard</field>
+        <field name="model">tokiku.production_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select Assembly item from Wizard">
+                <group>
+                    <field name="project_id" invisible="1"/>
+                </group>
+                <div>
+                    請按表格左上鉤鉤，刪除非訂購商品。
+                    此表僅保留欲訂購商品。
+                </div>
+                <field name="tmp_grid" widget="grid">
+                    <tree>
+                        <field name="production_record_id" invisible="1" readonly="1"/>
+                        <field name="assembly_panel_line_id" invisible="1" readonly="1"/>
+                        <field name="atlas_id" readonly="1"/>
+                        <field name="building_id" readonly="1"/>
+                        <field name="bom_id" readonly="1"/>
+                        <field name="prepared_qty"/>
+                        <field name="ready_qty" readonly="1"/>
+                        <field name="estimated_qty" readonly="1"/>
+                        <field name="queue_qty" readonly="1"/>
+<!--                        <field name="shelf_qty"/>-->
+<!--                        <field name="assembly_qty"/>-->
+                        <field name="assembled_qty" readonly="1"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="act_select_item" string="Select Item" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

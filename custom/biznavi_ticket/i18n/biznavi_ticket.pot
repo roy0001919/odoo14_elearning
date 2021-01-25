@@ -1,0 +1,209 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* biznavi_ticket
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-09 07:37+0000\n"
+"PO-Revision-Date: 2018-05-09 07:37+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.continue_shopping
+msgid "<span class=\"fa fa-long-arrow-left\"/>\n"
+"                    <span class=\"hidden-xs\">Rebooking Ticket</span>\n"
+"                    <span class=\"visible-xs-inline\">Rebooking</span>"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.address
+msgid "<span class=\"fa fa-long-arrow-left\"/>                                                    Back"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.contact_usr
+msgid "<span name=\"contact_tel_title\">Visitor Tel</span> <span name=\"contact_tel_msg\"/>"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.contact_usr
+msgid "<span name=\"contact_usr_title\">Visitor</span> <span name=\"contact_usr_msg\"/>"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.address
+msgid "<span>Next</span>\n"
+"                                                    <span class=\"fa fa-long-arrow-right\"/>"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.products_calendar
+msgid "<span>Select booking Date / Batch</span>"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.menu,name:biznavi_ticket.menu_action_announcement
+msgid "Announcement"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.address
+msgid "Appointee/Travel Agency"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.menu,name:biznavi_ticket.menu_action_reservations
+msgid "Booking"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.address
+msgid "Country"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.address
+msgid "Country..."
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.model.fields,field_description:biznavi_ticket.field_payment_transaction_deadline
+msgid "Deadline"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.address
+msgid "Email"
+msgstr ""
+
+#. module: biznavi_ticket
+#: code:addons/biznavi_ticket/controllers/main.py:129
+#: code:addons/biznavi_ticket/controllers/main.py:142
+#, python-format
+msgid "Modify failed!"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.portal_my_home_sale
+msgid "My Tickets"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.actions.report.xml,name:biznavi_ticket.report_sale_order
+msgid "Order / QRCode"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.model.fields,field_description:biznavi_ticket.field_sale_order_line_sale_order_name
+msgid "Order Reference"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.menu,name:biznavi_ticket.menu_action_pos
+msgid "POS"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.model.fields,field_description:biznavi_ticket.field_sale_order_line_acquirer_id
+msgid "Payment Acquirer"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.model,name:biznavi_ticket.model_payment_transaction
+msgid "Payment Transaction"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.menu,name:biznavi_ticket.payment_transaction_menu
+msgid "Payment Transactions"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.address
+msgid "Phone"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.model,name:biznavi_ticket.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.model,name:biznavi_ticket.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.address
+msgid "Shipping Address"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.confirmation
+msgid "Show My Bookings"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.confirmation
+msgid "Show My Tickets"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.address
+msgid "State / Province"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.address
+msgid "State / Province..."
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.address
+msgid "Street                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        \n"
+"                                                    <span class=\"hidden-xs\">and Number</span>"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.portal_my_home_sale
+msgid "There are currently no orders for your account."
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.menu,name:biznavi_ticket.menu_main_ticket
+msgid "Ticket"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.menu,name:biznavi_ticket.menu_action_tickets
+#: model:ir.ui.view,arch_db:biznavi_ticket.portal_my_home_menu_sale
+msgid "Tickets"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.address
+msgid "Township"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.address
+msgid "Your Address"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.address
+msgid "Your Order"
+msgstr ""
+
+#. module: biznavi_ticket
+#: model:ir.ui.view,arch_db:biznavi_ticket.address
+msgid "Zip Code"
+msgstr ""
+

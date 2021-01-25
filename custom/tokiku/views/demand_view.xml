@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--<menuitem id="menu_tokiku_project_aluminum_ext"-->
+                  <!--name="Aluminum Ext"-->
+                  <!--parent="project.menu_main_pm"-->
+                  <!--groups="group_tokiku_admin"-->
+                  <!--sequence="50"/>-->
+        <!--&lt;!&ndash;groups="group_tokiku_admin"&ndash;&gt;-->
+
+        <record id="view_demand_raw_tree" model="ir.ui.view">
+            <field name="name">tokiku.demand.raw.tree</field>
+            <field name="model">tokiku.demand</field>
+            <field name="arch" type="xml">
+                <tree string="Demand">
+                    <field name="contract_id"/>
+                    <field name="categ_id"/>
+                    <field name="building"/>
+                    <field name="supplier"/>
+                    <field name="name" string="Position"/>
+                    <field name="file_date"/>
+                    <field name="create_uid" string="Input User" readonly="1"/>
+                    <field name="create_date" string="Input Date" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_demand_raw_form" model="ir.ui.view">
+            <field name="name">tokiku.demand.raw.form</field>
+            <field name="model">tokiku.demand</field>
+            <field name="arch" type="xml">
+                <form string="Demand">
+                    <header>
+                        <button name="act_import" string="Import" type="object" class="btn btn-sm btn-primary"/>
+                        <button name="material_sum" type="object" string="Material Sum"/>
+                    </header>
+                    <notebook>
+                        <field name="categ_id" invisible="1"/>
+                        <field name="contract_id" invisible="1"/>
+                        <field name="project_id" invisible="1"/>
+                            <page string="Demand Order Line">
+                                <field name="demand_line_ids" widget="grid">
+                                    <tree editable="bottom">
+                                        <field name="name" string="Tokiku Default Code"/>
+                                        <field name="supplier_part_no"/>
+                                        <field name="material"/>
+                                        <field name="net_weight"/>
+                                        <field name="order_length"/>
+                                        <field name="qty"/>
+                                        <!--<field name="invalid_fields"/>-->
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Demand Order Information">
+                                <group>
+                                    <group>
+                                        <field name="name" string="Position"/>
+                                        <field name="supplier"
+                                               context="{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}"
+                                               domain="[('id','in', context.get('supplier_ids', False))]"/>
+                                        <field name="demand_form_num"/>
+                                        <field name="create_uid" string="Create UID" readonly="1"/>
+                                        <field name="write_uid" string="Write UID" readonly="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="file_date"/>
+                                        <field name="building"/>
+                                        <field name="demand_location"/>
+                                        <field name="write_date" string="Write Date" readonly="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+        <!--<record id="view_tokiku_aluminum_ext_req_filter" model="ir.ui.view">-->
+            <!--<field name="name">tokiku.demand_line.filter</field>-->
+            <!--<field name="model">tokiku.demand_line</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<search string="Search Aluminum Ext Req">-->
+                <!--</search>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<record id="action_demand" model="ir.actions.act_window">-->
+            <!--<field name="name">Demand</field>-->
+            <!--<field name="type">ir.actions.act_window</field>-->
+            <!--<field name="res_model">tokiku.demand</field>-->
+            <!--<field name="view_mode">tree,form</field>-->
+            <!--<field name="view_type">tree</field>-->
+            <!--<field name="domain">[]</field>-->
+            <!--<field name="context">{}</field>-->
+            <!--<field name="filter" eval="True"/>-->
+        <!--</record>-->
+
+         <!--<menuitem id="menu_tokiku_aluminum_ext_req"-->
+                  <!--name="Aluminum Ext Req"-->
+                  <!--action="action_tokiku_aluminum_ext_req"-->
+                  <!--parent="tokiku.menu_tokiku_project_aluminum_ext"-->
+                  <!--groups="group_tokiku_admin"-->
+                  <!--sequence="10"/>-->
+    </data>
+</odoo>

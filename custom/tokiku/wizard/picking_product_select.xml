@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_picking_product_select" model="ir.ui.view">
+        <field name="name">Picking Product Select</field>
+        <field name="model">tokiku.picking_product_select</field>
+        <field name="arch" type="xml">
+            <form string="Select Product">
+                <group>
+                    <field name="partner_id" invisible="1"/>
+                </group>
+                <div>
+                    請按表格左上鉤鉤，刪除非訂購商品。
+                    此表僅保留欲訂購商品。
+                </div>
+                <field name="tmp_grid" create="false" widget="grid">
+                   <tree>
+                        <field name="atlas_short_name" readonly="1"/>
+                        <field name="atlas_id" invisible="1" />
+                        <field name="tokiku_default_code" readonly="1"/>
+                        <field name="default_code" string="Processing Number"/>
+                        <field name="product_id" readonly="1" string="Product Description"/>
+                        <field name="qty_done"/>
+                        <!--<field name="from_loc" groups="stock.group_stock_multi_locations,stock.group_tracking_lot" readonly="1"/>-->
+                        <!--<field name="to_loc" groups="stock.group_stock_multi_locations,stock.group_tracking_lot" readonly="1"/>-->
+                        <!--<field name="product_qty" readonly="1"/>-->
+                   </tree>
+                </field>
+                <footer>
+                    <button name="back_picking" string="Apply" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

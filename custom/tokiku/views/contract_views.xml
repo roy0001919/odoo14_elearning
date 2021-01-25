@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_contact_tree" model="ir.ui.view">
+        <field name="name">tokiku.contract.tree</field>
+        <field name="model">account.analytic.contract</field>
+        <field name="inherit_id" ref="contract.account_analytic_contract_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="replace">
+                <tree string="Contracts">
+                    <field name="name" />
+                    <field name="project_id"/>
+                    <field name="date_signing" />
+                </tree>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_contact_form" model="ir.ui.view">
+        <field name="name">tokiku.contract.form</field>
+        <field name="model">account.analytic.contract</field>
+        <field name="inherit_id" ref="contract.account_analytic_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="replace">
+                <form string="Contract">
+                    <!--<header>-->
+                        <!--<button name="open_aluminum" string="Aluminum Material" type="object" class="btn btn-sm btn-primary"/>-->
+                        <!--<button name="open_atlas" string="Processing Atlas" type="object" class="btn btn-sm btn-primary"/>-->
+                        <!--<button name="open_refine" string="Aluminum Refine" type="object" class="btn btn-sm btn-primary"/>-->
+                        <!--<button name="open_plate" string="Aluminum Plate" type="object" class="btn btn-sm btn-primary"/>-->
+                        <!--<button name="open_glass" string="Glass" type="object" class="btn btn-sm btn-primary"/>-->
+                        <!--<button name="open_steel" string="Stainless Steel" type="object" class="btn btn-sm btn-primary"/>-->
+                        <!--<button name="open_iron" string="Iron Pieces" type="object" class="btn btn-sm btn-primary"/>-->
+                        <!--<button name="open_stone" string="Stone" type="object" class="btn btn-sm btn-primary"/>-->
+                        <!--<button name="open_accessories" string="Accessories" type="object" class="btn btn-sm btn-primary"/>-->
+                        <!--<button name="open_others" string="Others" type="object" class="btn btn-sm btn-primary"/>-->
+                        <!--<button name="open_assembly" string="Assembly" type="object" class="btn btn-sm btn-primary"/>-->
+                        <!--<button name="open_installation" string="Installation" type="object" class="btn btn-sm btn-primary"/>-->
+                    <!--</header>-->
+                    <sheet string="Contract">
+                        <group>
+                            <group>
+                                <field name="project_id" required="1"/>
+                                <!--<field name="project_name" string="Project Name"/>-->
+                            </group>
+                            <group>
+                                <field name="name" string="Contract Number" domain="[('project_id', '=', project_id)]"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </xpath>
+        </field>
+    </record>
+</odoo>

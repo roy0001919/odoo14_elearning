@@ -1,0 +1,27 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* cenoq
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-11 10:22+0000\n"
+"PO-Revision-Date: 2019-01-11 10:22+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: cenoq
+#: model:ir.model.fields,field_description:cenoq.field_sale_order_line_price_formula
+msgid "Price Formula"
+msgstr "價格公式"
+
+#. module: cenoq
+#: model:ir.model,name:cenoq.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "銷售訂單細項"
+

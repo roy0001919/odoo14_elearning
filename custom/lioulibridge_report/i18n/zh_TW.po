@@ -1,0 +1,118 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* lioulibridge_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-26 06:16+0000\n"
+"PO-Revision-Date: 2017-10-26 06:16+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: lioulibridge_report
+#: model:ir.ui.view,arch_db:lioulibridge_report.print_lioulibridge_report_view
+msgid "Cancel"
+msgstr "取消"
+
+#. module: lioulibridge_report
+#: model:ir.model.fields,field_description:lioulibridge_report.field_lioulibridge_report_create_uid
+msgid "Created by"
+msgstr "建立者"
+
+#. module: lioulibridge_report
+#: model:ir.model.fields,field_description:lioulibridge_report.field_lioulibridge_report_create_date
+msgid "Created on"
+msgstr "建立於"
+
+#. module: lioulibridge_report
+#: model:ir.ui.menu,name:lioulibridge_report.menu_action_daily_report
+msgid "Daily Report"
+msgstr "日報表"
+
+#. module: lioulibridge_report
+#: model:ir.model.fields,field_description:lioulibridge_report.field_sale_order_line_p_date
+msgid "Date for Print"
+msgstr "要列印日期"
+
+#. module: lioulibridge_report
+#: model:ir.model.fields,field_description:lioulibridge_report.field_lioulibridge_report_display_name
+msgid "Display Name"
+msgstr "顯示名稱"
+
+#. module: lioulibridge_report
+#: model:ir.ui.view,arch_db:lioulibridge_report.print_lioulibridge_report_view
+msgid "Get Report"
+msgstr "取得報表"
+
+#. module: lioulibridge_report
+#: model:ir.model.fields,field_description:lioulibridge_report.field_lioulibridge_report___last_update
+msgid "Last Modified on"
+msgstr "最後修改於"
+
+#. module: lioulibridge_report
+#: model:ir.model.fields,field_description:lioulibridge_report.field_lioulibridge_report_write_uid
+msgid "Last Updated by"
+msgstr "最後更新："
+
+#. module: lioulibridge_report
+#: model:ir.model.fields,field_description:lioulibridge_report.field_lioulibridge_report_write_date
+msgid "Last Updated on"
+msgstr "最後更新於"
+
+#. module: lioulibridge_report
+#: model:ir.actions.act_window,name:lioulibridge_report.action_lioulibridge_report_all
+msgid "LiouliBridge Reports"
+msgstr "琉璃吊橋報表"
+
+#. module: lioulibridge_report
+#: model:ir.model.fields,field_description:lioulibridge_report.field_sale_order_line_order_user
+msgid "Name"
+msgstr "名稱"
+
+#. module: lioulibridge_report
+#: model:ir.model.fields,field_description:lioulibridge_report.field_sale_order_line_order_num
+msgid "Order Reference"
+msgstr "訂單號碼"
+
+#. module: lioulibridge_report
+#: code:addons/lioulibridge_report/wizard/lioulibridge_report.py:20
+#, python-format
+msgid "Please Select Target Year!!"
+msgstr "請選擇要下載的報表日期"
+
+#. module: lioulibridge_report
+#: model:ir.model,name:lioulibridge_report.model_lioulibridge_report
+msgid "Print LiouliBridge Report"
+msgstr "琉璃吊橋報表"
+
+#. module: lioulibridge_report
+#: model:ir.ui.view,arch_db:lioulibridge_report.print_lioulibridge_report_view
+msgid "Print Pre-numbered Checks"
+msgstr "Print Pre-numbered Checks"
+
+#. module: lioulibridge_report
+#: model:ir.model.fields,field_description:lioulibridge_report.field_lioulibridge_report_report_date
+msgid "Report Date"
+msgstr "報表日期"
+
+#. module: lioulibridge_report
+#: model:ir.ui.menu,name:lioulibridge_report.menu_action_order_report_all
+msgid "Sales"
+msgstr "銷售"
+
+#. module: lioulibridge_report
+#: model:ir.model,name:lioulibridge_report.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "銷售訂單細項"
+
+#. module: lioulibridge_report
+#: model:ir.ui.view,arch_db:lioulibridge_report.print_lioulibridge_report_view
+msgid "or"
+msgstr "或"
+

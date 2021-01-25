@@ -1,0 +1,632 @@
+<odoo>
+    <data>
+        <!--安裝需求單-->
+        <record id="view_demand_installation_tree" model="ir.ui.view">
+            <field name="name">tokiku.demand.installation.tree</field>
+            <field name="model">tokiku.installation_demand</field>
+            <field name="arch" type="xml">
+                <tree string="Demand">
+                    <field name="name" string="Demand Form Number"/>
+                    <field name="atlas_name" string="Processing Atlas"/>
+                    <field name="file_date"/>
+                    <field name="building_id"/>
+                    <field name="install_loc_id"/>
+                    <field name="install_categ_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_demand_installation_form" model="ir.ui.view">
+            <field name="name">tokiku.demand.installation.form</field>
+            <field name="model">tokiku.installation_demand</field>
+            <field name="arch" type="xml">
+                <form string="Demand">
+                    <header>
+                        <button name="act_import" string="Import" type="object" class="btn btn-sm btn-primary"/>
+                    </header>
+                    <notebook>
+                        <field name="categ_id" invisible="1"/>
+                        <field name="contract_id" invisible="1"/>
+                        <field name="project_id" invisible="1"/>
+                            <page string="Demand Order Information">
+                                <group>
+                                    <group>
+                                        <field name="project_id" readonly="1"/>
+                                        <field name="name"/>
+                                        <field name="atlas_name"/>
+                                        <field name="install_categ_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="file_date"/>
+                                        <field name="contract_id" domain="[('id','in', context.get('contract_ids', False))]" readonly="1"/>
+                                        <field name="stage" readonly="1"/>
+                                        <field name="building_id"/>
+                                        <field name="install_loc_id"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Products">
+                                <field name="installation_demand_line_ids" widget="grid">
+                                    <tree editable="bottom">
+                                        <field name="product_categ"/>
+                                        <field name="default_code"/>
+                                        <field name="length"/>
+                                        <field name="width"/>
+                                        <field name="single_surface"/>
+                                        <field name="floor"/>
+                                        <field name="demand_qty"/>
+                                        <field name="total_surface"/>
+<!--                                        <field name="value_unit"/>-->
+                                    </tree>
+                                </field>
+                            </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+         <!--安裝管控表-->
+    <record id="view_panel_installation_tree" model="ir.ui.view">
+        <field name="name">tokiku.panel.installation.tree</field>
+        <field name="model">tokiku.installation_panel_line</field>
+        <field name="arch" type="xml">
+                <tree class="grid">
+                    <field name="atlas_name"/>
+                    <field name="building_id"/>
+                    <field name="install_categ_id"/>
+                    <field name="product_categ"/>
+                    <field name="install_loc_id"/>
+                    <field name="default_code"/>
+                    <field name="floor"/>
+                    <field name="width"/>
+                    <field name="length"/>
+                    <field name="single_surface"/>
+                    <field name="demand_qty"/>
+
+                    <field name="order_qty" header_group="進料合計"/>
+                    <field name="rest_demand_qty" header_group="進料合計"/>
+                    <button name="act_order_qty" string="Details" type="object" icon="fa-eye" header_group="進料合計"/>
+
+                    <field name="unfed_qty" header_group="備料合計"/>
+                    <field name="feed_total_qty" header_group="備料合計"/>
+                    <field name="fed_surface" header_group="備料合計"/>
+                    <button name="act_unfed_qty" string="Details" type="object" icon="fa-eye" header_group="備料合計"/>
+
+                    <field name="uninstalled_qty" header_group="安裝合計"/>
+                    <field name="done_uninstalled_qty" header_group="安裝合計"/>
+                    <field name="installed_qty" header_group="安裝合計"/>
+                    <field name="installed_surface" header_group="安裝合計"/>
+                    <button name="act_install_qty" string="Details" type="object" icon="fa-eye" header_group="安裝合計"/>
+
+                    <field name="incoming_install"/>
+                    <field name="demand_install"/>
+                    <field name="lack_install"/>
+                    <field name="incoming_demand"/>
+
+                    <field name="return_qty" header_group="退貨合計"/>
+                </tree>
+        </field>
+    </record>
+
+    <record id="view_installation_unfed_qty" model="ir.ui.view">
+        <field name="name">tokiku.stock_picking.unfed_qty</field>
+        <field name="model">stock.pack.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="qty_done" string="已備料數量"/>
+                <field name="write_date" string="備料日期"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_installation_install_qty" model="ir.ui.view">
+        <field name="name">tokiku.stock_picking.uninstalled_qty</field>
+        <field name="model">stock.pack.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="qty_done" string="已安裝數量"/>
+                <field name="write_date" string="安裝日期"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_installation_order_qty" model="ir.ui.view">
+        <field name="name">tokiku.purchase.order_order_qty</field>
+        <field name="model">purchase.order.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="order_qty" string="進料數量"/>
+                <field name="create_date" string="進料日期"/>
+            </tree>
+        </field>
+    </record>
+
+        <!--安裝訂製單-->
+    <record id="view_installation_order_form" model="ir.ui.view">
+        <field name="name">tokiku.installation.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Order">
+                <header>
+<!--                    <field name="categ_code" invisible="1"/>-->
+                    <button name="print_quotation" string="Print RFQ" type="object" states="draft" class="oe_highlight"
+                            groups="base.group_user"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="sent"
+                            groups="base.group_user"/>
+                    <button name="button_confirm" type="object" states="draft" string="Confirm Order"
+                            id="draft_confirm"/>
+                    <button name="button_confirm" type="object" states="sent" string="Confirm Order"
+                            class="oe_highlight" id="bid_confirm"/>
+                    <button name="button_approve" type="object" states='to approve' string="Approve Order"
+                            class="oe_highlight" groups="purchase.group_purchase_manager"/>
+                    <button name="action_view_picking" string="Receive Products" class="oe_highlight" type="object"
+                            attrs="{'invisible': ['|', '|' , ('is_shipped', '=', True), ('state','not in', ('purchase','done')), ('picking_count', '=', 0)]}"/>
+                    <button name="button_draft" states="cancel" string="Set to Draft" type="object"/>
+                    <button name="button_cancel" states="draft,to approve,sent,purchase" string="Cancel" type="object"/>
+                    <button name="install_po_wizard" type="object" string="Select PO Wizard"/>
+                    <button name="install_unit_price" type="object" string="Install Unit Price" class="oe_highlight"
+                            invisible="context.get('default_stage') not in ['installation']"/>
+                    <button name="action_estimated_amount" type="object" string="Estimated amount" groups="tokiku.group_tokiku_admin" class="oe_highlight"/>
+                    <button name="button_done" type="object" string="Lock" states="purchase"/>
+                    <button name="button_unlock" type="object" string="Unlock" states="done"
+                            groups="purchase.group_purchase_manager"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,purchase" readonly="1"/>
+                    <field name="panel_id" invisible="1"/>
+                </header>
+                <div class="oe_button_box" name="button_box">
+                    <button type="object"
+                            name="action_view_picking"
+                            class="oe_stat_button"
+                            icon="fa-truck"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('picking_ids','=',[])]}">
+                        <field name="picking_count" widget="statinfo" string="Shipment" help="Incoming Shipments"/>
+                        <field name="picking_ids" invisible="1"/>
+                    </button>
+                    <button type="object" name="action_view_invoice"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('invoice_ids','=',[])]}">
+                        <field name="invoice_count" widget="statinfo" string="Vendor Bills"/>
+                        <field name='invoice_ids' invisible="1"/>
+                    </button>
+                </div>
+                <notebook>
+                    <page string="Order Information">
+                        <group>
+                            <group>
+                                <label string="Request for Quotation " attrs="{'invisible':1}"/>
+                                <label string="Purchase Order " attrs="{'invisible':1}"/>
+                                <field name="name" readonly="1"/>
+                                <field name="project_id" readonly="1"/>
+                                <field name="partner_id"
+                                       options="{'create_edit': false}"
+                                       context="{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}"
+                                       domain="[('id','in', context.get('supplier_ids', False))]"/>
+                                <field name="order_department"/>
+                                <field name="payment_unit_id"/>
+                                <field name="demand_department"/>
+<!--                                <field name="partner_id" string="Assembly Factory"/>-->
+                                <field name="currency_id" groups="base.group_multi_currency"/>
+                                <field name="is_shipped" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="date_order" readonly="1"/>
+                                <field name="po_category_id"/>
+                                <field name="contract_id" domain="[('id','in', context.get('contract_ids', False))]"/>
+                                <field name="contact_id"
+                                       domain="[('supplier', '=', True), ('parent_id', '=', partner_id)]"/>
+                                <field name="shipping_address" string="Shipping Address"
+                                       context="{'show_delivery_address': 1}" options='{"always_reload": True}'
+                                       domain="[('parent_id', '=', partner_id), ('type', '=', 'delivery')]"/>
+                                <field name="origin" attrs="{'invisible': [('origin','=',False)]}"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                                <field name="stage" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <label for="date_planned"/>
+                                <div>
+                                    <field name="date_planned"
+                                           attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
+                                    <button name="action_set_date_planned" type="object"
+                                            states="draft,sent"
+                                            string="Set date to all order lines"
+                                            help="This changes the scheduled date of all order lines to the given date"
+                                            class="fa fa-calendar o_icon_button oe_edit_only"/>
+                                </div>
+                                <field name="picking_type_id" domain="[('code','=','incoming')]"
+                                       options="{'create': False}" groups="stock.group_stock_multi_locations"/>
+                                <field name="dest_address_id" groups="stock.group_stock_multi_locations"
+                                       attrs="{'invisible': [('default_location_dest_id_usage', '!=', 'customer')], 'required': [('default_location_dest_id_usage', '=', 'customer')]}"/>
+                                <field name="default_location_dest_id_usage" invisible="1"/>
+                                <field name="incoterm_id"/>
+                            </group>
+                            <group>
+                                <field name="invoice_status"/>
+                                <field name="payment_term_id" options="{'no_open': True, 'create': False}"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="fiscal_position_id"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="date_approve" groups="base.group_no_one"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Products">
+                        <field name="categ_id" invisible="1"/>
+                        <field name="order_line" context="{'partner_id': partner_id}"
+                               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}">
+                            <tree string="Purchase Order Lines" editable="bottom">
+                                <field name="install_panel_line_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="state" invisible="1"/>
+                                <field name="name" invisible="1"/>
+                                <field name="atlas_name" string="Processing Atlas" readonly="1"/>
+                                <field name="install_loc" readonly="1"/>
+                                <field name="install_categ" readonly="1"/>
+                                <field name="product_categ" readonly="1"/>
+                                <field name="default_code" string="Processing Number" readonly="1"/>
+                                <field name="floor" readonly="1"/>
+                                <field name="demand_qty" readonly="1"/>
+                                <field name="order_qty"/>
+                                <field name="product_qty" invisible="1"/>
+                                 <field name="product_uom"/>
+                                <field name="material_unit_prices" readonly="1"/>
+                                <field name="price_unit" precision_0="1" readonly="1"/>
+                                <field name="price_subtotal" readonly="1"/>
+                                <field name="taxes_id" invisible="1"/>
+                            </tree>
+                            <form string="Purchase Order Line">
+                                <sheet>
+                                    <group>
+                                        <group>
+                                            <field name="product_id"
+                                                   context="{'partner_id': parent.partner_id}"/>
+                                            <label for="product_qty"/>
+                                            <div>
+                                                <field name="product_qty" class="oe_inline"/>
+                                                <span class="oe_inline">&#160;</span>
+                                                <field name="product_uom" groups="product.group_uom" class="oe_inline"/>
+                                            </div>
+                                            <field name="price_unit"/>
+                                        </group>
+                                        <group>
+                                            <field name="taxes_id" widget="many2many_tags"
+                                                   domain="[('type_tax_use', '=', 'purchase')]"/>
+                                            <field name="date_planned" widget="date"/>
+                                            <field name="account_analytic_id" colspan="2"
+                                                   groups="purchase.group_analytic_accounting"/>
+                                            <field name="company_id" groups="base.group_multi_company"
+                                                   options="{'create': False}"/>
+                                        </group>
+                                    </group>
+                                    <notebook>
+                                        <page string="Notes">
+                                            <field name="name"/>
+                                        </page>
+                                        <page string="Invoices and Incoming Shipments">
+                                            <field name="invoice_lines"/>
+                                            <field name="move_ids"/>
+                                        </page>
+                                    </notebook>
+                                </sheet>
+                            </form>
+                        </field>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <div class="oe_subtotal_footer_separator oe_inline">
+                                <label for="amount_total"/>
+                            </div>
+                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"
+                                   widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <field name="notes" class="oe_inline"
+                               placeholder="An administrator can set up default Terms and conditions in your Company settings."/>
+                        <div class="oe_clear"/>
+                    </page>
+                </notebook>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+        <!--已安裝計價單-->
+    <record id="view_installation_valuation_form" model="ir.ui.view">
+        <field name="name">tokiku.installation.valuation.form</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Order">
+                <header>
+<!--                    <field name="categ_code" invisible="1"/>-->
+                    <button name="act_validate" string="Validate" type="object" class="btn btn-sm btn-primary"/>
+                    <button name="install_valuation_wizard" string="Item Select" type="object" class="btn btn-sm btn-primary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,purchase" readonly="1"/>
+                    <field name="panel_id" invisible="1"/>
+                </header>
+                <div class="oe_button_box" name="button_box">
+                    <button type="object"
+                            name="action_view_picking"
+                            class="oe_stat_button"
+                            icon="fa-truck"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('picking_ids','=',[])]}">
+                        <field name="picking_count" widget="statinfo" string="Shipment" help="Incoming Shipments"/>
+                        <field name="picking_ids" invisible="1"/>
+                    </button>
+                    <button type="object" name="action_view_invoice"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('invoice_ids','=',[])]}">
+                        <field name="invoice_count" widget="statinfo" string="Vendor Bills"/>
+                        <field name='invoice_ids' invisible="1"/>
+                    </button>
+                </div>
+                <notebook>
+                    <page string="Order Information">
+                        <group>
+                            <group>
+                                <label string="Request for Quotation " attrs="{'invisible':1}"/>
+                                <label string="Purchase Order " attrs="{'invisible':1}"/>
+                                <field name="name" readonly="1"/>
+                                <field name="project_id" readonly="1"/>
+                                <field name="partner_id"
+                                       options="{'create_edit': false}"
+                                       context="{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}"
+                                       domain="[('id','in', context.get('supplier_ids', False))]"/>
+                                <field name="order_department"/>
+                                <field name="payment_unit_id"/>
+                                <field name="demand_department"/>
+                                <field name="currency_id" groups="base.group_multi_currency"/>
+                                <field name="is_shipped" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="date_order"/>
+                                <field name="po_category_id"/>
+                                <field name="contract_id" domain="[('id','in', context.get('contract_ids', False))]" readonly="1"/>
+                                <field name="contact_id"
+                                       domain="[('supplier', '=', True), ('parent_id', '=', partner_id)]"/>
+                                <field name="shipping_address" string="Shipping Address"
+                                       context="{'show_delivery_address': 1}" options='{"always_reload": True}'
+                                       domain="[('parent_id', '=', partner_id), ('type', '=', 'delivery')]"/>
+                                <field name="origin" attrs="{'invisible': [('origin','=',False)]}"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                                <field name="stage" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <label for="date_planned"/>
+                                <div>
+                                    <field name="date_planned"
+                                           attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
+                                    <button name="action_set_date_planned" type="object"
+                                            states="draft,sent"
+                                            string="Set date to all order lines"
+                                            help="This changes the scheduled date of all order lines to the given date"
+                                            class="fa fa-calendar o_icon_button oe_edit_only"/>
+                                </div>
+                                <field name="picking_type_id" domain="[('code','=','incoming')]"
+                                       options="{'create': False}" groups="stock.group_stock_multi_locations"/>
+                                <field name="dest_address_id" groups="stock.group_stock_multi_locations"
+                                       attrs="{'invisible': [('default_location_dest_id_usage', '!=', 'customer')], 'required': [('default_location_dest_id_usage', '=', 'customer')]}"/>
+                                <field name="default_location_dest_id_usage" invisible="1"/>
+                                <field name="incoterm_id"/>
+                            </group>
+                            <group>
+                                <field name="invoice_status"/>
+                                <field name="payment_term_id" options="{'no_open': True, 'create': False}"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="fiscal_position_id"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="date_approve" groups="base.group_no_one"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Products">
+                        <field name="categ_id" invisible="1"/>
+                        <field name="order_line" context="{'partner_id': partner_id}"
+                               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" widget="grid">
+                            <tree string="Purchase Order Lines" editable="bottom">
+                                <field name="install_panel_line_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="state" invisible="1"/>
+                                <field name="name" invisible="1"/>
+                                <field name="atlas_name"/>
+                                <field name="default_code" string="Default Code"/>
+                                <field name="floor"/>
+                                <field name="installed_qty"/>
+                                <field name="installed_surface"/>
+<!--                                <field name="valuation_qty"/>-->
+<!--                                <field name="valuation_area"/>-->
+                            </tree>
+                            <form string="Purchase Order Line">
+                                <sheet>
+                                    <group>
+                                        <group>
+                                            <field name="product_id"
+                                                   context="{'partner_id': parent.partner_id}"/>
+                                            <label for="product_qty"/>
+                                            <div>
+                                                <field name="product_qty" class="oe_inline"/>
+                                                <span class="oe_inline">&#160;</span>
+                                                <field name="product_uom" groups="product.group_uom" class="oe_inline"/>
+                                            </div>
+                                            <field name="price_unit"/>
+                                        </group>
+                                        <group>
+                                            <field name="taxes_id" widget="many2many_tags"
+                                                   domain="[('type_tax_use', '=', 'purchase')]"/>
+                                            <field name="date_planned" widget="date"/>
+                                            <field name="account_analytic_id" colspan="2"
+                                                   groups="purchase.group_analytic_accounting"/>
+                                            <field name="company_id" groups="base.group_multi_company"
+                                                   options="{'create': False}"/>
+                                        </group>
+                                    </group>
+                                    <notebook>
+                                        <page string="Notes">
+                                            <field name="name"/>
+                                        </page>
+                                        <page string="Invoices and Incoming Shipments">
+                                            <field name="invoice_lines"/>
+                                            <field name="move_ids"/>
+                                        </page>
+                                    </notebook>
+                                </sheet>
+                            </form>
+                        </field>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <div class="oe_subtotal_footer_separator oe_inline">
+                                <label for="amount_total"/>
+                            </div>
+                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"
+                                   widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <field name="notes" class="oe_inline"
+                               placeholder="An administrator can set up default Terms and conditions in your Company settings."/>
+                        <div class="oe_clear"/>
+                    </page>
+                </notebook>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+<!--  安裝生產紀錄單 -->
+        <record id="view_installation_production_record_order_tree" model="ir.ui.view">
+            <field name="name">tokiku.installation.production.record.order.tree</field>
+            <field name="model">tokiku.inst_prodrec</field>
+            <field name="arch" type="xml">
+                <tree string="Production Record Order">
+                    <field name="name"/>
+                    <field name="location_id"/>
+                    <field name="source_supplier"/>
+                    <field name="location_dest_id"/>
+                    <field name="target_supplier"/>
+                    <field name="install_date" string="Install Date"/>
+                    <field name="atlas_name" string="Processing Atlas"/>
+                    <field name="building_id"/>
+                    <field name="install_loc"/>
+                    <field name="install_categ"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_installation_production_record_order_form" model="ir.ui.view">
+            <field name="name">tokiku.installation_production.record.order.form</field>
+            <field name="model">tokiku.inst_prodrec</field>
+            <field name="arch" type="xml">
+                <form string="Installation">
+                    <header>
+                        <button name="act_validate" string="Validate" type="object" class="btn btn-sm btn-primary"
+                                states="draft"/>
+                        <button name="item_select" string="Item Select" type="object" class="btn btn-sm btn-primary"
+                                states="draft"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                    </header>
+                    <notebook>
+                        <field name="categ_id" invisible="1"/>
+                        <field name="contract_id" invisible="1"/>
+                        <field name="project_id" invisible="1"/>
+                        <page string="Production Record Order Information">
+                            <group>
+                                <group>
+                                    <field name="name" string="Production Record Order Number"/>
+                                    <field name="project_id" readonly="1"/>
+                                    <field name="building_id" attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"/>
+                                    <field name="location_id" domain="[('id','in', context.get('location_ids', False))]"/>
+                                    <field name="location_dest_id"/>
+                                </group>
+                                <group>
+                                    <field name="install_date"/>
+                                    <field name="contract_id" readonly="1"/>
+                                    <field name="source_supplier" attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"/>
+                                    <field name="target_supplier" attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Products">
+                            <field name="inst_prodrec_ids"
+                                   attrs="{'readonly': [('state', 'in', ('done','cancel'))]}">
+                                <tree editable="bottom" class="grid" create="true">
+                                    <field name="product_id" invisible="1"/>
+                                    <field name="atlas_name" string="Processing Atlas" readonly="1"/>
+                                    <field name="install_loc" readonly="1"/>
+                                    <field name="install_categ" readonly="1"/>
+                                    <field name="default_code" readonly="1"/>
+                                    <field name="floor" readonly="1"/>
+                                    <field name="installed_qty" string="Installed Qty"/>
+                                    <field name="feed_total_qty" invisible="1"/>
+                                    <field name="state"/>
+                                    <field name="installation_panel_line_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+<!--        &lt;!&ndash;安裝總表&ndash;&gt;-->
+<!--    <record id="view_installation_summary_tree" model="ir.ui.view">-->
+<!--        <field name="name">tokiku.installation.summary.tree</field>-->
+<!--        <field name="model">tokiku.installation_panel_line</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree class="grid">-->
+<!--                <field name="building_id"/>-->
+<!--                <field name="install_loc_id"/>-->
+<!--                <field name="install_categ_id"/>-->
+<!--                <field name="default_code"/>-->
+<!--                <field name="width"/>-->
+<!--                <field name="length"/>-->
+<!--                <field name="single_surface"/>-->
+<!--                <field name="demand_qty"/>-->
+
+<!--                <field name="feed_total_qty" header_group="進料合計"/>-->
+<!--                <field name="fed_surface" header_group="進料合計"/>-->
+<!--                <field name="unfed_qty" header_group="進料合計"/>-->
+
+<!--                <field name="installed_qty" header_group="安裝合計"/>-->
+<!--                <field name="installed_surface" header_group="安裝合計"/>-->
+<!--                <field name="uninstalled_qty" header_group="安裝合計"/>-->
+<!--&lt;!&ndash;                <field name="install_pct" header_group="安裝合計"/>&ndash;&gt;-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--          &lt;!&ndash;工地安裝進度表&ndash;&gt;-->
+<!--    <record id="view_installation_progress_tree" model="ir.ui.view">-->
+<!--        <field name="name">tokiku.installation.progress.tree</field>-->
+<!--        <field name="model">tokiku.installation_panel_line</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree editable="bottom" class="grid">-->
+<!--                <field name="atlas_name"/>-->
+<!--                <field name="building_id"/>-->
+<!--                <field name="floor"/>-->
+<!--                <field name="install_categ_id"/>-->
+<!--                <field name="install_loc_id"/>-->
+<!--                <field name="default_code"/>-->
+<!--                <field name="length"/>-->
+<!--                <field name="width"/>-->
+<!--                <field name="single_surface"/>-->
+<!--                <field name="value_unit"/>-->
+<!--                <field name="demand_qty"/>-->
+<!--                <field name="feed_total_qty"/>-->
+<!--                <field name="installed_qty"/>-->
+<!--&lt;!&ndash;                <field name="stock_qty"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <field name="install_pct"/>&ndash;&gt;-->
+<!--                <field name="uninstalled_qty"/>-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->

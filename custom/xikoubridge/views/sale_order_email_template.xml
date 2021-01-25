@@ -1,0 +1,74 @@
+<odoo>
+    <data>
+        <template id="report_quotation_inherit" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//h2" position="replace">
+                <h2>
+                    <span t-if="doc.state not in ['draft','sent']">預約單</span>
+                    <span t-if="doc.state in ['draft','sent']">預約單</span>
+                    <span t-field="doc.name"/>
+                </h2>
+            </xpath>
+            <xpath expr="//div[@id='informations']/div[2]" position="replace">
+                <div t-if="doc.date_order" class="col-xs-3">
+                    <strong t-if="doc.state not in ['draft','sent']">預約日期</strong>
+                    <strong t-if="doc.state in ['draft','sent']">預約日期</strong>
+                    <p t-field="doc.date_order"/>
+                </div>
+            </xpath>
+            <xpath expr="//div[@id='informations']/div[4]" position="replace">
+                <div name="payment_term" t-if="doc.payment_term_id" class="col-xs-3">
+                    <strong>Payment Terms:</strong>
+                    <p>付款取票</p>
+                </div>
+            </xpath>
+            <xpath expr="//p[@id='customize_order_note']" position="replace">
+                <p id="customize_order_note">
+                    預約參訪民眾配合事項:
+                    <br/>
+                    1.請持預約資料至售票中心取票，購買優待票及免費遊客請攜帶相關證明俾現場人員查驗，付款取票後始得入橋參觀，如無法查驗辨識情形將以全票方式收費。
+                    <br/>
+                    2.因售票中心至吊橋入口處尚有階梯步道路程，請於預約時段30分鐘前持預約號碼(預約證明)至售票中心付費取票後至吊橋等候區排隊入橋，如逾時未取票將取消該梯次預約紀錄，開放現場民眾購票，敬請參訪遊客配合。
+                    <br/>
+                </p>
+            </xpath>
+        </template>
+
+        <template id="external_layout_header_inherit" inherit_id="report.external_layout_header">
+            <xpath expr="//div[@name='company_address']" position="replace">
+                <div class="col-xs-6" name="company_address">
+                    <span t-field-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"
+                          style="border-bottom: 1px solid black; display:inline-block;">
+                        復興區新溪口吊橋
+                    </span>
+                </div>
+            </xpath>
+        </template>
+
+        <template id="wizard_checkout" inherit_id="website_sale.wizard_checkout">
+            <xpath expr="//ul[@class='wizard pull-right']" position="replace">
+                <ul class="wizard pull-right">
+                    <li t-att-class="step==10 and 'text-primary' or 'text-muted'" id="step10">
+                        <t t-if="step&gt;10 and step&lt;50">
+                            <a href="/shop/cart" class="text-success">
+                                Review Order
+                                <span class="chevron"></span>
+                            </a>
+                        </t>
+                        <t t-if="not (step&gt;10 and step&lt;50)">
+                            Review Order
+                            <span class="chevron"></span>
+                        </t>
+                    </li>
+                    <li t-att-class="(step==20 and 'text-primary') or 'text-muted'" id="step20">
+                        Reserve
+                        <span class="chevron"></span>
+                    </li>
+                    <li t-att-class="(step==50 and 'text-primary') or 'text-muted'" id="step50">
+                        Confirmation
+                        <span class="chevron"></span>
+                    </li>
+                </ul>
+            </xpath>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="report_sale_order_line_document">
+    <t t-call="report.external_layout">
+        <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
+        <div class="page">
+            <div class="oe_structure"/>
+            <h2>
+                <span t-field="doc.name"/>
+            </h2>
+            <t t-set="display_discount" t-value="any([l.discount for l in doc.order_line])"/>
+
+            <t t-foreach="doc.order_line" t-as="oline">
+                <!--<span t-field="oline.ticket_img" t-options='{"widget": "image","class": "img-rounded"}'/>-->
+                <t t-if="doc.state=='sale'">
+                    <img t-att-src="oline.ticket_qr"/>
+                </t>
+            </t>
+            <p t-field="doc.note" />
+            <div class="oe_structure"/>
+        </div>
+    </t>
+</template>
+
+<template id="report_sale_order_line">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="biznavi_ticket.report_sale_order_line_document" t-lang="doc.partner_id.lang"/>
+        </t>
+    </t>
+</template>
+</odoo>

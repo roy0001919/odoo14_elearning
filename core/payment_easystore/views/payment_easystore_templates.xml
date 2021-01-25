@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="easystore_acquirer_button">
+            <form t-if="acquirer" t-att-action="tx_url" method="post" target="_self">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <t t-if="return_url">
+                    <input type='hidden' name='return_url' t-att-value='return_url'/>
+                </t>
+                <input type='hidden' name='reference' t-att-value='reference'/>
+                <input type='hidden' name='amount' t-att-value='amount'/>
+                <input type='hidden' name='currency' t-att-value='currency.name'/>
+
+                <input type='hidden' name='targetUrl' t-att-value='targetUrl'/>
+                <input type='hidden' name='clientName' t-att-value='clientName'/>
+                <input type='hidden' name='shopNum' t-att-value='shopNum'/>
+                <input type='hidden' name='sendKeyIdx' t-att-value='sendKeyIdx'/>
+                <input type='hidden' name='sendKey' t-att-value='sendKey'/>
+                <input type='hidden' name='expDay' t-att-value='expDay'/>
+                <input type='hidden' name='ranNum' t-att-value='ranNum'/>
+                <input type='hidden' name='partner_name' t-att-value='partner_name'/>
+                <input type='hidden' name='partner_phone' t-att-value='partner_phone'/>
+                <input type='hidden' name='partner_address' t-att-value='partner_address'/>
+                <input type='hidden' name='partner_email' t-att-value='partner_email'/>
+
+                <!-- submit -->
+                <button type="submit" width="100px" t-att-class="submit_class">
+                    <img t-if="not submit_txt" src="/payment_easystore/static/src/img/transfer_icon.png"/>
+                    <span t-if="submit_txt"><t t-esc="submit_txt"/> <span class="fa fa-long-arrow-right"/></span>
+                </button>
+            </form>
+        </template>
+
+        <template id="easystore_payment_confirmation_status" inherit_id="website_sale.payment_confirmation_status">
+            <xpath expr="//div[@class='alert alert-info']" position="replace">
+                <div class="alert alert-info" role="alert">
+                    收款銀行：永豐銀行台北分行<br/>
+                    銀行代號: 807 0210<br/>
+                    戶名: 其他應付款-代收-網路收款<br/>
+                    <t t-raw="order.note" /><br/>
+                    請於 <t t-esc="order.payment_tx_id.deadline" /> 前完成轉帳匯款，逾時本訂單將會自動取消
+                </div>
+            </xpath>
+        </template>
+
+        <template id="payment_response_fail_redirect" name="Payment Get Authorize Failed">
+                <div class="container">
+                    <div class="oe_structure">
+                        <div id="fail_message">
+                            <h2>因網路繁忙，無法取得銀行授權金鑰，請回到購物車頁重新結帳，或待會再試</h2>
+                        </div>
+                        <div id="return_shopcart">
+                            <input id="clickMe" type="button" value="回購物車"/>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    document.getElementById("clickMe").onclick = function () {
+                        window.location.href = '<t t-esc="return_url"/>';
+                    };
+                </script>
+        </template>
+    </data>
+</odoo>

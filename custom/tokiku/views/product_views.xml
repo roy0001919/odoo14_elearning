@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_category_form" model="ir.ui.view">
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='oe_title']" position="after">
+                    <group name="keyword">
+                        <field name="keywords" widget="many2many_tags"/>
+                    </group>
+                </xpath>
+
+                <field name="type" position="after">
+                    <field name="code" groups="base.group_no_one"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_category_list" model="ir.ui.view">
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_list_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="replace">
+                    <tree string="Product Categories">
+                        <field name="display_name"/>
+                    </tree>
+                </xpath>
+            </field>
+        </record>
+
+        <!--<record id="view_product_form" model="ir.ui.view">-->
+        <!--<field name="model">product.template</field>-->
+        <!--<field name="inherit_id" ref="product.product_template_form_view"/>-->
+        <!--<field name="arch" type="xml">-->
+        <!--<xpath expr="//field[@name='categ_id']" position="after">-->
+        <!--<field name="category_code" invisible="1"/>-->
+        <!--<field name="size"/>-->
+        <!--<field name="material" attrs="{'invisible': [('category_code','not in',('raw','refine'))]}"/>-->
+        <!--<field name="paint_area" attrs="{'invisible': [('category_code','not in',('raw'))]}"/>-->
+        <!--<field name="coating" attrs="{'invisible': [('category_code','not in',('raw'))]}"/>-->
+        <!--<field name="ingot" attrs="{'invisible': [('category_code','not in',('raw'))]}"/>-->
+        <!--</xpath>-->
+        <!--</field>-->
+        <!--</record>-->
+
+
+        <record id="product_normal_form_view" model="ir.ui.view">
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <field name="categ_id" position="after">
+                    <field name="category_code" invisible="1"/>
+                    <field name="part_no" invisible="0"/>
+                    <field name="mold_id"
+                           attrs="{'invisible': [('category_code', 'not in', ('raw', 'aluminum'))]}"/>
+                </field>
+                <field name="category_code" position="after">
+                    <field name="remarks"/>
+                </field>
+                <field name="default_code" position="replace">
+                    <field name="default_code" string="Tokiku Default Code"/>
+                </field>
+                <!--<field name="size"/>-->
+                <!--<field name="material" attrs="{'invisible': [('category_code','not in',('raw','refine'))]}"/>-->
+                <!--<field name="paint_area" attrs="{'invisible': [('category_code','not in',['mold','raw'])]}"/>-->
+                <!--<field name="coating" attrs="{'invisible': [('category_code','not in',['mold','raw'])]}"/>-->
+                <!--<field name="ingot" attrs="{'invisible': [('category_code','not in',['mold','raw'])]}"/>-->
+                <field name="purchase_method" position="after">
+                    <field name="mold_usage_status"
+                           attrs="{'invisible': [('category_code','!=','mold')]}"/>
+                </field>
+
+                <field name="seller_ids" position="replace">
+                    <field name="seller_ids"
+                           context="{'default_product_tmpl_id': context.get('product_tmpl_id', active_id)}">
+                        <tree editable="bottom">
+                            <field name="item_order"/>
+                            <field name="name" domain="[('supplier', '=', True), ('parent_id', '=', False)]"/>
+                            <field name="product_code"/>
+                            <field name="category_code" invisible="1"/>
+                            <field name="product_material"/>
+                            <!--<field name="material" attrs="{'invisible': [('category_code','not in',['mold','raw'])]}"/>-->
+                            <field name="weight" digits="(16,3)"/>
+                            <!--attrs="{'invisible': [('category_code','not in',['mold','raw'])]}"-->
+                            <!--<field name="weight"/>-->
+                            <!--<field name="paint_area" attrs="{'invisible': [('category_code','not in',['mold','raw'])]}"/>-->
+                            <!--<field name="coating" attrs="{'invisible': [('category_code','not in',['mold','raw'])]}"/>-->
+                            <!--<field name="ingot" attrs="{'invisible': [('category_code','not in',['mold','raw'])]}"/>-->
+                            <!--<field name="min_qty"/>-->
+                        </tree>
+                    </field>
+                </field>
+                <page name="sales" position="after">
+                    <page name="mold_parts" string="Mold Parts">
+                        <separator string="Mold Parts"/>
+                        <field name="mold_part_ids" nolabel="1">
+                            <tree string="Mold Parts" editable="bottom">
+                                <field name="project_id"/>
+                                <field name="name"/>
+                                <field name="mold_spec"/>
+                                <field name="price" sum="Total Untaxed amount" widget="monetary" digits="(16,0)" style="text-align: left;" type="text"/>
+                                <field name="remark"/>
+                                <!--<field name="amount_untaxed" sum="Total Untaxed amount" />-->
+                                <!--<field name="amount_total" sum="Total amount" widget="monetary"/>-->
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+
+                <page name="notes" position="after">
+                    <page name="mold_drawing" string="Mold Drawing"
+                          attrs="{'invisible': [('category_code','!=','mold')]}">
+                        <!--<separator string="Mold Parts"/>-->
+                        <field name="mold_drawing_info_ids" nolabel="1">
+                            <tree string="Mold Drawing" editable="bottom">
+                                <field name="mold_drawing_trial_date"/>
+                                <field name="mold_drawing_signing_date"/>
+                                <field name="mold_drawing_status"/>
+                            </tree>
+                        </field>
+                    </page>
+                </page>
+                <notebook>
+                    <page name="material section" string="Material Section"
+                          attrs="{'invisible': [('category_code','!=','mold')]}">
+                        <!--<separator string="Mold Parts"/>-->
+                        <field name="material_section_info_ids" nolabel="1">
+                            <tree string="Mold Parts" editable="bottom">
+                                <field name="actual_delivery_date"/>
+                                <field name="signing_date"/>
+                                <field name="material_section_status" string="Material Section Status"/>
+                                <field name="stop_using_note"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <!--<page name="mold details" string="Mold Details"-->
+                    <!--attrs="{'invisible': [('category_code','!=','mold')]}">-->
+                    <!--<separator string="Mold Parts"/>-->
+                    <!--<field name="mold_part_ids" nolabel="1">-->
+                    <!--<tree string="Mold Parts" editable="bottom">-->
+                    <!--<field name="name"/>-->
+                    <!--<field name="price"/>-->
+                    <!--</tree>-->
+                    <!--</field>-->
+                    <!--</page>-->
+                </notebook>
+            </field>
+        </record>
+
+        <record id="product_template_search_view" model="ir.ui.view">
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='filter_to_purchase']" position="after">
+                    <filter string="Mold" name="filter_mold" domain="[('category_code', '=', 'mold')]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_market_price_tree" model="ir.ui.view">
+            <field name="name">tokiku.market_price.tree</field>
+            <field name="model">product.template</field>
+            <field name="arch" type="xml">
+                <tree string="Market Price" editable="bottom" create="false">
+                    <field name="name" string="Material" readonly="1"/>
+                    <field name="market_price"/>
+                    <field name="write_uid" readonly="1"/>
+                    <field name="write_date" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="product_product_tree_view" model="ir.ui.view">
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='default_code']" position="before">
+                    <field name="project_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mold_product_tree_view" model="ir.ui.view">
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <tree string="Product Variants">
+                    <field name="project_short_name"/>
+                    <!--<field name="part_no"/>-->
+                    <field name="default_code"/>
+                    <!--<field name="name"/>-->
+                    <field name="supplier_short_name"/>
+                    <field name="supplier_part_no"/>
+                    <field name="material"/>
+                    <field name="net_weight" digits="(16,3)"/>
+                    <field name="paint_area" digits="(16,2)"/>
+                    <field name="coating"/>
+                    <field name="min_qty"/>
+                    <field name="ingot"/>
+                    <field name="mold_assembly_cost"/>
+                    <field name="description"/>
+                    <field name="mold_usage_status"/>
+                    <field name="remarks"/>
+                    <button name="po_count" string="Purchase" type="object"/>
+                    <field name="write_uid"/>
+                    <field name="write_date"/>
+                    <field name="qty_available"/>
+                    <!--<button name="purchase_count" string="Purchase" type="object"/>-->
+                    <!--<field name="default_code"/>-->
+                    <!--<field name="attribute_value_ids" widget="many2many_tags" groups="product.group_product_variant"/>-->
+                    <!--<field name="lst_price"/>-->
+                    <!--<field name="price" invisible="not context.get('pricelist',False)"/>-->
+                    <!--<field name="uom_id" options="{'no_open': True, 'no_create': True}" groups="product.group_uom"/>-->
+                    <!--<field name="barcode"/>-->
+                    <!--<field name="product_tmpl_id" invisible="1"/>-->
+                    <!--<field name="active" invisible="1"/>-->
+                </tree>
+            </field>
+        </record>
+        <!--mold_product_cost_tree_view-->
+
+        <record id="mold_product_cost_tree_view" model="ir.ui.view">
+            <field name="model">tokiku.mold_part</field>
+            <field name="arch" type="xml">
+                <tree create="false" editable="bottom" delete="false">
+                    <field name="project_id" readonly="1"/>
+                    <field name="product_part_no" string="default code" readonly="1"/>
+                    <field name="short_name" string="short name" readonly="1"/>
+                    <field name="supplier_part_no" readonly="1"/>
+                    <field name="ingot" readonly="1"/>
+                    <field name="name" readonly="1"/>
+                    <field name="mold_spec" readonly="1"/>
+                    <field name="price" readonly="1"/>
+                    <field name="remark" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mold_product_cost_search_view" model="ir.ui.view">
+            <field name="name">mold.product.cost.search</field>
+            <field name="model">tokiku.mold_part</field>
+            <field name="arch" type="xml">
+                <search string="Product">
+                </search>
+            </field>
+        </record>
+
+        <!--<record id="mold_product_cost_form_view" model="ir.ui.view">-->
+        <!--<field name="name">mold.product.cost.form</field>-->
+        <!--<field name="model">tokiku.mold_part</field>-->
+        <!--<field name="arch" type="xml">-->
+        <!--<form string="Product" create="false" editable="bottom" delete="false">-->
+        <!--<group>-->
+        <!--<field name="project_id" readonly="1"/>-->
+        <!--<field name="product_part_no" readonly="1"/>-->
+        <!--<field name="supplier_name" readonly="1"/>-->
+        <!--<field name="supplier_part_no" readonly="1"/>-->
+        <!--<field name="ingot" readonly="1"/>-->
+        <!--<field name="name" readonly="1"/>-->
+        <!--<field name="mold_spec" readonly="1"/>-->
+        <!--<field name="price" readonly="1"/>-->
+        <!--<field name="remarks" readonly="1"/>-->
+        <!--</group>-->
+        <!--</form>-->
+        <!--</field>-->
+        <!--</record>-->
+        <!--<record id="mold_product_table_view" model="ir.ui.view">-->
+        <!--<field name="model">product.product</field>-->
+        <!--<field name="arch" type="xml">-->
+        <!--<form string="Table">-->
+        <!--<tree>-->
+        <!--<field name="project_id"/>-->
+        <!--<field name="part_no"/>-->
+        <!--<field name="supplier_name"/>-->
+        <!--<field name="supplier_part_no"/>-->
+        <!--<field name="ingot"/>-->
+        <!--<field name="mold_part_ids"/>-->
+        <!--</tree>-->
+        <!--</form>-->
+        <!--</field>-->
+        <!--</record>-->
+
+        <!--<record id="action_product_purchase_list" model="ir.actions.act_window">-->
+        <!--<field name="name">Purchase Order Lines</field>-->
+        <!--<field name="res_model">purchase.order.line</field>-->
+        <!--<field name="context">{'search_default_product_id': [active_id], 'default_product_id': active_id}</field>-->
+        <!--<field name="domain">[('state', 'in', ['purchase', 'done'])]</field>-->
+        <!--</record>-->
+    </data>
+</odoo>

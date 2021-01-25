@@ -1,0 +1,212 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* biznavi_pos_ticket
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-10 10:34+0000\n"
+"PO-Revision-Date: 2018-02-10 10:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:359
+#, python-format
+msgid "Action"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#: model:ir.model.fields,help:biznavi_pos_ticket.field_pos_config_iface_orderline_notes
+msgid "Allow custom notes on Orderlines"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#: model:ir.model.fields,help:biznavi_pos_ticket.field_pos_config_iface_printbill
+msgid "Allows to print the Bill before payment"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:350
+#, python-format
+msgid "Batch"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#: model:ir.model.fields,field_description:biznavi_pos_ticket.field_pos_config_iface_printbill
+msgid "Bill Printing"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#: model:ir.model.fields,field_description:biznavi_pos_ticket.field_pos_config_iface_splitbill
+msgid "Bill Splitting"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:354
+#, python-format
+msgid "Booker"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:355
+#, python-format
+msgid "Booker Phone"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:384
+#, python-format
+msgid "Cancel"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/js/batch.js:674
+#, python-format
+msgid "Changes could not be saved"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:356
+#, python-format
+msgid "Contact"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:357
+#, python-format
+msgid "Contact Phone"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:243
+#, python-format
+msgid "Discount:"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#: model:ir.model.fields,help:biznavi_pos_ticket.field_pos_config_iface_splitbill
+msgid "Enables Bill Splitting in the Point of Sale"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:351
+#, python-format
+msgid "Order Number"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#: model:ir.model.fields,field_description:biznavi_pos_ticket.field_pos_config_iface_orderline_notes
+msgid "Orderline Notes"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#: model:ir.model,name:biznavi_pos_ticket.model_pos_order
+msgid "Point of Sale Orders"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#: model:ir.ui.view,arch_db:biznavi_pos_ticket.sale_order_search_view
+msgid "Pos Order"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:353
+#, python-format
+msgid "Quantity"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:383
+#, python-format
+msgid "Reprint"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/js/batch.js:243
+#, python-format
+msgid "Reservation"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#: model:ir.model,name:biznavi_pos_ticket.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:327
+#, python-format
+msgid "Search Reservations"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:331
+#, python-format
+msgid "Select Customer"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:413
+#, python-format
+msgid "There is no ticket today!"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:352
+#, python-format
+msgid "Ticket"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:358
+#, python-format
+msgid "Ticket Number"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/xml/batch.xml:280
+#, python-format
+msgid "Transfer"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#. openerp-web
+#: code:addons/biznavi_pos_ticket/static/src/js/batch.js:675
+#, python-format
+msgid "You must be connected to the internet to save your changes."
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#: model:ir.model,name:biznavi_pos_ticket.model_pos_config
+msgid "pos.config"
+msgstr ""
+
+#. module: biznavi_pos_ticket
+#: model:ir.model,name:biznavi_pos_ticket.model_report_point_of_sale_report_saledetails
+msgid "report.point_of_sale.report_saledetails"
+msgstr ""
+

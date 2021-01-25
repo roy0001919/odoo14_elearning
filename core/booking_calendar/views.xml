@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_order_overlap_in_lines_form" model="ir.ui.view">
+            <field name="name">sale.order.overlap.lines.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree" position="inside">
+                    <field name="overlap" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                    <attribute name="colors">red:overlap</attribute>
+                </xpath>
+            </field>
+        </record>
+        <template id="assets_backend" name="custom booking calendar assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/booking_calendar/static/src/js/booking_calendar.js"></script>
+                <link rel='stylesheet' href='/booking_calendar/static/src/css/booking_calendar.css'/>
+            </xpath>
+        </template>
+        <!--<template id="assests_fullcalendar" name="fullcalendar replacement" inherit_id="web_calendar.assets_backend">-->
+        <!--<xpath expr="//script[@src='/web_calendar/static/lib/fullcalendar/js/fullcalendar.js']" position="replace">-->
+        <!--<script type="text/javascript" src="/booking_calendar/static/lib/js/fullcalendar.1.6.7.js"></script>-->
+        <!--</xpath>-->
+        <!--</template>-->
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree" position="inside">
+                    <field name="resource_id" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="resource_resource_form" model="ir.ui.view">
+            <field name="model">resource.resource</field>
+            <field name="inherit_id" ref="resource.resource_resource_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/group" position="inside">
+                    <group>
+                        <field name="to_calendar" icon="calendar"/>
+                        <field name="color" widget="color"/>
+                        <field name="slot_start_delay"/>
+                        <field name="start_delay_unit"/>
+                    </group>
+                    <group>
+                        <field name="duration_mins"/>
+                        <field name="reserve_days"/>
+                        <field name="refundable_days"/>
+                    </group>
+                </xpath>
+                <xpath expr="//form/group" position="after">
+                    <group>
+                        <field name="product_ids" widget="many2many_tags"/>
+                    </group>
+                </xpath>
+                <xpath expr="//field[@name='calendar_id']" position="after">
+                    <field name="has_slot_calendar"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="product_template_form_view" model="ir.ui.view">
+            <field name="name">product.template.common.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="calendar_id"/>
+                    <field name="capacity"/>
+                    <field name="pay_online"/>
+                    <field name="min_order"/>
+                    <field name="max_order"/>
+                </xpath>
+                <xpath expr="//field[@name='uom_po_id']" position="after">
+                    <field name="resource_ids" widget="many2many_tags"/>
+                    <field name="html_color" widget="color"/>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_booking_order_line_tree">
+            <field name="name">sale.order.line.tree</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <tree string="Booking Tree" colors="red:overlap">
+                    <field name="order_id" invisible="1"/>
+                    <field name="ticket_name"/>
+                    <!--<field name="product_id"/>-->
+                    <field name="name"/>
+                    <field name="order_partner_id"/>
+                    <!--<field name="booking_start"/>-->
+                    <!--<field name="booking_end"/>-->
+                    <field name="batch_info"/>
+                    <field name="checkin_time"/>
+                    <field name="price_unit" widget="int"/>
+                    <field name="product_uom_qty" widget="int"/>
+                    <field name="price_subtotal"/>
+                    <field name="state"/>
+                    <field name="note" string="Pos Number"/>
+                    <field name="remark1"/>
+                    <field name="overlap" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_booking_order_line_form">
+            <field name="name">Booking slot</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <form string="Booking Form">
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="ticket_name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="partner_id" readonly="0" required="1"/>
+                                <field name="buyer_tel" readonly="1"/>
+                                <field name="batch_info"/>
+                                <!--<field name="project_id" domain="[('partner_id','=',partner_id)]" readonly="0" required="0"/>-->
+                                <field name="product_id"/>
+                                <field name="booking_start"/>
+                                <field name="booking_end"/>
+                                <field name="booking_batch"/>
+                                <field name="checkin_time" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="order_id" domain="[('partner_id','=',partner_id)]" readonly="1"
+                                       required="0"/>
+                                <field name="contact_usr"/>
+                                <field name="contact_tel"/>
+                                <field name="resource_id"/>
+                                <field name="price_unit" widget="int"/>
+                                <field name="product_uom_qty" widget="int"/>
+                                <field name="price_subtotal" invisible="0" widget="int"/>
+                                <field name="product_uom"/>
+                                <field name="remark1" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="note" string="Pos Number"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="booking_search_view">
+            <field name="name">booking.date.search</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="note" string="Pos Number" filter_domain="[('note', 'ilike', self)]"/>
+                    <field name="order_id"/>
+                    <field name="buyer"/>
+                    <field name="buyer_tel"/>
+                    <field name="contact_usr"/>
+                    <field name="contact_tel"/>
+                    <field name="batch_info"/>
+                    <field name="booking_start"/>
+                    <field name="booking_batch"/>
+                    <field name="remark1"/>
+                    <field name="product_cate"/>
+                    <field name="product_entry"/>
+                    <field name="product_uom_qty"/>
+                    <filter name="passed_bookings" string="Passed Bookings"
+                            domain="[('state', 'in', ['sale']), ('booking_end', '&lt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00'))]"/>
+                    <filter name="active_bookings" string="Active Bookings"
+                            domain="[('state', 'in', ['sale']), ('booking_start', '&gt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00'))]"/>
+                    <filter name="today_bookings" string="Today's Bookings"
+                            domain="[('state', 'in', ['sale']), ('booking_start', '&gt;=', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00')),('booking_end', '&lt;=', datetime.datetime.now().strftime('%Y-%m-%d 23:23:59'))]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Booking Month" domain="[]" context="{'group_by':'booking_start'}"/>
+                        <filter string="Booking Day" domain="[]" context="{'group_by':'booking_start:day'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="view_sale_order_line_calendar" model="ir.ui.view">
+            <field name="name">sale.order.line.calendar</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <calendar string="Booking Lines" date_start="booking_start" date_stop="booking_end" color="resource_id"
+                          event_open_popup="%(booking_calendar.view_booking_order_line_form)s" quick_add="0"
+                          quick_create_instance="web_calendar_repeat_form.QuickCreateRepeated" read_color="1"
+                          free_slots="1" mode="week">
+                    <field name="resource_id"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record id="view_all_orders_lines_list_pivot" model="ir.ui.view">
+            <field name="name">sale.order.line.pivot</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <pivot string="Sale Order Lines Analysis">
+                    <!--<field name="order_id.team_id" type="row"/>-->
+                    <!--<field name="product_id" type="row"/>-->
+                    <!--<field name="order_partner_id" type="row"/>-->
+                    <!--<field name="booking_start" type="row"/>-->
+                    <!--<field name="booking_end" type="row"/>-->
+                    <!--&lt;!&ndash;<field name="batch_info" type="row"/>&ndash;&gt;-->
+                    <!--<field name="checkin_time" type="row"/>-->
+                    <!--<field name="price_unit" type="row"/>-->
+                    <!--<field name="product_uom_qty" type="measure"/>-->
+                    <!--<field name="price_subtotal" type="measure"/>-->
+                    <!--<field name="state" type="row"/>-->
+                    <!--<field name="note" type="row"/>-->
+                </pivot>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="all_orders_lines_list_action">
+            <field name="name">All Lines</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_id" ref="view_booking_order_line_tree"/>
+            <field name="view_mode">pivot,tree,form</field>
+            <field name="search_view_id" ref="booking_search_view"/>
+            <field name="pivot_view_id" ref="view_all_orders_lines_list_pivot"/>
+            <field name="domain">['|', ('state', 'in', ['sale', 'done']), ('remark1', '=', u'退款')]</field>
+            <field name="context" eval="{'search_default_active_bookings': 1}"/>
+        </record>
+        <record model="ir.actions.act_window" id="booking_orders_lines_list_action">
+            <field name="name">Booking Lines</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_id" ref="view_booking_order_line_tree"/>
+            <field name="view_mode">pivot,tree,calendar,form</field>
+            <field name="search_view_id" ref="booking_search_view"/>
+            <field name="domain">[('order_id.team_id.id', '=', 2),('state', 'in', ['sale', 'done'])]</field>
+            <field name="context" eval="{'search_default_active_bookings': 1}"/>
+        </record>
+        <record model="ir.actions.act_window" id="pos_orders_lines_list_action">
+            <field name="name">Pos Lines</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_id" ref="view_booking_order_line_tree"/>
+            <field name="view_mode">pivot,tree,calendar,form</field>
+            <field name="search_view_id" ref="booking_search_view"/>
+            <field name="domain">[('order_id.team_id.id', '=', 1),('state', 'in', ['sale', 'done'])]</field>
+            <field name="context" eval="{'search_default_today_bookings': 1}"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="booking_orders_lines_list_action_tree">
+            <field name="act_window_id" ref="booking_orders_lines_list_action"/>
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_booking_order_line_tree"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="booking_orders_lines_list_actiont_calendar">
+            <field name="act_window_id" ref="booking_orders_lines_list_action"/>
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">calendar</field>
+            <field name="view_id" ref="view_sale_order_line_calendar"/>
+        </record>
+        <record model="ir.actions.act_window.view" id="booking_orders_lines_list_action_form">
+            <field name="act_window_id" ref="booking_orders_lines_list_action"/>
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_booking_order_line_form"/>
+        </record>
+        <menuitem action="booking_orders_lines_list_action" id="menu_sale_order_line" parent="sales_team.menu_sales"
+                  sequence="6"/>
+        <record id="view_order_booking_form" model="ir.ui.view">
+            <field name="name">sale.order.form.booking</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/form/group" position="inside">
+                    <group name="booking">
+                        <field name="booking_start"/>
+                        <field name="booking_end"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_resource_calendar_attendance_tree" model="ir.ui.view">
+            <field name="model">resource.calendar.attendance</field>
+            <field name="inherit_id" ref="resource.view_resource_calendar_attendance_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_to']" position="after">
+                    <field name="website_quota"/>
+                    <field name="pos_quota"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

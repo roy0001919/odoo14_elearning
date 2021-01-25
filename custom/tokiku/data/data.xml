@@ -1,0 +1,647 @@
+<!-- <?xml version="1.0" encoding="utf-8"?> -->
+<odoo>
+    <data noupdate="1">
+        <record id="project.menu_main_pm" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_erp_manager')])]"/>
+        </record>
+        <record id="account.menu_finance" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_erp_manager')])]"/>
+        </record>
+        <record id="mrp.menu_mrp_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_erp_manager')])]"/>
+        </record>
+        <record id="stock.menu_stock_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_erp_manager')])]"/>
+        </record>
+        <record id="purchase.menu_purchase_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_erp_manager')])]"/>
+        </record>
+        <record id="mail.mail_channel_menu_root_chat" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('base.group_erp_manager')])]"/>
+        </record>
+
+        <!--<delete model="decimal.precision" search="[('name', '=', 'Stock Weight')]"/>-->
+        <!--<delete model="decimal.precision" search="[('name', '=', 'Product Price')]"/>-->
+        <!--<record id="decimal_stock_weight" model="decimal.precision">-->
+        <!--<field name="name">Stock Weight</field>-->
+        <!--<field name="digits">3</field>-->
+        <!--</record>-->
+        <!--<record id="decimal_price" model="decimal.precision">-->
+        <!--<field name="name">Product Price</field>-->
+        <!--<field name="digits">0</field>-->
+        <!--</record>-->
+        <!--stock.location-->
+        <record id="stock_location_tokiku" model="stock.location">
+            <field name="name">Tokiku WH</field>
+            <field name="location_id" ref="stock.stock_location_stock"/>
+            <field name="usage">internal</field>
+        </record>
+
+        <record id="stock_location_refine" model="stock.location">
+            <field name="name">Refine</field>
+            <field name="location_id" ref="stock.stock_location_stock"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_refine_pending" model="stock.location">
+            <field name="name">Pending</field>
+            <field name="location_id" ref="tokiku.stock_location_refine"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_refine_done" model="stock.location">
+            <field name="name">Done</field>
+            <field name="location_id" ref="tokiku.stock_location_refine"/>
+            <field name="usage">internal</field>
+        </record>
+
+        <!--<record id="stock_location_cut" model="stock.location">-->
+        <!--<field name="name">Cut</field>-->
+        <!--<field name="location_id" ref="stock.stock_location_stock"/>-->
+        <!--<field name="usage">internal</field>-->
+        <!--</record>-->
+        <!--<record id="stock_location_cut_plate" model="stock.location">-->
+        <!--<field name="name">Cut Plate</field>-->
+        <!--<field name="usage">internal</field>-->
+        <!--</record>-->
+        <!--<record id="stock_location_cut_iron" model="stock.location">-->
+        <!--<field name="name">Cut Iron</field>-->
+        <!--<field name="usage">internal</field>-->
+        <!--</record>-->
+        <!--<record id="stock_location_cut_steel" model="stock.location">-->
+        <!--<field name="name">Cut Steel</field>-->
+        <!--<field name="usage">internal</field>-->
+        <!--</record>-->
+        <!--<record id="stock_location_cut_stone" model="stock.location">-->
+        <!--<field name="name">Cut Stone</field>-->
+        <!--<field name="usage">internal</field>-->
+        <!--</record>-->
+        <record id="stock_location_heat" model="stock.location">
+            <field name="name">Heat</field>
+            <field name="location_id" ref="stock.stock_location_stock"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_heat_pending" model="stock.location">
+            <field name="name">Pending</field>
+            <field name="location_id" ref="tokiku.stock_location_heat"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_heat_done" model="stock.location">
+            <field name="name">Done</field>
+            <field name="location_id" ref="tokiku.stock_location_heat"/>
+            <field name="usage">internal</field>
+        </record>
+
+        <record id="stock_location_paint" model="stock.location">
+            <field name="name">Paint</field>
+            <field name="location_id" ref="stock.stock_location_stock"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_paint_pending" model="stock.location">
+            <field name="name">Pending</field>
+            <field name="location_id" ref="tokiku.stock_location_paint"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_paint_done" model="stock.location">
+            <field name="name">Done</field>
+            <field name="location_id" ref="tokiku.stock_location_paint"/>
+            <field name="usage">internal</field>
+        </record>
+
+        <!--<record id="stock_location_paint_plate" model="stock.location">-->
+        <!--<field name="name">Paint Plate</field>-->
+        <!--<field name="usage">internal</field>-->
+        <!--</record>-->
+        <!--<record id="stock_location_paint_steel" model="stock.location">-->
+        <!--<field name="name">Paint Steel</field>-->
+        <!--<field name="usage">internal</field>-->
+        <!--</record>-->
+        <!--<record id="stock_location_paint_iron" model="stock.location">-->
+        <!--<field name="name">Paint Iron</field>-->
+        <!--<field name="usage">internal</field>-->
+        <!--</record>-->
+
+        <record id="stock_location_assembly" model="stock.location">
+            <field name="name">Assembly</field>
+            <field name="location_id" ref="stock.stock_location_stock"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_assembly_pending" model="stock.location">
+            <field name="name">Pending</field>
+            <field name="location_id" ref="tokiku.stock_location_assembly"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_assembly_done" model="stock.location">
+            <field name="name">Done</field>
+            <field name="location_id" ref="tokiku.stock_location_assembly"/>
+            <field name="usage">internal</field>
+        </record>
+
+        <record id="stock_location_install" model="stock.location">
+            <field name="name">Installation</field>
+            <field name="location_id" ref="stock.stock_location_stock"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_install_pending" model="stock.location">
+            <field name="name">Pending</field>
+            <field name="location_id" ref="tokiku.stock_location_install"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_install_done" model="stock.location">
+            <field name="name">Done</field>
+            <field name="location_id" ref="tokiku.stock_location_install"/>
+            <field name="usage">internal</field>
+        </record>
+
+        <record id="stock_location_site" model="stock.location">
+            <field name="name">Site</field>
+            <field name="location_id" ref="stock.stock_location_stock"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_site_pending" model="stock.location">
+            <field name="name">Pending</field>
+            <field name="location_id" ref="tokiku.stock_location_site"/>
+            <field name="usage">internal</field>
+        </record>
+        <record id="stock_location_site_done" model="stock.location">
+            <field name="name">Done</field>
+            <field name="location_id" ref="tokiku.stock_location_site"/>
+            <field name="usage">internal</field>
+        </record>
+
+        <delete model="product.category" search="[('name', '=', 'Saleable')]"/>
+        <delete model="product.category" search="[('name', '=', 'All')]"/>
+        <!--<delete model="product.category" search="[]"/>-->
+
+        <record id="product_category_mold" model="product.category">
+            <field name="code">mold</field>
+            <field name="name">Mold</field>
+        </record>
+        <record id="product_category_material" model="product.category">
+            <field name="code">material</field>
+            <field name="name">Material</field>
+        </record>
+        <record id="product_category_processing" model="product.category">
+            <field name="code">processing</field>
+            <field name="name">Processing</field>
+        </record>
+
+        <!--        <record id="product_category_assembly_section" model="product.category">-->
+        <!--            <field name="code">assembly_section</field>-->
+        <!--            <field name="name">Assembly Section</field>-->
+        <!--        </record>-->
+        <!--<record id="product_category_assembly_preparation" model="product.category">-->
+        <!--<field name="code">assembly_preparation</field>-->
+        <!--<field name="name">Assembly Preparation</field>-->
+        <!--</record>-->
+
+        <!--<record id="product_category_cut_aluminum" model="product.category">-->
+        <!--<field name="parent_id" ref="product_category_processing"/>-->
+        <!--<field name="code">cut_aluminum</field>-->
+        <!--<field name="name">Cut Aluminum</field>-->
+        <!--</record>-->
+        <!--<record id="product_category_cut_plate" model="product.category">-->
+        <!--<field name="parent_id" ref="product_category_processing"/>-->
+        <!--<field name="code">cut_plate</field>-->
+        <!--<field name="name">Cut Plate</field>-->
+        <!--</record>-->
+        <!--<record id="product_category_cut_iron" model="product.category">-->
+        <!--<field name="parent_id" ref="product_category_processing"/>-->
+        <!--<field name="code">cut_iron</field>-->
+        <!--<field name="name">Cut Iron</field>-->
+        <!--</record>-->
+        <!--<record id="product_category_cut_steel" model="product.category">-->
+        <!--<field name="parent_id" ref="product_category_processing"/>-->
+        <!--<field name="code">cut_steel</field>-->
+        <!--<field name="name">Cut Steel</field>-->
+        <!--</record>-->
+        <!--<record id="product_category_cut_stone" model="product.category">-->
+        <!--<field name="parent_id" ref="product_category_processing"/>-->
+        <!--<field name="code">cut_stone</field>-->
+        <!--<field name="name">Cut Stone</field>-->
+        <!--</record>-->
+        <!--<record id="product_category_paint_plate" model="product.category">-->
+        <!--<field name="parent_id" ref="product_category_processing"/>-->
+        <!--<field name="code">paint_plate</field>-->
+        <!--<field name="name">Paint Plate</field>-->
+        <!--</record>-->
+        <!--<record id="product_category_paint_steel" model="product.category">-->
+        <!--<field name="parent_id" ref="product_category_processing"/>-->
+        <!--<field name="code">paint_steel</field>-->
+        <!--<field name="name">Paint Steel</field>-->
+        <!--</record>-->
+        <!--<record id="product_category_paint_iron" model="product.category">-->
+        <!--<field name="parent_id" ref="product_category_processing"/>-->
+        <!--<field name="code">paint_iron</field>-->
+        <!--<field name="name">Paint Iron</field>-->
+        <!--</record>-->
+
+        <record id="product_category_paint" model="product.category">
+            <field name="parent_id" ref="product_category_processing"/>
+            <field name="code">paint</field>
+            <field name="name">Paint</field>
+        </record>
+        <record id="product_category_heat" model="product.category">
+            <field name="parent_id" ref="product_category_processing"/>
+            <field name="code">heat</field>
+            <field name="name">Heat Treatment</field>
+        </record>
+        <record id="product_category_assembly" model="product.category">
+            <field name="parent_id" ref="product_category_processing"/>
+            <field name="code">assembly</field>
+            <field name="name">Assembly</field>
+        </record>
+        <record id="product_category_refine" model="product.category">
+            <field name="parent_id" ref="product_category_processing"/>
+            <field name="code">refine</field>
+            <field name="name">Refine</field>
+        </record>
+        <record id="product_category_installation" model="product.category">
+            <field name="parent_id" ref="product_category_processing"/>
+            <field name="code">installation</field>
+            <field name="name">Installation</field>
+        </record>
+        <record id="product_category_installation_assembly" model="product.category">
+            <field name="parent_id" ref="product_category_installation"/>
+            <field name="code">installation_assembly</field>
+            <field name="name">Installation Assembly</field>
+        </record>
+        <record id="product_category_installation_processing" model="product.category">
+            <field name="parent_id" ref="product_category_installation"/>
+            <field name="code">installation_processing</field>
+            <field name="name">Installation Processing</field>
+        </record>
+
+        <!--        <record id="product_category_frame" model="product.category">-->
+        <!--            <field name="parent_id" ref="product_category_assembly_section"/>-->
+        <!--            <field name="code">frame</field>-->
+        <!--            <field name="name">Frame</field>-->
+        <!--        </record>-->
+        <!--        <record id="product_category_surface" model="product.category">-->
+        <!--            <field name="parent_id" ref="product_category_assembly_section"/>-->
+        <!--            <field name="code">surface</field>-->
+        <!--            <field name="name">Surface</field>-->
+        <!--        </record>-->
+        <!--        <record id="product_category_assembly_others" model="product.category">-->
+        <!--            <field name="parent_id" ref="product_category_assembly_section"/>-->
+        <!--            <field name="code">assembly_others</field>-->
+        <!--            <field name="name">Assembly Others</field>-->
+        <!--        </record>-->
+        <!--        <record id="product_category_regardless" model="product.category">-->
+        <!--            <field name="parent_id" ref="product_category_assembly_section"/>-->
+        <!--            <field name="code">regardless</field>-->
+        <!--            <field name="name">Regardless</field>-->
+        <!--        </record>-->
+
+        <record id="paint_fee_product" model="product.product">
+            <field name="name">Paint Fee</field>
+            <field name="categ_id" ref="product_category_paint"/>
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="default_code">paint_fee</field>
+        </record>
+        <record id="heat_fee_product" model="product.product">
+            <field name="name">Heat Fee</field>
+            <field name="categ_id" ref="product_category_heat"/>
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="default_code">heat_fee</field>
+        </record>
+        <record id="assembly_fee_product" model="product.product">
+            <field name="name">Assembly Fee</field>
+            <field name="categ_id" ref="product_category_assembly"/>
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="default_code">assembly_fee</field>
+        </record>
+        <record id="fee_product" model="product.product">
+            <field name="name">Refine Fee</field>
+            <field name="categ_id" ref="product_category_refine"/>
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="default_code">refine_fee</field>
+        </record>
+
+        <record id="product_category_raw" model="product.category">
+            <field name="parent_id" ref="product_category_material"/>
+            <field name="code">raw</field>
+            <field name="name">Aluminum Raw Material</field>
+        </record>
+        <record id="category_keyword_aluminum_1" model="tokiku.category_keyword">
+            <field name="name">鋁料</field>
+        </record>
+        <record id="product_category_aluminum" model="product.category">
+            <field name="parent_id" ref="product_category_material"/>
+            <field name="code">aluminum</field>
+            <field name="name">Aluminum</field>
+            <field name="keywords" eval="[(6, 0, [ref('tokiku.category_keyword_aluminum_1')])]"/>
+        </record>
+
+        <record id="category_keyword_glass_1" model="tokiku.category_keyword">
+            <field name="name">玻璃</field>
+        </record>
+        <record id="product_category_glass" model="product.category">
+            <field name="parent_id" ref="product_category_material"/>
+            <field name="code">glass</field>
+            <field name="name">Glass</field>
+            <field name="keywords" eval="[(6, 0, [ref('tokiku.category_keyword_glass_1')])]"/>
+        </record>
+        <record id="category_keyword_plate_1" model="tokiku.category_keyword">
+            <field name="name">鋁板</field>
+        </record>
+        <record id="product_category_plate" model="product.category">
+            <field name="parent_id" ref="product_category_material"/>
+            <field name="code">plate</field>
+            <field name="name">Aluminum Plate</field>
+            <field name="keywords" eval="[(6, 0, [ref('tokiku.category_keyword_plate_1')])]"/>
+        </record>
+        <record id="category_keyword_steel_1" model="tokiku.category_keyword">
+            <field name="name">不銹鋼板</field>
+        </record>
+        <record id="product_category_steel" model="product.category">
+            <field name="parent_id" ref="product_category_material"/>
+            <field name="code">steel</field>
+            <field name="name">Stainless Steel</field>
+            <field name="keywords" eval="[(6, 0, [ref('tokiku.category_keyword_steel_1')])]"/>
+        </record>
+        <record id="category_keyword_iron_1" model="tokiku.category_keyword">
+            <field name="name">鐵</field>
+        </record>
+        <record id="product_category_iron" model="product.category">
+            <field name="parent_id" ref="product_category_material"/>
+            <field name="code">iron</field>
+            <field name="name">Iron Pieces</field>
+            <field name="keywords" eval="[(6, 0, [ref('tokiku.category_keyword_iron_1')])]"/>
+        </record>
+        <record id="category_keyword_stone_1" model="tokiku.category_keyword">
+            <field name="name">石</field>
+        </record>
+        <record id="product_category_stone" model="product.category">
+            <field name="parent_id" ref="product_category_material"/>
+            <field name="code">stone</field>
+            <field name="name">Stone</field>
+            <field name="keywords" eval="[(6, 0, [ref('tokiku.category_keyword_stone_1')])]"/>
+        </record>
+        <record id="category_keyword_silicon_1" model="tokiku.category_keyword">
+            <field name="name">矽膠</field>
+        </record>
+        <record id="product_category_silicon" model="product.category">
+            <field name="parent_id" ref="product_category_material"/>
+            <field name="code">silicon</field>
+            <field name="name">Silicon</field>
+            <field name="keywords" eval="[(6, 0, [ref('tokiku.category_keyword_silicon_1')])]"/>
+        </record>
+        <record id="category_keyword_rubber_1" model="tokiku.category_keyword">
+            <field name="name">膠條</field>
+        </record>
+        <record id="product_category_rubber" model="product.category">
+            <field name="parent_id" ref="product_category_material"/>
+            <field name="code">rubber</field>
+            <field name="name">Rubber</field>
+            <field name="keywords" eval="[(6, 0, [ref('tokiku.category_keyword_rubber_1')])]"/>
+        </record>
+        <record id="category_keyword_mineral_1" model="tokiku.category_keyword">
+            <field name="name">岩棉</field>
+        </record>
+        <record id="product_category_mineral" model="product.category">
+            <field name="parent_id" ref="product_category_material"/>
+            <field name="code">mineral</field>
+            <field name="name">Mineral</field>
+            <field name="keywords" eval="[(6, 0, [ref('tokiku.category_keyword_mineral_1')])]"/>
+        </record>
+        <record id="category_keyword_accessories_1" model="tokiku.category_keyword">
+            <field name="name">螺絲</field>
+        </record>
+        <record id="product_category_accessories" model="product.category">
+            <field name="parent_id" ref="product_category_material"/>
+            <field name="code">accessories</field>
+            <field name="name">Accessories</field>
+            <field name="keywords" eval="[(6, 0, [ref('tokiku.category_keyword_accessories_1')])]"/>
+        </record>
+        <record id="product_category_others" model="product.category">
+            <field name="parent_id" ref="product_category_material"/>
+            <field name="code">others</field>
+            <field name="name">Others</field>
+        </record>
+
+
+        <record id="product_attribute_extrusion" model="product.attribute">
+            <field name="name">Extrusion Number</field>
+        </record>
+        <record id="product_attribute_length" model="product.attribute">
+            <field name="name">Length</field>
+        </record>
+        <!--<record id="product_attribute_refine" model="product.attribute">-->
+        <!--<field name="name">Refine Number</field>-->
+        <!--</record>-->
+
+        <record id="product_template_die" model="product.template">
+            <field name="name">Die</field>
+            <field name="categ_id" ref="product_category_mold"/>
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">product</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="description_sale">Extrusion Die</field>
+            <field name="default_code">DIE</field>
+        </record>
+
+        <!--<record id="product_attribute_die" model="product.attribute.line">-->
+        <!--<field name="product_tmpl_id" ref="product_template_die"/>-->
+        <!--<field name="attribute_id" ref="product_attribute_extrusion"/>-->
+        <!--</record>-->
+
+        <!--<record id="product_template_material" model="product.template">-->
+        <!--<field name="name">Material</field>-->
+        <!--<field name="categ_id" ref="product_category_raw"/>-->
+        <!--<field name="standard_price">0</field>-->
+        <!--<field name="list_price">0</field>-->
+        <!--<field name="type">consu</field>-->
+        <!--<field name="uom_id" ref="product.product_uom_unit"/>-->
+        <!--<field name="uom_po_id" ref="product.product_uom_unit"/>-->
+        <!--<field name="description_sale">Material</field>-->
+        <!--<field name="default_code">Material</field>-->
+        <!--</record>-->
+
+        <record id="product_template_refine" model="product.template">
+            <field name="name">Refine</field>
+            <field name="categ_id" ref="product_category_refine"/>
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="description_sale">Refine</field>
+            <field name="default_code">Refine</field>
+        </record>
+
+        <record id="product_template_cut" model="product.template">
+            <field name="name">Cut</field>
+            <field name="categ_id" ref="product_category_refine"/>
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="description_sale">Cut</field>
+            <field name="default_code">Cut</field>
+        </record>
+
+        <record id="product_template_paint" model="product.template">
+            <field name="name">Paint</field>
+            <field name="categ_id" ref="product_category_refine"/>
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="description_sale">Paint</field>
+            <field name="default_code">Paint</field>
+        </record>
+
+        <record id="product_template_heat" model="product.template">
+            <field name="name">Heat</field>
+            <field name="categ_id" ref="product_category_refine"/>
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="description_sale">Heat</field>
+            <field name="default_code">Heat</field>
+        </record>
+
+        <record id="product_template_assembly" model="product.template">
+            <field name="name">Assembly</field>
+            <field name="categ_id" ref="product_category_refine"/>
+            <field name="standard_price">0</field>
+            <field name="list_price">0</field>
+            <field name="type">service</field>
+            <field name="uom_id" ref="product.product_uom_unit"/>
+            <field name="uom_po_id" ref="product.product_uom_unit"/>
+            <field name="description_sale">Assembly</field>
+            <field name="default_code">Assembly</field>
+        </record>
+
+        <!--<record id="product_attribute_value" model="product.attribute.value">-->
+        <!--<field name="attribute_id" ref="product_attribute_type"/>-->
+        <!--<field name="name">Mold</field>-->
+        <!--</record>-->
+        <!--<record id="product_category_installation" model="product.category">-->
+        <!--<field name="code">installation</field>-->
+        <!--<field name="name">Installation</field>-->
+        <!--</record>-->
+
+        <record id="tokiku_pay_method_1" model="tokiku.pay_method">
+            <field name="payMethod">現金</field>
+        </record>
+        <record id="tokiku_pay_method_2" model="tokiku.pay_method">
+            <field name="payMethod">支票</field>
+        </record>
+
+        <record id="tokiku_payment_1" model="tokiku.payment">
+            <field name="payment">30</field>
+        </record>
+        <record id="tokiku_payment_2" model="tokiku.payment">
+            <field name="payment">60</field>
+        </record>
+        <!--材料、工資、連工帶料、加工費-->
+        <record id="tokiku_tx_category_1" model="tokiku.tx_category">
+            <field name="txCategory">材料</field>
+        </record>
+        <record id="tokiku_tx_category_2" model="tokiku.tx_category">
+            <field name="txCategory">工資</field>
+        </record>
+        <record id="tokiku_tx_category_3" model="tokiku.tx_category">
+            <field name="txCategory">連工帶料</field>
+        </record>
+        <record id="tokiku_tx_category_4" model="tokiku.tx_category">
+            <field name="txCategory">加工費</field>
+        </record>
+
+        <!-- 施工圖集建置 : □存查□同意□修正後同意□修正後送審□退件重新送審-->
+        <record id="tokiku_drawing_reply_1" model="tokiku.drawing_reply">
+            <field name="name">存查</field>
+        </record>
+        <record id="tokiku_drawing_reply_2" model="tokiku.drawing_reply">
+            <field name="name">同意</field>
+        </record>
+        <record id="tokiku_drawing_reply_3" model="tokiku.drawing_reply">
+            <field name="name">修正後同意</field>
+        </record>
+        <record id="tokiku_drawing_reply_4" model="tokiku.drawing_reply">
+            <field name="name">修正後送審</field>
+        </record>
+        <record id="tokiku_drawing_reply_5" model="tokiku.drawing_reply">
+            <field name="name">退件重新送審</field>
+        </record>
+
+        <!-- 訂單種類 : 一般訂單、補料訂單、換貨、扣款、退貨、重製-->
+        <record id="tokiku_order_category_1" model="tokiku.order_category">
+            <field name="name">一般訂單</field>
+            <field name="code">normal</field>
+        </record>
+        <record id="tokiku_order_category_2" model="tokiku.order_category">
+            <field name="name">補料訂單</field>
+            <field name="code">back</field>
+        </record>
+        <record id="tokiku_order_category_3" model="tokiku.order_category">
+            <field name="name">換貨</field>
+            <field name="code">exchange</field>
+        </record>
+        <record id="tokiku_order_category_4" model="tokiku.order_category">
+            <field name="name">扣款</field>
+            <field name="code">penalty</field>
+        </record>
+        <record id="tokiku_order_category_5" model="tokiku.order_category">
+            <field name="name">退貨</field>
+            <field name="code">return</field>
+        </record>
+        <record id="tokiku_order_category_6" model="tokiku.order_category">
+            <field name="name">重製</field>
+            <field name="code">remake</field>
+        </record>
+
+        <!--<record id="tokiku_quant_pkg_pending" model="stock.quant.package">-->
+        <!--<field name="name">待加工</field>-->
+        <!--</record>-->
+        <!--<record id="tokiku_quant_pkg_done" model="stock.quant.package">-->
+        <!--<field name="name">已加工待出貨</field>-->
+        <!--</record>-->
+
+        <record id="ir_cron_scheduler_action" model="ir.cron">
+            <field name="name">Panel Calculate</field>
+            <field eval="False" name="active" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field eval="False" name="doall"/>
+            <field eval="'tokiku.panel'" name="model"/>
+            <field eval="'docal'" name="function"/>
+        </record>
+
+<!--        <record id="ir_cron_scheduler_action" model="ir.cron">-->
+<!--            <field name="name">Calculate All Panel</field>-->
+<!--            <field eval="False" name="active" />-->
+<!--            <field name="user_id" ref="base.user_root"/>-->
+<!--            <field name="interval_number">1</field>-->
+<!--            <field name="interval_type">minutes</field>-->
+<!--            <field name="numbercall">-1</field>-->
+<!--            <field eval="False" name="calAll"/>-->
+<!--            <field eval="'tokiku.panel'" name="model"/>-->
+<!--            <field eval="'calAll'" name="function"/>-->
+<!--        </record>-->
+    </data>
+</odoo>

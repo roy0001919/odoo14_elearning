@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<t t-extend="XmlReceipt">
+		<t t-jquery='receipt' t-operation='replace'>
+            <receipt value-thousands-separator=''>
+                <t t-set="seq_no" t-value="0"/>
+                <t t-foreach='receipt.orderlines' t-as='line'>
+                    <t t-foreach='line.quantity' t-as='i'>
+                        <t t-if="seq_no!=0"><cut/></t>
+                        <t t-set="seq_no" t-value="seq_no + 1"/>
+                        <t t-set="d_mon" t-value="receipt.date.month + 1"/>
+                        <div font='b' rotation='on' print-area-l='86'>
+                            <br/>
+                            <br/>
+                            票種:<t t-esc='line.product_name_wrapped[0]'/><br/>
+                            梯次:<t t-esc="line.batch_info"/><br/>
+                            日期:<t t-esc="receipt.date.year"/>/<t t-esc="d_mon"/>/<t t-esc="receipt.date.date"/><br/>
+                            金額:<t t-esc='line.price'/>元<br/>
+                            (含公共意外責任保險)<br/>
+                            票號:<t t-esc='receipt.name'/>-<t t-esc="seq_no"/>
+                        </div>
+                        <cut/>
+                        <div font='b' rotation='on' print-area-l='86'>
+                            <br/>
+                            <br/>
+                            票種:<t t-esc='line.product_name_wrapped[0]'/><br/>
+                            梯次:<t t-esc="line.batch_info"/><br/>
+                            日期:<t t-esc="receipt.date.year"/>/<t t-esc="d_mon"/>/<t t-esc="receipt.date.date"/><br/>
+                            金額:<t t-esc='line.price'/>元<br/>
+                            (含公共意外責任保險)<br/>
+                            票號:<t t-esc='receipt.name'/>-<t t-esc="seq_no"/>
+                        </div>
+                    </t>
+                    <t t-set="seq_no" t-value="seq_no + line.quantity"/>
+                </t>
+            </receipt>
+		</t>
+	</t>
+</templates>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Cron job for automatically create sale order from pos order -->
+        <!--<record forcecreate="True" id="ir_cron_create_so_from_pos_order" model="ir.cron">-->
+            <!--<field name="name">Sale Order Create from POS</field>-->
+            <!--<field eval="True" name="active" />-->
+            <!--<field name="user_id" ref="base.user_root" />-->
+            <!--<field name="interval_number">5</field>-->
+            <!--<field name="interval_type">minutes</field>-->
+            <!--<field name="numbercall">-1</field>-->
+            <!--<field eval="False" name="doall" />-->
+            <!--<field eval="'sale.order'" name="model" />-->
+            <!--<field eval="'_create_order_from_pos'" name="function" />-->
+            <!--<field eval="'()'" name="args" />-->
+        <!--</record>-->
+    </data>
+</odoo>

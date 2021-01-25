@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * hr_public_holidays
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-07-22 14:07+0000\n"
+"PO-Revision-Date: 2015-07-22 14:07+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_holidays_public
+#: model:ir.ui.menu,name:hr_holidays_public.menu_public_holidays_view
+#: model:ir.actions.act_window,name:hr_holidays_public.open_public_holidays_view
+msgid "Public Holidays"
+msgstr ""
+
+#. module: hr_holidays_public
+#: field:hr_holidays_public,year:0
+msgid "Calendar Year"
+msgstr ""
+
+#. module: hr_holidays_public
+#: field:hr_holidays_public,line_ids:0
+msgid "Holiday Dates"
+msgstr ""
+
+#. module: hr_holidays_public_line
+#: field:hr_holidays_public_line,name:0
+msgid "Name"
+msgstr ""
+
+#. module: hr_holidays_public_line
+#: field:hr_holidays_public_line,date:0
+msgid "Date"
+msgstr ""
+
+#. module: hr_holidays_public_line
+#: field:hr_holidays_public_line,holidays_id:0
+msgid "Holiday Calendar Year"
+msgstr ""
+
+#. module: hr_holidays_public_line
+#: field:hr_holidays_public_line,variable:0
+msgid "Date may change"
+msgstr ""

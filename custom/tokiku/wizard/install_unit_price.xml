@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_panel_install_unit_price" model="ir.ui.view">
+        <field name="name">Install Unit Price</field>
+        <field name="model">tokiku.install_unit_price</field>
+        <field name="arch" type="xml">
+            <form string="Select PO from Wizard">
+                <group>
+                    <field name="partner_id" invisible="1"/>
+                </group>
+                <field name="tmp_grid">
+                   <tree editable="top" create="false">
+                        <field name="install_categ"/>
+                        <field name="install_loc" readonly="1"/>
+                        <field name="price_unit"/>
+                        <field name="product_uom_id"/>
+                        <field name="product_id" invisible="1"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="back_po" string="Apply" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="reserved_payment_view" model="ir.ui.view">
+        <field name="name">Reserved Payment</field>
+        <field name="model">reserved.payment</field>
+        <field name="arch" type="xml">
+            <form string="Reserved Payment">
+                <!--<p>Please enter the number of the first pre-printed check that you are about to print on.</p><p>This will allow to save on payments the number of the corresponding check.</p>-->
+                <group>
+                        <field name="project_id"/>
+                        <field name="supplier_id" context="{'project_id': project_id, 'supplier_info_id': supplier_id}" domain="[('project_id', '=', project_id)]"/>
+                        <!--
+                        supplier_id is view side parameter,
+                        'supplier_info_id' is backend side parameter,
+                        we can through this function pass the parameters from frontend to backend
+                        -->
+                        <field name="order_ids" widget="many2many_tags"/>
+                        <!--<field name="order_ids" domain="[('partner_id', '=', supplier_id)]"/>-->
+                </group>
+                <!--<footer>-->
+                    <!--<button name="print_report" string="Get Report" type="object" class="oe_highlight"/> or-->
+                    <!--<button string="Cancel" class="oe_link" special="cancel"/>-->
+                <!--</footer>-->
+                <!--<group>-->
+                    <!--<group>-->
+                        <!--<field name="report_month"/>-->
+                    <!--</group>-->
+                    <!--<group>-->
+                        <!--<field name="report_year"/>-->
+                    <!--</group>-->
+                <!--</group>-->
+                <!--<footer>-->
+                    <!--<button name="print_month" string="Get Monthly Report" type="object" class="oe_highlight"/> or-->
+                    <!--<button name="print_year" string="Get Annual Report" type="object" class="oe_highlight"/> or-->
+                    <!--<button string="Cancel" class="oe_link" special="cancel"/>-->
+                <!--</footer>-->
+            </form>
+        </field>
+    </record>
+    <record id="action_reserved_payment" model="ir.actions.act_window">
+        <field name="name">Reserved Payment</field>
+        <field name="res_model">reserved.payment</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="reserved_payment_view"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_tokiku_reserved_payment"
+              name="Reserved Payment"
+              action="action_reserved_payment"
+              parent="tokiku.menu_tokiku_config"
+              groups="group_tokiku_admin,group_tokiku_user"
+              sequence="13"/>
+
+</odoo>

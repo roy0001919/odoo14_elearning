@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_mold_tree" model="ir.ui.view">
+            <field name="name">tokiku.mold.tree</field>
+            <field name="model">tokiku.mold</field>
+            <field name="arch" type="xml">
+                <tree string="Mold">
+                    <field name="project_id"/>
+                    <field name="categ_id"/>
+                    <field name="name"/>
+                    <field name="file_date"/>
+                    <field name="create_uid" string="Input User" readonly="1"/>
+                    <field name="create_date" string="Input Date" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_mold_form" model="ir.ui.view">
+            <field name="name">tokiku.mold.form</field>
+            <field name="model">tokiku.mold</field>
+            <field name="arch" type="xml">
+                <form string="Mold" create="false">
+                    <header>
+                        <button name="act_import" string="Import" type="object" class="btn btn-sm btn-primary"/>
+                    </header>
+                        <field name="categ_id" invisible="1"/>
+                        <field name="project_id" invisible="1"/>
+                        <field name="file_date" invisible="1"/>
+                        <field name="mold_line_ids" widget="grid">
+                            <tree>
+                                <field name="code"/>
+                                <field name="supplier_name"/>
+                                <field name="supplier_part_no"/>
+                                <field name="material"/>
+                                <field name="net_weight"/>
+                                <field name="paint_area"/>
+                                <field name="coating"/>
+                                <field name="min_qty"/>
+                                <field name="ingot"/>
+                                <field name="name"/>
+                                <field name="qty"/>
+                                <!--<field name="invalid_fields"/>-->
+                                <field name="mold_expected_arrival_date"/>
+                                <field name="material_expected_delivery_date"/>
+                            </tree>
+                        </field>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_mold_filter" model="ir.ui.view">
+            <field name="name">tokiku.mold.filter</field>
+            <field name="model">tokiku.mold</field>
+            <field name="arch" type="xml">
+                <search string="Search Mold">
+                </search>
+            </field>
+        </record>
+
+        <!--<record id="action_tokiku_mold" model="ir.actions.act_window">-->
+            <!--<field name="name">Molds</field>-->
+            <!--<field name="type">ir.actions.act_window</field>-->
+            <!--<field name="res_model">tokiku.mold</field>-->
+            <!--<field name="view_mode">tree,form</field>-->
+            <!--<field name="view_type">form</field>-->
+            <!--<field name="domain">[]</field>-->
+            <!--<field name="context">{}</field>-->
+            <!--<field name="filter" eval="True"/>-->
+        <!--</record>-->
+
+         <!--<menuitem id="menu_tokiku_mold"-->
+                  <!--name="Molds"-->
+                  <!--action="action_tokiku_mold"-->
+                  <!--parent="tokiku.menu_profile"-->
+                  <!--groups="group_tokiku_admin"-->
+                  <!--sequence="30"/>-->
+    </data>
+</odoo>

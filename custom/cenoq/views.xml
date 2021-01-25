@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="price_formula" model="ir.ui.view">
+        <field name="name">cenoq.sale.order.form.price_formula</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_unit']" position="before">
+                <field name="price_formula"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

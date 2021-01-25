@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* biznavi_hr_payroll
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-28 13:33+0000\n"
+"PO-Revision-Date: 2017-10-28 13:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: biznavi_hr_payroll
+#: model:ir.model.fields,field_description:biznavi_hr_payroll.field_hr_contract_raise_amount
+msgid "Dependents Number"
+msgstr "扶養人數"
+
+#. module: biznavi_hr_payroll
+#: model:ir.model,name:biznavi_hr_payroll.model_hr_contract
+msgid "Employee Contract"
+msgstr "Employee Contract"
+
+#. module: biznavi_hr_payroll
+#: model:ir.model.fields,field_description:biznavi_hr_payroll.field_hr_contract_wi_self_provide_rate
+msgid "Individual retirement pay"
+msgstr "勞退個人提繳"
+
+#. module: biznavi_hr_payroll
+#: code:addons/biznavi_hr_payroll/models.py:33
+#, python-format
+msgid "Individual retirement pay can not be greater than 6%(0.06)"
+msgstr "個人提繳不得大於6%(0.06)"
+
+#. module: biznavi_hr_payroll
+#: model:ir.model.fields,field_description:biznavi_hr_payroll.field_hr_contract_wi_join_date
+msgid "Labor insurance join day"
+msgstr "勞保加保日"
+

@@ -1,0 +1,1660 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mold_order_form" model="ir.ui.view">
+        <field name="name">tokiku.mold.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Order">
+                <header>
+                    <button name="select_po_wizard" type="object" string="Select PO Wizard"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="draft" class="oe_highlight"
+                            groups="base.group_user"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="sent"
+                            groups="base.group_user"/>
+                    <button name="button_confirm" type="object" states="draft" string="Confirm Order"
+                            id="draft_confirm"/>
+                    <button name="button_confirm" type="object" states="sent" string="Confirm Order"
+                            class="oe_highlight" id="bid_confirm"/>
+                    <button name="button_approve" type="object" states='to approve' string="Approve Order"
+                            class="oe_highlight" groups="purchase.group_purchase_manager"/>
+                    <button name="action_view_picking" string="Receive Products" class="oe_highlight" type="object"
+                            attrs="{'invisible': ['|', '|' , ('is_shipped', '=', True), ('state','not in', ('purchase','done')), ('picking_count', '=', 0)]}"/>
+                    <button name="button_draft" states="cancel" string="Set to Draft" type="object"/>
+                    <button name="button_cancel" states="draft,to approve,sent,purchase" string="Cancel" type="object"/>
+                    <button name="button_done" type="object" string="Lock" states="purchase"/>
+                    <button name="button_unlock" type="object" string="Unlock" states="done"
+                            groups="purchase.group_purchase_manager"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,purchase" readonly="1"/>
+                    <field name="panel_id" invisible="1"/>
+                </header>
+                <div class="oe_button_box" name="button_box">
+                    <button type="object"
+                            name="action_view_picking"
+                            class="oe_stat_button"
+                            icon="fa-truck"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('picking_ids','=',[])]}">
+                        <field name="picking_count" widget="statinfo" string="Shipment" help="Incoming Shipments"/>
+                        <field name="picking_ids" invisible="1"/>
+                    </button>
+                    <button type="object" name="action_view_invoice"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('invoice_ids','=',[])]}">
+                        <field name="invoice_count" widget="statinfo" string="Vendor Bills"/>
+                        <field name='invoice_ids' invisible="1"/>
+                    </button>
+                </div>
+                <notebook>
+                    <page string="Products">
+                        <field name="categ_id" invisible="1"/>
+                        <field name="order_line" context="{'partner_id': partner_id}"
+                               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}">
+<!--                        <field name="order_line" context="{'partner_id': partner_id}"-->
+<!--                               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" widget="grid">-->
+                            <tree string="Purchase Order Lines" editable="bottom">
+                                <field name="currency_id" invisible="1"/>
+                                <field name="state" invisible="1"/>
+                                <field name="panel_line_id" invisible="1"/>
+                                <field name="default_code" string="Tokiku Default Code"/>
+                                <field name="seller_id" invisible="1"/>
+                                <field name="mold_supplier_part_no"/>
+                                <field name="mold_material" readonly="1"/>
+                                <field name="mold_weight" readonly="1"/>
+                                <field name="min_qty"/>
+                                <field name="ingot"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                                <field name="demand_qty"/>
+                                <field name="order_qty" string="Order Product Qty"/>
+                                <field name="product_qty" invisible="1"/>
+                                <field name="price_per_set" invisible="1"/>
+                                <field name="price_sum" invisible="1"/>
+                                <field name="product_uom" />
+                                <field name="paint_unit_prices" readonly="1"
+                                    invisible="context.get('default_stage') not in ['paint']"/>
+                                <field name="price_unit" string="Price Per Set" precision_0="1"/>
+<!--                                <field name="price_per_set"/>-->
+                                <field name="price_subtotal"/>
+                                <field name="mold_expected_arrival_date"/>
+                                <field name="material_expected_delivery_date"/>
+                                <field name="remark"/>
+                                <field name="taxes_id" invisible="1"/>
+                                <field name="qty_received" invisible="not context.get('show_purchase', False)"/>
+                                <field name="qty_invoiced" invisible="not context.get('show_purchase', False)"/>
+                                <field name="product_id" invisible="1"/>
+                                <field name="date_planned" invisible="1"/>
+                                <field name="order_id" invisible="1"/>
+                                <field name="order_weight" invisible="1"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                            </tree>
+                            <form string="Purchase Order Line">
+                                <sheet>
+                                    <group>
+                                        <group>
+                                            <field name="product_id"
+                                                   context="{'partner_id': parent.partner_id}"/>
+                                            <label for="product_qty"/>
+                                            <div>
+                                                <field name="product_qty" class="oe_inline"/>
+                                                <span class="oe_inline">&#160;</span>
+                                                <field name="product_uom" groups="product.group_uom" class="oe_inline"/>
+                                            </div>
+                                            <field name="price_unit"/>
+                                        </group>
+                                        <group>
+                                            <field name="taxes_id" widget="many2many_tags"
+                                                   domain="[('type_tax_use', '=', 'purchase')]"/>
+                                            <field name="date_planned" widget="date"/>
+                                            <field name="account_analytic_id" colspan="2"
+                                                   groups="purchase.group_analytic_accounting"/>
+                                            <field name="company_id" groups="base.group_multi_company"
+                                                   options="{'create': False}"/>
+                                        </group>
+                                    </group>
+                                    <notebook>
+                                        <page string="Notes">
+                                            <field name="name"/>
+                                        </page>
+                                        <page string="Invoices and Incoming Shipments">
+                                            <field name="invoice_lines"/>
+                                            <field name="move_ids"/>
+                                        </page>
+                                    </notebook>
+                                </sheet>
+                            </form>
+                        </field>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <div class="oe_subtotal_footer_separator oe_inline">
+                                <label for="amount_total"/>
+                            </div>
+                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"
+                                   widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <label for="notes" string="notes:"/>
+                        <field name="notes" class="oe_inline"
+                               placeholder="An administrator can set up default Terms and conditions in your Company settings."/>
+                        <div class="oe_clear"/>
+                    </page>
+                    <page string="Order Information">
+                        <group>
+                            <group>
+                                <label string="Request for Quotation " attrs="{'invisible':1}"/>
+                                <label string="Purchase Order " attrs="{'invisible':1}"/>
+                                <field name="name" readonly="1"/>
+                                <field name="project_id" readonly="1"/>
+                                <field name="partner_id"
+                                       options="{'create_edit': false}"
+                                       context="{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}"
+                                       domain="[('id','in', context.get('supplier_ids', False))]"/>
+                                <field name="order_department"/>
+                                <field name="payment_unit_id"/>
+                                <field name="demand_department"/>
+                                <field name="currency_id" groups="base.group_multi_currency"/>
+                                <field name="is_shipped" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="date_order"/>
+                                <field name="po_category_id"/>
+                                <field name="contract_id" domain="[('id','in', context.get('contract_ids', False))]"/>
+                                <field name="contact_id"
+                                       domain="[('supplier', '=', True), ('parent_id', '=', partner_id)]"/>
+                                <field name="shipping_address" string="Shipping Address"
+                                       context="{'show_delivery_address': 1}" options='{"always_reload": True}'
+                                       domain="[('parent_id', '=', partner_id), ('type', '=', 'delivery')]"/>
+                                <field name="origin" attrs="{'invisible': [('origin','=',False)]}"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <label for="date_planned"/>
+                                <div>
+                                    <field name="date_planned"
+                                           attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
+                                    <button name="action_set_date_planned" type="object"
+                                            states="draft,sent"
+                                            string="Set date to all order lines"
+                                            help="This changes the scheduled date of all order lines to the given date"
+                                            class="fa fa-calendar o_icon_button oe_edit_only"/>
+                                </div>
+                                <field name="picking_type_id" domain="[('code','=','incoming')]"
+                                       options="{'create': False}" groups="stock.group_stock_multi_locations"/>
+                                <field name="dest_address_id" groups="stock.group_stock_multi_locations"
+                                       attrs="{'invisible': [('default_location_dest_id_usage', '!=', 'customer')], 'required': [('default_location_dest_id_usage', '=', 'customer')]}"/>
+                                <field name="default_location_dest_id_usage" invisible="1"/>
+                                <field name="incoterm_id"/>
+                            </group>
+                            <group>
+                                <field name="invoice_status"/>
+                                <field name="payment_term_id" options="{'no_open': True, 'create': False}"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="fiscal_position_id"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="date_approve" groups="base.group_no_one"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!--mold-->
+
+    <!--raw-->
+    <record id="view_raw_order_form" model="ir.ui.view">
+        <field name="name">tokiku.raw.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Order">
+                <header>
+                    <button name="select_po_wizard" type="object" string="Select PO Wizard" class="oe_highlight"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="draft" class="oe_highlight"
+                            groups="base.group_user"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="sent"
+                            groups="base.group_user"/>
+                    <button name="button_confirm" type="object" states="draft" string="Confirm Order"
+                            id="draft_confirm"/>
+                    <button name="button_confirm" type="object" states="sent" string="Confirm Order"
+                            class="oe_highlight" id="bid_confirm"/>
+                    <button name="button_approve" type="object" states='to approve' string="Approve Order"
+                            class="oe_highlight" groups="purchase.group_purchase_manager"/>
+                    <button name="action_view_picking" string="Receive Products" class="oe_highlight" type="object"
+                            attrs="{'invisible': ['|', '|' , ('is_shipped', '=', True), ('state','not in', ('purchase','done')), ('picking_count', '=', 0)]}"/>
+                    <button name="button_draft" states="cancel" string="Set to Draft" type="object"/>
+                    <button name="button_cancel" states="draft,to approve,sent,purchase" string="Cancel" type="object"/>
+                    <button name="material_unit_price" type="object" string="Material Unit Price"/>
+                    <button name="button_done" type="object" string="Lock" states="purchase"/>
+                    <button name="action_estimated_amount" type="object" string="Estimated amount" groups="tokiku.group_tokiku_admin" class="oe_highlight"/>
+                    <button name="button_unlock" type="object" string="Unlock" states="done"
+                            groups="purchase.group_purchase_manager"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,purchase" readonly="1"/>
+                    <field name="panel_id" invisible="1"/>
+                </header>
+                <div class="oe_button_box" name="button_box">
+                    <button type="object"
+                            name="action_view_picking"
+                            class="oe_stat_button"
+                            icon="fa-truck"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('picking_ids','=',[])]}">
+                        <field name="picking_count" widget="statinfo" string="Shipment" help="Incoming Shipments"/>
+                        <field name="picking_ids" invisible="1"/>
+                    </button>
+                    <button type="object" name="action_view_invoice"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('invoice_ids','=',[])]}">
+                        <field name="invoice_count" widget="statinfo" string="Vendor Bills"/>
+                        <field name='invoice_ids' invisible="1"/>
+                    </button>
+                </div>
+                <notebook>
+                    <page string="Products">
+                        <field name="categ_id" invisible="1"/>
+                        <field name="order_line" context="{'partner_id': partner_id}"
+                               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" >
+<!--                        <field name="order_line" context="{'partner_id': partner_id}"-->
+<!--                               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" widget="grid">-->
+                            <tree string="Purchase Order Lines" editable="bottom">
+                                <field name="panel_id" invisible="1"/>
+                                <field name="panel_line_id" invisible="1"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="state" invisible="1"/>
+                                <field name="panel_line_id" invisible="1"/>
+                                <field name="default_code" string="Tokiku Default Code" readonly="1"/>
+                                <field name="supplier_part_no" string="Supplier Part Number"/>
+                                <field name="name" string="Material"/>
+                                <field name="order_length" readonly="1"/>
+                                <field name="order_qty"/>
+                                <field name="spare_qty"/>
+                                <field name="estimated_qty" groups="tokiku.group_tokiku_admin"/>
+                                <field name="product_qty"/>
+                                <field name="net_weight" digits="(16,3)"/>
+                                <field name="raw_pricing_single_weight" digits="(16,3)" readonly="1"/>
+                                <field name="raw_pricing_total_weight" readonly="1"/>
+                                <field name="product_uom" />
+                                <field name="valuation_price" invisible="1"/>
+                                <field name="estimated_amount" digits="(16,6)" groups="tokiku.group_tokiku_admin"/>
+                                <field name="material_unit_prices" readonly="1"/>
+                                <field name="price_unit" readonly="0"/>
+                                <field name="material_total"/>
+                                <field name="product_id" invisible="1"/>
+                                <field name="date_planned" invisible="1"/>
+                                <field name="order_id" invisible="1"/>
+                                <field name="taxes_id" invisible="1"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                                <field name="qty_received" invisible="not context.get('show_purchase', False)"/>
+                                <field name="qty_invoiced" invisible="not context.get('show_purchase', False)"/>
+                            </tree>
+                            <form string="Purchase Order Line">
+                                <sheet>
+                                    <group>
+                                        <group>
+                                            <field name="product_id"
+                                                   context="{'partner_id': parent.partner_id}"/>
+                                            <label for="product_qty"/>
+                                            <div>
+                                                <field name="product_qty" class="oe_inline"/>
+                                                <span class="oe_inline">&#160;</span>
+                                                <field name="product_uom" groups="product.group_uom" class="oe_inline"/>
+                                            </div>
+                                            <field name="price_unit"/>
+                                        </group>
+                                        <group>
+                                            <field name="taxes_id" widget="many2many_tags"
+                                                   domain="[('type_tax_use', '=', 'purchase')]"/>
+                                            <field name="date_planned" widget="date"/>
+                                            <field name="account_analytic_id" colspan="2"
+                                                   groups="purchase.group_analytic_accounting"/>
+                                            <field name="company_id" groups="base.group_multi_company"
+                                                   options="{'create': False}"/>
+                                        </group>
+                                    </group>
+                                    <notebook>
+                                        <page string="Notes">
+                                            <field name="name"/>
+                                        </page>
+                                        <page string="Invoices and Incoming Shipments">
+                                            <field name="invoice_lines"/>
+                                            <field name="move_ids"/>
+                                        </page>
+                                    </notebook>
+                                </sheet>
+                            </form>
+                        </field>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <div class="oe_subtotal_footer_separator oe_inline">
+                                <label for="amount_total"/>
+                            </div>
+                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"
+                                   widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <label for="notes" string="notes:"/>
+                        <field name="notes" class="oe_inline"
+                               placeholder="An administrator can set up default Terms and conditions in your Company settings."/>
+                        <div class="oe_clear"/>
+                    </page>
+                    <page string="Order Information">
+                        <group>
+                            <group>
+                                <label string="Request for Quotation " attrs="{'invisible':1}"/>
+                                <label string="Purchase Order " attrs="{'invisible':1}"/>
+                                <field name="new_order_num" readonly="1"/>
+                                <field name="project_id" readonly="1"/>
+                                <field name="partner_id"
+                                       options="{'create_edit': false}"
+                                       context="{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}"
+                                       domain="[('id','in', context.get('supplier_ids', False))]"/>
+                                <field name="order_department"/>
+                                <field name="payment_unit_id"/>
+                                <field name="demand_department"/>
+                                <field name="demand_qty_loc"/>
+                                <field name="currency_id" groups="base.group_multi_currency"/>
+                                <field name="is_shipped" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="date_order"/>
+                                <field name="po_category_id"/>
+                                <field name="contract_id" domain="[('id','in', context.get('contract_ids', False))]"/>
+                                <field name="contact_id"
+                                       domain="[('supplier', '=', True), ('parent_id','in', context.get('supplier_ids', False))]"/>
+                                <field name="shipping_address" string="Shipping Address"
+                                       context="{'show_delivery_address': 1}" options='{"always_reload": True}'
+                                       domain="[('parent_id','in', context.get('supplier_ids', False)), ('type', '=', 'delivery')]"/>
+                                <field name="origin" attrs="{'invisible': [('origin','=',False)]}"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                                <field name="stage" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <label for="date_planned"/>
+                                <div>
+                                    <field name="date_planned"
+                                           attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
+                                    <button name="action_set_date_planned" type="object"
+                                            states="draft,sent"
+                                            string="Set date to all order lines"
+                                            help="This changes the scheduled date of all order lines to the given date"
+                                            class="fa fa-calendar o_icon_button oe_edit_only"/>
+                                </div>
+                                <field name="picking_type_id" domain="[('code','=','incoming')]"
+                                       options="{'create': False}" groups="stock.group_stock_multi_locations"/>
+                                <field name="dest_address_id" groups="stock.group_stock_multi_locations"
+                                       attrs="{'invisible': [('default_location_dest_id_usage', '!=', 'customer')], 'required': [('default_location_dest_id_usage', '=', 'customer')]}"/>
+                                <field name="default_location_dest_id_usage" invisible="1"/>
+                                <field name="incoterm_id"/>
+                            </group>
+                            <group>
+                                <field name="invoice_status"/>
+                                <field name="payment_term_id" options="{'no_open': True, 'create': False}"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="fiscal_position_id"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="date_approve" groups="base.group_no_one"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--refine material order form 鋁擠型加工材料訂製單-->
+    <record id="view_refine_order_form" model="ir.ui.view">
+        <field name="name">tokiku.refine.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Order">
+                <header>
+                    <field name="categ_code" invisible="1"/>
+                    <button name="select_po_wizard" type="object" string="Select PO Wizard" class="oe_highlight"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="draft" class="oe_highlight"
+                            groups="base.group_user"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="sent"
+                            groups="base.group_user"/>
+                    <button name="button_confirm" type="object" states="draft" string="Confirm Order"
+                            id="draft_confirm"/>
+                    <button name="button_confirm" type="object" states="sent" string="Confirm Order"
+                            class="oe_highlight" id="bid_confirm"/>
+                    <button name="button_approve" type="object" states='to approve' string="Approve Order"
+                            class="oe_highlight" groups="purchase.group_purchase_manager"/>
+                    <button name="action_view_picking" string="Receive Products" class="oe_highlight" type="object"
+                            attrs="{'invisible': ['|', '|' , ('is_shipped', '=', True), ('state','not in', ('purchase','done')), ('picking_count', '=', 0)]}"/>
+                    <button name="button_draft" states="cancel" string="Set to Draft" type="object"/>
+                    <button name="button_cancel" states="draft,to approve,sent,purchase" string="Cancel" type="object"/>
+                    <button name="material_unit_price" type="object" string="Material Unit Price"
+                            attrs="{'invisible':[('categ_code', '!=', 'aluminum')]}"/>
+                    <button name="material_sum" type="object" string="Material Sum"/>
+                    <button name="paint_unit_price" type="object" string="Paint Unit Price"
+                            attrs="{'invisible':[('stage', '!=', 'paint')]}"/>
+                    <button name="paint_sum" type="object" string="Paint Sum"
+                            attrs="{'invisible':[('stage', '!=', 'paint')]}"/>
+                    <button name="button_done" type="object" string="Lock" states="purchase"/>
+                    <button name="button_unlock" type="object" string="Unlock" states="done"
+                            groups="purchase.group_purchase_manager"/>
+                    <button name="action_estimated_amount" type="object" string="Estimated amount" groups="tokiku.group_tokiku_admin" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,purchase" readonly="1"/>
+                    <field name="panel_id" invisible="1"/>
+                </header>
+                <div class="oe_button_box" name="button_box">
+                    <button type="object"
+                            name="action_view_picking"
+                            class="oe_stat_button"
+                            icon="fa-truck"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('picking_ids','=',[])]}">
+                        <field name="picking_count" widget="statinfo" string="Shipment" help="Incoming Shipments"/>
+                        <field name="picking_ids" invisible="1"/>
+                    </button>
+                    <button type="object" name="action_view_invoice"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('invoice_ids','=',[])]}">
+                        <field name="invoice_count" widget="statinfo" string="Vendor Bills"/>
+                        <field name='invoice_ids' invisible="1"/>
+                    </button>
+                </div>
+                <notebook>
+                    <page string="Products">
+                        <field name="categ_id" invisible="1"/>
+                        <field name="order_line" context="{'partner_id': partner_id}"
+                               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" >
+<!--                        <field name="order_line" context="{'partner_id': partner_id}"-->
+<!--                               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" widget="grid">-->
+                            <tree string="Purchase Order Lines" editable="bottom">
+                                <field name="currency_id" invisible="1"/>
+                                <field name="state" invisible="1"/>
+                                <field name="name" invisible="1"/>
+                                <field name="panel_line_id" invisible="1"/>
+                                <field name="atlas_id" readonly="1" />
+                                <field name="code" string="Tokiku Default Code" readonly="1" />
+                                <field name="default_code" string="Processing Number" readonly="1" />
+                                <field name="description" readonly="1"/>
+                                <field name="surface_coating" readonly="1"/>
+                                <field name="order_length" readonly="1" />
+                                <field name="cutting_width" invisible="1"/>
+                                <field name="demand_qty" invisible="1"/>
+                                <field name="order_qty"/>
+                                <field name="spare_qty"/>
+                                <field name="estimated_qty" groups="tokiku.group_tokiku_admin"/>
+                                <field name="product_qty"/>
+                                <field name="unit_weight"/>
+                                <field name="refine_pricing_single_weight" precision_3="1"/>
+                                <field name="refine_pricing_total_weight"
+                                       invisible="context.get('default_stage') in ['paint']" precision_3="1"/>
+                                <field name="valuation_price" invisible="1"/>
+                                <field name="product_uom" />
+                                <field name="estimated_amount"  groups="tokiku.group_tokiku_admin"/>
+                                <field name="paint_unit_prices" readonly="1"
+                                    invisible="context.get('default_stage') not in ['paint']"/>
+                                <field name="material_unit_prices" readonly="1"
+                                    invisible="context.get('default_stage') in ['paint']"/>
+                                <field name="price_unit" precision_0="1" readonly="1"/>
+                                <field name="price_subtotal" readonly="1"/>
+                                <field name="remark"/>
+                                <field name="material" invisible="1"/>
+                                <field name="product_id" invisible="1"/>
+                                <field name="date_planned" invisible="1"/>
+                                <field name="order_id" invisible="1"/>
+                                <field name="taxes_id" invisible="1"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                                <field name="qty_received" invisible="not context.get('show_purchase', False)"/>
+                                <field name="qty_invoiced" invisible="not context.get('show_purchase', False)"/>
+                            </tree>
+                            <form string="Purchase Order Line">
+                                <sheet>
+                                    <group>
+                                        <group>
+                                            <field name="product_id"
+                                                   context="{'partner_id': parent.partner_id}"/>
+                                            <label for="product_qty"/>
+                                            <div>
+                                                <field name="product_qty" class="oe_inline"/>
+                                                <span class="oe_inline">&#160;</span>
+                                                <field name="product_uom" groups="product.group_uom" class="oe_inline"/>
+                                            </div>
+                                            <field name="price_unit"/>
+                                        </group>
+                                        <group>
+                                            <field name="taxes_id" widget="many2many_tags"
+                                                   domain="[('type_tax_use', '=', 'purchase')]"/>
+                                            <field name="date_planned" widget="date"/>
+                                            <field name="account_analytic_id" colspan="2"
+                                                   groups="purchase.group_analytic_accounting"/>
+                                            <field name="company_id" groups="base.group_multi_company"
+                                                   options="{'create': False}"/>
+                                        </group>
+                                    </group>
+                                    <notebook>
+                                        <page string="Notes">
+                                            <field name="name"/>
+                                        </page>
+                                        <page string="Invoices and Incoming Shipments">
+                                            <field name="invoice_lines"/>
+                                            <field name="move_ids"/>
+                                        </page>
+                                    </notebook>
+                                </sheet>
+                            </form>
+                        </field>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <div class="oe_subtotal_footer_separator oe_inline">
+                                <label for="amount_total"/>
+                            </div>
+                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"
+                                   widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <label for="notes" string="notes:"/>
+                        <field name="notes" class="oe_inline"
+                               placeholder="An administrator can set up default Terms and conditions in your Company settings."/>
+                        <div class="oe_clear"/>
+                    </page>
+                    <page string="Order Information">
+                        <group>
+                            <group>
+                                <label string="Request for Quotation " attrs="{'invisible':1}"/>
+                                <label string="Purchase Order " attrs="{'invisible':1}"/>
+                                <field name="name" readonly="1"/>
+                                <field name="project_id" readonly="1"/>
+                                <field name="partner_id" options="{'create_edit': false}"
+                                       context="{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}"
+                                       domain="[('id','in', context.get('supplier_ids', False))]"/>
+                                <field name="order_department"/>
+                                <field name="payment_unit_id"/>
+                                <field name="demand_department"/>
+                                <field name="currency_id" groups="base.group_multi_currency"/>
+                                <field name="atlas_ids" widget="many2many_tags"
+                                       domain="[('contract_id','in', context.get('contract_ids', False)), ('atlas_version', '=', 0)]"/>
+                                <field name="is_shipped" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="date_order"/>
+                                <field name="po_category_id"/>
+                                <field name="contract_id" domain="[('id','in', context.get('contract_ids', False))]"/>
+                                <field name="contact_id"
+                                       domain="[('supplier', '=', True), ('parent_id', 'in', context.get('supplier_ids', False))]"/>
+                                <field name="shipping_address" string="Shipping Address"
+                                       context="{'show_delivery_address': 1}" options='{"always_reload": True}'
+                                       domain="[('parent_id', 'in', context.get('supplier_ids', False)), ('type', '=', 'delivery')]"/>
+                                <field name="origin" attrs="{'invisible': [('origin','=',False)]}"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                                <field name="stage" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <label for="date_planned"/>
+                                <div>
+                                    <field name="date_planned"
+                                           attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
+                                    <button name="action_set_date_planned" type="object"
+                                            states="draft,sent"
+                                            string="Set date to all order lines"
+                                            help="This changes the scheduled date of all order lines to the given date"
+                                            class="fa fa-calendar o_icon_button oe_edit_only"/>
+                                </div>
+                                <field name="picking_type_id" domain="[('code','=','incoming')]"
+                                       options="{'create': False}" groups="stock.group_stock_multi_locations"/>
+                                <field name="dest_address_id" groups="stock.group_stock_multi_locations"
+                                       attrs="{'invisible': [('default_location_dest_id_usage', '!=', 'customer')], 'required': [('default_location_dest_id_usage', '=', 'customer')]}"/>
+                                <field name="default_location_dest_id_usage" invisible="1"/>
+                                <field name="incoterm_id"/>
+                            </group>
+                            <group>
+                                <field name="invoice_status"/>
+                                <field name="payment_term_id" options="{'no_open': True, 'create': False}"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="fiscal_position_id"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="date_approve" groups="base.group_no_one"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--refine and heat process order-->
+    <!--鋁擠型加工訂製單 鋁擠型熱處理訂製單 鋁擠型烤漆訂製單-->
+    <record id="view_process_order_form" model="ir.ui.view">
+        <field name="name">tokiku.refine.heat.process.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Order">
+                <header>
+                    <field name="categ_code" invisible="1"/>
+                    <button name="select_po_wizard" type="object" string="Select PO Wizard"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="draft" class="oe_highlight"
+                            groups="base.group_user"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="sent"
+                            groups="base.group_user"/>
+                    <button name="button_confirm" type="object" states="draft" string="Confirm Order"
+                            id="draft_confirm"/>
+                    <button name="button_confirm" type="object" states="sent" string="Confirm Order"
+                            class="oe_highlight" id="bid_confirm"/>
+                    <button name="button_approve" type="object" states='to approve' string="Approve Order"
+                            class="oe_highlight" groups="purchase.group_purchase_manager"/>
+                    <button name="action_view_picking" string="Receive Products" class="oe_highlight" type="object"
+                            attrs="{'invisible': ['|', '|' , ('is_shipped', '=', True), ('state','not in', ('purchase','done')), ('picking_count', '=', 0)]}"/>
+                    <button name="button_draft" states="cancel" string="Set to Draft" type="object"/>
+                    <button name="button_cancel" states="draft,to approve,sent,purchase" string="Cancel" type="object"/>
+                    <button name="material_unit_price" type="object" string="Material Unit Price"
+                            attrs="{'invisible':[('stage', 'in', ['paint', 'assembly'])]}"/>
+                    <button name="material_sum" type="object" string="Material Sum"
+                            attrs="{'invisible':[('stage', 'in', ['paint', 'assembly'])]}"/>
+                    <button name="paint_unit_price" type="object" string="Paint Unit Price"
+                            attrs="{'invisible':[('stage', '!=', 'paint', 'assembly')]}"/>
+                    <button name="paint_sum" type="object" string="Paint Sum"
+                            attrs="{'invisible':[('stage', '!=', 'paint', 'assembly')]}"/>
+                    <button name="button_done" type="object" string="Lock" states="purchase"/>
+                    <button name="button_unlock" type="object" string="Unlock" states="done"
+                            groups="purchase.group_purchase_manager"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,purchase" readonly="1"/>
+                    <field name="panel_id" invisible="1"/>
+                </header>
+                <div class="oe_button_box" name="button_box">
+                    <button type="object"
+                            name="action_view_picking"
+                            class="oe_stat_button"
+                            icon="fa-truck"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('picking_ids','=',[])]}">
+                        <field name="picking_count" widget="statinfo" string="Shipment" help="Incoming Shipments"/>
+                        <field name="picking_ids" invisible="1"/>
+                    </button>
+                    <button type="object" name="action_view_invoice"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('invoice_ids','=',[])]}">
+                        <field name="invoice_count" widget="statinfo" string="Vendor Bills"/>
+                        <field name='invoice_ids' invisible="1"/>
+                    </button>
+                </div>
+                <notebook>
+                    <page string="Order Information">
+                        <group>
+                            <group>
+                                <label string="Request for Quotation " attrs="{'invisible':1}"/>
+                                <label string="Purchase Order " attrs="{'invisible':1}"/>
+                                <field name="name" readonly="1"/>
+                                <field name="project_id" readonly="1"/>
+                                <field name="partner_id"
+                                       options="{'create_edit': false}"
+                                       context="{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}"
+                                       domain="[('id','in', context.get('supplier_ids', False))]"/>
+                                <field name="order_department"/>
+                                <field name="payment_unit_id"/>
+                                <field name="demand_department"/>
+                                <field name="currency_id" groups="base.group_multi_currency"/>
+                                <field name="atlas_ids" widget="many2many_tags"
+                                       domain="[('contract_id','in', context.get('contract_ids', False)), ('atlas_version', '=', 0)]"/>
+                                <field name="is_shipped" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="date_order"/>
+                                <field name="po_category_id"/>
+                                <field name="contract_id" domain="[('id','in', context.get('contract_ids', False))]"/>
+                                <field name="contact_id"
+                                       domain="[('supplier', '=', True), ('parent_id', '=', partner_id)]"/>
+                                <field name="shipping_address" string="Shipping Address"
+                                       context="{'show_delivery_address': 1}" options='{"always_reload": True}'
+                                       domain="[('parent_id', '=', partner_id), ('type', '=', 'delivery')]"/>
+                                <field name="origin" attrs="{'invisible': [('origin','=',False)]}"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                                <field name="stage" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <label for="date_planned"/>
+                                <div>
+                                    <field name="date_planned"
+                                           attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
+                                    <button name="action_set_date_planned" type="object"
+                                            states="draft,sent"
+                                            string="Set date to all order lines"
+                                            help="This changes the scheduled date of all order lines to the given date"
+                                            class="fa fa-calendar o_icon_button oe_edit_only"/>
+                                </div>
+                                <field name="picking_type_id" domain="[('code','=','incoming')]"
+                                       options="{'create': False}" groups="stock.group_stock_multi_locations"/>
+                                <field name="dest_address_id" groups="stock.group_stock_multi_locations"
+                                       attrs="{'invisible': [('default_location_dest_id_usage', '!=', 'customer')], 'required': [('default_location_dest_id_usage', '=', 'customer')]}"/>
+                                <field name="default_location_dest_id_usage" invisible="1"/>
+                                <field name="incoterm_id"/>
+                            </group>
+                            <group>
+                                <field name="invoice_status"/>
+                                <field name="payment_term_id" options="{'no_open': True, 'create': False}"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="fiscal_position_id"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="date_approve" groups="base.group_no_one"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Products">
+                        <field name="categ_id" invisible="1"/>
+                        <field name="order_line" context="{'partner_id': partner_id}"
+                               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" >
+<!--                        <field name="order_line" context="{'partner_id': partner_id}"-->
+<!--                               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" >-->
+                            <tree string="Purchase Order Lines" editable="bottom">
+                                <field name="currency_id" invisible="1"/>
+                                <field name="state" invisible="1"/>
+                                <field name="name" invisible="1"/>
+                                <field name="atlas_short"  readonly="1"/>
+                                <field name="code" string="Tokiku Default Code"  readonly="1"/>
+                                <field name="default_code" string="Processing Number"  readonly="1"/>
+                                <field name="description" readonly="1" />
+                                <field name="surface_coating" readonly="1"
+                                       invisible="context.get('default_stage') not in ['paint','heat','refine']"/>
+                                <field name="color_code" readonly="1"
+                                       invisible="context.get('default_stage') not in ['paint']"/>
+                                <field name="order_length" precision_3="1"  readonly="1"/>
+                                <field name="cutting_width" precision_3="1"  invisible="1"/>
+                                <field name="order_qty" />
+                                <field name="product_qty" readonly="1" />
+                                <field name="unit_weight" precision_3="1" digits="(16,3)"/><!--refine_weight-->
+                                <field name="refine_pricing_single_weight" readonly="1" precision_3="1"/>
+                                <field name="refine_pricing_total_weight" precision_3="1"
+                                       invisible="context.get('default_stage') in ['paint']" readonly="1"/>
+                                <field name="unit_paint_area" readonly="1" precision_3="1"
+                                       invisible="context.get('default_stage') not in ['paint']"/>
+                                <field name="paint_area" readonly="1" precision_3="1"
+                                       invisible="context.get('default_stage') not in ['paint']"/>
+                                <field name="surface_coating_qty" readonly="1"
+                                       invisible="context.get('default_stage') not in ['paint']"/>
+<!--                                <field name="unit" readonly="1"-->
+<!--                                       invisible="context.get('default_stage') not in ['paint']"/>-->
+                                <field name="valuation_price" invisible="1"/>
+                                <field name="product_uom" />
+                                <field name="paint_unit_prices" readonly="1"
+                                       invisible="context.get('default_stage') not in ['paint']"/>
+                                <field name="material_unit_prices" readonly="1"
+                                    invisible="context.get('default_stage') in ['paint']"/>
+                                <field name="price_unit" precision_0="1" readonly="1"/>
+                                <field name="price_subtotal" readonly="1"/>
+                                <field name="remark"/>
+                                <field name="taxes_id" invisible="1"/>
+                                <field name="product_id" invisible="1"/>
+                                <field name="date_planned" invisible="1"/>
+                                <field name="order_id" invisible="1"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                                <field name="qty_received" invisible="not context.get('show_purchase', False)"/>
+                                <field name="qty_invoiced" invisible="not context.get('show_purchase', False)"/>
+                                <field name="mold_id" invisible="1"/>
+                                <field name="mold_seller_id" invisible="1"/>
+                                <field name="panel_id" invisible="1"/>
+                                <field name="panel_line_id" invisible="1"/>
+                            </tree>
+                            <form string="Purchase Order Line">
+                                <sheet>
+                                    <group>
+                                        <group>
+                                            <field name="product_id"
+                                                   context="{'partner_id': parent.partner_id}"/>
+                                            <label for="product_qty"/>
+                                            <div>
+                                                <field name="product_qty" class="oe_inline"/>
+                                                <span class="oe_inline">&#160;</span>
+                                                <field name="product_uom" groups="product.group_uom" class="oe_inline"/>
+                                            </div>
+                                            <field name="price_unit"/>
+                                        </group>
+                                        <group>
+                                            <field name="taxes_id" widget="many2many_tags"
+                                                   domain="[('type_tax_use', '=', 'purchase')]"/>
+                                            <field name="date_planned" widget="date"/>
+                                            <field name="account_analytic_id" colspan="2"
+                                                   groups="purchase.group_analytic_accounting"/>
+                                            <field name="company_id" groups="base.group_multi_company"
+                                                   options="{'create': False}"/>
+                                        </group>
+                                    </group>
+                                    <notebook>
+                                        <page string="Notes">
+                                            <field name="name"/>
+                                        </page>
+                                        <page string="Invoices and Incoming Shipments">
+                                            <field name="invoice_lines"/>
+                                            <field name="move_ids"/>
+                                        </page>
+                                    </notebook>
+                                </sheet>
+                            </form>
+                        </field>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <div class="oe_subtotal_footer_separator oe_inline">
+                                <label for="amount_total"/>
+                            </div>
+                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"
+                                   widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <label for="notes" string="notes:"/>
+                        <field name="notes" class="oe_inline"
+                               placeholder="An administrator can set up default Terms and conditions in your Company settings."/>
+                        <div class="oe_clear"/>
+                    </page>
+                </notebook>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!--other order form -->
+    <!--鋁擠型外材料訂製單 / 鋁擠型外加工訂製單 / 鋁擠型外烤漆訂製單 / 輔助材料訂製單-->
+    <record id="view_other_order_form" model="ir.ui.view">
+        <field name="name">tokiku.material.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Order">
+                <header>
+                    <field name="categ_code" invisible="1"/>
+                    <button name="select_po_wizard" type="object" string="Select PO Wizard"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="draft" class="oe_highlight"
+                            groups="base.group_user"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="sent"
+                            groups="base.group_user"/>
+                    <button name="button_confirm" type="object" states="draft" string="Confirm Order"
+                            id="draft_confirm"/>
+                    <button name="button_confirm" type="object" states="sent" string="Confirm Order"
+                            class="oe_highlight" id="bid_confirm"/>
+                    <button name="button_approve" type="object" states='to approve' string="Approve Order"
+                            class="oe_highlight" groups="purchase.group_purchase_manager"/>
+                    <button name="action_view_picking" string="Receive Products" class="oe_highlight" type="object"
+                            attrs="{'invisible': ['|', '|' , ('is_shipped', '=', True), ('state','not in', ('purchase','done')), ('picking_count', '=', 0)]}"/>
+                    <button name="button_draft" states="cancel" string="Set to Draft" type="object"/>
+                    <button name="button_cancel" states="draft,to approve,sent,purchase" string="Cancel" type="object"/>
+                    <button name="paint_unit_price" type="object" string="Paint Unit Price"
+                            invisible="context.get('default_stage') not in ['paint']"/>
+                    <button name="paint_sum" type="object" string="Paint Sum"
+                            invisible="context.get('default_stage') not in ['paint']"/>
+                    <button name="assembly_unit_price" type="object" string="Assembly Unit Price"
+                            invisible="context.get('default_stage') not in ['assembly']"/>
+                    <button name="material_unit_price" type="object" string="Material Unit Price"
+                            invisible="context.get('categ_code') not in ['plate','glass','steel','iron']"/>
+                    <button name="material_sum" type="object" string="Material Sum"
+                            invisible="context.get('categ_code') not in ['plate','glass','steel','iron']"/>
+                    <button name="button_done" type="object" string="Lock" states="purchase"/>
+                    <button name="button_unlock" type="object" string="Unlock" states="done"
+                            groups="purchase.group_purchase_manager"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,purchase" readonly="1"/>
+                    <field name="panel_id" invisible="1"/>
+                </header>
+                <div class="oe_button_box" name="button_box">
+                    <button type="object"
+                            name="action_view_picking"
+                            class="oe_stat_button"
+                            icon="fa-truck"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('picking_ids','=',[])]}">
+                        <field name="picking_count" widget="statinfo" string="Shipment" help="Incoming Shipments"/>
+                        <field name="picking_ids" invisible="1"/>
+                    </button>
+                    <button type="object" name="action_view_invoice"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('invoice_ids','=',[])]}">
+                        <field name="invoice_count" widget="statinfo" string="Vendor Bills"/>
+                        <field name='invoice_ids' invisible="1"/>
+                    </button>
+                </div>
+                <notebook>
+                    <page string="Order Information">
+                        <group>
+                            <group>
+                                <label string="Request for Quotation " attrs="{'invisible':1}"/>
+                                <label string="Purchase Order " attrs="{'invisible':1}"/>
+                                <field name="name" readonly="1"/>
+                                <field name="project_id" readonly="1"/>
+                                <field name="partner_id"
+                                       options="{'create_edit': false}"
+                                       context="{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}"
+                                       domain="[('id','in', context.get('supplier_ids', False))]"/>
+                                <field name="order_department"/>
+                                <field name="payment_unit_id"/>
+                                <field name="demand_department"/>
+<!--                                <field name="partner_id" string="Assembly Factory" readonly="1"/>-->
+                                <field name="currency_id" groups="base.group_multi_currency"/>
+                                <field name="is_shipped" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="date_order"/>
+                                <field name="po_category_id"/>
+                                <field name="contract_id" domain="[('id','in', context.get('contract_ids', False))]"/>
+                                <field name="contact_id"
+                                       domain="[('supplier', '=', True), ('parent_id', '=', partner_id)]"/>
+                                <field name="shipping_address" string="Shipping Address"
+                                       context="{'show_delivery_address': 1}" options='{"always_reload": True}'
+                                       domain="[('parent_id', '=', partner_id), ('type', '=', 'delivery')]"/>
+                                <field name="origin" attrs="{'invisible': [('origin','=',False)]}"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                                <field name="stage" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <label for="date_planned"/>
+                                <div>
+                                    <field name="date_planned"
+                                           attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
+                                    <button name="action_set_date_planned" type="object"
+                                            states="draft,sent"
+                                            string="Set date to all order lines"
+                                            help="This changes the scheduled date of all order lines to the given date"
+                                            class="fa fa-calendar o_icon_button oe_edit_only"/>
+                                </div>
+                                <field name="picking_type_id" domain="[('code','=','incoming')]"
+                                       options="{'create': False}" groups="stock.group_stock_multi_locations"/>
+                                <field name="dest_address_id" groups="stock.group_stock_multi_locations"
+                                       attrs="{'invisible': [('default_location_dest_id_usage', '!=', 'customer')], 'required': [('default_location_dest_id_usage', '=', 'customer')]}"/>
+                                <field name="default_location_dest_id_usage" invisible="1"/>
+                                <field name="incoterm_id"/>
+                            </group>
+                            <group>
+                                <field name="invoice_status"/>
+                                <field name="payment_term_id" options="{'no_open': True, 'create': False}"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="fiscal_position_id"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="date_approve" groups="base.group_no_one"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Products">
+                        <field name="categ_id" invisible="1"/>
+                        <field name="order_line" context="{'partner_id': partner_id}"
+                               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" >
+<!--                        <field name="order_line" context="{'partner_id': partner_id}"-->
+<!--                               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" widget="grid">-->
+                            <tree string="Purchase Order Lines" editable="bottom">
+                                <field name="currency_id" invisible="1"/>
+                                <field name="state" invisible="1"/>
+                                <field name="name" invisible="1"/>
+                                <field name="atlas_id" readonly="1"/>
+                                <field name="code" string="Tokiku Default Code" readonly="1"/>
+                                <field name="default_code" string="Processing Number" readonly="1"/>
+                                <field name="description" readonly="1"/>
+                                <field name="surface_coating" readonly="1"
+                                       invisible="context.get('categ_code') in ['accessories']"/>
+                                <field name="order_length" readonly="1"
+                                       invisible="context.get('categ_code') in ['accessories']"/>
+                                <field name="cutting_width" invisible="1"/>
+                                <field name="demand_qty" readonly="1"/>
+                                <field name="order_qty"/>
+                                <field name="spare_qty" invisible="context.get('default_stage') not in ['material']"/>
+                                <field name="product_qty" readonly="1"
+                                       invisible="context.get('default_stage') not in ['material']"/>
+                                <field name="single_weight" invisible="context.get('categ_code') in ['accessories']"/>
+                                <field name="total_weight" invisible="context.get('categ_code') in ['accessories']"/>
+                                <field name="unit_paint_area" invisible="context.get('categ_code') in ['accessories']"
+                                       precision_3="1"/>
+                                <field name="paint_area" invisible="context.get('categ_code') in ['accessories']"
+                                       precision_3="1"/>
+                                <field name="unit_area"/>
+                                <field name="surface_coating_qty"
+                                       invisible="context.get('default_stage') not in ['paint']"/>
+                                <field name="price_unit_pcs" invisible="context.get('categ_code') in ['accessories']"/>
+<!--                                <field name="price_unit_jp" invisible="context.get('categ_code') in ['accessories']"/>-->
+                                <field name="valuation_price" invisible="1"/>
+                                <field name="product_uom" />
+                                <field name="paint_unit_prices" readonly="1"
+                                       invisible="context.get('default_stage') not in ['paint']"/>
+                                <field name="material_unit_prices" readonly="1"
+                                    invisible="context.get('categ_code') not in ['raw','aluminum']"/>
+                                <field name="price_unit" precision_0="1" readonly="1"/>
+                                <field name="price_subtotal" readonly="1"/>
+                                <field name="special_type" invisible="context.get('default_stage') not in ['refine']"/>
+                                <field name="taxes_id" invisible="1" widget="many2many_tags"
+                                       domain="[('type_tax_use','=','purchase')]"/>
+                                <field name="remark"/>
+                                <field name="product_id" invisible="1"/>
+                                <field name="date_planned" invisible="1"/>
+                                <field name="order_id" invisible="1"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                                <field name="qty_received" invisible="not context.get('show_purchase', False)"/>
+                                <field name="qty_invoiced" invisible="not context.get('show_purchase', False)"/>
+                            </tree>
+                            <form string="Purchase Order Line">
+                                <sheet>
+                                    <group>
+                                        <group>
+                                            <field name="product_id"
+                                                   context="{'partner_id': parent.partner_id}"/>
+                                            <label for="product_qty"/>
+                                            <div>
+                                                <field name="product_qty" class="oe_inline"/>
+                                                <span class="oe_inline">&#160;</span>
+                                                <field name="product_uom" groups="product.group_uom" class="oe_inline"/>
+                                            </div>
+                                            <field name="price_unit"/>
+                                        </group>
+                                        <group>
+                                            <field name="taxes_id" widget="many2many_tags"
+                                                   domain="[('type_tax_use', '=', 'purchase')]"/>
+                                            <field name="date_planned" widget="date"/>
+                                            <field name="account_analytic_id" colspan="2"
+                                                   groups="purchase.group_analytic_accounting"/>
+                                            <field name="company_id" groups="base.group_multi_company"
+                                                   options="{'create': False}"/>
+                                        </group>
+                                    </group>
+                                    <notebook>
+                                        <page string="Notes">
+                                            <field name="name"/>
+                                        </page>
+                                        <page string="Invoices and Incoming Shipments">
+                                            <field name="invoice_lines"/>
+                                            <field name="move_ids"/>
+                                        </page>
+                                    </notebook>
+                                </sheet>
+                            </form>
+                        </field>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <div class="oe_subtotal_footer_separator oe_inline">
+                                <label for="amount_total"/>
+                            </div>
+                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"
+                                   widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <label for="notes" string="notes:"/>
+                        <field name="notes" class="oe_inline"
+                               placeholder="An administrator can set up default Terms and conditions in your Company settings."/>
+                        <div class="oe_clear"/>
+                    </page>
+                </notebook>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+<!--組裝訂製單    -->
+    <record id="view_assembly_purchase_order_form" model="ir.ui.view">
+        <field name="name">tokiku.assembly.purchase.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Order">
+                <header>
+                    <field name="categ_code" invisible="1"/>
+<!--                    <button name="select_po_wizard" type="object" string="Item Select" class="btn btn-sm btn-primary"/>-->
+                    <button name="item_select" string="Item Select" type="object" class="btn btn-sm btn-primary"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="draft" class="oe_highlight"
+                            groups="base.group_user"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="sent"
+                            groups="base.group_user"/>
+                    <button name="button_confirm" type="object" states="draft" string="Confirm Order"
+                            id="draft_confirm"/>
+                    <button name="button_confirm" type="object" states="sent" string="Confirm Order"
+                            class="oe_highlight" id="bid_confirm"/>
+                    <button name="assembly_unit_price" type="object" string="Assembly Unit Price"
+                            invisible="context.get('default_stage') not in ['assembly']"/>
+                    <button name="button_approve" type="object" states='to approve' string="Approve Order"
+                            class="oe_highlight" groups="purchase.group_purchase_manager"/>
+                    <button name="action_view_picking" string="Receive Products" class="oe_highlight" type="object"
+                            attrs="{'invisible': ['|', '|' , ('is_shipped', '=', True), ('state','not in', ('purchase','done')), ('picking_count', '=', 0)]}"/>
+                    <button name="button_draft" states="cancel" string="Set to Draft" type="object"/>
+                    <button name="button_cancel" states="draft,to approve,sent,purchase" string="Cancel" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,purchase" readonly="1"/>
+                    <field name="panel_id" invisible="1"/>
+                </header>
+                <div class="oe_button_box" name="button_box">
+                    <button type="object"
+                            name="action_view_picking"
+                            class="oe_stat_button"
+                            icon="fa-truck"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('picking_ids','=',[])]}">
+                        <field name="picking_count" widget="statinfo" string="Shipment" help="Incoming Shipments"/>
+                        <field name="picking_ids" invisible="1"/>
+                    </button>
+                    <button type="object" name="action_view_invoice"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('invoice_ids','=',[])]}">
+                        <field name="invoice_count" widget="statinfo" string="Vendor Bills"/>
+                        <field name='invoice_ids' invisible="1"/>
+                    </button>
+                </div>
+                <notebook>
+                    <page string="Order Information">
+                        <group>
+                            <group>
+                                <label string="Request for Quotation " attrs="{'invisible':1}"/>
+                                <label string="Purchase Order " attrs="{'invisible':1}"/>
+                                <field name="name" readonly="1"/>
+                                <field name="project_id" readonly="1"/>
+                                <field name="partner_id"
+                                       options="{'create_edit': false}"
+                                       context="{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}"
+                                       domain="[('id','in', context.get('supplier_ids', False))]"/>
+                                <field name="order_department"/>
+                                <field name="payment_unit_id"/>
+                                <field name="demand_department"/>
+                                <field name="partner_id" string="Assembly Factory"/>
+                                <field name="currency_id" groups="base.group_multi_currency"/>
+                                <field name="is_shipped" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="date_order"/>
+                                <field name="po_category_id"/>
+                                <field name="contract_id" domain="[('id','in', context.get('contract_ids', False))]"/>
+                                <field name="contact_id"
+                                       domain="[('supplier', '=', True), ('parent_id', '=', partner_id)]"/>
+                                <field name="shipping_address" string="Shipping Address"
+                                       context="{'show_delivery_address': 1}" options='{"always_reload": True}'
+                                       domain="[('parent_id', '=', partner_id), ('type', '=', 'delivery')]"/>
+                                <field name="origin" attrs="{'invisible': [('origin','=',False)]}"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                                <field name="stage" readonly="1"/>
+                                <field name="assembly_categ" />
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <label for="date_planned"/>
+                                <div>
+                                    <field name="date_planned"
+                                           attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
+                                    <button name="action_set_date_planned" type="object"
+                                            states="draft,sent"
+                                            string="Set date to all order lines"
+                                            help="This changes the scheduled date of all order lines to the given date"
+                                            class="fa fa-calendar o_icon_button oe_edit_only"/>
+                                </div>
+                                <field name="picking_type_id" domain="[('code','=','incoming')]"
+                                       options="{'create': False}" groups="stock.group_stock_multi_locations"/>
+                                <field name="dest_address_id" groups="stock.group_stock_multi_locations"
+                                       attrs="{'invisible': [('default_location_dest_id_usage', '!=', 'customer')], 'required': [('default_location_dest_id_usage', '=', 'customer')]}"/>
+                                <field name="default_location_dest_id_usage" invisible="1"/>
+                                <field name="incoterm_id"/>
+                            </group>
+                            <group>
+                                <field name="invoice_status"/>
+                                <field name="payment_term_id" options="{'no_open': True, 'create': False}"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="fiscal_position_id"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="date_approve" groups="base.group_no_one"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Order Details">
+                        <field name="categ_id" invisible="1"/>
+                        <field name="order_line" context="{'partner_id': partner_id}"
+                               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" >
+<!--                        <field name="order_line" context="{'partner_id': partner_id}"-->
+<!--                               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}" widget="grid">-->
+                            <tree string="Purchase Order Lines" editable="bottom">
+                                <field name="currency_id" invisible="1"/>
+                                <field name="state" invisible="1"/>
+                                <field name="name" invisible="1"/>
+                                <field name="building_id" readonly="1"/>
+                                <field name="partner_id" string="Assembly Factory" readonly="1"/>
+                                <field name="atlas_id" readonly="1"/>
+                                <field name="bom_id" readonly="1"/>
+                                <field name="product_id" readonly="1"/>
+<!--                                <field name="description" readonly="1"/>-->
+                                <field name="demand_qty" readonly="1"/>
+                                <field name="order_qty" readonly="1"/>
+                                <field name="single_surface"/>
+                                <field name="product_uom" />
+                                <field name="unit_price"/>
+<!--                                <field name="value_unit"/>-->
+                                <field name="total_surface_qty" readonly="1"/>
+                                <field name="price_per_set" readonly="1"/>
+                                <field name="total" readonly="1"/>
+                                <field name="taxes_id" invisible="1"/>
+                            </tree>
+                            <form string="Purchase Order Line">
+                                <sheet>
+                                    <group>
+                                        <group>
+                                            <field name="product_id"
+                                                   context="{'partner_id': parent.partner_id}"/>
+                                            <label for="product_qty"/>
+                                            <div>
+                                                <field name="product_qty" class="oe_inline"/>
+                                                <span class="oe_inline">&#160;</span>
+                                                <field name="product_uom" groups="product.group_uom" class="oe_inline"/>
+                                            </div>
+                                            <field name="price_unit"/>
+                                        </group>
+                                        <group>
+                                            <field name="taxes_id" widget="many2many_tags"
+                                                   domain="[('type_tax_use', '=', 'purchase')]"/>
+                                            <field name="date_planned" widget="date"/>
+                                            <field name="account_analytic_id" colspan="2"
+                                                   groups="purchase.group_analytic_accounting"/>
+                                            <field name="company_id" groups="base.group_multi_company"
+                                                   options="{'create': False}"/>
+                                        </group>
+                                    </group>
+                                    <notebook>
+                                        <page string="Notes">
+                                            <field name="name"/>
+                                        </page>
+                                        <page string="Invoices and Incoming Shipments">
+                                            <field name="invoice_lines"/>
+                                            <field name="move_ids"/>
+                                        </page>
+                                    </notebook>
+                                </sheet>
+                            </form>
+                        </field>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <div class="oe_subtotal_footer_separator oe_inline">
+                                <label for="amount_total"/>
+                            </div>
+                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"
+                                   widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <field name="notes" class="oe_inline"
+                               placeholder="An administrator can set up default Terms and conditions in your Company settings."/>
+                        <div class="oe_clear"/>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <!--採購單-->
+    <record id="view_tokiku_order_form" model="ir.ui.view">
+        <field name="name">tokiku.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Order">
+                <header>
+                    <field name="categ_code" invisible="1"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="draft" class="oe_highlight"
+                            groups="base.group_user"/>
+                    <button name="print_quotation" string="Print RFQ" type="object" states="sent"
+                            groups="base.group_user"/>
+                    <button name="button_confirm" type="object" states="draft" string="Confirm Order"
+                            id="draft_confirm"/>
+                    <button name="button_confirm" type="object" states="sent" string="Confirm Order"
+                            class="oe_highlight" id="bid_confirm"/>
+                    <button name="button_approve" type="object" states='to approve' string="Approve Order"
+                            class="oe_highlight" groups="purchase.group_purchase_manager"/>
+                    <button name="action_view_picking" string="Receive Products" class="oe_highlight" type="object"
+                            attrs="{'invisible': ['|', '|' , ('is_shipped', '=', True), ('state','not in', ('purchase','done')), ('picking_count', '=', 0)]}"/>
+                    <button name="button_draft" states="cancel" string="Set to Draft" type="object"/>
+                    <button name="button_cancel" states="draft,to approve,sent,purchase" string="Cancel" type="object"/>
+                    <button name="button_done" type="object" string="Lock" states="purchase"/>
+                    <button name="button_unlock" type="object" string="Unlock" states="done"
+                            groups="purchase.group_purchase_manager"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sent,purchase" readonly="1"/>
+                    <field name="panel_id" invisible="1"/>
+                </header>
+                <div class="oe_button_box" name="button_box">
+                    <button type="object"
+                            name="action_view_picking"
+                            class="oe_stat_button"
+                            icon="fa-truck"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('picking_ids','=',[])]}">
+                        <field name="picking_count" widget="statinfo" string="Shipment" help="Incoming Shipments"/>
+                        <field name="picking_ids" invisible="1"/>
+                    </button>
+                    <button type="object" name="action_view_invoice"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('invoice_ids','=',[])]}">
+                        <field name="invoice_count" widget="statinfo" string="Vendor Bills"/>
+                        <field name='invoice_ids' invisible="1"/>
+                    </button>
+                </div>
+                <notebook>
+                    <page string="Products">
+                        <field name="categ_id" invisible="1"/>
+                        <field name="order_line" context="{'partner_id': partner_id}"
+                               attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}">
+                            <tree string="purchase order lines" editable="bottom">
+                                <field name="currency_id" invisible="1"/>
+                                <field name="state" invisible="1"/>
+                                <field name="name" invisible="1"/>
+                                <field name="sequence" widget="handle"/>
+                                <field name="product_id"
+                                       context="{'name':name, 'partner_id':parent.partner_id, 'quantity':product_qty,'uom':product_uom, 'company_id': parent.company_id}"
+                                       domain="[('categ_id', '=', parent.categ_id), ('seller_ids.name', '=', parent.partner_id)]"/>
+                                <field name="supplier_part_no"/>
+                                <field name="material"/>
+                                <field name="net_weight"/>
+                                <field name="order_length"/>
+                                <field name="date_planned" widget="date"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                                <field name="account_analytic_id" context="{'default_partner_id':parent.partner_id}"
+                                       groups="purchase.group_analytic_accounting"/>
+                                <field name="analytic_tag_ids" groups="purchase.group_analytic_accounting"
+                                       widget="many2many_tags"/>
+                                <field name="demand_qty" invisible="not context.get('show_demand', False)"/>
+                                <field name="order_qty"/>
+                                <field name="product_qty" invisible="1"/>
+                                <field name="qty_received" invisible="not context.get('show_purchase', False)"/>
+                                <field name="qty_invoiced" invisible="not context.get('show_purchase', False)"/>
+                                <field name="product_uom" groups="product.group_uom"
+                                       attrs="{'readonly': [('state', 'in', ('purchase', 'done', 'cancel'))]}"/>
+                                <field name="price_unit" precision_0="1"/>
+                                <field name="taxes_id" invisible="0"/>
+                                <field name="price_subtotal" widget="monetary"/>
+                                <field name="user_customized_price_unit"/>
+                            </tree>
+                            <form string="purchase order line">
+                                <sheet>
+                                    <group>
+                                        <group>
+                                            <field name="product_id"
+                                                   context="{'partner_id': parent.partner_id}"
+                                                   domain="[('categ_id', '=', parent.categ_id)]"/>
+                                            <label for="product_qty"/>
+                                            <div>
+                                                <field name="product_qty" class="oe_inline"/>
+                                                <span class="oe_inline">&#160;</span>
+                                                <field name="product_uom" groups="product.group_uom" class="oe_inline"/>
+                                            </div>
+                                            <field name="price_unit"/>
+                                        </group>
+                                        <group>
+                                            <field name="taxes_id" widget="many2many_tags"
+                                                   domain="[('type_tax_use', '=', 'purchase')]"/>
+                                            <field name="date_planned" widget="date"/>
+                                            <field name="account_analytic_id" colspan="2"
+                                                   groups="purchase.group_analytic_accounting"/>
+                                            <field name="company_id" groups="base.group_multi_company"
+                                                   options="{'create': False}"/>
+                                        </group>
+                                    </group>
+                                    <notebook>
+                                        <page string="notes">
+                                            <field name="name"/>
+                                        </page>
+                                        <page string="invoices and incoming shipments">
+                                            <field name="invoice_lines"/>
+                                            <field name="move_ids"/>
+                                        </page>
+                                    </notebook>
+                                </sheet>
+                            </form>
+                        </field>
+
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            <div class="oe_subtotal_footer_separator oe_inline">
+                                <label for="amount_total"/>
+                            </div>
+                            <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator"
+                                   widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <label for="notes" string="notes:"/>
+                        <field name="notes" class="oe_inline"
+                               placeholder="An administrator can set up default Terms and conditions in your Company settings."/>
+                        <div class="oe_clear"/>
+                    </page>
+                    <page string="Order Informationf">
+                        <group>
+                            <group>
+                                <label string="Request for Quotation " attrs="{'invisible':1}"/>
+                                <label string="Purchase Order " attrs="{'invisible':1}"/>
+                                <field name="name" readonly="1"/>
+                                <field name="project_id" readonly="1"/>
+                                <field name="partner_id" options="{'create_edit': false}"
+                                       context="{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}"
+                                       domain="[('id','in', context.get('supplier_ids', False))]"/>
+                                <field name="order_department"/>
+                                <field name="payment_unit_id"/>
+                                <field name="demand_department"/>
+                                <field name="currency_id" groups="base.group_multi_currency"/>
+                                <field name="is_shipped" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="date_order"/>
+                                <field name="po_category_id"/>
+                                <field name="contract_id" domain="[('id','in', context.get('contract_ids', False))]"/>
+                                <field name="contact_id"
+                                       domain="[('supplier', '=', True), ('parent_id', '=', partner_id)]"/>
+                                <field name="shipping_address" string="Shipping Address"
+                                       context="{'show_delivery_address': 1}" options='{"always_reload": True}'
+                                       domain="[('parent_id', '=', partner_id), ('type', '=', 'delivery')]"/>
+                                <field name="origin" attrs="{'invisible': [('origin','=',False)]}"/>
+                                <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                                <field name="stage" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <label for="date_planned"/>
+                                <div>
+                                    <field name="date_planned"
+                                           attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
+                                    <button name="action_set_date_planned" type="object"
+                                            states="draft,sent"
+                                            string="Set date to all order lines"
+                                            help="This changes the scheduled date of all order lines to the given date"
+                                            class="fa fa-calendar o_icon_button oe_edit_only"/>
+                                </div>
+                                <field name="picking_type_id" domain="[('code','=','incoming')]"
+                                       options="{'create': False}" groups="stock.group_stock_multi_locations"/>
+                                <field name="dest_address_id" groups="stock.group_stock_multi_locations"
+                                       attrs="{'invisible': [('default_location_dest_id_usage', '!=', 'customer')], 'required': [('default_location_dest_id_usage', '=', 'customer')]}"/>
+                                <field name="default_location_dest_id_usage" invisible="1"/>
+                                <field name="incoterm_id"/>
+                            </group>
+                            <group>
+                                <field name="invoice_status"/>
+                                <field name="payment_term_id" options="{'no_open': True, 'create': False}"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="fiscal_position_id"
+                                       attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                                <field name="date_approve" groups="base.group_no_one"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <!--sales order form-->
+    <record id="view_sale_order_form" model="ir.ui.view">
+        <field name="name">tokiku.sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="replace">
+                <field name="partner_id"
+                       domain="[('customer','=',True), ('id','in', context.get('customer_ids', False))]"
+                       options='{"always_reload": True}'/>
+            </xpath>
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="tokiku_project_id" readonly="1"/>
+                <field name="contract_ids" widget="many2many_tags" domain="[('project_id', '=', tokiku_project_id)]"/>
+            </xpath>
+            <xpath expr="//div[@class='oe_title']" position="replace">
+                <div class="oe_title">
+                    <label string="Sale Order(Contract_Item)"/>
+                    <h1>
+                        <field name="name" readonly="1"/>
+                    </h1>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_tree" model="ir.ui.view">
+        <field name="name">tokiku.sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="contract_ids"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">tokiku.order.tree</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="replace">
+                <field name="new_order_num" string="Reference"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="replace">
+                <field name="partner_for_short" string="Vendor Short Name"/>
+                <field name="atlas_ids" widget="many2many_tags" string="Processing Atlas_Name" invisible="context.get('default_stage') in ['installation']"/>
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="total_estimated" digits="(16,6)" groups="tokiku.group_tokiku_admin"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">tokiku.order.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="replace">
+                <field name="partner_id"
+                       context="{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}"
+                       domain="[('id','in', context.get('supplier_ids', False))]"/>
+            </xpath>
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="po_category_id"/>
+                <field name="contract_id" domain="[('id','in', context.get('contract_ids', False))]"/>
+                <field name="contact_id" domain="[('supplier', '=', true), ('parent_id', '=', partner_id)]"/>
+                <field name="contact_street" context="{'show_street': 1}" options='{"always_reload": true}'
+                       domain="[('parent_id', '=', partner_id), ('type', '!=', 'contact')]"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_ref']" position="after">
+                <field name="project_id" readonly="1"/>
+                <field name="order_unit_id" string="order unit"/>
+                <field name="payment_unit_id" string="payment unit"/>
+                <field name="demand_unit_id" string="demand unit"/>
+            </xpath>
+            <xpath expr="//button[@name='button_cancel']" position="after">
+                <button name="select_po_wizard" type="object" string="Select PO Wizard"/>
+            </xpath>
+            <xpath expr="//field[@name='date_planned']" position="replace">
+                <field name="date_planned" widget="date"/>
+            </xpath>
+            <xpath expr="//button[@name='action_rfq_send']" position="replace"/>
+            <xpath expr="//button[@name='action_rfq_send']" position="replace"/>
+            <xpath expr="//button[@name='action_rfq_send']" position="replace"/>
+            <xpath expr="//field[@name='order_line']" position="replace">
+                <field name="categ_id" invisible="1"/>
+                <field name="order_line" context="{'partner_id': partner_id}"
+                       attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}">
+                    <tree string="purchase order lines">
+                        <field name="currency_id" invisible="1"/>
+                        <field name="state" invisible="1"/>
+                        <field name="sequence" widget="handle"/>
+                        <field name="product_id"
+                               context="{'name':name, 'partner_id':parent.partner_id, 'quantity':product_qty,'uom':product_uom, 'company_id': parent.company_id}"
+                               domain="[('categ_id', '=', parent.categ_id), ('seller_ids.name', '=', parent.partner_id)]"/>
+                        <field name="supplier_part_no"/>
+                        <field name="material"/>
+                        <field name="net_weight"/>
+                        <field name="order_length"/>
+                        <field name="date_planned" widget="date"/>
+                        <field name="company_id" groups="base.group_multi_company" options="{'create': False}"/>
+                        <field name="account_analytic_id" context="{'default_partner_id':parent.partner_id}"
+                               groups="purchase.group_analytic_accounting"/>
+                        <field name="analytic_tag_ids" groups="purchase.group_analytic_accounting"
+                               widget="many2many_tags"/>
+                        <field name="demand_qty" invisible="not context.get('show_demand', False)"/>
+                        <field name="spare_qty" invisible="not context.get('show_spare', False)"/>
+                        <field name="product_qty"/>
+                        <field name="qty_received" invisible="not context.get('show_purchase', False)"/>
+                        <field name="qty_invoiced" invisible="not context.get('show_purchase', False)"/>
+                        <field name="product_uom" groups="product.group_uom"
+                               attrs="{'readonly': [('state', 'in', ('purchase', 'done', 'cancel'))]}"/>
+                        <field name="price_unit"/>
+                        <field name="taxes_id" invisible="0" widget="many2many_tags"
+                               domain="[('type_tax_use','=','purchase')]"
+                               context="{'default_type_tax_use': 'purchase'}"/>
+                        <field name="price_subtotal" widget="monetary"/>
+                        <field name="user_customized_price_unit"/>
+                        <field name="processing_atlas"/>
+                    </tree>
+                    <form string="purchase order line">
+                        <sheet>
+                            <group>
+                                <group>
+                                    <field name="product_id"
+                                           context="{'partner_id': parent.partner_id}"
+                                           domain="[('categ_id', '=', parent.categ_id)]"/>
+                                    <label for="product_qty"/>
+                                    <div>
+                                        <field name="product_qty" class="oe_inline"/>
+                                        <span class="oe_inline">&#160;</span>
+                                        <field name="product_uom" groups="product.group_uom" class="oe_inline"/>
+                                    </div>
+                                    <field name="price_unit"/>
+                                </group>
+                                <group>
+                                    <field name="taxes_id" widget="many2many_tags"
+                                           domain="[('type_tax_use', '=', 'purchase')]"/>
+                                    <field name="date_planned" widget="date"/>
+                                    <field name="account_analytic_id" colspan="2"
+                                           groups="purchase.group_analytic_accounting"/>
+                                    <field name="company_id" groups="base.group_multi_company"
+                                           options="{'create': False}"/>
+                                </group>
+                            </group>
+                            <notebook>
+                                <page string="notes">
+                                    <field name="name"/>
+                                </page>
+                                <page string="invoices and incoming shipments">
+                                    <field name="invoice_lines"/>
+                                    <field name="move_ids"/>
+                                </page>
+                            </notebook>
+                        </sheet>
+                    </form>
+                </field>
+            </xpath>
+        </field>
+    </record>
+   <record model="ir.ui.view" id="purchase_order_search_inherit">
+        <field name="name">purchase.order.select.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='create_uid']" position="after">
+                <field string="Atlas Name" name="atlas_ids" />
+            </xpath>
+            </field>
+   </record>
+</odoo>

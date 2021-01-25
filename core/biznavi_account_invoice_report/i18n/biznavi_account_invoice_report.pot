@@ -1,0 +1,198 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* biznavi_account_invoice_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-04 15:04+0000\n"
+"PO-Revision-Date: 2016-06-04 15:04+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "1/25"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "10/6～1/5"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "11/25"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "11～12月"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "12/6～3/5"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "1～2月"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "2/6～5/5"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "3/25"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "3～4月"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "4/6～7/5"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "5/25"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "5～6月"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "6/6～9/5"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "7/25"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "7～8月"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "8/6～11/5"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "9/25"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "9～10月"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "Cancelled Invoice"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.model.fields,field_description:biznavi_account_invoice_report.field_account_invoice_check_code
+msgid "Check Code"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.model.fields,field_description:biznavi_account_invoice_report.field_res_company_check_code_function
+msgid "Check numbers formula"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.model,name:biznavi_account_invoice_report.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "Draft\n"
+"                                                        Invoice"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.model,name:biznavi_account_invoice_report.model_account_invoice
+msgid "Invoice"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.model.fields,field_description:biznavi_account_invoice_report.field_res_company_vat_img
+msgid "Invoice image"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.model.fields,field_description:biznavi_account_invoice_report.field_res_company_issue_info
+msgid "Invoice issue info"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "PRO-FORMA"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "Refund"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.model.fields,field_description:biznavi_account_invoice_report.field_res_company_show_logo
+msgid "Show company logo"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "Supplier Invoice"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "Supplier Refund"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.view_company_form_inherit
+msgid "Taiwan Computer Invoice"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "http://www.dot.gov.tw"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "國稅局全國免費服務專線：0800-000-321"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "檢舉貪瀆不法信箱：台北郵政5-75號信箱"
+msgstr ""
+
+#. module: biznavi_account_invoice_report
+#: model:ir.ui.view,arch_db:biznavi_account_invoice_report.report_biznavi_invoice_document
+msgid "電話：（02）2396-1651"
+msgstr ""
+

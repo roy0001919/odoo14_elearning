@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_biznavi_po_to_so_pos_biznavi_po_to_so_pos,biznavi_po_to_so_pos.biznavi_po_to_so_pos,model_biznavi_po_to_so_pos_biznavi_po_to_so_pos,,1,0,0,0

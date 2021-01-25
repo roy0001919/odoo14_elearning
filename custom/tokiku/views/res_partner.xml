@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_partner_form" model="ir.ui.view">
+            <field name="name">tokiku.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_type']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='mobile']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="ref" string="Short Name"/>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="prod_catg_ids" string="Supplier Product Category" attrs="{'invisible':[('supplier', '!=', True)]}" widget="many2many_tags"/>
+                </xpath>
+                <xpath expr="//page[@name='sales_purchases']//field[@name='ref']" position="replace"/>
+                <!--<xpath expr="//page[@name='sales_purchases']" position="attributes">-->
+                    <!--<attribute name="invisible">1</attribute>-->
+                <!--</xpath>-->
+                <xpath expr="//field[@name='function']" position="after">
+                    <field name="vat" attrs="{'invisible': [('is_company','=', False)]}" required="1"/>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="invoice_address"/>
+                </xpath>
+                <!--<xpath expr="//field[@name='website']" position="before">-->
+                    <!--<field name="main_contact" domain="[('parent_id', '!=', False), ('parent_id', '=', id)]"/>-->
+                <!--</xpath>-->
+                <xpath expr="//field[@name='child_ids']/form//field[@name='name']" position="after">
+                    <field name="ref" string="Short Name"/>
+                </xpath>
+                <xpath expr="//field[@name='child_ids']/form//field[@name='phone']" position="after">
+                    <field name="phone_ext" string="Phone Ext"/>
+                </xpath>
+                <xpath expr="//field[@name='child_ids']/kanban/templates//field[@name='state_id']" position="replace">
+                    <field name="street"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_partner_tree" model="ir.ui.view">
+            <field name="name">tokiku.partner.tree</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <!--<xpath expr="//field[@name='email']" position="attributes">-->
+                    <!--<attribute name="invisible">1</attribute>-->
+                <!--</xpath>-->
+                <xpath expr="//field[@name='display_name']" position="replace">
+                    <field name="name" string="Name"/>
+                    <field name="ref" string="Short Name"/>
+                </xpath>
+                <xpath expr="//field[@name='phone']" position="after">
+                    <field name="phone_ext" string="Phone Ext"/>
+                    <field name="mobile"/>
+                    <!--<field name="fax"/>-->
+                    <!--<field name="main_contact"/>-->
+                    <!--<field name="main_contact_phone"/>-->
+                    <!--<field name="main_contact_ext"/>-->
+                    <!--<field name="main_contact_mobile"/>-->
+                    <!--<field name="main_contact_email"/>-->
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_project_history" model="ir.ui.view">
+            <!--<field name="name">res.partner.property.form.inherit</field>-->
+            <field name="name">tokiku.project.history</field>
+            <field name="model">res.partner</field>
+            <!--<field name="priority">3</field>-->
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <!--<field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]"/>-->
+            <field name="arch" type="xml">
+                <page name="accounting" position="after">
+                    <page string="Project History" name="project history">
+                        <field name="customer_info_ids" attrs="{'invisible': [('supplier','=', True)]}">
+                            <tree string="Customer Info" >
+                                <field name="project_name"/>
+                                <field name="project_code"/>
+                                <field name="system_type"/>
+                            </tree>
+                        </field>
+                        <field name="supplier_info_ids" attrs="{'invisible': [('customer','=', True)]}">
+                            <tree string="Supplier Info" >
+                                <field name="project_name"/>
+                                <field name="project_id"/>
+                                <field name="project_code"/>
+                                <field name="prod_catg"/>
+                            </tree>
+                        </field>
+                            <!--domain="[('project_id', '=', )]"-->
+                            <!--<xpath expr="//field[@name='partner_id']" position="attributes">-->
+                                <!--<attribute name="invisible">1</attribute>-->
+                            <!--</xpath>-->
+                    </page>
+                </page>
+            </field>
+        </record>
+         <record model="ir.ui.view" id="res_partner_kanban_view">
+            <field name="name">res.partner.kanban</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='display_name']" position="after">
+                    <field name="ref"/>
+                </xpath>
+                <xpath expr="//div[@class='oe_kanban_details']/strong/field[@name='display_name']" position="replace">
+                    <field name="ref"/>
+                </xpath>
+            </field>
+        </record>
+        <!--<record id="view_tokiku_customer_tree" model="ir.ui.view">-->
+            <!--<field name="name">tokiku.customer.tree</field>-->
+            <!--<field name="model">res.partner</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree string="Customer">-->
+                    <!--<field name="customerNum"/>-->
+                    <!--<field name="shortName"/>-->
+                    <!--<field name="owner"/>-->
+                    <!--<field name="vat"/>-->
+                    <!--<field name="firstContact"/>-->
+                    <!--<field name="companyTel"/>-->
+                    <!--<field name="companyFax"/>-->
+                    <!--<field name="companyAddr"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<record id="view_tokiku_customer_form" model="ir.ui.view">-->
+            <!--<field name="name">tokiku.customer.form</field>-->
+            <!--<field name="model">res.partner</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form string="Customer">-->
+                    <!--<sheet>-->
+                        <!--<group>-->
+                            <!--<field name="customerNum"/>-->
+                            <!--<field name="customer" invisible="1"/>-->
+                            <!--<field name="supplier" invisible="1"/>-->
+                        <!--</group>-->
+                        <!--<group>-->
+                            <!--<group>-->
+                                <!--<field name="fullName" required="1"/>-->
+                                <!--<field name="shortName"/>-->
+                                <!--<field name="owner"/>-->
+                                <!--<field name="vat"/>-->
+                                <!--<field name="companyAddr"/>-->
+                            <!--</group>-->
+                            <!--<group>-->
+                                <!--<field name="companyTel"/>-->
+                                <!--<field name="companyFax"/>-->
+                                <!--<field name="firstContact"/>-->
+                                <!--<field name="phoneExt"/>-->
+                                <!--<field name="mobile"/>-->
+                                <!--<field name="comment"/>-->
+                            <!--</group>-->
+                        <!--</group>-->
+                        <!--<notebook colspan="4">-->
+                            <!--<page string="Contacts">-->
+                                <!--<field name="child_ids" mode="tree">-->
+                                    <!--<tree string="Contacts" editable="bottom">-->
+                                        <!--<field name="name"/>-->
+                                        <!--<field name="phone"/>-->
+                                        <!--<field name="mobile"/>-->
+                                        <!--<field name="phoneExt"/>-->
+                                        <!--<field name="fax"/>-->
+                                        <!--<field name="email"/>-->
+                                        <!--<field name="contactDept"/>-->
+                                        <!--<field name="contactJobTitle"/>-->
+                                    <!--</tree>-->
+                                <!--</field>-->
+                            <!--</page>-->
+                            <!--<page string="Projects">-->
+                                <!--<field name="project_ids"></field>-->
+                            <!--</page>-->
+                        <!--</notebook>-->
+                    <!--</sheet>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<record id="view_tokiku_customer_filter" model="ir.ui.view">-->
+            <!--<field name="name">tokiku.customer.filter</field>-->
+            <!--<field name="model">res.partner</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<search string="Search Customer">-->
+                    <!--<field name="name" filter_domain="['|',('fullName','ilike',self),('owner','=',self)]"/>-->
+                <!--</search>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<record id="action_tokiku_customer" model="ir.actions.act_window">-->
+            <!--<field name="name">Customers</field>-->
+            <!--<field name="type">ir.actions.act_window</field>-->
+            <!--<field name="res_model">res.partner</field>-->
+            <!--<field name="view_mode">tree,form</field>-->
+            <!--<field name="view_type">form</field>-->
+            <!--<field name="view_id" eval="False"/>-->
+            <!--&lt;!&ndash;<field name="search_view_id" ref="view_tokiku_customer_filter"/>&ndash;&gt;-->
+            <!--<field name="domain">[('fullName','!=',False)]</field>-->
+            <!--<field name="context">{'default_customer':1, 'search_default_customer':1}</field>-->
+            <!--<field name="filter" eval="True"/>-->
+        <!--</record>-->
+
+        <!--<record id="action_tokiku_customer_tree" model="ir.actions.act_window.view">-->
+            <!--<field eval="1" name="sequence"/>-->
+            <!--<field name="view_mode">tree</field>-->
+            <!--<field name="view_id" ref="view_tokiku_customer_tree"/>-->
+            <!--<field name="search_view_id" ref="view_tokiku_customer_filter"/>-->
+            <!--<field name="act_window_id" ref="action_tokiku_customer"/>-->
+        <!--</record>-->
+
+        <!--<record id="action_tokiku_customer_form" model="ir.actions.act_window.view">-->
+            <!--<field eval="1" name="sequence"/>-->
+            <!--<field name="view_mode">form</field>-->
+            <!--<field name="view_id" ref="view_tokiku_customer_form"/>-->
+            <!--<field name="act_window_id" ref="action_tokiku_customer"/>-->
+        <!--</record>-->
+
+        <!--<menuitem id="menu_tokiku_customer"-->
+                  <!--name="Customers"-->
+                  <!--action="action_tokiku_customer"-->
+                  <!--parent="tokiku.menu_profile"-->
+                  <!--sequence="10"/>-->
+
+        <!--<record id="view_tokiku_supplier_tree" model="ir.ui.view">-->
+            <!--<field name="name">tokiku.supplier.tree</field>-->
+            <!--<field name="model">res.partner</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree string="Supplier">-->
+                    <!--<field name="supplierNum"/>-->
+                    <!--<field name="shortName"/>-->
+                    <!--<field name="owner"/>-->
+                    <!--<field name="vat"/>-->
+                    <!--<field name="firstContact"/>-->
+                    <!--<field name="companyTel"/>-->
+                    <!--<field name="companyFax"/>-->
+                    <!--<field name="companyAddr"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<record id="view_tokiku_supplier_form" model="ir.ui.view">-->
+            <!--<field name="name">tokiku.supplier.form</field>-->
+            <!--<field name="model">res.partner</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form string="Supplier">-->
+                    <!--<sheet>-->
+                        <!--<group>-->
+                            <!--<field name="supplierNum"/>-->
+                            <!--<field name="customer" invisible="1"/>-->
+                            <!--<field name="supplier" invisible="1"/>-->
+                        <!--</group>-->
+                        <!--<group>-->
+                            <!--<group>-->
+                                <!--<field name="fullName" required="1"/>-->
+                                <!--<field name="shortName"/>-->
+                                <!--<field name="owner"/>-->
+                                <!--<field name="vat"/>-->
+                                <!--<field name="companyAddr"/>-->
+                                <!--<field name="companyMail"/>-->
+                                <!--<field name="isActive"/>-->
+                            <!--</group>-->
+                            <!--<group>-->
+                                <!--<field name="companyTel"/>-->
+                                <!--<field name="companyFax"/>-->
+                                <!--<field name="firstContact"/>-->
+                                <!--<field name="phoneExt"/>-->
+                                <!--<field name="mobile"/>-->
+                                <!--<field name="comment"/>-->
+                            <!--</group>-->
+                        <!--</group>-->
+                        <!--<notebook colspan="4">-->
+                            <!--<page string="Contacts">-->
+                                <!--<field name="child_ids" mode="tree">-->
+                                    <!--<tree string="Contacts" editable="bottom">-->
+                                        <!--<field name="name"/>-->
+                                        <!--<field name="phone"/>-->
+                                        <!--<field name="mobile"/>-->
+                                        <!--<field name="phoneExt"/>-->
+                                        <!--<field name="fax"/>-->
+                                        <!--<field name="email"/>-->
+                                        <!--<field name="contactDept"/>-->
+                                        <!--<field name="contactJobTitle"/>-->
+                                    <!--</tree>-->
+                                <!--</field>-->
+                            <!--</page>-->
+                            <!--<page string="Accounting">-->
+                                <!--<group>-->
+                                    <!--<group>-->
+                                        <!--<field name="bankName"/>-->
+                                        <!--<field name="accountName"/>-->
+                                        <!--<field name="payMethod"/>-->
+                                    <!--</group>-->
+                                    <!--<group>-->
+                                        <!--<field name="bankAccount"/>-->
+                                        <!--<field name="invoiceAddr"/>-->
+                                        <!--<field name="payment"/>-->
+                                    <!--</group>-->
+                                <!--</group>-->
+                            <!--</page>-->
+                            <!--<page string="Business Items">-->
+                                <!--<field name="bizItems" mode="tree">-->
+                                    <!--<tree string="Sales Order Lines" editable="bottom">-->
+                                        <!--<field name="PrdCategory"/>-->
+                                        <!--<field name="txItem"/>-->
+                                        <!--<field name="txCategory"/>-->
+                                        <!--<field name="payMethod"/>-->
+                                        <!--<field name="payment"/>-->
+                                    <!--</tree>-->
+                                <!--</field>-->
+                            <!--</page>-->
+                            <!--<page string="Factories">-->
+                                <!--<field name="factory_ids" mode="tree">-->
+                                    <!--<tree string="Factories" editable="bottom">-->
+                                        <!--<field name="name"/>-->
+                                        <!--<field name="addr"/>-->
+                                        <!--<field name="tel"/>-->
+                                        <!--<field name="fax"/>-->
+                                    <!--</tree>-->
+                                <!--</field>-->
+
+                            <!--</page>-->
+                        <!--</notebook>-->
+                    <!--</sheet>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!--<record id="view_tokiku_supplier_filter" model="ir.ui.view">-->
+            <!--<field name="name">tokiku.supplier.filter</field>-->
+            <!--<field name="model">res.partner</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<search string="Search Supplier">-->
+                    <!--<field name="name" filter_domain="['|','|',('fullName','ilike',self),('owner','=',self),('bizItems.txItem.name','ilike',self)]"/>-->
+                <!--</search>-->
+            <!--</field>-->
+        <!--</record>-->
+
+
+        <!--<record id="action_tokiku_supplier" model="ir.actions.act_window">-->
+            <!--<field name="name">Suppliers</field>-->
+            <!--<field name="type">ir.actions.act_window</field>-->
+            <!--<field name="res_model">res.partner</field>-->
+            <!--<field name="view_type">form</field>-->
+            <!--<field name="view_mode">form</field>-->
+            <!--<field name="view_id" eval="False"/>-->
+            <!--&lt;!&ndash;<field name="search_view_id" ref="view_tokiku_supplier_filter"/>&ndash;&gt;-->
+            <!--<field name="domain">[('fullName','!=',False)]</field>-->
+            <!--<field name="context">{'search_default_supplier': 1,'default_customer': 0,'default_supplier': 1}</field>-->
+            <!--<field name="filter" eval="True"/>-->
+        <!--</record>-->
+
+         <!--<record id="action_tokiku_supplier_tree" model="ir.actions.act_window.view">-->
+            <!--<field eval="1" name="sequence"/>-->
+            <!--<field name="view_mode">tree</field>-->
+            <!--<field name="view_id" ref="view_tokiku_supplier_tree"/>-->
+            <!--<field name="search_view_id" ref="view_tokiku_supplier_filter"/>-->
+            <!--<field name="act_window_id" ref="action_tokiku_supplier"/>-->
+        <!--</record>-->
+
+        <!--<record id="action_tokiku_supplier_form" model="ir.actions.act_window.view">-->
+            <!--<field eval="1" name="sequence"/>-->
+            <!--<field name="view_mode">form</field>-->
+            <!--<field name="view_id" ref="view_tokiku_supplier_form"/>-->
+            <!--<field name="act_window_id" ref="action_tokiku_supplier"/>-->
+        <!--</record>-->
+
+        <!--<menuitem id="menu_tokiku_supplier"-->
+                  <!--name="Suppliers"-->
+                  <!--action="action_tokiku_supplier"-->
+                  <!--parent="tokiku.menu_profile"-->
+                  <!--sequence="20"/>-->
+
+
+    </data>
+</odoo>

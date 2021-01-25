@@ -1,0 +1,19 @@
+.oe_form_field_x2many_2d_matrix th.oe_link
+{
+    cursor: pointer;
+}
+.oe_form_field_x2many_2d_matrix .oe_list_content > tbody > tr > td.oe_list_field_cell
+{
+    white-space: normal;
+}
+.oe_form_field_x2many_2d_matrix th, .oe_form_field_x2many_2d_matrix td
+{
+    border: 1px silver solid !important;
+    text-align: center;
+    min-width: 60px;
+}
+.oe_form_field_x2many_2d_matrix input
+{
+    text-align: center !important;
+    width: 50px;
+}

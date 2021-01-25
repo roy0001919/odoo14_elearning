@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_biznavi_sale_config_settings_form_pos" model="ir.ui.view">
+        <field name="name">biznavi.pos.config.settings.form</field>
+        <field name="model">pos.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.view_sale_config_settings_form_pos"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[last()]" position="after">
+                <group string="Rest API Settings">
+                    <field name="default_pos_rest_url"/>
+                    <field name="default_pos_rest_db"/>
+                    <field name="default_pos_rest_usr"/>
+                    <field name="default_pos_rest_pwd" password="True"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

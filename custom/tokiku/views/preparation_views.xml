@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_preparation_order_tree" model="ir.ui.view">
+            <field name="name">tokiku.preparation.order.tree</field>
+            <field name="model">tokiku.preparation_order</field>
+            <field name="arch" type="xml">
+                <tree string="Preparation Order">
+                    <field name="contract_id"/>
+                    <field name="partner_ref"/>
+                    <field name="factory_ref"/>
+                    <!--                    <field name="name" string="Preparation Order Num"/>-->
+                    <field name="order_num"/>
+                    <field name="run_date"/>
+                    <field name="file_date"/>
+                    <field name="write_uid" string="Input User" readonly="1"/>
+                    <field name="write_date" string="Input Date" readonly="1"/>
+                    <field name="state" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_preparation_order_form" model="ir.ui.view">
+            <field name="name">tokiku.preparation.order.form</field>
+            <field name="model">tokiku.preparation_order</field>
+            <field name="arch" type="xml">
+                <form string="Preparation Order">
+                    <header>
+                        <button name="act_validate" string="Validate" type="object" class="btn btn-sm btn-primary"
+                                states="draft"/>
+                        <button name="item_select" string="Item Select" type="object" class="btn btn-sm btn-primary"
+                                states="draft"/>
+                        <!--                        <button name="act_cancel" string="Cancel" type="object" class="btn btn-sm btn-primary"-->
+                        <!--                                states="draft,done"/>-->
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                    </header>
+                    <notebook>
+                        <field name="categ_id" invisible="1"/>
+                        <field name="contract_id" invisible="1"/>
+                        <field name="project_id" invisible="1"/>
+                        <page string="Preparation Order Information">
+                            <group>
+                                <group>
+                                    <!--                                    <field name="name" string="Preparation Order Num"/>-->
+                                    <field name="order_num"/>
+                                    <field name="project_id" readonly="1"/>
+                                    <field name="categ_id" invisible="1"/>
+                                    <field name="partner_id" string="Assembly Partner"
+                                           attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"
+                                           domain="[('id','in', context.get('partner_ids', False))]"/>
+                                    <field name="factory_id"
+                                           attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"
+                                           domain="[('id','in', context.get('factory_ids', False))]"/>
+                                    <field name="create_uid" string="Create UID" readonly="1"/>
+                                    <field name="write_uid" string="Write UID" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="file_date" attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"/>
+                                    <field name="run_date" attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"/>
+                                    <field name="assembly_section" string="Assembly Section"
+                                           attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"/>
+                                    <field name="write_date" string="Write Date" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Preparation Order Line">
+                            <field name="preparation_line_ids"
+                                   attrs="{'readonly': [('state', 'in', ('done','cancel'))]}">
+                                <tree editable="bottom" class="grid" create="true">
+                                    <field name="atlas_id" readonly="1"/>
+                                    <field name="building_id" readonly="1"/>
+                                    <field name="bom_id" readonly="1"/>
+                                    <field name="demand_qty" readonly="1"/>
+                                    <field name="estimated_qty" readonly="1"/>
+                                    <field name="prepared_qty"/>
+                                    <field name="rest_qty" readonly="1"/>
+                                    <field name="done_qty" readonly="1"/>
+                                    <field name="due_qty" readonly="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

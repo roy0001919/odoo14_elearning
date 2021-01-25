@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_picking_tree" model="ir.ui.view">
+            <field name="name">tokiku.stock.move.tree</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_picking_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="replace">
+                    <field name="atlas_id" invisible="context.get('categ_code') in ['installation','raw'] or not context.get('categ_code')"/>
+                    <field name="install_atlas" invisible="context.get('categ_code') not in ['installation']"/>
+                    <field name="panel_line_id" invisible="1"/>
+                    <field name="default_code" invisible="context.get('categ_code') in ['raw'] or not context.get('categ_code')"/>
+                    <field name="new_default_code" invisible="context.get('categ_code') in ['aluminum','glass','plate','steel','iron','stone','silicon','rubber','mineral','accessories','others']"/>
+                    <field name="code" invisible="context.get('categ_code') in ['raw'] or not context.get('categ_code')"/>
+                    <field name="product_id" string="Product Description"/>
+                    <field name="floor" string="Floor" invisible="context.get('categ_code') not in ['installation']"/>
+                </xpath>
+            </field>
+    </record>
+</odoo>

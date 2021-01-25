@@ -1,0 +1,29 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* biznavi_website_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-17 03:51+0000\n"
+"PO-Revision-Date: 2017-02-17 03:51+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: biznavi_website_sale
+#: model:ir.ui.view,arch_db:biznavi_website_sale.cart
+msgid "<span>Log in and checkout</span>\n"
+"                    <span class=\"fa fa-long-arrow-right\"/>"
+msgstr "<span>登入並結帳</span>\n"
+"                        <span class=\"fa fa-long-arrow-right\"/>"
+
+#. module: biznavi_website_sale
+#: model:ir.ui.view,arch_db:biznavi_website_sale.product_quantity
+msgid "<strong>Qty: </strong>"
+msgstr "<strong>數量: </strong>"
+

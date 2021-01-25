@@ -1,0 +1,551 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* booking_calendar
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-07-03 18:02+0000\n"
+"PO-Revision-Date: 2019-07-03 18:02+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: booking_calendar
+#: code:addons/booking_calendar/models.py:745
+#, python-format
+msgid "%s ~ %s (left %d)"
+msgstr "%s ~ %s (餘額 %d)"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_active
+msgid "Active"
+msgstr "啟用"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.booking_search_view
+msgid "Active Bookings"
+msgstr "有效預約"
+
+#. module: booking_calendar
+#: model:ir.actions.act_window,name:booking_calendar.all_orders_lines_list_action
+msgid "All Lines"
+msgstr "All Lines"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_automatic
+msgid "Automatic"
+msgstr "自動"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_booking_batch
+#: model:ir.ui.view,arch_db:booking_calendar.booking_calendar_report_saleorder_document
+msgid "Batch"
+msgstr "梯次"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_batch_info
+msgid "Batch Information"
+msgstr "梯次資訊"
+
+#. module: booking_calendar
+#: code:addons/booking_calendar/models.py:299
+#, python-format
+msgid "Batch [ %d ]"
+msgstr "第 %d 梯"
+
+#. module: booking_calendar
+#: code:addons/booking_calendar/models.py:643
+#, python-format
+msgid "Batch [ %d ] %s ~ %s (Full)"
+msgstr "第%d 梯 %s ~ %s (額滿)"
+
+#. module: booking_calendar
+#: code:addons/booking_calendar/models.py:648
+#, python-format
+msgid "Batch [ %d ] %s ~ %s (left %d)"
+msgstr "第 %d 梯 %s ~ %s (餘額 %d)"
+
+#. module: booking_calendar
+#: code:addons/booking_calendar/models.py:594
+#, python-format
+msgid "Batch [ %s ] %s"
+msgstr "第 %s 梯 %s"
+
+#. module: booking_calendar
+#. openerp-web
+#: code:addons/booking_calendar/static/src/xml/booking_calendar.xml:25
+#, python-format
+msgid "Book resources"
+msgstr "預約資源"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.booking_search_view
+msgid "Booking Day"
+msgstr "預約日"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.view_booking_order_line_form
+msgid "Booking Form"
+msgstr "預約表單"
+
+#. module: booking_calendar
+#: model:ir.actions.act_window,name:booking_calendar.booking_orders_lines_list_action
+#: model:ir.ui.menu,name:booking_calendar.menu_sale_order_line
+#: model:ir.ui.view,arch_db:booking_calendar.view_sale_order_line_calendar
+msgid "Booking Lines"
+msgstr "預約"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.booking_search_view
+msgid "Booking Month"
+msgstr "預約月份"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.view_booking_order_line_tree
+msgid "Booking Tree"
+msgstr "預約清單"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_buyer
+msgid "Buyer"
+msgstr "預訂人"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_buyer_tel
+msgid "Buyer Tel"
+msgstr "預訂人電話"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_checkin_time
+msgid "Checkin Time"
+msgstr "入場時間"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_product_product_html_color
+#: model:ir.model.fields,field_description:booking_calendar.field_product_template_html_color
+#: model:ir.model.fields,field_description:booking_calendar.field_resource_resource_color
+msgid "Color"
+msgstr "顏色"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_contact_tel
+#: model:ir.ui.view,arch_db:booking_calendar.booking_calendar_report_saleorder_document
+msgid "Contact Tel"
+msgstr "聯絡電話"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_contact_usr
+msgid "Contact User"
+msgstr "參訪人"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.booking_calendar_report_saleorder_document
+msgid "Contact Usr"
+msgstr "參訪人"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_project_id
+msgid "Contract"
+msgstr "合約"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_booking_calendar_slot_create_uid
+msgid "Created by"
+msgstr "建立者"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_booking_calendar_slot_create_date
+msgid "Created on"
+msgstr "建立於"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_partner_id
+msgid "Customer"
+msgstr "客戶"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.booking_calendar_report_saleorder_document
+msgid "Date"
+msgstr "日期"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_booking_end
+#: model:ir.ui.view,arch_db:booking_calendar.booking_calendar_report_saleorder_document
+msgid "Date end"
+msgstr "結束時間"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_booking_start
+#: model:ir.ui.view,arch_db:booking_calendar.booking_calendar_report_saleorder_document
+msgid "Date start"
+msgstr "開始時間"
+
+#. module: booking_calendar
+#: selection:resource.resource,start_delay_unit:0
+msgid "Day"
+msgstr "天"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_booking_calendar_slot_display_name
+msgid "Display Name"
+msgstr "顯示名稱"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_resource_resource_to_calendar
+msgid "Display on calendar"
+msgstr "顯示於行事曆"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_resource_resource_duration_mins
+msgid "Duration (minutes)"
+msgstr "間隔 (分鐘)"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.booking_search_view
+msgid "Group By"
+msgstr "分組方式"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_booking_calendar_slot_id
+msgid "ID"
+msgstr "編號"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_booking_calendar_slot___last_update
+msgid "Last Modified on"
+msgstr "最後修改於"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_booking_calendar_slot_write_uid
+msgid "Last Updated by"
+msgstr "最後更新："
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_booking_calendar_slot_write_date
+msgid "Last Updated on"
+msgstr "最後更新於"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_product_product_max_order
+#: model:ir.model.fields,field_description:booking_calendar.field_product_template_max_order
+msgid "Maximum Order Quantity"
+msgstr "最多訂購量"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_product_product_min_order
+#: model:ir.model.fields,field_description:booking_calendar.field_product_template_min_order
+msgid "Minimum Order Quantity"
+msgstr "最小訂購量"
+
+#. module: booking_calendar
+#: selection:resource.resource,start_delay_unit:0
+msgid "Minute"
+msgstr "分鐘"
+
+#. module: booking_calendar
+#: code:addons/booking_calendar/models.py:429
+#, python-format
+msgid "Not valid interval of booking for the product %s."
+msgstr "不在商品%s有效的預約區間。"
+
+#. module: booking_calendar
+#: code:addons/booking_calendar/models.py:440
+#, python-format
+msgid "Not valid interval of booking for the resource %s."
+msgstr "不在資源%s有效的預約區間。"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_product_template_capacity
+msgid "Number of Products"
+msgstr "名額"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_overlap
+msgid "Overlap"
+msgstr "重疊"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_resource_calendar_attendance_pos_quota
+msgid "POS Quota"
+msgstr "現場名額"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.booking_search_view
+msgid "Passed Bookings"
+msgstr "過往預約"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_product_product_pay_online
+#: model:ir.model.fields,field_description:booking_calendar.field_product_template_pay_online
+msgid "Pay Online"
+msgstr "線上付款"
+
+#. module: booking_calendar
+#: model:ir.actions.act_window,name:booking_calendar.pos_orders_lines_list_action
+msgid "Pos Lines"
+msgstr "Pos Lines"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.booking_search_view
+#: model:ir.ui.view,arch_db:booking_calendar.view_booking_order_line_form
+#: model:ir.ui.view,arch_db:booking_calendar.view_booking_order_line_tree
+msgid "Pos Number"
+msgstr "銷售點票號"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.booking_calendar_report_saleorder_document
+msgid "Price"
+msgstr "價格"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.booking_calendar_report_saleorder_document
+msgid "Product"
+msgstr "產品"
+
+#. module: booking_calendar
+#: model:ir.model,name:booking_calendar.model_product_template
+msgid "Product Template"
+msgstr "產品範本"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_product_cate
+msgid "Product cate"
+msgstr "產品類別"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_product_entry
+msgid "Product entry"
+msgstr "產品輸入"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_product_name
+msgid "Product name"
+msgstr "產品名稱"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_booking_calendar_slot_qty
+#: model:ir.ui.view,arch_db:booking_calendar.booking_calendar_report_saleorder_document
+msgid "Qty"
+msgstr "數量"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_ref_ticket
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_ref_ticket
+msgid "Ref Ticket"
+msgstr "相關票號"
+
+#. module: booking_calendar
+#: model:ir.model.fields,help:booking_calendar.field_sale_order_line_origin
+msgid "Reference of the document that generated this sales order request."
+msgstr "產生此份銷售訂單需求的檔案參考"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_resource_resource_refundable_days
+msgid "Refundable Days"
+msgstr "允許退票天數"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_resource_resource_product_ids
+msgid "Related Products"
+msgstr "相關產品"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_product_product_resource_ids
+#: model:ir.model.fields,field_description:booking_calendar.field_product_template_resource_ids
+msgid "Related Resource"
+msgstr "相關資源"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_remark1
+msgid "Remark 1"
+msgstr "註記"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_remark2
+msgid "Remark 2"
+msgstr "備註"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_remark3
+msgid "Remark 3"
+msgstr "記事"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_resource_resource_reserve_days
+msgid "Reserve Days"
+msgstr "預約天數"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_resource_id
+msgid "Resource"
+msgstr "資源"
+
+#. module: booking_calendar
+#: model:ir.model,name:booking_calendar.model_resource_calendar
+msgid "Resource Calendar"
+msgstr "Resource Calendar"
+
+#. module: booking_calendar
+#: model:ir.model,name:booking_calendar.model_resource_resource
+msgid "Resource Detail"
+msgstr "Resource Detail"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_resource_trigger
+msgid "Resource trigger"
+msgstr "Resource trigger"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.view_all_orders_lines_list_pivot
+msgid "Sale Order Lines Analysis"
+msgstr "Sale Order Lines Analysis"
+
+#. module: booking_calendar
+#: model:ir.model,name:booking_calendar.model_sale_order
+msgid "Sales Order"
+msgstr "銷貨單"
+
+#. module: booking_calendar
+#: model:ir.model,name:booking_calendar.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "銷售訂單細項"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_team_id
+msgid "Sales Team"
+msgstr "銷售團隊"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_resource_resource_slot_start_delay
+msgid "Slot Start Delay"
+msgstr "預約前置時間"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_booking_calendar_slot_slot_start
+msgid "Slot start"
+msgstr "Slot start"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_origin
+msgid "Source Document"
+msgstr "來源單據"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_resource_resource_start_delay_unit
+msgid "Start Delay Unit"
+msgstr "前置時間單位"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_note
+msgid "Terms and conditions"
+msgstr "條款"
+
+#. module: booking_calendar
+#: model:ir.model.fields,help:booking_calendar.field_sale_order_line_project_id
+msgid "The analytic account related to a sales order."
+msgstr "銷售訂單相關的分析科目"
+
+#. module: booking_calendar
+#: code:addons/booking_calendar/models.py:916
+#, python-format
+msgid "There are lines with overlap in this order. Please move overlapping lines to another time or resource"
+msgstr "There are lines with overlap in this order. Please move overlapping lines to another time or resource"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_ticket
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_ticket
+msgid "Ticket Number"
+msgstr "票號"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_ticket_img
+msgid "Ticket img"
+msgstr "Ticket img"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_ticket_name
+msgid "Ticket name"
+msgstr "票號"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_ticket_qr
+msgid "Ticket qr"
+msgstr "Ticket qr"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.booking_search_view
+msgid "Today's Bookings"
+msgstr "本日預約"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_slot_quantity
+msgid "Total Quantity"
+msgstr "總數量"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.booking_calendar_report_saleorder_document
+msgid "Unit Price"
+msgstr "單價"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_resource_resource_has_slot_calendar
+msgid "Use Working Time as Slots Definition"
+msgstr "使用工作時間做為時段定義"
+
+#. module: booking_calendar
+#: code:addons/booking_calendar/models.py:552
+#, python-format
+msgid "Warning for %s"
+msgstr "%s的警告訊息"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_resource_calendar_attendance_website_quota
+msgid "Website Quota"
+msgstr "網站名額"
+
+#. module: booking_calendar
+#: model:ir.model,name:booking_calendar.model_resource_calendar_attendance
+msgid "Work Detail"
+msgstr "Work Detail"
+
+#. module: booking_calendar
+#: model:ir.model.fields,field_description:booking_calendar.field_product_template_calendar_id
+#: model:ir.model.fields,field_description:booking_calendar.field_sale_order_line_calendar_id
+msgid "Working time"
+msgstr "工作時間"
+
+#. module: booking_calendar
+#: model:ir.model.fields,help:booking_calendar.field_sale_order_line_automatic
+msgid "automatically generated booking lines"
+msgstr "自動生成預約"
+
+#. module: booking_calendar
+#: model:ir.model,name:booking_calendar.model_booking_calendar_slot
+msgid "booking_calendar.slot"
+msgstr "booking_calendar.slot"
+
+#. module: booking_calendar
+#: model:ir.model.fields,help:booking_calendar.field_sale_order_line_resource_trigger
+msgid "we use this feild in _compute_date_overlap instead of resource_id\n"
+"    because resource_id is related to pitch in pitch_booking module. If we hadn't done it then _compute_date_overlap would be called\n"
+"    for each line with the same resource instead of only only for current new line"
+msgstr "we use this feild in _compute_date_overlap instead of resource_id\n"
+"    because resource_id is related to pitch in pitch_booking module. If we hadn't done it then _compute_date_overlap would be called\n"
+"    for each line with the same resource instead of only only for current new line"
+
+#. module: booking_calendar
+#: model:ir.ui.view,arch_db:booking_calendar.booking_calendar_report_saleorder_document
+msgid "預約參訪民眾配合事項: <br/>\n"
+"                    1. 請持電子票券至吊橋入口，由現場人員驗票後始得入橋參觀，另為加速通行，建議先行下載或列印電子票劵(QR code)。<br/>\n"
+"                    2. 購買優待票及特惠票遊客請攜帶相關證明俾現場驗票人員查驗，團體帶隊人員須帶身份證明文件及團員名單資料以縮短預約團體身份資料辨識時間，倘有無法辨識情形將取消預約資格。<br/>\n"
+"                    3. 請於預約參訪時間前10分鐘至吊橋入口處等候入場,逾時不候。<br/>"
+msgstr "預約參訪民眾配合事項: <br/>\n"
+"                    1. 請持電子票券至吊橋入口，由現場人員驗票後始得入橋參觀，另為加速通行，建議先行下載或列印電子票劵(QR code)。<br/>\n"
+"                    2. 購買優待票及特惠票遊客請攜帶相關證明俾現場驗票人員查驗，團體帶隊人員須帶身份證明文件及團員名單資料以縮短預約團體身份資料辨識時間，倘有無法辨識情形將取消預約資格。<br/>\n"
+"                    3. 請於預約參訪時間前10分鐘至吊橋入口處等候入場,逾時不候。<br/>"
+

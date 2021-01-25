@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* biznavi_account_invoice_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-27 07:24+0000\n"
+"PO-Revision-Date: 2015-08-27 07:24+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: biznavi_account_invoice_report
+#: view:res.company:biznavi_account_invoice_report.view_company_form_inherit
+msgid "BizNavi Invoice Configure"
+msgstr "BizNavi Invoice Configure"
+
+#. module: biznavi_account_invoice_report
+#: model:ir.model,name:biznavi_account_invoice_report.model_res_company
+msgid "Companies"
+msgstr "Companies"
+
+#. module: biznavi_account_invoice_report
+#: view:website:account.report_invoice_document
+msgid "From here!!"
+msgstr "From here!!"
+
+#. module: biznavi_account_invoice_report
+#: field:res.company,vat_img:0
+msgid "Invoice Image"
+msgstr "Invoice Image"
+
+#. module: biznavi_account_invoice_report
+#: field:res.company,check_code_function:0
+msgid "Invoice Number Check Code Function"
+msgstr "Invoice Number Check Code Function"
+
+#. module: biznavi_account_invoice_report
+#: field:res.company,issue_info:0
+msgid "Invoice issue info"
+msgstr "Invoice issue info"
+

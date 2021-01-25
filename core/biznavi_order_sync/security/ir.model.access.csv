@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_biznavi_order_sync_biznavi_order_sync,biznavi_order_sync.biznavi_order_sync,model_biznavi_order_sync_biznavi_order_sync,,1,0,0,0

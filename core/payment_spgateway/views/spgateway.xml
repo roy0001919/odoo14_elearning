@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <template id="spgateway_acquirer_button">
+            <form t-if="acquirer.sp_merchant_id" t-att-action="tx_url" name="Pay2go" method="post" target="_self">
+                <input type="hidden" name="MerchantID" t-att-value="MerchantID"/>
+                <input type="hidden" name="RespondType" t-att-value="RespondType"/>
+                <input type="hidden" name="TimeStamp" t-att-value="TimeStamp"/>
+                <input type="hidden" name="Version" t-att-value="Version"/>
+                <input type="hidden" name="MerchantOrderNo" t-att-value="MerchantOrderNo"/>
+                <input type="hidden" name="Amt" t-att-value="Amt"/>
+                <input type="hidden" name="ItemDesc" t-att-value="ItemDesc"/>
+                <input type="hidden" name="Email" t-att-value="Email"/>
+                <input type="hidden" name="LoginType" t-att-value="LoginType"/>
+                <input type="hidden" name="ReturnURL" t-att-value="ReturnURL"/>
+                <input type="hidden" name="NotifyURL" t-att-value="NotifyURL"/>
+                <input type="hidden" name="CheckValue" t-att-value="CheckValue"/>
+
+                <button type="submit" width="100px"
+                        t-att-class="submit_class">
+                    <img t-if="not submit_txt" src="/payment_spgateway/static/src/img/logo_sm2.png"/>
+                    <span t-if="submit_txt">
+                        <t t-esc="submit_txt"/>
+                        <span class="fa fa-long-arrow-right"/>
+                    </span>
+                </button>
+            </form>
+        </template>
+
+    </data>
+</openerp>

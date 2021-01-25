@@ -1,0 +1,74 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* website_booking_calendar
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-06 15:15+0000\n"
+"PO-Revision-Date: 2016-10-06 15:15+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.cart
+msgid "Batch"
+msgstr ""
+
+#. module: website_booking_calendar
+#. openerp-web
+#: code:addons/website_booking_calendar/static/src/js/website_booking_calendar.js:90
+#, python-format
+msgid "Book"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.cart
+msgid "Date End"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.cart
+msgid "Date Start"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.confirm_form
+msgid "Date and Time"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.confirm_form
+msgid "Package"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.confirm_form
+msgid "Price"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.confirm_form
+msgid "Resource"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.model,name:website_booking_calendar.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.model,name:website_booking_calendar.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.warning_dialog
+msgid "Warning!"
+msgstr ""
+

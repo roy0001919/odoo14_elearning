@@ -1,0 +1,106 @@
+<t t-name="website.traffic1">
+  <t t-call="website.layout">
+    <div class="oe_structure">
+      <section class="s_title">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 mt0">
+              <h1 class="text-center">
+                <b style="color: rgb(102, 102, 102); font-size: 14px; text-align: start;">
+                  <br/>
+                  <span style="color: rgb(206, 0, 0); font-family: 標楷體; font-size: 18px;">✼ 預約週一吊橋拍攝相關交通資訊詳見吊橋拍攝預約專區</span>
+                </b>
+                <br/>
+              </h1>
+              <h3 class="text-center text-muted">&amp;nbsp;</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="s_text_block">
+        <div class="container"/>
+      </section>
+      <div>
+        <br/>
+        <br/>
+      </div>
+      <section class="s_features">
+        <div class="container">
+          <div class="row mt16 mb16">
+            <div class="col-md-4 text-center">
+              <img src="/web/image/486" class="center-block" data-original-title="" title="" style="width: 50%;"/>
+              <h3 class="mt8 mb0">自行開車(國道)</h3>
+              <p class="text-muted" align="left">
+                <br/>
+              </p>
+              <p class="text-muted" align="left">
+                <b>
+                  <font style="color: rgb(0, 49, 99);">南下（北上）:</font>
+                </b>
+              </p>
+              <p class="text-muted" align="left">(1)國道3號南下（北上）長治交流道後，左轉（右轉）接臺24線，依指標經繁華、振興，至台24線(約19k+500m)與縣185交會處紅綠燈，右轉185縣道（忠孝路）後繼續直行過忠孝路直行至臺灣原住民族文化發展中心。</p>
+              <p class="text-muted" align="left">(2)倘臺灣原住民族文化發展中心停車空間車位已滿，請配合交通管制措施停放車輛。</p>
+            </div>
+            <div class="col-md-4 text-center">
+              <img src="/web/image/487" style="width: 50%;" class="center-block" data-original-title="" title=""/>
+              <h3 class="mt8 mb0">自行開車(縣道)</h3>
+              <p class="text-muted" align="left">
+                <br/>
+              </p>
+              <p class="text-muted" align="left">
+                <b>
+                  <font style="color: rgb(0, 49, 99);">屏東市區:</font>
+                </b>
+              </p>
+              <p class="text-muted" align="left">屏東市區：自市區道路接大連路，沿臺24線（往三地門方向）依前述交通資訊前往並配合交通管制措施停放車輛。</p>
+              <p class="text-muted" align="left">
+                <br/>
+                <b>
+                  <font style="color: rgb(0, 49, 99);">屏東其他鄉鎮：</font>
+                </b>
+              </p>
+              <p class="text-muted" align="left">(1)屏北地區：沿高樹地區縣185沿山公路，經大路觀主題樂園、賽嘉，至三教寶宮接臺24線，沿臺24線往內埔水門方向，至與縣道185線交會處紅綠燈，左轉185縣道（忠孝路）後繼續直行過忠孝路直行至臺灣原住民族文化發展中心。</p>
+              <p class="text-muted" align="left">(2)屏南地區：可由縣道187線及縣道185線(沿山公路)，至縣道182現與忠孝路交會處紅綠燈，右轉185縣道（忠孝路）後繼續直行過忠孝路直行至臺灣原住民族文化發展中心。</p>
+              <p class="text-muted" align="left">(3)倘臺灣原住民族文化發展中心停車空間車位已滿，請配合交通管制措施停放車輛。</p>
+            </div>
+            <div class="col-md-4 text-center">
+              <img src="/web/image/488" style="width: 50%;" class="center-block" data-original-title="" title=""/>
+              <h3 class="mt8 mb0">搭乘高鐵</h3>
+              <p class="text-muted" align="left">
+                <br/>
+              </p>
+              <p class="text-muted" align="left">請於抵達高鐵左營站後轉搭台鐵到屏東火車站，再到前站廣場左前方屏東客運總站轉搭乘屏東客運公車。</p>
+              <p class="text-muted">
+                <br/>
+                <b>
+                  <font style="color: rgb(0, 49, 99);">搭乘火車及搭（轉）乘客運公車</font>
+                </b>
+              </p>
+              <p class="text-muted" align="left">路線請於屏東火車站旁屏東客運總站搭乘（屏客洽詢電話：08-7324103）</p>
+              <p class="text-muted" align="left">508 線（台灣好行「屏北線」）：由屏東火車站發 &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;車，經六堆文化園區、屏科大至臺灣原住民族文化發展中心。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="s_three_columns">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 mt32 mb48">
+              <div class="panel panel-default o_panel s_panel">
+                <div class="panel-heading ">
+                  <h3 class="panel-title">停車資訊</h3>
+                </div>
+                <div class="panel-body">
+                  <p>臺灣原住民族文化發展中心收費停車場(大客車 50元、小客車 30元、機車 10元)</p>
+                  <p>
+                    <font style="color: rgb(156, 0, 0);">&amp;nbsp;</font>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </t>
+</t>

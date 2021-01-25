@@ -1,0 +1,3644 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 毛料訂購單列印格式 -->
+<template id="raw_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>毛料訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>收貨廠商/地址: <span t-esc="o.partner_id.street"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>東菊編號</strong></th>
+                        <th class="text-right"><strong>廠商料號</strong></th>
+                        <th class="text-right"><strong>材質(名稱)</strong></th>
+                        <th class="text-right"><strong>訂購長度</strong></th>
+                        <th class="text-right"><strong>數量</strong></th>
+                        <th class="text-right"><strong>重量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.supplier_part_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.order_length"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.product_qty"/>
+                        <span t-field="line.product_uom.name" groups="product.group_uom"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.net_weight"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.surface_coating"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td>
+                     </td>
+                     <td>
+                     </td>
+                     <td colspan="2">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="8" style="height: 80px;"><strong>訂購說明:</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+<!-- 模具訂製單 -->
+<template id="mold_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>模具訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>東菊編號</strong></th>
+                        <th class="text-right"><strong>廠商編號</strong></th>
+                        <th class="text-right"><strong>材質</strong></th>
+                        <th class="text-right"><strong>品名規格</strong></th>
+                        <th class="text-right"><strong>數量</strong></th>
+                        <th class="text-right"><strong>產品量度單位</strong></th>
+                        <th class="text-right"><strong>模具組合</strong></th>
+                        <th class="text-right"><strong>生產錠徑</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.supplier_part_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.mold_material"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.product_qty"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.product_uom.name" groups="product.group_uom"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.mold_part_ids_name"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.ingot"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td>
+                     </td>
+                     <td>
+                     </td>
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 鋁擠型訂購單-->
+<template id="aluminum_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>鋁擠型訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>東菊編號</strong></th>
+                        <th class="text-right"><strong>廠商料號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>表面處理</strong></th>
+                        <th class="text-right"><strong>色號</strong></th>
+                        <th class="text-right"><strong>訂購長度</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.code"/>
+<!--                         東菊編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.supplier_part_no"/>
+<!--                         廠商料號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.surface_coating"/>
+<!--                         表面處理-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.color_code"/>
+<!--                         色號-->
+                     </td>
+                     <td class="text-right">
+                         <span><t t-esc="'{0:,.2f}'.format(line.order_length)"/></span>
+<!--                        <span t-field="line.order_length"/>-->
+<!--                        <span t-esc ="'％。2f'％（line.order_length)"/>-->
+<!--                         訂購長度-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.product_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td>
+                     </td>
+                     <td>
+                     </td>
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 center">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>聯絡電話:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 鋁擠型加工訂購單-->
+<template id="aluminum_refine_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>鋁擠型加工訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>東菊編號</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>表面處理</strong></th>
+                        <th class="text-right"><strong>色號</strong></th>
+                        <th class="text-right"><strong>訂購長度</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.code"/>
+<!--                         東菊編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.surface_coating"/>
+<!--                         表面處理-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.color_code"/>
+<!--                         色號-->
+                     </td>
+                     <td class="text-right">
+                         <span><t t-esc="'{0:,.2f}'.format(line.order_length)"/></span>
+<!--                        <span t-field="line.order_length"/>-->
+<!--                        <span t-esc ="'％。2f'％（line.order_length)"/>-->
+<!--                         訂購長度-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.product_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td>
+                     </td>
+                     <td>
+                     </td>
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 center">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>聯絡電話:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 鋁擠型熱處理訂購單-->
+<template id="aluminum_heat_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>鋁擠型熱處理訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>東菊編號</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>表面處理</strong></th>
+                        <th class="text-right"><strong>色號</strong></th>
+                        <th class="text-right"><strong>訂購長度</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.code"/>
+<!--                         東菊編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.surface_coating"/>
+<!--                         表面處理-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.color_code"/>
+<!--                         色號-->
+                     </td>
+                     <td class="text-right">
+                         <span><t t-esc="'{0:,.2f}'.format(line.order_length)"/></span>
+<!--                         訂購長度-->
+                     </td>product_qty
+                     <td class="text-right">
+                         <span t-field="line.order_length"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td>
+                     </td>
+                     <td>
+                     </td>
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 鋁擠型烤漆訂購單-->
+<template id="aluminum_paint_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>鋁擠型烤漆訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>東菊編號</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>表面處理</strong></th>
+                        <th class="text-right"><strong>色號</strong></th>
+                        <th class="text-right"><strong>訂購長度</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>烤漆面積(mm)</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.code"/>
+<!--                         東菊編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.surface_coating"/>
+<!--                         表面處理-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.color_code"/>
+<!--                         色號-->
+                     </td>
+                     <td class="text-right">
+                        <span><t t-esc="'{0:,.2f}'.format(line.order_length)"/></span>
+<!--                         訂購長度-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.product_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                         <span><t t-esc="'{0:,.2f}'.format(line.paint_area)"/></span>
+<!--                         烤漆面積-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td>
+                     </td>
+                     <td>
+                     </td>
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 玻璃烤漆訂購單-->
+<template id="glass_paint_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>玻璃烤漆訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>訂購長度</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                         <span><t t-esc="'{0:,.2f}'.format(line.order_length)"/></span>
+<!--                         訂購長度-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.product_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 玻璃訂購單-->
+<template id="glass_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>玻璃訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>訂購長度</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                         <span><t t-esc="'{0:,.2f}'.format(line.order_length)"/></span>
+<!--                         訂購長度-->
+                     </td>
+                     <td class="text-right">
+                         <span t-field="line.order_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 玻璃加工訂購單-->
+<template id="glass_refine_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>玻璃加工訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>訂購長度</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span><t t-esc="'{0:,.2f}'.format(line.order_length)"/></span>
+<!--                         訂購長度-->
+                     </td>
+                     <td class="text-right">
+                         <span t-field="line.order_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 鋁板訂購單-->
+<template id="plate_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>鋁板訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>表面處理</strong></th>
+                        <th class="text-right"><strong>色號</strong></th>
+                        <th class="text-right"><strong>訂購長度</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.surface_coating"/>
+<!--                         表面處理-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.color_code"/>
+<!--                         色號-->
+                     </td>
+                     <td class="text-right">
+                         <span><t t-esc="'{0:,.2f}'.format(line.order_length)"/></span>
+<!--                         訂購長度-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.order_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td>
+                     </td>
+
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 鋁板加工訂購單-->
+<template id="plate_refine_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>鋁板加工訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>表面處理</strong></th>
+                        <th class="text-right"><strong>色號</strong></th>
+                        <th class="text-right"><strong>訂購長度</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.surface_coating"/>
+<!--                         表面處理-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.color_code"/>
+<!--                         色號-->
+                     </td>
+                     <td class="text-right">
+                         <span><t t-esc="'{0:,.2f}'.format(line.order_length)"/></span>
+<!--                         訂購長度-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.order_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 鋁板烤漆訂購單-->
+<template id="plate_paint_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>鋁板烤漆訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>表面處理</strong></th>
+                        <th class="text-right"><strong>色號</strong></th>
+                        <th class="text-right"><strong>訂購長度</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.surface_coating"/>
+<!--                         表面處理-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.color_code"/>
+<!--                         色號-->
+                     </td>
+                     <td class="text-right">
+                         <span><t t-esc="'{0:,.2f}'.format(line.order_length)"/></span>
+<!--                         訂購長度-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.order_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td>
+                     </td>
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 不鏽鋼板訂購單-->
+<template id="steel_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>不鏽鋼板訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>表面處理</strong></th>
+                        <th class="text-right"><strong>色號</strong></th>
+                        <th class="text-right"><strong>訂購長度</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.surface_coating"/>
+<!--                         表面處理-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.color_code"/>
+<!--                         色號-->
+                     </td>
+                     <td class="text-right">
+                         <span><t t-esc="'{0:,.2f}'.format(line.order_length)"/></span>
+<!--                         訂購長度-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.order_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td>
+                     </td>
+                     <td>
+                     </td>
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 不鏽鋼板加工訂購單-->
+<template id="steel_refine_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>不鏽鋼板加工訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>表面處理</strong></th>
+                        <th class="text-right"><strong>色號</strong></th>
+                        <th class="text-right"><strong>訂購長度</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.surface_coating"/>
+<!--                         表面處理-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.color_code"/>
+<!--                         色號-->
+                     </td>
+                     <td class="text-right">
+                         <span><t t-esc="'{0:,.2f}'.format(line.order_length)"/></span>
+<!--                         訂購長度-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.order_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td>
+                     </td>
+                     <td>
+                     </td>
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 不鏽鋼板烤漆訂購單-->
+<template id="steel_paint_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>不鏽鋼板烤漆訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>表面處理</strong></th>
+                        <th class="text-right"><strong>色號</strong></th>
+                        <th class="text-right"><strong>訂購長度</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.surface_coating"/>
+<!--                         表面處理-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.color_code"/>
+<!--                         色號-->
+                     </td>
+                     <td class="text-right">
+                         <span><t t-esc="'{0:,.2f}'.format(line.order_length)"/></span>
+<!--                         訂購長度-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.order_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td>
+                     </td>
+                     <td>
+                     </td>
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 矽膠訂購單-->
+<template id="silicon_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>矽膠訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>產品量度單位</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.product_uom"/>
+<!--                         產品量度單位-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.order_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td>
+                     </td>
+                     <td>
+                     </td>
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 矽膠加工訂購單-->
+<template id="silicon_refine_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>矽膠加工訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>產品量度單位</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.product_uom"/>
+<!--                         產品量度單位-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.order_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td>
+                     </td>
+                     <td>
+                     </td>
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 矽膠烤漆訂購單-->
+<template id="silicon_paint_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>矽膠烤漆訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>產品量度單位</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.product_uom"/>
+<!--                         產品量度單位-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.order_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td>
+                     </td>
+                     <td>
+                     </td>
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 輔助材料訂購單-->
+<template id="accessories_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>輔助材料訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>產品量度單位</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.product_uom"/>
+<!--                         產品量度單位-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.order_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 其他材料訂購單-->
+<template id="others_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>其他材料訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>加工編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>產品量度單位</strong></th>
+                        <th class="text-right"><strong>訂單數量</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.default_code"/>
+<!--                         加工編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.product_uom"/>
+<!--                         產品量度單位-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.order_qty"/>
+<!--                         訂購數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 組裝訂購單-->
+<template id="assembly_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>組裝訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>棟別</strong></th>
+                        <th class="text-right"><strong>加工圖集</strong></th>
+                        <th class="text-right"><strong>組合編號</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>產品量度單位</strong></th>
+                        <th class="text-right"><strong>總數量(面積)</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.building_id"/>
+<!--                         棟別-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.atlas_id"/>
+<!--                         加工圖集-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.bom_id"/>
+<!--                         組合編號-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.product_uom"/>
+<!--                         產品量度單位-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.total_surface_qty"/>
+<!--                         總數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+<!-- 安裝訂購單-->
+<template id="installation_report_purchaseorder_document">
+<t t-call="report.external_layout">
+    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+    <div class="page">
+        <h1 style="text-align: center">
+            <b>東 菊 金 屬 工 業 股 份 有 限 公 司</b>
+        </h1>
+        <h4 style="text-align: center">
+            <strong>新北市三重區重新路四段97號14樓</strong>
+        </h4>
+        <h4 style="text-align: center">
+            <strong>電話:02-2972-1623    傳真:02-2972-4473</strong>
+        </h4>
+        <h2 style="text-align: center">
+             <span>
+                 <strong>安裝訂購單</strong>
+             </span>
+         </h2>
+         <div class="row mt32 mb32">
+            <div class="col-xs-6">
+                <strong>供應商: <span t-esc="o.partner_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contact_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單編號: <span t-esc="o.new_order_num"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.contact_id.phone"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>傳真: <span t-esc="o.contact_id.fax"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單類型: <span t-esc="o.po_category_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>訂單日期: <span t-esc="o.date_order"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>專案: <span t-esc="o.project_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>合約: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>需求數量位置: <span t-esc="o.demand_qty_loc"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>預估交貨日期: <span t-esc="o.date_planned"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>運送地址: <span t-esc="o.shipping_address.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>聯絡人: <span t-esc="o.contract_id.name"/></strong>
+            </div>
+            <div class="col-xs-6">
+                <strong>電話: <span t-esc="o.partner_id.phone"/></strong>
+            </div>
+         </div>
+        <table class="table table-condensed table-bordered">
+            <thead>
+                    <tr>
+                        <th class="text-right"><strong>項次</strong></th>
+                        <th class="text-right"><strong>棟別</strong></th>
+                        <th class="text-right"><strong>區域位置</strong></th>
+                        <th class="text-right"><strong>品名/規格</strong></th>
+                        <th class="text-right"><strong>產品量度單位</strong></th>
+                        <th class="text-right"><strong>總數量(面積)</strong></th>
+                        <th class="text-right"><strong>備註</strong></th>
+                    </tr>
+            </thead>
+             <tbody>
+                  <t t-set="seq_no" t-value="0"/>
+                 <tr t-foreach="o.order_line" t-as="line">
+                     <t t-set="seq_no" t-value="seq_no + 1"/>
+                     <td>
+                        <t t-esc="seq_no"/>
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.building_id"/>
+<!--                         棟別-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.install_loc"/>
+<!--                         區域位置-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.name"/>
+<!--                         品名規格-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.product_uom"/>
+<!--                         產品量度單位-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.total_surface_qty"/>
+<!--                         總數量-->
+                     </td>
+                     <td class="text-right">
+                        <span t-field="line.remark"/>
+                     </td>
+                 </tr>
+                 <t t-set="total_product_qty" t-value="0"/>
+                 <tr >
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+
+                     <td colspan="1">
+                        <span><strong>訂單數量小計</strong>
+                        </span>
+                     </td>
+                         <t t-foreach="o.order_line" t-as="line">
+                         <t t-set="total_product_qty" t-value="total_product_qty + line.product_qty"/>
+                         </t>
+                     <td>
+                         <t t-esc="total_product_qty"/>
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                     <td >
+                     </td>
+                 </tr>
+             </tbody>
+            <tfoot>
+                <tr>
+                     <td colspan="10" style="height: 80px;"><strong>訂購說明:交易相關規定內容明訂於合約書</strong></td>
+                 </tr>
+            </tfoot>
+        </table>
+
+           <div class="col-xs-4">
+            <table>
+                <tr>
+                    <td><strong>專案經理:</strong></td>
+                </tr>
+            </table>
+        </div>
+       <div class="col-xs-4 pull-right">
+       <table>
+            <tr>
+                <td><strong>經辦:</strong></td>
+            </tr>
+       </table>
+       </div>
+    </div>
+</t>
+</template>
+
+</odoo>

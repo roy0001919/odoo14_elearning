@@ -1,0 +1,152 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* website_booking_calendar
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-03 06:50+0000\n"
+"PO-Revision-Date: 2018-10-03 06:50+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: website_booking_calendar
+#: model:mail.template,body_html:website_booking_calendar.sale_order_refund_email_template
+msgid "\n"
+"            \n"
+"	      Dear ${object.partner_id.name},\n"
+"	          A Refund has been processed under your account for the amount of ${object.amount_total}\n"
+"	          Please reference ${object.name} should you need to contact us.\n"
+"\n"
+"          Regards,<br/>\n"
+"          ${(object.company_id.name)}\n"
+"\n"
+"	    \n"
+"	  "
+msgstr "${object.partner_id.name} 您好, <br/> <br/>\n"
+"	          崗山之眼於你預約訂票的入場期間因不可抗力因素暫停開放，若您因此未能入場，我們將為您辦理退票，若您已經付款我們將進行退款。<br/>\n"
+"	          您的訂單號碼為 ${object.name} 金額共計 ${object.amount_total} 元，若您使用信用卡付款，將退回原刷卡卡片，若您使用匯款，請到官網登入並進入「<a href=\"https://khskywalkpark.com/my/orders\" style=\"text-decoration:none;color:rgb(51, 122, 183);background-color:transparent;\">我的門票</a>」填寫您要退款的帳號資訊。<br/>\n"
+"因此造成您旅程未能盡興，在此致上歉意，歡迎您再撥冗造訪，謝謝!  <br/>\n"
+"        ～ 崗山之眼票務中心 ～"
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.cart
+#: model:ir.ui.view,arch_db:website_booking_calendar.confirmation
+#: model:ir.ui.view,arch_db:website_booking_calendar.payment
+msgid "Batch"
+msgstr "梯次"
+
+#. module: website_booking_calendar
+#. openerp-web
+#: code:addons/website_booking_calendar/static/src/js/website_booking_calendar.js:90
+#, python-format
+msgid "Book"
+msgstr "預約"
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.confirm_form
+msgid "Date and Time"
+msgstr "日期和時間"
+
+#. module: website_booking_calendar
+#: code:addons/website_booking_calendar/controllers/main.py:210
+#, python-format
+msgid "Not Cancelable"
+msgstr "Not Cancelable"
+
+#. module: website_booking_calendar
+#: code:addons/website_booking_calendar/controllers/main.py:136
+#: code:addons/website_booking_calendar/models.py:36
+#, python-format
+msgid "Not Refundable"
+msgstr "不可退票"
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.confirm_form
+msgid "Package"
+msgstr "包裹"
+
+#. module: website_booking_calendar
+#: model:ir.model.fields,field_description:website_booking_calendar.field_sale_order_pay_online
+msgid "Pay Online"
+msgstr "線上付款"
+
+#. module: website_booking_calendar
+#: model:mail.template,subject:website_booking_calendar.sale_order_refund_email_template
+msgid "Payment Refund notification"
+msgstr "崗山之眼退票通知"
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.confirm_form
+msgid "Price"
+msgstr "價格"
+
+#. module: website_booking_calendar
+#: model:ir.model,name:website_booking_calendar.model_product_pricelist
+msgid "Pricelist"
+msgstr "價格表"
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.booking_search_view
+msgid "Refund Booking Condition"
+msgstr "人工退票"
+
+#. module: website_booking_calendar
+#: model:ir.ui.view,arch_db:website_booking_calendar.confirm_form
+msgid "Resource"
+msgstr "資源"
+
+#. module: website_booking_calendar
+#: model:ir.actions.server,name:website_booking_calendar.action_sale_order_line_refund
+msgid "Sale Order Refund"
+msgstr "人工退票"
+
+#. module: website_booking_calendar
+#: model:ir.model,name:website_booking_calendar.model_sale_order
+msgid "Sales Order"
+msgstr "銷貨單"
+
+#. module: website_booking_calendar
+#: model:ir.model,name:website_booking_calendar.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "銷售訂單細項"
+
+#. module: website_booking_calendar
+#: code:addons/website_booking_calendar/controllers/main.py:213
+#, python-format
+msgid "Ticket Cancelled!"
+msgstr "Ticket Cancelled!"
+
+#. module: website_booking_calendar
+#: model:ir.model.fields,field_description:website_booking_calendar.field_product_pricelist_ticket_promote_end
+msgid "Ticket Promote End"
+msgstr "優惠結束時間"
+
+#. module: website_booking_calendar
+#: model:ir.model.fields,field_description:website_booking_calendar.field_product_pricelist_ticket_promote_start
+msgid "Ticket Promote Start"
+msgstr "優惠開始時間"
+
+#. module: website_booking_calendar
+#: code:addons/website_booking_calendar/controllers/main.py:186
+#: code:addons/website_booking_calendar/controllers/main.py:201
+#: code:addons/website_booking_calendar/models.py:88
+#: code:addons/website_booking_calendar/models.py:104
+#, python-format
+msgid "Ticket Refund Processing!"
+msgstr "已為您進行退票! "
+
+#. module: website_booking_calendar
+#: code:addons/website_booking_calendar/controllers/main.py:179
+#: code:addons/website_booking_calendar/controllers/main.py:204
+#: code:addons/website_booking_calendar/models.py:80
+#: code:addons/website_booking_calendar/models.py:108
+#, python-format
+msgid "Ticket Refunded!"
+msgstr "退票完成"
+

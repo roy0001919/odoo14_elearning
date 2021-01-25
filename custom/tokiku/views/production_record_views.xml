@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_production_record_order_tree" model="ir.ui.view">
+            <field name="name">tokiku.production.record.order.tree</field>
+            <field name="model">tokiku.production_record</field>
+            <field name="arch" type="xml">
+                <tree string="Production Record Order">
+                    <field name="contract_id"/>
+                    <field name="order_num"/>
+                    <!--                    <field name="categ_id"/>-->
+                    <!--                    <field name="building"/>-->
+                    <!--                    <field name="name"/>-->
+                    <field name="file_date"/>
+                    <field name="create_uid" string="Input User" readonly="1"/>
+                    <field name="create_date" string="Input Date" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_production_record_order_form" model="ir.ui.view">
+            <field name="name">tokiku.production.record.order.form</field>
+            <field name="model">tokiku.production_record</field>
+            <field name="arch" type="xml">
+                <form string="Assembly Order">
+                    <header>
+                        <button name="act_validate" string="Validate" type="object" class="btn btn-sm btn-primary"
+                                states="draft"/>
+                        <button name="item_select" string="Item Select" type="object" class="btn btn-sm btn-primary"
+                                states="draft"/>
+                        <!--                        <button name="act_produce" string="Act Produce" type="object" class="btn btn-sm btn-primary"/>-->
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                    </header>
+                    <notebook>
+                        <field name="categ_id" invisible="1"/>
+                        <field name="contract_id" invisible="1"/>
+                        <field name="project_id" invisible="1"/>
+                        <page string="Production Record Order Information">
+                            <group>
+                                <group>
+                                    <!--                                    <field name="name"/>-->
+                                    <field name="order_num"/>
+                                    <field name="supplier_info_id" string="Assembly Partner"
+                                           attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"
+                                           domain="[('id','in', context.get('partner_ids', False))]"/>
+                                    <field name="factory_id" attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"
+                                           domain="[('id','in', context.get('factory_ids', False))]"/>
+                                    <field name="create_uid" string="Create UID" readonly="1"/>
+                                    <field name="write_uid" string="Write UID" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="file_date" attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"/>
+                                    <field name="run_date" attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"/>
+                                    <field name="assembly_section" string="Assembly Section"
+                                           attrs="{'readonly': [('state', 'in', ('done','cancel'))]}"/>
+                                    <field name="write_date" string="Write Date" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Production Record Order Line">
+                            <field name="production_record_line_ids"
+                                   attrs="{'readonly': [('state', 'in', ('done','cancel'))]}">
+                                <tree editable="bottom" class="grid" create="true">
+                                    <field name="atlas_id" string="Processing Atlas" readonly="1"/>
+                                    <field name="building_id" readonly="1"/>
+                                    <field name="bom_id" readonly="1"/>
+                                    <field name="prepared_qty"/>
+                                    <field name="ready_qty"/>
+                                    <field name="estimated_qty" readonly="1"/>
+                                    <field name="queue_qty" readonly="1"/>
+                                    <field name="shelf_qty"/>
+                                    <field name="assembly_qty"/>
+                                    <field name="assembled_qty" readonly="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_panel_order_material_sum" model="ir.ui.view">
+        <field name="name">Material Sum</field>
+        <field name="model">tokiku.material_sum</field>
+        <field name="arch" type="xml">
+            <form string="Select PO from Wizard">
+                <group>
+                    <field name="partner_id" invisible="1"/>
+                    <!--<button name="compute_price_total" string="Price Total" type="object" class="oe_highlight"/>-->
+                </group>
+                <field name="tmp_grid">
+                   <tree editable="top" create="false">
+                        <field name="name" readonly="1"/>
+                        <field name="unit_weight" digits="(16,3)" readonly="1"/>
+                        <field name="demand_qty" readonly="1"/>
+                        <field name="demand_weight" digits="(16,3)" readonly="1"/>
+                        <field name="order_qty" readonly="1"/>
+                        <field name="order_weight" digits="(16,3)" readonly="1"/>
+                        <field name="rest_demand_qty" readonly="1"/>
+                        <field name="rest_demand_weight" digits="(16,3)" readonly="1"/>
+                        <field name="received_qty" invisible="context.get('default_stage') not in ['material']"/>
+                        <field name="not_received_qty" invisible="context.get('default_stage') not in ['material']"/>
+                        <field name="product_id" invisible="1"/>
+                    </tree>
+                </field>
+                <footer>
+                    <!--<button name="back_po" string="Apply" type="object" class="oe_highlight"/>-->
+                    <button string="Close" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_demand_material_sum" model="ir.ui.view">
+        <field name="name">Material Sum</field>
+        <field name="model">tokiku.material_sum</field>
+        <field name="arch" type="xml">
+            <form string="Select PO from Wizard">
+                <group>
+                    <field name="partner_id" invisible="1"/>
+                    <!--<button name="compute_price_total" string="Price Total" type="object" class="oe_highlight"/>-->
+                </group>
+                <field name="tmp_grid">
+                   <tree editable="top" create="false" >
+                        <field name="name" readonly="1"/>
+                        <field name="unit_weight" readonly="1" invisible="1"/>
+                        <field name="demand_qty" readonly="1" type="text" widget="float" style="text-align: left;"/>
+                        <field name="demand_weight" readonly="1" type="text" widget="float" style="text-align: left;"/>
+                        <field name="product_id" invisible="1"/>
+                    </tree>
+                </field>
+                <footer>
+                    <!--<button name="back_po" string="Apply" type="object" class="oe_highlight"/>-->
+                    <button string="Close" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

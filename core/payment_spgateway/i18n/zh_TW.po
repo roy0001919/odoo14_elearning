@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* payment_spgateway
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-04 12:19+0000\n"
+"PO-Revision-Date: 2016-12-04 12:19+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: payment_spgateway
+#: model:ir.model,name:payment_spgateway.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr "金流處理單位"
+
+#. module: payment_spgateway
+#: model:ir.model,name:payment_spgateway.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "付款交易"
+
+#. module: payment_spgateway
+#: model:ir.model.fields,field_description:payment_spgateway.field_payment_acquirer_sp_hash_iv
+msgid "Spgateway Hash IV"
+msgstr "智付通 Hash IV"
+
+#. module: payment_spgateway
+#: model:ir.model.fields,field_description:payment_spgateway.field_payment_acquirer_sp_hash_key
+msgid "Spgateway Hash Key"
+msgstr "智付通 Hash Key"
+
+#. module: payment_spgateway
+#: model:ir.model.fields,field_description:payment_spgateway.field_payment_acquirer_sp_merchant_id
+msgid "Spgateway Merchant ID"
+msgstr "智付通 Merchant ID"
+
+#. module: payment_spgateway
+#: model:ir.ui.view,arch_db:payment_spgateway.transaction_form_spgateway
+msgid "Spgateway TX Details"
+msgstr "智付通交易詳情"
+
+#. module: payment_spgateway
+#: model:ir.model.fields,field_description:payment_spgateway.field_payment_transaction_spgateway_txn_id
+msgid "Transaction ID"
+msgstr "交易編號"
+
+#. module: payment_spgateway
+#: model:ir.model.fields,field_description:payment_spgateway.field_payment_transaction_spgateway_txn_type
+msgid "Transaction type"
+msgstr "交易方式"
+

@@ -1,0 +1,150 @@
+<odoo>
+    <data>
+        <template id="variants" inherit_id="website_sale.variants">
+            <xpath expr="//ul[@class='list-unstyled']" position="replace">
+                <t t-set="inc" t-value="0"/>
+                <t t-if="variant_id_index==0">
+                    <table style="border:2px #cccccc solid;width:100%" id="variant_1">
+                        <t t-foreach="variant_id.value_ids" t-as="value_id">
+                            <tr class="form-group js_attribute_value"
+                                t-att-style="'color:#fff;background-color:%s;' % value_id.html_color">
+                                <td style="padding:5px;width:30%;text-align:center;">
+                                    <label class="control-label" style="margin: 0 10px;">
+                                        <input type="checkbox"
+                                               t-att-class="'js_variant_change' if variant_id.attribute_id.create_variant else None"
+                                               t-att-checked="'checked'"
+                                               t-att-name="'attribute-%s-%s' % (product.id, variant_id.attribute_id.id)"
+                                               t-att-value="value_id.id"
+                                               style="vertical-align: top; margin-right: 10px;display:none;"/>
+                                        <span t-field="value_id.name"/>
+                                        <!--<span class="badge" t-if="value_id.price_extra">-->
+                                        <!--<t t-esc="value_id.price_extra > 0 and '+' or ''"/>-->
+                                        <!--<span t-field="value_id.price_extra" style="white-space: nowrap;" t-options='{-->
+                                        <!--"widget": "monetary",-->
+                                        <!--"from_currency": product.currency_id,-->
+                                        <!--"display_currency": website.currency_id-->
+                                        <!--}'/>-->
+                                        <!--</span>-->
+                                        <!--<input name="product_id" class="product_id" style="color:black;" type="text"-->
+                                        <!--value=""/>-->
+                                    </label>
+                                </td>
+                                <td style="padding:5px;width:15%;text-align:left;">
+                                    <t t-foreach="attribute_value_ids" t-as="attribute_value">
+                                        <b class="oe_price" style="white-space: nowrap;" t-esc="attribute_value[2]" t-if="value_id.id in attribute_value[1]"
+                                        t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                    </t>
+                                    <!--<b class="oe_price" style="white-space: nowrap;"-->
+                                    <!--t-esc="variant_id.attribute_id[0]"-->
+                                    <!--t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>-->
+                                </td>
+                                <td style="width:65%;padding:5px;text-align:center;">
+                                    <div class="css_quantity input-group oe_website_spinner" contenteditable="false">
+                                        <a t-attf-href="#" class="mb8 input-group-addon js_add_cart_json">
+                                            <i class="fa fa-minus"></i>
+                                        </a>
+                                        <input type="text" style="text-align: center" class="form-control quantity"
+                                               data-min="0" t-att-name="'add_qty-%s' % value_id.id"
+                                               value="0"/>
+                                        <a t-attf-href="#" class="mb8 input-group-addon float_left js_add_cart_json">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                                <!--<td style="padding-top:10px;text-align:left;">-->
+                                <!--<label class="control-label" style="padding-left:5px">人</label>-->
+                                <!--</td>-->
+                            </tr>
+                            <!--<tr t-att-style="'color:#fff;background-color:%s;' % value_id.html_color">-->
+                            <!--<td colspan="4" style="padding:5px;">-->
+                            <!--<span style="color:#fff;font-size:12px;margin-left:20px;" t-if="value_id.id==9"-->
+                            <!--t-esc="' (一般參訪人適用之)'"/>-->
+                            <!--<span style="color:#fff;font-size:12px;margin-left:20px;" t-if="value_id.id==11"-->
+                            <!--t-esc="' (應購買全票者三十人以上之團體適用之)'"/>-->
+                            <!--<span style="color:#fff;font-size:12px;margin-left:20px;" t-if="value_id.id==10"-->
+                            <!--t-esc="' (適用對象詳參網站注意事項收費標準)'"/>-->
+                            <!--</td>-->
+                            <!--</tr>-->
+                            <t t-set="inc" t-value="inc+1"/>
+                        </t>
+                    </table>
+                </t>
+                <t t-if="variant_id_index!=0">
+                    <!--<ul class="list-unstyled">-->
+                    <table style="border:2px #cccccc solid;width:100%">
+                        <tr>
+                            <t t-foreach="variant_id.value_ids" t-as="value_id">
+                                <td class="form-group js_attribute_value"
+                                    t-att-style="'padding:10px;width:50%%;text-align:center;color:#000;background-color:%s;' % value_id.html_color">
+                                    <label class="control-label" style="margin: 0 20px;">
+                                        <input type="radio"
+                                               t-att-class="'js_variant_change' if variant_id.attribute_id.create_variant else None"
+                                               t-att-checked="'checked' if not inc else None"
+                                               t-att-name="'attribute-%s-%s' % (product.id, variant_id.attribute_id.id)"
+                                               t-att-value="value_id.id"
+                                               style="vertical-align: top; margin-right: 10px;"/>
+                                        <span t-field="value_id.name"/>
+                                        <span class="badge" t-if="value_id.price_extra">
+                                            <t t-esc="value_id.price_extra > 0 and '+' or ''"/>
+                                            <span t-field="value_id.price_extra" style="white-space: nowrap;"
+                                                  t-options='{
+                                            "widget": "monetary",
+                                            "from_currency": product.currency_id,
+                                            "display_currency": website.currency_id
+                                        }'/>
+                                        </span>
+                                    </label>
+                                </td>
+                                <t t-set="inc" t-value="inc+1"/>
+                            </t>
+                        </tr>
+                    </table>
+                    <!--</ul>-->
+                </t>
+            </xpath>
+        </template>
+        <template id="product_price" inherit_id="website_sale.product_price">
+            <xpath expr="//div[@itemprop='offers']" position="replace">
+                <div itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer"
+                     class="product_price mt16">
+                    <!--<h4 class="oe_price_h4 css_editable_mode_hidden">-->
+                    <!--<span class="text-danger oe_default_price"-->
+                    <!--style="text-decoration: line-through; white-space: nowrap;"-->
+                    <!--t-esc="compute_currency(product.website_public_price)"-->
+                    <!--t-options="{'widget': 'monetary', 'display_currency': website.get_current_pricelist().currency_id, 'from_currency': website.currency_id}"-->
+                    <!--t-att-style="'text-decoration: line-through; white-space: nowrap; ' + '' if (compute_currency(product.lst_price) - product.website_price) &gt; 0.01 and website.get_current_pricelist().discount_policy == 'without_discount' else 'display: none;'"-->
+                    <!--/>-->
+                    <!--<b class="oe_price" style="white-space: nowrap;" t-esc="product.website_price"-->
+                    <!--t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>-->
+                    <!--<span itemprop="price" style="display:none;" t-esc="product.website_price"/>-->
+                    <!--<span itemprop="priceCurrency" style="display:none;" t-esc="website.currency_id.name"/>-->
+                    <!--</h4>-->
+                    <h4 class="css_non_editable_mode_hidden decimal_precision"
+                        t-att-data-precision="str(product.currency_id.decimal_places)">
+                        <span t-field="product.lst_price"
+                              t-options='{
+                   "widget": "monetary",
+                   "display_currency": product.currency_id,
+               }'/>
+                    </h4>
+                    <h4 class="hidden oe_not_available bg-warning">Product not available</h4>
+                </div>
+            </xpath>
+        </template>
+        <template id="product_quantity_label" inherit_id="biznavi_website_sale.product_quantity" customize_show="True"
+                  name="Label Quantity">
+            <xpath expr="//strong" position="replace"/>
+        </template>
+        <template id="product_quantity" inherit_id="website_sale.product_quantity" customize_show="True"
+                  name="Select Quantity">
+            <xpath expr="//div[@class='css_quantity input-group oe_website_spinner']" position="replace"/>
+        </template>
+
+        <template id="assets_frontend" inherit_id="biznavi_ticket.assets_frontend" name="Gang Shan Assets Include">
+            <xpath expr="//script[@src='/biznavi_ticket/static/src/js/website_booking_calendar.js']"
+                   position="attributes">
+                <attribute name="src">/gangshan/static/src/js/website_booking_calendar.js</attribute>
+            </xpath>
+        </template>
+    </data>
+</odoo>

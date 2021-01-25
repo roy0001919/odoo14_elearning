@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem name="Tokiku"
+        id="menu_main_tokiku"
+        groups="group_tokiku_admin,group_tokiku_user"
+        web_icon="tokiku,static/description/icon.png"
+        sequence="1"/>
+
+    <menuitem name="Projects"
+          id="menu_project_list"
+          groups="group_tokiku_admin,group_tokiku_user"
+          action="project.open_view_project_all_config"
+          parent="tokiku.menu_main_tokiku"
+          sequence="1"/>
+    <!--<menuitem name="Projects"-->
+          <!--id="menu_project"-->
+          <!--groups="group_tokiku_admin"-->
+          <!--parent="tokiku.menu_main_tokiku"-->
+          <!--sequence="1"/>-->
+
+    <record model="ir.actions.server" id="tokiku.purchase_order_action">
+        <field name="name">Purchase Order</field>
+        <field name="model_id" ref="model_purchase_order"/>
+        <field name="code">action = env['purchase.order'].open_purchase_order()</field>
+    </record>
+    <menuitem name="Purchase Order" id="tokiku.menu_purchase_order" groups="group_tokiku_admin,group_tokiku_user"
+          action="tokiku.purchase_order_action" parent="tokiku.menu_main_tokiku" sequence="7"/>
+
+    <record model="ir.actions.server" id="tokiku.sale_order_action">
+        <field name="name">Sale Order</field>
+        <field name="model_id" ref="model_sale_order"/>
+        <field name="code">action = env['sale.order'].open_sale_order()</field>
+    </record>
+    <menuitem name="Sale Order(Contract_Item)" id="tokiku.menu_sale_order" groups="group_tokiku_admin,group_tokiku_user"
+          action="tokiku.sale_order_action" parent="tokiku.menu_main_tokiku" sequence="8"/>
+
+    <menuitem name="Profile"
+          id="tokiku.menu_profile"
+          groups="group_tokiku_admin,group_tokiku_user"
+          parent="tokiku.menu_main_tokiku"
+          sequence="3"/>
+
+    <record model="ir.actions.server" id="atlas_action">
+        <field name="name">Processing Atlas</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['account.analytic.contract'].open_atlas()</field>
+    </record>
+
+    <menuitem name="Atlas" id="menu_atlas_main" groups="group_tokiku_admin,group_tokiku_user"
+          parent="tokiku.menu_main_tokiku" sequence="4"/>
+
+    <menuitem name="Const Atlas" id="menu_const_atlas" groups="group_tokiku_admin,group_tokiku_user"
+          action="action_tokiku_const_atlas" parent="tokiku.menu_atlas_main" sequence="1"/>
+
+    <menuitem name="Processing Atlas" id="menu_atlas_panel" groups="group_tokiku_admin,group_tokiku_user"
+          action="atlas_action" parent="tokiku.menu_atlas_main" sequence="2"/>
+
+    <menuitem name="Panels"
+          id="tokiku.menu_panels"
+          groups="group_tokiku_admin,group_tokiku_user"
+          parent="tokiku.menu_main_tokiku"
+          sequence="5"/>
+
+    <menuitem name="Product Category"
+              action="product.product_category_action_form"
+              id="menu_product_category_config_tokiku"
+              parent="tokiku.menu_profile"
+              sequence="50" />
+
+    <record id="product_mold_action_tokiku" model="ir.actions.act_window">
+        <field name="name">Molds</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('category_code', '=', 'mold'), ('default_code', '!=', 'DIE')]</field>
+        <!--<field name="context">{"search_default_filter_mold":1}</field>-->
+        <field name="search_view_id" eval="False"/> <!-- Force empty -->
+        <!--<field name="view_id" eval="False"/> &lt;!&ndash; Force empty &ndash;&gt;-->
+        <!--[('category_code', '=', 'mold')]-->
+        <field name="view_id" ref="mold_product_tree_view"/> <!-- Force empty -->
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to define a new product.
+          </p><p>
+            You must define a product for everything you purchase, whether
+            it's a physical product, a consumable or services you buy to
+            subcontractors.
+          </p><p>
+            The product form contains detailed information to improve the
+            purchase process: prices, procurement logistics, accounting data,
+            available vendors, etc.
+          </p>
+        </field>
+    </record>
+
+
+
+    <record id="mold_table_action_tokiku" model="ir.actions.act_window">
+        <field name="name">Mold_Cost_table</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tokiku.mold_part</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain"></field>
+        <!--<field name="context">{"search_default_filter_mold":1}</field>-->
+        <!--<field name="search_view_id" ref="mold_product_cost_search_view"/> &lt;!&ndash; Force empty &ndash;&gt;-->
+        <!--<field name="view_id" eval="False"/> &lt;!&ndash; Force empty &ndash;&gt;-->
+        <!--<field name="view_id" ref="mold_product_cost_tree_view"/> &lt;!&ndash; Force empty &ndash;&gt;-->
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to define a new product.
+          </p><p>
+            You must define a product for everything you purchase, whether
+            it's a physical product, a consumable or services you buy to
+            subcontractors.
+          </p><p>
+            The product form contains detailed information to improve the
+            purchase process: prices, procurement logistics, accounting data,
+            available vendors, etc.
+          </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_tokiku_mold"
+          name="Molds"
+          action="product_mold_action_tokiku"
+          parent="tokiku.menu_profile"
+          groups="group_tokiku_admin,group_tokiku_user"
+          sequence="30"/>
+
+    <menuitem id="menu_tokiku_mold_cost_table"
+          name="Mold Cost Table"
+          action="mold_table_action_tokiku"
+          parent="tokiku.menu_profile"
+          groups="group_tokiku_admin,group_tokiku_user"
+          sequence="31"/>
+
+
+    <!--<record id="product_normal_action_material" model="ir.actions.act_window">-->
+        <!--<field name="name">Products</field>-->
+        <!--<field name="type">ir.actions.act_window</field>-->
+        <!--<field name="res_model">product.template</field>-->
+        <!--<field name="view_type">form</field>-->
+        <!--<field name="view_mode">tree,kanban,form</field>-->
+        <!--<field name="domain">[('categ_id.code', '=', 'raw')]</field>-->
+        <!--<field name="context">{"search_default_filter_to_purchase":1}</field>-->
+        <!--<field name="search_view_id" eval="False"/> &lt;!&ndash; Force empty &ndash;&gt;-->
+        <!--<field name="view_id" eval="False"/> &lt;!&ndash; Force empty &ndash;&gt;-->
+        <!--<field name="help" type="html">-->
+          <!--<p class="oe_view_nocontent_create">-->
+            <!--Click to define a new product.-->
+          <!--</p><p>-->
+            <!--You must define a product for everything you purchase, whether-->
+            <!--it's a physical product, a consumable or services you buy to-->
+            <!--subcontractors.-->
+          <!--</p><p>-->
+            <!--The product form contains detailed information to improve the-->
+            <!--purchase process: prices, procurement logistics, accounting data,-->
+            <!--available vendors, etc.-->
+          <!--</p>-->
+        <!--</field>-->
+    <!--</record>-->
+    <!--<menuitem id="menu_tokiku_material"-->
+              <!--name="Materials"-->
+              <!--action="product_normal_action_material"-->
+              <!--parent="tokiku.menu_profile"-->
+              <!--sequence="40"/>-->
+    <!--<record id="material_market_price_action" model="ir.actions.act_window">-->
+        <!--<field name="name">Material Price</field>-->
+        <!--<field name="type">ir.actions.act_window</field>-->
+        <!--<field name="res_model">product.template</field>-->
+        <!--<field name="view_type">form</field>-->
+        <!--<field name="view_mode">tree</field>-->
+        <!--<field name="domain">[('categ_id.code', '=', 'raw')]</field>-->
+        <!--<field name="view_id" ref="view_market_price_tree"/>-->
+    <!--</record>-->
+    <!--<menuitem id="menu_tokiku_material_market_price"-->
+              <!--name="Material Price"-->
+              <!--action="material_market_price_action"-->
+              <!--parent="tokiku.menu_profile"-->
+              <!--sequence="40"/>-->
+
+    <record id="product_normal_action_tokiku" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('category_code', '!=', 'mold')]</field>
+        <field name="context">{"search_default_filter_to_purchase":1}</field>
+        <field name="search_view_id" eval="False"/> <!-- Force empty -->
+        <field name="view_id" eval="False"/> <!-- Force empty -->
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to define a new product.
+          </p><p>
+            You must define a product for everything you purchase, whether
+            it's a physical product, a consumable or services you buy to
+            subcontractors.
+          </p><p>
+            The product form contains detailed information to improve the
+            purchase process: prices, procurement logistics, accounting data,
+            available vendors, etc.
+          </p>
+        </field>
+    </record>
+    <menuitem name="Products"
+              id="menu_procurement_partner_contact_form"
+              action="product_normal_action_tokiku"
+              parent="tokiku.menu_profile"
+              sequence="51"/>
+
+    <menuitem name="Product Unit of Measure"
+              id="menu_product_uom_form_action"
+              action="product.product_uom_form_action"
+              parent="tokiku.menu_profile"
+              sequence="52"/>
+
+    <record id="contract_list_action" model="ir.actions.act_window">
+        <field name="name">Contracts</field>
+        <field name="res_model">account.analytic.contract</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new contract.
+            </p>
+        </field>
+    </record>
+
+    <!--<menuitem name="Contract List"-->
+          <!--id="menu_contract_list"-->
+          <!--groups="group_tokiku_admin"-->
+          <!--action="contract_list_action"-->
+          <!--parent="tokiku.menu_project"-->
+          <!--sequence="2"/>-->
+
+    <menuitem id="menu_tokiku_customer"
+          name="Customers"
+          action="base.action_partner_customer_form"
+          parent="tokiku.menu_profile"
+          sequence="10"/>
+
+    <menuitem id="menu_tokiku_supplier"
+          name="Suppliers"
+          action="base.action_partner_supplier_form"
+          parent="tokiku.menu_profile"
+          sequence="20"/>
+
+    <record id="mold_panel_action" model="ir.actions.act_window">
+        <field name="name">Mold</field>
+        <field name="res_model">tokiku.panel</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <record model="ir.actions.server" id="mold_panel_action">
+        <field name="name">Mold</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_mold()</field>
+    </record>
+
+    <menuitem name="Mold" id="menu_mold_panel" groups="group_tokiku_admin,group_tokiku_user"
+          action="mold_panel_action" parent="tokiku.menu_panels" sequence="2"/>
+
+    <record model="ir.actions.server" id="raw_panel_action">
+        <field name="name">Aluminum Raw Material</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_raw_dashboard()</field>
+    </record>
+    <menuitem name="Aluminum Raw Material" id="menu_raw_panel" groups="group_tokiku_admin,group_tokiku_user"
+          action="raw_panel_action" parent="tokiku.menu_panels" sequence="3"/>
+
+<!--    <record model="ir.actions.server" id="refine_panel_action">-->
+<!--        <field name="name">Aluminum Refine</field>-->
+<!--        <field name="model_id" ref="model_tokiku_panel"/>-->
+<!--        <field name="code">action = env['account.analytic.contract'].open_refine()</field>-->
+<!--    </record>-->
+<!--    <menuitem name="Aluminum Refine" id="menu_refine_panel" groups="group_tokiku_admin"-->
+<!--          action="refine_panel_action" parent="tokiku.menu_panels" sequence="4"/>-->
+
+<!--    <record model="ir.actions.server" id="refine_panel_action2">-->
+<!--        <field name="name">Aluminum Refine</field>-->
+<!--        <field name="model_id" ref="model_tokiku_panel"/>-->
+<!--        <field name="code">action = model.open_refine_panel()</field>-->
+<!--    </record>-->
+<!--    <record id="refine_panel_action2" model="ir.actions.act_window">-->
+<!--        <field name="name">Aluminum Refine</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="res_model">tokiku.panel_line</field>-->
+<!--        <field name="view_type">form</field>-->
+<!--        <field name="view_mode">tree</field>-->
+<!--        <field name="domain">[('panel_id.project_id', '=', self.env.user.project_id.id), ('panel_id.categ_code', '=', 'refine')]</field>-->
+<!--        <field name="view_id" ref="view_panel_line_tree"/>-->
+<!--    </record>-->
+<!--    <menuitem name="Aluminum Refine Panel" id="menu_refine_panel" groups="group_tokiku_admin"-->
+<!--          action="refine_panel_action2" parent="tokiku.menu_panels" sequence="5"/>-->
+
+    <record model="ir.actions.server" id="refine_dashboard_action">
+        <field name="name">Aluminum Refine Dashboard</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_refine_dashboard()</field>
+    </record>
+    <menuitem name="Aluminum Refine Dashboard" id="menu_refine_dashboard" groups="group_tokiku_admin,group_tokiku_user"
+          action="refine_dashboard_action" parent="tokiku.menu_panels" sequence="4"/>
+<!--    <menuitem name="Aluminum Refine Order" id="menu_refine_order" groups="group_tokiku_admin"-->
+<!--          action="refine_panel_order" parent="tokiku.menu_refine" sequence="4"/>-->
+
+    <record model="ir.actions.server" id="glass_dashboard_action">
+        <field name="name">Glass Dashboard</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_glass_dashboard()</field>
+    </record>
+    <menuitem name="Glass Dashboard" id="menu_glass_dashboard" groups="group_tokiku_admin,group_tokiku_user"
+          action="glass_dashboard_action" parent="tokiku.menu_panels" sequence="5"/>
+
+    <record model="ir.actions.server" id="plate_dashboard_action">
+        <field name="name">Aluminum Plate Dashboard</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_plate_dashboard()</field>
+    </record>
+    <menuitem name="Aluminum Plate Dashboard" id="menu_plate_dashboard" groups="group_tokiku_admin,group_tokiku_user"
+          action="plate_dashboard_action" parent="tokiku.menu_panels" sequence="6"/>
+
+    <record model="ir.actions.server" id="steel_dashboard_action">
+        <field name="name">Stainless Steel Dashboard</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_steel_dashboard()</field>
+    </record>
+    <menuitem name="Stainless Steel Dashboard" id="menu_steel_dashboard" groups="group_tokiku_admin,group_tokiku_user"
+          action="steel_dashboard_action" parent="tokiku.menu_panels" sequence="7"/>
+
+    <record model="ir.actions.server" id="iron_dashboard_action">
+        <field name="name">Iron Pieces Dashboard</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_iron_dashboard()</field>
+    </record>
+    <menuitem name="Iron Pieces Dashboard" id="menu_iron_dashboard" groups="group_tokiku_admin,group_tokiku_user"
+          action="iron_dashboard_action" parent="tokiku.menu_panels" sequence="8"/>
+
+    <record model="ir.actions.server" id="stone_dashboard_action">
+        <field name="name">Stone Dashboard</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_stone_dashboard()</field>
+    </record>
+    <menuitem name="Stone Dashboard" id="menu_stone_dashboard" groups="group_tokiku_admin,group_tokiku_user"
+          action="stone_dashboard_action" parent="tokiku.menu_panels" sequence="9"/>
+
+    <record model="ir.actions.server" id="silicon_dashboard_action">
+        <field name="name">Silicon Dashboard</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_silicon_dashboard()</field>
+    </record>
+    <menuitem name="Silicon Dashboard" id="menu_silicon_dashboard" groups="group_tokiku_admin,group_tokiku_user"
+          action="silicon_dashboard_action" parent="tokiku.menu_panels" sequence="10"/>
+
+    <record model="ir.actions.server" id="rubber_dashboard_action">
+        <field name="name">Rubber Dashboard</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_rubber_dashboard()</field>
+    </record>
+    <menuitem name="Rubber Dashboard" id="menu_rubber_dashboard" groups="group_tokiku_admin,group_tokiku_user"
+          action="rubber_dashboard_action" parent="tokiku.menu_panels" sequence="11"/>
+
+    <record model="ir.actions.server" id="mineral_dashboard_action">
+        <field name="name">Mineral Dashboard</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_mineral_dashboard()</field>
+    </record>
+    <menuitem name="Mineral Dashboard" id="menu_mineral_dashboard" groups="group_tokiku_admin,group_tokiku_user"
+          action="mineral_dashboard_action" parent="tokiku.menu_panels" sequence="12"/>
+
+    <record model="ir.actions.server" id="accessories_dashboard_action">
+        <field name="name">Accessories Dashboard</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_accessories_dashboard()</field>
+    </record>
+    <menuitem name="Accessories Dashboard" id="menu_accessories_dashboard" groups="group_tokiku_admin,group_tokiku_user"
+          action="accessories_dashboard_action" parent="tokiku.menu_panels" sequence="13"/>
+
+    <record model="ir.actions.server" id="others_dashboard_action">
+        <field name="name">Others Dashboard</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_others_dashboard()</field>
+    </record>
+    <menuitem name="Others Dashboard" id="menu_others_dashboard" groups="group_tokiku_admin,group_tokiku_user"
+          action="others_dashboard_action" parent="tokiku.menu_panels" sequence="14"/>
+
+    <record model="ir.actions.server" id="assembly_dashboard_action">
+        <field name="name">Assembly Dashboard</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_assembly_dashboard()</field>
+    </record>
+    <menuitem name="Assembly Dashboard" id="menu_assembly_dashboard" groups="group_tokiku_admin,group_tokiku_user"
+          action="assembly_dashboard_action" parent="tokiku.menu_panels" sequence="15"/>
+
+    <record model="ir.actions.server" id="install_dashboard_action">
+        <field name="name">Installation Dashboard</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_installation_dashboard()</field>
+    </record>
+    <menuitem name="Installation Dashboard" id="menu_install_dashboard" groups="group_tokiku_admin,group_tokiku_user"
+          action="install_dashboard_action" parent="tokiku.menu_panels" sequence="16"/>
+
+    <record model="ir.actions.server" id="not_purchase_panel_action">
+        <field name="name">Haven't Purchased Panel</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_not_purchase_table()</field>
+    </record>
+    <menuitem name="Not Purchase" id="menu_not_purchase_panel" groups="group_tokiku_admin,group_tokiku_user"
+          action="not_purchase_panel_action" parent="tokiku.menu_panels" sequence="17"/>
+
+<!--    <record model="ir.actions.server" id="panel_summary_action">-->
+<!--        <field name="name">Panel Summary</field>-->
+<!--        <field name="model_id" ref="model_tokiku_panel"/>-->
+<!--        <field name="code">action = env['project.project'].open_panel_summary()</field>-->
+<!--    </record>-->
+<!--    <menuitem name="Panel Summary" id="menu_panel_summary" groups="group_tokiku_admin,group_tokiku_user"-->
+<!--          action="panel_summary_action" parent="tokiku.menu_panels" sequence="18"/>-->
+
+    <record model="ir.actions.server" id="order_summary_action">
+        <field name="name">Order Line Summary</field>
+        <field name="model_id" ref="model_tokiku_panel"/>
+        <field name="code">action = env['project.project'].open_order_line_summary()</field>
+    </record>
+    <menuitem name="Order Line Summary" id="menu_order_summary" groups="group_tokiku_admin,group_tokiku_user"
+          action="order_summary_action" parent="tokiku.menu_panels" sequence="19"/>
+
+    <!-- 新增倉儲 -->
+    <record model="ir.actions.server" id="tokiku.stock_operations_action1">
+        <field name="name">Stock Operations</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="code">action = env['stock.picking'].open_stock_pick()</field>
+    </record>
+    <menuitem name="Stock Operations" id="tokiku.menu_stock_operations" groups="group_tokiku_admin,group_tokiku_user"
+          action="tokiku.stock_operations_action1" parent="tokiku.menu_main_tokiku" sequence="10"/>
+</odoo>

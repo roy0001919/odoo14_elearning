@@ -1,0 +1,559 @@
+/* --- Restaurant Specific CSS --- */
+
+.screen .screen-content-flexbox {
+    margin:     0px auto;
+    text-align: left;
+    height:     100%;
+    overflow:   hidden;
+    position:   relative;
+    display:    -webkit-flex;
+    -webkit-flex-flow:  column nowrap;
+    flex-flow:  column nowrap;
+}
+
+/* ------ FLOOR SELECTOR ------- */
+
+.plan-selector { 
+    line-height: 48px;
+    font-size: 18px;
+    display: -webkit-flex;
+    display: flex;
+    text-align: center;
+    width: 100%;
+}
+.plan-selector .button {
+    cursor: pointer;
+    border-left: dashed 1px rgb(196,196,196);
+    -webkit-flex: 1;
+    flex: 1;
+}
+.plan-selector .button:first-child {
+    border-left: none;
+}
+.plan-selector .button.active {
+    background: #6EC89B;
+    color: white;
+}
+
+/* ------ FLOOR MAP ------- */
+
+.plan-map {
+    -webkit-flex: 1;
+    flex: 1;
+    position: relative;
+    width: auto;
+    height: 100%;
+    box-shadow: 0px 6px 0px -3px rgba(0,0,0,0.07) inset;
+    background: #D8D7D7;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    background-size: cover;
+    transition: all 300ms ease-in-out;
+}
+
+.plan-map .batches {
+    position: relative;
+}
+@media screen and (min-width: 1024px) {
+    .plan-map .batches {
+        max-width: 1024px;
+        margin: auto;
+        max-height: 540px;
+        border-radius: 0px 0px 6px 6px;
+        border: dashed 2px rgba(0,0,0,0.1);
+        border-top: none;
+        height: 100%;
+    }
+}
+
+.plan-map .batch{
+    position: absolute;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+    background: rgb(53, 211, 116);
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0px 3px rgba(0,0,0,0.07);
+    transition: background, background-color 300ms ease-in-out;
+    overflow: hidden;
+}
+.plan-map .batch .batch-cover {
+    display: block;
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    border-radius: 0px 0px 3px 3px;
+    background: rgba(0,0,0,0.2);
+}
+.plan-map .batch .batch-cover.full {
+    border-radius: 3px 3px 3px 3px;
+}
+.plan-map .batch .batch-seats {
+    position: absolute;
+    display: inline-block;
+    bottom: 0;
+    left: 50%;
+    height: 20px;
+    width: 60px;
+    line-height: 20px;
+    font-size: 16px;
+    border-radius: 50%;
+    margin-left: -30px;
+    margin-bottom: 4px;
+    background: black;
+    color: white;
+    opacity: 0.2;
+    z-index: 3;
+}
+.plan-map .batch .label {
+    display: block;
+    max-height: 100%;
+    overflow: hidden;
+    position: relative;
+    bottom: 5px;
+    z-index: 5;
+}
+.plan-map .batch.selected {
+    outline: solid rgba(255,255,255,0.3);
+    cursor: move;
+    z-index: 50;
+}
+.plan-map .edit-button.editing {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    margin: 8px;
+    line-height: 32px;
+    width: 32px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    border: solid 1px rgba(0,0,0,0.2);
+}
+.plan-map .edit-button.editing.active {
+    background: #444;
+    border-color: transparent;
+    color: white;
+}
+.plan-map .edit-bar {
+    position: absolute;
+    top: 0;
+    right: 40px;
+    margin: 8px;
+    line-height: 34px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    background: rgba(255,255,255,0.5);
+    z-index: 100;
+}
+.plan-map .edit-bar .edit-button {
+    position: relative;
+    width: 32px;
+    display: inline-block;
+    cursor: pointer;
+    margin-right: -4px;
+    border-right: solid 1px rgba(0,0,0,0.2);
+    transition: all 150ms linear;
+}
+.plan-map .edit-bar .edit-button.disabled {
+    cursor: default;
+}
+.plan-map .edit-bar .edit-button.disabled > * {
+    opacity: 0.5;
+}
+.plan-map .edit-bar .color-picker {
+    position: absolute;
+    left: -106px;
+    top: 40px;
+    width: 180px;
+    height: 180px;
+    border-radius: 3px;
+    z-index: 100;
+}
+.plan-map .edit-bar .color-picker .color {
+    display: block;
+    float: left;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    background-color: gray;
+}
+.plan-map .edit-bar .color-picker .color.tl {  border-top-left-radius: 3px; }
+.plan-map .edit-bar .color-picker .color.tr {  border-top-right-radius: 3px; }
+.plan-map .edit-bar .color-picker .color.bl {  border-bottom-left-radius: 3px; }
+.plan-map .edit-bar .color-picker .color.br {  border-bottom-right-radius: 3px; }
+
+.plan-map .edit-bar .close-picker {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -16px;
+    margin-bottom: -16px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 16px;
+    background: black;
+    color: white;
+    cursor: pointer;
+}
+
+.plan-map .edit-bar .edit-button:last-child {
+    margin-right: 0;
+    border-right: none;
+}
+
+.plan-map .batch.selected .batch-handle {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    left: 50%;
+    top: 50%;
+    border-radius: 24px;
+    margin-left: -24px;
+    margin-top:  -24px;
+    background: white;
+    box-shadow: 0px 2px 3px rgba(0,0,0,0.2);
+    cursor: grab;
+    transition: all 150ms linear;
+    z-index: 100;
+}
+.plan-map .batch.selected .batch-handle:hover {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    margin-left: -30px;
+    margin-top: -30px;
+}
+.plan-map .batch .batch-handle.top {      top: 0;         }
+.plan-map .batch .batch-handle.bottom {   top: 100%;      }
+.plan-map .batch .batch-handle.left {     left: 0;        }
+.plan-map .batch .batch-handle.right {    left: 100%;     }
+
+.plan-map .batch .order-count {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    background: black;
+    width: 20px;
+    margin-top: 1px;
+    margin-left: -10px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    z-index: 10;
+}
+.plan-map .batch .order-count.notify-printing {
+    background: red;
+}
+.plan-map .batch .order-count.notify-skipped {
+    background: blue;
+}
+
+.plan-map .empty-plan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 400px;
+    height: 40px;
+    font-size: 18px;
+    text-align: center;
+    opacity: 0.6;
+}
+.plan-map .empty-plan i {
+    display: inline-block;
+    padding: 6px 7px 3px;
+    margin: 0px 3px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 3px;
+}
+
+
+/* ------ FLOOR BUTTON IN THE ORDER SELECTOR ------- */
+
+.pos .order-button.plan-button {
+    background: #6EC89B;
+    font-weight: bold;
+    font-size: 16px;
+    min-width: 128px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+.pos .order-button.plan-button .batch-name {
+    font-weight: normal;
+}
+.pos .order-button.plan-button .fa{
+    font-size: 24px;
+}
+/* ------ ORDER LINE STATUS ------- */
+
+.pos .order .orderline.dirty {
+    border-left: solid 6px #6EC89B;
+    color: #6EC89B;
+    padding-left: 9px;
+}
+.pos .order .orderline.skip {
+    border-left: solid 6px #7F82AC;
+    color: #7F82AC;
+    padding-left: 9px;
+}
+
+
+/* ------ ORDER NOTES ------- */
+
+.pos .order .orderline-note {
+    margin: 8px;
+}
+.orderline-note .fa {
+    opacity: 0.5;
+    margin-right: 4px;
+}
+
+/* ------ KEYWORD BOX ------- */
+.pos .keywordbox {
+    width: 100%;
+}
+.pos .keywordbox input {
+    width: 500px;
+    border: 1px solid #cecbcb;
+    padding: 10px 20px;
+    padding-left: 38px;
+    margin: 6px;
+    background: url("../img/search.png") no-repeat 15px;
+    background-color: white;
+    border-radius: 20px;
+    font-family: "Lato","Lucida Grande", Helvetica, Verdana, Arial;
+    font-size: 13px;
+}
+.pos .keywordbox input:focus {
+    outline: none;
+    box-shadow: 0px 0px 0px 2px rgb(153, 153, 255) inset;
+    color: rgb(153, 153, 255);
+}
+.pos .keyword-clear {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 11px;
+    left: 11px;
+    cursor: pointer;
+}
+
+.pos .reservationlist-screen{
+    height:100%;
+}
+
+.pos .reservation-list{
+    font-size: 16px;
+    width: 100%;
+    line-height: 40px;
+}
+.pos .reservation-list th,
+.pos .reservation-list td {
+    padding: 0px 8px;
+}
+.pos .reservation-list tr{
+    transition: all 150ms linear;
+    background: rgb(230,230,230);
+}
+.pos .reservation-list thead > tr,
+.pos .reservation-list tr:nth-child(even) {
+    background: rgb(247,247,247);
+}
+.pos .reservation-list tr.highlight{
+    transition: all 150ms linear;
+    background: rgb(110,200,155) !important;
+    color: white;
+}
+.pos .reservation-list tr.lowlight{
+    transition: all 150ms linear;
+    background: rgb(216, 238, 227);
+}
+.pos .reservation-list tr.lowlight:nth-child(even){
+    transition: all 150ms linear;
+    background: rgb(227, 246, 237);
+}
+.pos .reservation-details{
+    padding: 16px;
+    border-bottom: solid 5px rgb(110,200,155);
+}
+.pos .reservation-picture{
+    height: 64px;
+    width: 64px;
+    border-radius: 32px;
+    overflow: hidden;
+    text-align: center;
+    float: left;
+    margin-right: 16px;
+    background: white;
+    position: relative;
+}
+.pos .reservation-picture > img {
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    right: -9999px;
+    left: -9999px;
+    max-height: 64px;
+    margin: auto;
+}
+.pos .reservation-picture > .fa {
+    line-height: 64px;
+    font-size: 32px;
+}
+.pos .reservation-picture .image-uploader {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.pos .reservation-name {
+    font-size: 32px;
+    line-height: 64px;
+    margin-bottom:16px;
+}
+.pos  .edit-buttons {
+    position: absolute;
+    right: 16px;
+    top: 10px;
+}
+.pos .edit-buttons .button{
+    display: inline-block;
+    margin-left: 16px;
+    color: rgb(128,128,128);
+    cursor: pointer;
+    font-size: 36px;
+}
+.pos .reservation-details-box{
+    position: relative;
+    font-size: 16px;
+}
+.pos .reservation-details-left{
+    width: 50%;
+    float: left;
+}
+.pos .reservation-details-right{
+    width: 50%;
+    float: right;
+}
+.pos .reservation-detail{
+    line-height: 24px;
+}
+.pos .reservation-detail > .label{
+    font-weight: bold;
+    display: inline-block;
+    width: 75px;
+    text-align: right;
+    margin-right: 8px;
+}
+.pos .reservation-details input,
+.pos .reservation-details select
+{
+    padding: 4px;
+    border-radius: 3px;
+    border: solid 1px #cecbcb;
+    margin-bottom: 4px;
+    background: white;
+    font-family: "Lato","Lucida Grande", Helvetica, Verdana, Arial;
+    color: #555555;
+    width: 340px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+.pos .reservation-details input.client-name {
+    font-size: 24px;
+    line-height: 24px;
+    margin: 18px 6px;
+    width: 340px;
+}
+.pos .reservation-detail > .empty{
+    opacity: 0.3;
+}
+.pos .searchbox{
+    right: auto;
+    margin-left: -90px;
+    margin-top:8px;
+    left: 50%;
+}
+.pos .searchbox input{
+    width: 120px;
+}
+.pos .reservation-line{
+    cursor: pointer;
+}
+.pos .reservation-cancel-btn{
+    border-radius: 2px;
+    padding: 5px;
+    border: 2px solid palevioletred;
+    cursor: pointer;
+}
+.pos .reservation-cancel-btn:hover{
+    background: red;
+    color: white
+}
+.pos .reservation-reprint-btn{
+    border-radius: 2px;
+    padding: 5px;
+    border: 2px solid forestgreen;
+    cursor: pointer;
+}
+.pos .reservation-reprint-btn:hover{
+    background: green;
+    color: white
+}
+
+
+.pos-order-footer{
+    font-size: 16px;
+    text-align: center;
+}
+
+.pos .product {
+    position:relative;
+    vertical-align: top;
+    display: inline-block;
+    line-height: 200px;
+    font-size: 14px;
+    margin: 8px !important;
+    width: 244px;
+    height:230px;
+    background:#fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+    border-bottom-width: 3px;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+}
+
+.pos .product .product-img {
+    position: relative;
+    width: 240px;
+    height: 200px;
+    background: white;
+    text-align: center;
+}
+
+.pos .product .product-img img {
+    max-height: 100%;
+    max-width:  100%;
+    width:  200px;
+    vertical-align: middle;
+}
+
+.pos .numpad button {
+    width: 72px;
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="payment.payment_acquirer_easystore" model="payment.acquirer">
+            <field name="name">Easystore</field>
+            <field name="image" type="base64" file="payment_easystore/static/src/img/sinopac_logo.png"/>
+            <field name="provider">easystore</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="view_template_id" ref="easystore_acquirer_button"/>
+            <field name="description" type="html">
+                <p>
+                    A payment gateway to accept online payments via Sinopac Transfer.
+                </p>
+                <ul>
+                    <li><i class="fa fa-check"/>eCommerce</li>
+                </ul>
+            </field>
+            <field name="environment">test</field>
+            <field name="pre_msg"><![CDATA[
+                <p>Transfer information will be provided after choosing the payment method.</p>]]>
+            </field>
+            <field name="easystore_shop_num">dummy</field>
+            <field name="easystore_client_name">dummy</field>
+            <field name="easystore_test_key_one">dummy</field>
+            <field name="easystore_test_key_two">dummy</field>
+            <field name="easystore_test_key_thr">dummy</field>
+            <field name="easystore_prod_key_one">dummy</field>
+            <field name="easystore_prod_key_two">dummy</field>
+            <field name="easystore_prod_key_thr">dummy</field>
+        </record>
+    </data>
+</odoo>

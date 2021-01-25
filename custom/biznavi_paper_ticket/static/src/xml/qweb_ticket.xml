@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<t t-extend="XmlReceipt">
+		<t t-jquery='receipt' t-operation='replace'>
+            <receipt align='center' value-thousands-separator=''>
+                <t t-set="seq_no" t-value="0"/>
+                <t t-foreach='receipt.orderlines' t-as='line'>
+                    <t t-foreach='line.quantity' t-as='i'>
+                        <t t-if="seq_no!=0"><cut/></t>
+                        <t t-if='receipt.company.logo'>
+                            <img t-att-src='receipt.company.logo' />
+                        </t>
+                        <t t-if='receipt.company.name'>
+                            <h1><t t-esc='receipt.company.name' /></h1>
+                        </t>
+                        <div font='b'>
+                            <br/>
+                            <br/>
+                            <h1><t t-esc='line.product_name_wrapped[0]'/></h1>
+                            <div><t t-esc='line.price'/>元</div>
+                            <br/>
+                            <br/>
+                        </div>
+                        <div class='cashier'>
+                            <div><t t-esc='receipt.name'/>-<t t-esc="seq_no"/></div>
+                            <br/>
+                            <div>【 存根聯 】</div>
+                        </div>
+                        <cut/>
+                        <t t-if='receipt.company.logo'>
+                            <img t-att-src='receipt.company.logo'/>
+                        </t>
+                        <t t-if='receipt.company.name'>
+                            <h1><t t-esc='receipt.company.name'/></h1>
+                        </t>
+                        <div font='b'>
+                            <br/>
+                            <br/>
+                            <h1><t t-esc='line.product_name_wrapped[0]'/></h1>
+                            <div><t t-esc='line.price'/>元</div>
+                            <br/>
+                            <br/>
+                            <div>第　　　　　　　　梯</div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                        </div>
+                        <div class='cashier'>
+                            <div><t t-esc='receipt.name'/>-<t t-esc="seq_no"/></div>
+                            <br/>
+                            <div>【 收執聯 】</div>
+                        </div>
+                        <t t-set="seq_no" t-value="seq_no + 1"/>
+                    </t>
+                    <t t-set="seq_no" t-value="seq_no + line.quantity"/>
+                </t>
+            </receipt>
+		</t>
+	</t>
+</templates>

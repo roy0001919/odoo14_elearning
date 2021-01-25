@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="print_biznavi_payment_transaction_report_view" model="ir.ui.view">
+        <field name="name">Print Payment Transaction Report</field>
+        <field name="model">biznavi_payment_transaction.report</field>
+        <field name="arch" type="xml">
+            <form string="Print Payment Transaction Report">
+                <!--<p>Please enter the number of the first pre-printed check that you are about to print on.</p><p>This will allow to save on payments the number of the corresponding check.</p>-->
+                <group>
+                        <field name="report_start"/>
+                        <field name="report_end"/>
+                </group>
+                <footer>
+                    <button name="print_report" string="Get Report" type="object" class="oe_highlight"/> or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_biznavi_payment_transaction_report_all" model="ir.actions.act_window">
+        <field name="name">Payment Transaction Report</field>
+        <field name="res_model">biznavi_payment_transaction.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="print_biznavi_payment_transaction_report_view"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem name="Monthly Report"
+            action='action_biznavi_payment_transaction_report_all'
+            id='biznavi_payment_transaction_report'
+            parent='payment.root_payment_menu'
+            sequence='99' />
+</odoo>

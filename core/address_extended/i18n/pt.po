@@ -1,0 +1,146 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* address_extended
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0-20151028\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-28 14:35+0000\n"
+"PO-Revision-Date: 2016-03-28 14:35+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: address_extended
+#: model:ir.model.fields,field_description:address_extended.field_address_extended_places_active
+msgid "Active"
+msgstr "Ativo"
+
+#. module: address_extended
+#: model:ir.model.fields,field_description:address_extended.field_address_extended_places_country_id
+#: model:ir.ui.view,arch_db:address_extended.view_address_extended_filter
+msgid "Country"
+msgstr "País"
+
+#. module: address_extended
+#: model:ir.model.fields,field_description:address_extended.field_address_extended_places_create_uid
+msgid "Created by"
+msgstr "Criada por"
+
+#. module: address_extended
+#: model:ir.model.fields,field_description:address_extended.field_address_extended_places_create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: address_extended
+#: model:ir.model.fields,field_description:address_extended.field_address_extended_places_display_name
+msgid "Display Name"
+msgstr "Nome a Mostrar"
+
+#. module: address_extended
+#: model:ir.model.fields,field_description:address_extended.field_address_extended_places_state_id
+msgid "Fed. State"
+msgstr "Estado Federal"
+
+#. module: address_extended
+#: model:ir.ui.view,arch_db:address_extended.view_address_extended_filter
+msgid "Group By..."
+msgstr "Agrupar por..."
+
+#. module: address_extended
+#: model:ir.model.fields,field_description:address_extended.field_address_extended_places_id
+msgid "ID"
+msgstr "Id."
+
+#. module: address_extended
+#: model:ir.model.fields,field_description:address_extended.field_address_extended_places___last_update
+msgid "Last Modified on"
+msgstr "Última Modificação em"
+
+#. module: address_extended
+#: model:ir.model.fields,field_description:address_extended.field_address_extended_places_write_uid
+msgid "Last Updated by"
+msgstr "Última Atualização por"
+
+#. module: address_extended
+#: model:ir.model.fields,field_description:address_extended.field_address_extended_places_write_date
+msgid "Last Updated on"
+msgstr "Última Atualização em"
+
+#. module: address_extended
+#: model:ir.model.fields,field_description:address_extended.field_address_extended_places_name
+msgid "Name"
+msgstr "Nome"
+
+#. module: address_extended
+#: model:ir.model.fields,field_description:address_extended.field_address_extended_places_parent_id
+#: model:ir.ui.view,arch_db:address_extended.view_address_extended_filter
+msgid "Parent"
+msgstr "Ascendente"
+
+#. module: address_extended
+#: model:ir.model,name:address_extended.model_res_partner
+msgid "Partner"
+msgstr "Parceiro"
+
+#. module: address_extended
+#: model:ir.model.fields,field_description:address_extended.field_res_partner_place_id_1
+msgid "Place (level 1)"
+msgstr "Distrito"
+
+#. module: address_extended
+#: model:ir.model.fields,field_description:address_extended.field_res_partner_place_id_2
+msgid "Place (level 2)"
+msgstr "Concelho"
+
+#. module: address_extended
+#: model:ir.model.fields,field_description:address_extended.field_res_partner_place_id_3
+msgid "Place (level 3)"
+msgstr "Freguesia"
+
+#. module: address_extended
+#: model:ir.ui.view,arch_db:address_extended.address_extended_view_partner_form
+#: model:ir.ui.view,arch_db:address_extended.address_extended_view_res_partner_filter
+msgid "Place 1"
+msgstr "Distrito"
+
+#. module: address_extended
+#: model:ir.ui.view,arch_db:address_extended.address_extended_view_partner_form
+#: model:ir.ui.view,arch_db:address_extended.address_extended_view_res_partner_filter
+msgid "Place 2"
+msgstr "Concelho"
+
+#. module: address_extended
+#: model:ir.ui.view,arch_db:address_extended.address_extended_view_partner_form
+#: model:ir.ui.view,arch_db:address_extended.address_extended_view_res_partner_filter
+msgid "Place 3"
+msgstr "Freguesia"
+
+#. module: address_extended
+#: model:ir.actions.act_window,name:address_extended.action_address_extended_places
+#: model:ir.ui.menu,name:address_extended.menu_address_extended_places
+#: model:ir.ui.view,arch_db:address_extended.view_address_extended_form
+#: model:ir.ui.view,arch_db:address_extended.view_address_extended_tree
+msgid "Places"
+msgstr "Localidades"
+
+#. module: address_extended
+#: model:ir.ui.view,arch_db:address_extended.view_address_extended_filter
+msgid "Search places"
+msgstr "Procurar localidades"
+
+#. module: address_extended
+#: model:ir.ui.view,arch_db:address_extended.address_extended_view_partner_form
+#: model:ir.ui.view,arch_db:address_extended.view_address_extended_filter
+msgid "State"
+msgstr "Estado"
+
+#. module: address_extended
+#: model:ir.model,name:address_extended.model_address_extended_places
+msgid "address_extended.places"
+msgstr "address_extended.places"
+

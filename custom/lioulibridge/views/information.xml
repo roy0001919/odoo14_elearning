@@ -1,0 +1,279 @@
+<t t-name="website.information1">
+  <t t-call="website.layout">
+    <div id="wrap" class="oe_structure oe_empty">
+      <section class="s_title">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 mt0">
+              <h3 class="text-center text-muted">
+                <span style="color: rgb(255, 0, 0); font-family: 標楷體; font-size: 18px;">✼ 預約週一吊橋拍攝相關預約參訪應注意事項詳見吊橋拍攝預約專區</span>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="parallax s_parallax_slider oe_custom_bg oe_img_bg" style="background-image: url(&quot;/web/image/website.s_parallax_slider_default_image&quot;);" data-scroll-background-ratio="0.3">
+        <div>
+          <div>
+            <div class="oe_structure"/>
+          </div>
+        </div>
+      </section>
+      <ol/>
+      <section class="s_three_columns">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 mb48 mt32">
+              <h4 class="mt16"><span class="fa fa-1x fa-calendar" style=""/>&amp;nbsp;預約注意事項 </h4>
+              <p>
+                <br/>
+              </p>
+              <div class="o_panel panel panel-default s_panel">
+                <div class="panel-heading">
+                  <h3 class="panel-title">開放預約時間 </h3>
+                </div>
+                <div class="panel-body">
+                  <ol>
+                    <li>
+                      <p>禮拜一不開放預約，惟連續假日倘適逢禮拜一則照常開放。</p>
+                    </li>
+                    <li>
+                      <p>須於參訪日當天預定參訪梯次時段前登入本網站完成預約購票登記，並依預約時段持電子票券(QR code)排隊入橋（例如：預定6月2日10時至10時30分時段【第三梯次】參訪，最遲須於6月2日當日10時前完成該時段預約購票，並依預約時段持電子票券(QR code)排隊入橋。&amp;nbsp;</p>
+                    </li>
+                    <li>
+                      <p>退票期限：預約參訪日前1日（例如：預約6月2日參訪，可以退票最後期限為6月1日深夜12時/即6月2日凌晨零時），<font style="color: rgb(206, 0, 0);">故請特別注意，參訪日當日購票後將無法退票，購票前請詳加斟酌&amp;nbsp;</font>。</p>
+                    </li>
+                    <li>
+                      <p>本府得視吊橋營運管理需求暫停受理或取消預約。 </p>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+              <div class="o_panel panel panel-default s_panel">
+                <div class="panel-heading">
+                  <h3 class="panel-title">預約方式</h3>
+                </div>
+                <div class="panel-body">
+                  <p>預約方式：網路預約並完成付款始完成預約（不受理電話預約）。
+                                        <i><b><font style="color: rgb(0, 0, 255);"><a href="https://lioulibridge.pthg.gov.tw/lioulibridge/static/src/docs/%E5%B1%B1%E5%B7%9D%E7%90%89%E7%92%83%E5%90%8A%E6%A9%8B%E9%A0%90%E7%B4%84%E6%93%8D%E4%BD%9C%E8%AA%AA%E6%98%8E.pdf" target="_blank">訂票與退款說明</a></font></b></i>
+                                    </p>
+                </div>
+              </div>
+              <div class="o_panel panel panel-default s_panel">
+                <div class="panel-heading">
+                  <h3 class="panel-title">預約梯次 </h3>
+                </div>
+                <div class="panel-body">
+                  <p>0900、0930、1000、1030、1100、1130、1200、1230、1300、1330、1400、1430、1500、1530等14個梯次，假日增加1600、1630兩個梯次。</p>
+                  <p>● 每梯次開放預約人數限制：250人。</p>
+                </div>
+              </div>
+              <div class="o_panel panel panel-default s_panel">
+                <div class="panel-heading">
+                  <h3 class="panel-title">請預約參訪民眾配合事項
+                                        <br/>
+                                    </h3>
+                </div>
+                <div class="panel-body">
+                  <ol>
+                    <li>
+                      <p>
+                        <font style="color: rgb(206, 0, 0);">請持電子票券(QR code)至吊橋預約參訪入口，由現場人員驗票後始得入橋參觀，另為加速通行，建議先行下載或列印電子票劵(QR code)。&amp;nbsp;</font>
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <font style="color: rgb(206, 0, 0);">購買優待票及特惠票遊客請攜帶相關證明俾現場驗票人員查驗，團體帶隊人員須帶身份證明文件及團員名單資料以縮短預約團體身份資料辨識時間，倘有無法辨識情形將取消預約資格。</font>
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <font style="color: rgb(206, 0, 0);">請依預約參訪時間至吊橋預約參訪入口處等候入場,逾時不候 (前往參訪時請自行斟酌轉搭接駁車、停車時間)。</font>
+                      </p>
+                    </li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb48 mt32">
+              <h4 class="mt16"><span class="fa fa-1x fa-group" style=""/> 參訪應注意事項
+                            </h4>
+              <h4 class="mt16">
+                <br/>
+              </h4>
+              <ol>
+                <li>
+                  <p>吊橋周邊景點導覽解說服務，請洽有限責任屏東縣原住民山川琉璃吊橋旅遊服務勞動合作社預約窗口(<a href="https://goo.gl/M2AAfU">https://goo.gl/M2AAfU</a>)。</p>
+                </li>
+                <li>
+                  <p>自105年4月16日重新開放民眾參訪並酌收清潔維護費用，開放參訪時段如下：（1） 平日禮拜二~禮拜五（禮拜一不開放預約及參訪，惟連續假日倘適逢禮拜一則照常開放）：09：00 ~ 16：00。（2） 假日(含連續假日、國定假日)：09：00 ~ 17：00。&amp;nbsp;</p>
+                </li>
+                <li>
+                  <p>每日開放通行梯次及人數：計有 0900、0930、1000、1030、1100、1130、1200、1230、 1300、1330、1400、1430、1500、1530、1600(僅假日)及1630(僅假日)等梯次，每梯次開放250人參訪。</p>
+                </li>
+                <li>
+                  <p>限制橋上僅能同時100人參訪。</p>
+                </li>
+                <li>
+                  <p>參訪動線：<br/>(1) 從瑪家端（臺灣原住民族文化發展中心）進，三地門端出。<br/>(2) 從三地門端進，瑪家端（臺灣原住民族文化發展中心）出。<br/>(3) <font style="color: rgb(206, 0, 0);">入橋後可憑券折返</font>。<br/></p>
+                </li>
+                <li>
+                  <p>
+                  購票地點：
+                                        <br/>(1) 網路購票為主：於本網站上預約並完成付款 <br/>(2) 現場購票（<font style="color: rgb(206, 0, 0);">請注意現場票數量有限，售完為止，惠請民眾盡量先於網路完成預約購票</font>）：<br/>&amp;nbsp; &amp;nbsp; &amp;nbsp; (a) 從瑪家端至三地門端參訪者：請至瑪家端（臺灣原住民族文化發展中心）吊橋售票亭購票。<br/>&amp;nbsp; &amp;nbsp; &amp;nbsp; (b) 從三地門端至瑪家端參訪者：請至三地門端吊橋售票亭購票。<br/>
+                                    </p>
+                </li>
+                <li>
+                  <p>
+                  售票時間：
+                                        <br/>
+                  (1) 網路預約購票：參訪日當天預定參訪梯次時段前登入本網站完成預約購票登記，並依預約時段持電子票券(QR code)排隊入橋（例如：預定6月2日10時至10時30分時段【第三梯次】參訪，最遲須於6月2日當日10時前完成該時段預約購票，並依預約時段持電子票券(QR code)排隊入橋。）。
+                                        <br/> (2) 現場購票：<br/>&amp;nbsp; &amp;nbsp; &amp;nbsp;(a) 平日：8:30 起至15:30止。<br/>&amp;nbsp; &amp;nbsp; &amp;nbsp;(b) 假日：8:30 起至16:30止。 <br/>
+                                    </p>
+                </li>
+                <li>
+                  <p>現場08:30開始售票，如當日預定通行票數售完或逾售票時間，將停止售票。
+                                        <br/>
+                                    </p>
+                </li>
+                <li>
+                  <p>本吊橋通行收據為屏東縣政府自行收納款項收據，不另行開立統一發票，需開立購票證明者，請於購票時告知售票人員，離櫃恕不補發。
+                                        <br/>
+                                    </p>
+                </li>
+                <li>
+                  <p>售出吊橋通行票限預約之參訪當日使用。
+                                        <br/>
+                                    </p>
+                </li>
+                <li>
+                  <p>除因天災或其他不可抗拒之因素，由本府宣布停止吊橋通行並辦理退票外，通行票售出概不退換、遺失恕不補發。</p>
+                </li>
+                <li>
+                  <p>為鼓勵國內團體規劃屏東山川琉璃吊橋旅遊行程，參訪團體人數若符合團體優待票規定人數（應購買全票者30以上之團體），參訪團體之專業領隊（或導遊）得免規費隨團通行，惟該專業領隊（或導遊）須出示有效執業執照，且每團限優惠1名。</p>
+                </li>
+              </ol>
+            </div>
+            <div class="col-md-4 mb48 mt32"><h4 class="mt16"><span class="fa fa-1x fa-dollar" style=""/>&amp;nbsp;收費標準
+                            </h4><h4 class="mt16"><br/></h4><p/><table class="table table-bordered"><tbody><tr><td style="text-align: center; width: 30%;background-color: #f5f5f5;"><font style="font-size: 16px;">票種</font></td><td style="text-align: center;background-color: #f5f5f5;"><font style="font-size: 16px;">對象</font></td></tr><tr><td style="vertical-align: middle;">全票(50元)</td><td>無優惠適用者</td></tr><tr><td style="vertical-align: middle;">優待票(40元)</td><td>應購買全票者三十人以上之團體</td></tr><tr><td style="vertical-align: middle;">特惠票(30元)</td><td>
+				1.設籍本縣之縣民<br/>
+				2.年滿六十五歲以上老人或年滿五十 五歲以上原住民老人<br/>
+				3.七歲以上至未滿十二歲之兒童<br/>
+				4.持志願服務榮譽卡志工<br/>
+				5.參與其他經本府認定之活動者
+            </td></tr><tr><td style="vertical-align: middle;">拍攝票(1000元)</td><td>經本府同意在所定時段進入本地區拍攝參訪者</td></tr><tr><td style="vertical-align: middle;">免費</td><td>
+        		1.三地門鄉三地村、瑪家鄉北葉村及內埔鄉水門村村民<br/>
+        		2.因公務之需通行並經本府核准者<br/>
+        		3.身心障礙人士及陪同者一名<br/> 4.未滿七歲之兒童 </td></tr></tbody></table><font style="color: rgb(206, 0, 0);">※票價計算方式</font><br/>例1：某團體共30人，其中2人為65歲以上年長者，因全票未達30人，無團體優待票，故全票計28人，特惠票2人，費用共計28*50+30*2=1460。
+                            <br/>
+                            <br/>例2：某團體共32人，其中2人為65歲以上年長者，因全票已達30人，故特惠票30人，費用共計40*30+30*2=1260。&amp;nbsp;
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div class="panel panel-default o_panel s_panel"><div class="panel-heading "><h3 class="panel-title">其他事項</h3></div><div class="panel-body" style="font-size: 16px;"><ol><li><p><font style="color: rgb(206, 0, 0);">非開放通行期間嚴禁進入吊橋，擅自進入者後果自行負責。</font></p></li><li><p><font style="color: rgb(206, 0, 0);">遇有颱風、豪雨、強風、落雷及其他不適吊橋通行之天候時，本府得停止開放通行。</font></p></li><li><p><font style="color: rgb(206, 0, 0);">本吊橋部分路段陡峭，請有懼高症、高血壓、心臟病、酒醉、氣喘、孕婦、推行嬰幼兒車或其他身體狀況不宜通行者，為維安全請勿進入。</font></p></li><li><p><font style="color: rgb(206, 0, 0);">進入吊橋，請勿搖晃、嬉戲、奔跑、撐傘、拋棄垃圾、抽菸或任意逗留。</font></p></li><li><p><font style="color: rgb(206, 0, 0);">為免影響其他遊客通行，嬰兒車及輪椅不得入橋。</font></p></li><li><p><font style="color: rgb(206, 0, 0);">為顧及橋面上遊客安全，未經本府核准不得使用空拍機拍攝吊橋。</font></p></li></ol></div></div>
+                            <p/>
+                        </div>
+            <br/>
+          </div>
+        </div>
+      </section>
+      <style>
+&lt;!--
+ /* Font Definitions */
+@font-face
+	{font-family:Arial;
+	panose-1:2 11 6 4 2 2 2 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-536859905 -1073711037 9 0 511 0;}
+@font-face
+	{font-family:新細明體;
+	mso-font-charset:136;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-1610611969 684719354 22 0 1048577 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-536870145 1107305727 0 0 415 0;}
+@font-face
+	{font-family:"\@新細明體";
+	mso-font-charset:136;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-1610611969 684719354 22 0 1048577 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-536870145 1073786111 1 0 415 0;}
+@font-face
+	{font-family:標楷體;
+	panose-1:2 0 5 0 0 0 0 0 0 0;
+	mso-font-charset:136;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 134742016 16 0 1048577 0;}
+@font-face
+	{font-family:"Open Sans";
+	mso-font-alt:"DejaVu Sans YuanTi";
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-536870161 1073750107 40 0 415 0;}
+@font-face
+	{font-family:"\@標楷體";
+	mso-font-charset:136;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 134742016 16 0 1048576 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:none;
+	font-size:12.0pt;
+	mso-bidi-font-size:11.0pt;
+	font-family:Calibri;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-fareast-font-family:新細明體;
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	mso-font-kerning:1.0pt;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	mso-bidi-font-size:11.0pt;
+	font-family:Calibri;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+ /* Page Definitions */
+@page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:36.0pt;
+	mso-footer-margin:36.0pt;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+--&gt;
+</style>
+    </div>
+  </t>
+</t>

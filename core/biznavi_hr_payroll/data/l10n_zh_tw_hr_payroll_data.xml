@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- HR CONTRIBUTION REGISTER -->
+        <record id="zhtw_contrib_register_employees" model="hr.contribution.register">
+            <field name="name">正式員工</field>
+            <field name="partner_id" eval="False"/>
+        </record>
+        <record id="zhtw_contrib_register_company" model="hr.contribution.register">
+            <field name="name">公司</field>
+            <field name="partner_id" eval="False"/>
+        </record>
+
+        <!-- HR SALARY RULE CATEGORIES-->
+        <record id="hr_payroll_zhtw_base" model="hr.salary.rule.category">
+            <field name="name">本俸</field>
+            <field name="code">ZHTW_BASE</field>
+            <field name="parent_id" ref=""/>
+        </record>
+        <record id="hr_payroll_zhtw_gross" model="hr.salary.rule.category">
+            <field name="name">加項小計</field>
+            <field name="code">ZHTW_GROSS</field>
+            <field name="parent_id" ref=""/>
+        </record>
+        <record id="hr_payroll_zhtw_net" model="hr.salary.rule.category">
+            <field name="name">實發</field>
+            <field name="code">ZHTW_NET</field>
+            <field name="parent_id" ref=""/>
+        </record>
+        <record id="hr_payroll_zhtw_alw" model="hr.salary.rule.category">
+            <field name="name">津貼</field>
+            <field name="code">ZHTW_ALW</field>
+            <field name="parent_id" ref=""/>
+        </record>
+        <record id="hr_payroll_zhtw_ded" model="hr.salary.rule.category">
+            <field name="name">扣除項</field>
+            <field name="code">ZHTW_DED</field>
+            <field name="parent_id" ref=""/>
+        </record>
+        <record id="hr_payroll_zhtw_comp" model="hr.salary.rule.category">
+            <field name="name">公司負擔</field>
+            <field name="code">ZHTW_COMP</field>
+            <field name="parent_id" ref=""/>
+        </record>
+        <record id="hr_payroll_soin_wi" model="hr.salary.rule.category">
+            <field name="name">勞保</field>
+            <field name="code">SOIN_WI</field>
+            <field name="parent_id" ref=""/>
+        </record>
+        <record id="hr_payroll_soin_hi" model="hr.salary.rule.category">
+            <field name="name">健保</field>
+            <field name="code">SOIN_HI</field>
+            <field name="parent_id" ref=""/>
+        </record>
+
+<!-- HR SALARY RULES-->
+        <record id="hr_rule_zhtw_base" model="hr.salary.rule">
+            <field name="name">本薪</field>
+            <field name="sequence" eval="1"/>
+            <field name="code">ZHTW_BASE</field>
+            <field name="category_id" ref="hr_payroll_zhtw_base"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.wage</field>
+        </record>
+
+        <record id="hr_payroll_rules_wi1" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_soin_wi"/>
+            <field name="name">勞保-第一類</field>
+            <field name="sequence" eval="10"/>
+            <field name="code">WI1</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.get_wi_1(payslip.date_to)</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_payroll_rules_wi5" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_soin_wi"/>
+            <field name="name">勞保-第五類</field>
+            <field name="sequence" eval="10"/>
+            <field name="code">WI5</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.get_wi_5(payslip.date_to)</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_payroll_rules_wi6" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_soin_wi"/>
+            <field name="name">勞保-第六類</field>
+            <field name="sequence" eval="10"/>
+            <field name="code">WI6</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.get_wi_6(payslip.date_to)</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_payroll_rules_hi1" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_soin_hi"/>
+            <field name="name">健保-第一類</field>
+            <field name="sequence" eval="11"/>
+            <field name="code">HI1</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.get_hi_1()</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_payroll_rules_wisp" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll_soin_wi"/>
+            <field name="name">勞保-個人提繳</field>
+            <field name="sequence" eval="12"/>
+            <field name="code">WISP</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.wi_self_provide_rate > 0</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.get_wi_sp(payslip.date_to)</field>
+            <field name="appears_on_payslip" eval="False"/>
+        </record>
+        <record id="hr_rule_zhtw_preded_tax" model="hr.salary.rule">
+            <field name="name">預扣稅額</field>
+            <field name="sequence" eval="13"/>
+            <field name="code">ZHTW_PREDED_TAX</field>
+            <field name="category_id" ref="hr_payroll_zhtw_ded"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.get_preded_tax()</field>
+        </record>
+
+        <record id="hr_rule_zhtw_gross" model="hr.salary.rule">
+            <field name="name">加項小計</field>
+            <field name="sequence" eval="100"/>
+            <field name="code">ZHTW_GROSS</field>
+            <field name="category_id" ref="hr_payroll_zhtw_gross"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.ZHTW_BASE + categories.ZHTW_ALW</field>
+        </record>
+
+        <record id="hr_rule_zhtw_net" model="hr.salary.rule">
+            <field name="name">實發</field>
+            <field name="sequence" eval="101"/>
+            <field name="code">ZHTW_NET</field>
+            <field name="category_id" ref="hr_payroll_zhtw_net"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.ZHTW_BASE + categories.ZHTW_ALW + categories.ZHTW_DED + categories.SOIN_WI + categories.SOIN_HI
+            </field>
+            <field name="register_id" ref="zhtw_contrib_register_employees"/>
+        </record>
+
+        <record id="hr_rule_zhtw_company_net" model="hr.salary.rule">
+            <field name="name">公司負擔總計</field>
+            <field name="sequence" eval="222"/>
+            <field name="code">ZHTW_COMP_NET</field>
+            <field name="category_id" ref="hr_payroll_zhtw_comp"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.ZHTW_COMP</field>
+            <field name="register_id" ref="zhtw_contrib_register_company"/>
+        </record>
+        <record id="hr_rule_zhtw_company_retire" model="hr.salary.rule">
+            <field name="name">公司提撥-退休金(6%)</field>
+            <field name="sequence" eval="200"/>
+            <field name="code">ZHTW_COMP_RETIRE</field>
+            <field name="category_id" ref="hr_payroll_zhtw_comp"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.get_wi_comp_retire(payslip.date_to)</field>
+        </record>
+        <record id="hr_rule_zhtw_company_wi" model="hr.salary.rule">
+            <field name="name">公司提撥-勞保</field>
+            <field name="sequence" eval="201"/>
+            <field name="code">ZHTW_COMP_WI</field>
+            <field name="category_id" ref="hr_payroll_zhtw_comp"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.get_wi_1_comp(payslip.date_to, 0.13)</field>
+        </record>
+        <record id="hr_rule_zhtw_company_hi" model="hr.salary.rule">
+            <field name="name">公司提撥-健保</field>
+            <field name="sequence" eval="202"/>
+            <field name="code">ZHTW_COMP_HI</field>
+            <field name="category_id" ref="hr_payroll_zhtw_comp"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.get_hi_1_comp()</field>
+        </record>
+        <record id="hr_rule_zhtw_company_exinsu" model="hr.salary.rule">
+            <field name="name">公司提撥-補充保費</field>
+            <field name="sequence" eval="203"/>
+            <field name="code">ZHTW_COMP_EXINSU</field>
+            <field name="category_id" ref="hr_payroll_zhtw_comp"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.get_comp_exinsu(categories.ZHTW_GROSS+categories.ZHTW_DED) </field>
+        </record>
+
+        <record id="hr_payroll_salary_structure_cate1" model="hr.payroll.structure">
+            <field name="code">SAL1</field>
+            <field name="name">第一類</field>
+            <field name="rule_ids"
+                   eval="[(6, 0, [ref('hr_rule_zhtw_base'),ref('hr_rule_zhtw_gross'),ref('hr_rule_zhtw_net'),ref('hr_payroll_rules_wi1'),ref('hr_payroll_rules_hi1'),ref('hr_payroll_rules_wisp'),ref('hr_rule_zhtw_company_net'),ref('hr_rule_zhtw_company_retire'),ref('hr_rule_zhtw_company_hi'),ref('hr_rule_zhtw_company_wi'),ref('hr_rule_zhtw_company_exinsu'),ref('hr_rule_zhtw_preded_tax')])]"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="parent_id" ref=""/>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <template id="assets_backend" name="web_widget_x2many_excel assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/web_widget_x2many_excel/static/src/js/web_widget_x2many_excel.js"></script>
+                <!--<link rel="stylesheet" href="/web_widget_x2many_excel/static/src/css/web_widget_x2many_excel.css"/>-->
+            </xpath>
+        </template>
+    </data>
+</openerp>

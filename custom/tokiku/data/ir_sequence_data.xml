@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Sequences for tokiku.customer -->
+        <record id="seq_tokiku_customer" model="ir.sequence">
+            <field name="name">tokiku customer seq</field>
+            <field name="code">tokiku.customer</field>
+            <field name="prefix">CM</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for tokiku.supplier -->
+        <record id="seq_tokiku_supplier" model="ir.sequence">
+            <field name="name">tokiku supplier seq</field>
+            <field name="code">tokiku.supplier</field>
+            <field name="prefix">SU</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for project -->
+        <record id="seq_tokiku_project" model="ir.sequence">
+            <field name="name">tokiku Project seq</field>
+            <field name="code">tokiku.project</field>
+            <field name="prefix"></field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for contract -->
+        <record id="seq_tokiku_contract" model="ir.sequence">
+            <field name="name">tokiku contract seq</field>
+            <field name="code">tokiku.contract</field>
+            <field name="prefix"></field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for demand order -->
+        <record id="seq_tokiku_demand" model="ir.sequence">
+            <field name="name">tokiku demand seq</field>
+            <field name="code">tokiku.demand</field>
+            <field name="prefix">DO</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for installation demand order -->
+        <record id="seq_tokiku_installation_demand" model="ir.sequence">
+            <field name="name">tokiku installation demand seq</field>
+            <field name="code">tokiku.installation_demand</field>
+            <field name="prefix">IDO</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for assembly order -->
+        <record id="seq_tokiku_assembly_order" model="ir.sequence">
+            <field name="name">tokiku assembly order seq</field>
+            <field name="code">tokiku.assembly_order</field>
+            <field name="prefix">AO</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for assembly preparation order -->
+        <record id="seq_tokiku_preparation_order" model="ir.sequence">
+            <field name="name">tokiku preparation order seq</field>
+            <field name="code">tokiku.preparation_order</field>
+            <field name="prefix">AP</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for production record order -->
+        <record id="seq_tokiku_production_record" model="ir.sequence">
+            <field name="name">tokiku production record seq</field>
+            <field name="code">tokiku.production_record</field>
+            <field name="prefix">PR</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for inst production record order -->
+        <record id="seq_tokiku_inst_production_record" model="ir.sequence">
+            <field name="name">tokiku inst production record seq</field>
+            <field name="code">tokiku.inst_prodrec</field>
+            <field name="prefix">IN</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

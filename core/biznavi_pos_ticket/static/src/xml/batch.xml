@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+	<!--<t t-extend="XmlReceipt">-->
+    <!--<t t-jquery='receipt' t-operation='replace'>-->
+    <!--<receipt align='center' width='40' value-thousands-separator='' >-->
+    <!--<t t-if='receipt.company.logo'>-->
+    <!--<img t-att-src='receipt.company.logo' />-->
+    <!--<br/>-->
+    <!--</t>-->
+    <!--<t t-if='!receipt.company.logo'>-->
+    <!--<h1><t t-esc='receipt.company.name' /></h1>-->
+    <!--<br/>-->
+    <!--</t>-->
+    <!--<div font='b'>-->
+    <!--<t t-if='receipt.company.contact_address'>-->
+    <!--<div><t t-esc='receipt.company.contact_address' /></div>-->
+    <!--</t>-->
+    <!--<t t-if='receipt.company.phone'>-->
+    <!--<div>Tel:<t t-esc='receipt.company.phone' /></div>-->
+    <!--</t>-->
+    <!--<t t-if='receipt.company.vat'>-->
+    <!--<div>VAT:<t t-esc='receipt.company.vat' /></div>-->
+    <!--</t>-->
+    <!--<t t-if='receipt.company.email'>-->
+    <!--<div><t t-esc='receipt.company.email' /></div>-->
+    <!--</t>-->
+    <!--<t t-if='receipt.company.website'>-->
+    <!--<div><t t-esc='receipt.company.website' /></div>-->
+    <!--</t>-->
+    <!--<t t-if='receipt.header_xml'>-->
+    <!--<t t-raw='receipt.header_xml' />-->
+    <!--</t>-->
+    <!--<t t-if='!receipt.header_xml and receipt.header'>-->
+    <!--<div><t t-esc='receipt.header' /></div>-->
+    <!--</t>-->
+    <!--&lt;!&ndash;<t t-if='receipt.cashier'>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class='cashier'>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div>Served by <t t-esc='receipt.cashier' /></div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</t>&ndash;&gt;-->
+    <!--<div class='cashier'>-->
+    <!--<div>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</div>-->
+    <!--<div>山川琉璃吊橋購票確認單</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<br /><br />-->
+
+    <!--&lt;!&ndash; Orderlines &ndash;&gt;-->
+
+    <!--<div class='orderlines' line-ratio='0.6'>-->
+    <!--<t t-foreach='receipt.orderlines' t-as='line'>-->
+    <!--<t t-set='simple' t-value='line.discount === 0 and line.unit_name === "Unit(s)" and line.quantity === 1' />-->
+    <!--<t t-if='simple'>-->
+    <!--<line>-->
+    <!--<left><t t-esc='line.product_name_wrapped[0]' /></left>-->
+    <!--<right><value><t t-esc='line.price_display' /></value></right>-->
+    <!--</line>-->
+    <!--<t t-call="XmlReceiptWrappedProductNameLines"/>-->
+    <!--</t>-->
+    <!--<t t-if='!simple'>-->
+    <!--<line><left><t t-esc='line.product_name_wrapped[0]' /></left></line>-->
+    <!--<t t-call="XmlReceiptWrappedProductNameLines"/>-->
+    <!--<t t-if='line.discount !== 0'>-->
+    <!--<line indent='1'><left>Discount: <t t-esc='line.discount' />%</left></line>-->
+    <!--</t>-->
+    <!--<line indent='1'>-->
+    <!--<left>-->
+    <!--<value value-decimals='3' value-autoint='on'>-->
+    <!--<t t-esc='line.quantity' />-->
+    <!--</value>-->
+    <!--<t t-if='line.unit_name !== "Unit(s)"'>-->
+    <!--<t t-esc='line.unit_name' />-->
+    <!--</t>-->
+    <!--x-->
+    <!--<value value-decimals='2'>-->
+    <!--<t t-esc='line.price' />-->
+    <!--</value>-->
+    <!--</left>-->
+    <!--<right>-->
+    <!--<value><t t-esc='line.price_display' /></value>-->
+    <!--</right>-->
+    <!--</line>-->
+    <!--<qrcode><t t-esc="line.ticket" /></qrcode>-->
+    <!--</t>-->
+    <!--</t>-->
+    <!--</div>-->
+
+    <!--&lt;!&ndash; Subtotal &ndash;&gt;-->
+
+    <!--<t t-set='taxincluded' t-value='Math.abs(receipt.subtotal - receipt.total_with_tax) &lt;= 0.000001' />-->
+    <!--<t t-if='!taxincluded'>-->
+    <!--<line><right>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</right></line>-->
+    <!--<line><left>Subtotal</left><right><value t-att-value-decimals='pos.currency.decimals'><t t-esc="receipt.subtotal" /></value></right></line>-->
+    <!--<t t-foreach='receipt.tax_details' t-as='tax'>-->
+    <!--<line>-->
+    <!--<left><t t-esc='tax.name' /></left>-->
+    <!--<right><value t-att-value-decimals='pos.currency.decimals'><t t-esc='tax.amount' /></value></right>-->
+    <!--</line>-->
+    <!--</t>-->
+    <!--</t>-->
+
+    <!--&lt;!&ndash; Total &ndash;&gt;-->
+
+    <!--<line><right>&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;</right></line>-->
+    <!--<line class='total' size='double-height'>-->
+    <!--<left><pre>        TOTAL</pre></left>-->
+    <!--<right><value t-att-value-decimals='pos.currency.decimals'><t t-esc='receipt.total_with_tax' /></value></right>-->
+    <!--</line>-->
+    <!--<br/><br/>-->
+
+    <!--&lt;!&ndash; Payment Lines &ndash;&gt;-->
+
+    <!--<t t-foreach='paymentlines' t-as='line'>-->
+    <!--<line>-->
+    <!--<left><t t-esc='line.name' /></left>-->
+    <!--<right><value t-att-value-decimals='pos.currency.decimals'><t t-esc='line.get_amount()'/></value></right>-->
+    <!--</line>-->
+    <!--</t>-->
+    <!--<br/>-->
+
+    <!--&lt;!&ndash;<line size='double-height'>&ndash;&gt;-->
+    <!--&lt;!&ndash;<left><pre>        CHANGE</pre></left>&ndash;&gt;-->
+    <!--&lt;!&ndash;<right><value t-att-value-decimals='pos.currency.decimals'><t t-esc='receipt.change' /></value></right>&ndash;&gt;-->
+    <!--&lt;!&ndash;</line>&ndash;&gt;-->
+    <!--&lt;!&ndash;<br/>&ndash;&gt;-->
+
+    <!--&lt;!&ndash; Extra Payment Info &ndash;&gt;-->
+
+    <!--<t t-if='receipt.total_discount'>-->
+    <!--<line>-->
+    <!--<left>Discounts</left>-->
+    <!--<right><value t-att-value-decimals='pos.currency.decimals'><t t-esc='receipt.total_discount'/></value></right>-->
+    <!--</line>-->
+    <!--</t>-->
+    <!--<t t-if='taxincluded'>-->
+    <!--<t t-foreach='receipt.tax_details' t-as='tax'>-->
+    <!--<line>-->
+    <!--<left><t t-esc='tax.name' /></left>-->
+    <!--<right><value t-att-value-decimals='pos.currency.decimals'><t t-esc='tax.amount' /></value></right>-->
+    <!--</line>-->
+    <!--</t>-->
+    <!--<line>-->
+    <!--<left>Total Taxes</left>-->
+    <!--<right><value t-att-value-decimals='pos.currency.decimals'><t t-esc='receipt.total_tax'/></value></right>-->
+    <!--</line>-->
+    <!--</t>-->
+
+    <!--<div class='before-footer' />-->
+
+    <!--&lt;!&ndash; Footer &ndash;&gt;-->
+    <!--<t t-if='receipt.footer_xml'>-->
+    <!--<t t-raw='receipt.footer_xml' />-->
+    <!--</t>-->
+
+    <!--<t t-if='!receipt.footer_xml and receipt.footer'>-->
+    <!--<br/>-->
+    <!--<t t-esc='receipt.footer' />-->
+    <!--<br/>-->
+    <!--<br/>-->
+    <!--</t>-->
+
+    <!--<div class='after-footer' />-->
+
+    <!--<br/>-->
+    <!--<div font='pos-order-footer'>-->
+    <!--<div><t t-esc='receipt.name' /></div>-->
+    <!--</div>-->
+    <!--<div font='b'>-->
+    <!--<div><t t-esc='receipt.date.localestring' /></div>-->
+    <!--<div>本票券售出後概不退換，毀壞或遺失恕不補發</div>-->
+    <!--</div>-->
+
+    <!--</receipt>-->
+
+
+    <!--&lt;!&ndash;<div class='orderlines' line-ratio='0.6'>&ndash;&gt;-->
+    <!--&lt;!&ndash;<t t-foreach='receipt.orderlines' t-as='line'>&ndash;&gt;-->
+    <!--&lt;!&ndash;<t t-set='simple' t-value='line.discount === 0 and line.unit_name === "Unit(s)" and line.quantity === 1' />&ndash;&gt;-->
+    <!--&lt;!&ndash;<t t-if='simple'>&ndash;&gt;-->
+    <!--&lt;!&ndash;<line>&ndash;&gt;-->
+    <!--&lt;!&ndash;<left><t t-esc='line.product_name_wrapped[0]' /></left>&ndash;&gt;-->
+    <!--&lt;!&ndash;<right><value><t t-esc='line.price_display' /></value></right>&ndash;&gt;-->
+    <!--&lt;!&ndash;</line>&ndash;&gt;-->
+    <!--&lt;!&ndash;<t t-call="XmlReceiptWrappedProductNameLines"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;</t>&ndash;&gt;-->
+    <!--&lt;!&ndash;<t t-if='!simple'>&ndash;&gt;-->
+    <!--&lt;!&ndash;<line><left><t t-esc='line.product_name_wrapped[0]' /></left></line>&ndash;&gt;-->
+    <!--&lt;!&ndash;<t t-call="XmlReceiptWrappedProductNameLines"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<t t-if='line.discount !== 0'>&ndash;&gt;-->
+    <!--&lt;!&ndash;<line indent='1'><left>Discount: <t t-esc='line.discount' />%</left></line>&ndash;&gt;-->
+    <!--&lt;!&ndash;</t>&ndash;&gt;-->
+    <!--&lt;!&ndash;<line indent='1'>&ndash;&gt;-->
+    <!--&lt;!&ndash;<left>&ndash;&gt;-->
+    <!--&lt;!&ndash;<value value-decimals='3' value-autoint='on'>&ndash;&gt;-->
+    <!--&lt;!&ndash;<t t-esc='line.quantity' />&ndash;&gt;-->
+    <!--&lt;!&ndash;</value>&ndash;&gt;-->
+    <!--&lt;!&ndash;<t t-if='line.unit_name !== "Unit(s)"'>&ndash;&gt;-->
+    <!--&lt;!&ndash;<t t-esc='line.unit_name' />&ndash;&gt;-->
+    <!--&lt;!&ndash;</t>&ndash;&gt;-->
+    <!--&lt;!&ndash;x&ndash;&gt;-->
+    <!--&lt;!&ndash;<value value-decimals='2'>&ndash;&gt;-->
+    <!--&lt;!&ndash;<t t-esc='line.price' />&ndash;&gt;-->
+    <!--&lt;!&ndash;</value>&ndash;&gt;-->
+    <!--&lt;!&ndash;</left>&ndash;&gt;-->
+    <!--&lt;!&ndash;<right>&ndash;&gt;-->
+    <!--&lt;!&ndash;<value><t t-esc='line.price_display' /></value>&ndash;&gt;-->
+    <!--&lt;!&ndash;</right>&ndash;&gt;-->
+    <!--&lt;!&ndash;</line>&ndash;&gt;-->
+    <!--&lt;!&ndash;<qrcode><t t-esc="line.ticket" /></qrcode>&ndash;&gt;-->
+    <!--&lt;!&ndash;</t>&ndash;&gt;-->
+    <!--&lt;!&ndash;</t>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</t>-->
+    <!--</t>-->
+
+    <t t-extend="NumpadWidget">
+        <t t-jquery='button[data-mode=quantity]' t-operation='replace'/>
+        <t t-jquery='button[data-mode=discount]' t-operation='replace'/>
+        <t t-jquery='button[data-mode=price]' t-operation='replace'/>
+        <t t-jquery='button.numpad-backspace' t-operation='replace'/>
+        <t t-jquery='button.numpad-minus' t-operation='replace'>
+            <button class="input-button"/>
+        </t>
+        <t t-jquery='button:contains(".")' t-operation='replace'>
+            <button class="input-button numpad-backspace">
+                <img style="pointer-events: none;" src="/point_of_sale/static/src/img/backspace.png" width="24" height="21" />
+            </button>
+        </t>
+    </t>
+    <t t-extend="ClientListScreenWidget">
+        <t t-jquery='.new-customer' t-operation='replace'>
+            <span class='button new-customer' style="display: none;">
+                <i class='fa fa-user'></i>
+                <i class='fa fa-plus'></i>
+            </span>
+        </t>
+    </t>
+    <t t-extend="PaymentScreen-Paymentmethods">
+        <t t-jquery='.paymentmethod' t-operation='after'>
+            <br/>
+        </t>
+    </t>
+    <t t-extend="BillReceipt">
+		<t t-jquery='.orderlines' t-operation='replace'>
+            <div class='orderlines' line-ratio='0.6'>
+                <t t-foreach='receipt.orderlines' t-as='line'>
+                    <t t-set='simple' t-value='line.discount === 0 and line.unit_name === "Unit(s)" and line.quantity === 1' />
+                    <t t-if='simple'>
+                        <line>
+                            <left><t t-esc='line.product_name_wrapped[0]' /></left>
+                            <right><value><t t-esc='line.price_display' /></value></right>
+                        </line>
+                        <t t-call="XmlReceiptWrappedProductNameLines"/>
+                    </t>
+                    <t t-if='!simple'>
+                        <line><left><t t-esc='line.product_name_wrapped[0]' /></left></line>
+                        <t t-call="XmlReceiptWrappedProductNameLines"/>
+                        <t t-if='line.discount !== 0'>
+                            <line indent='1'><left>Discount: <t t-esc='line.discount' />%</left></line>
+                        </t>
+                        <line indent='1'>
+                            <left>
+                                <value value-decimals='3' value-autoint='on'>
+                                    <t t-esc='line.quantity' />
+                                </value>
+                                <t t-if='line.unit_name !== "Unit(s)"'>
+                                    <t t-esc='line.unit_name' />
+                                </t>
+                                x
+                                <value value-decimals='2'>
+                                    <t t-esc='line.price' />
+                                </value>
+                            </left>
+                            <right>
+                                <value><t t-esc='line.price_display' /></value>
+                            </right>
+                        </line>
+                        <qrcode><t t-esc="line.ticket" /></qrcode>
+                    </t>
+                </t>
+            </div>
+		</t>
+    </t>
+
+    <!--<t t-name="BatchGuestsButton">-->
+    <!--<div class='control-button'>-->
+    <!--<span class='control-button-number'>-->
+    <!--<t t-esc="widget.guests()" />-->
+    <!--</span>-->
+    <!--Guests-->
+    <!--</div>-->
+    <!--</t>-->
+
+    <t t-name="TransferOrderButton">
+        <div class='control-button'>
+            <i class='fa fa-arrow-right' /> Transfer
+        </div>
+    </t>
+
+    <t t-name="BatchWidget">
+        <t t-if='!widget.selected'>
+            <div class='batch' t-att-style='widget.batch_style_str()'>
+                <span 
+                    t-if="widget.batch.shape"
+                    t-att-class='"batch-cover " + (widget.fill >= 1 ? "full" : "")'
+                    t-att-style='"height: " + Math.ceil(widget.fill * 100) + "%;"'
+                    ></span>
+                <!--<t t-if='widget.order_count'>-->
+                <!--<span t-att-class='"order-count " + (widget.notifications.printing ? "notify-printing":"") + (widget.notifications.skipped ? "notify-skipped" : "")'><t t-esc='widget.order_count'/></span>-->
+                <!--</t>-->
+                <span class='label'>
+                    <t t-esc='widget.batch.name' />
+                </span>
+                <span class="batch-seats"><t t-esc="widget.batch.seats" /></span>
+            </div>
+        </t>
+        <!--<t t-if='widget.selected'>-->
+        <!--<div class='batch selected' t-att-style='widget.batch_style_str()'>-->
+        <!--<span class='label'>-->
+        <!--<t t-esc='widget.batch.name' />-->
+        <!--</span>-->
+        <!--<span class="batch-seats"><t t-esc="widget.batch.seats" /></span>-->
+        <!--<t t-if="widget.batch.shape === 'round'">-->
+        <!--<span class='batch-handle top'></span>-->
+        <!--<span class='batch-handle bottom'></span>-->
+        <!--<span class='batch-handle left'></span>-->
+        <!--<span class='batch-handle right'></span>-->
+        <!--</t>-->
+        <!--<t t-if="widget.batch.shape === 'square'">-->
+        <!--<span class='batch-handle top right'></span>-->
+        <!--<span class='batch-handle top left'></span>-->
+        <!--<span class='batch-handle bottom right'></span>-->
+        <!--<span class='batch-handle bottom left'></span>-->
+        <!--</t>-->
+        <!--</div>-->
+        <!--</t>-->
+    </t>
+
+    <t t-name="ReservationWidget">
+        <div class="reservationlist-screen">
+            <section class="top-content">
+                <span class='keywordbox'>
+                    <input placeholder='Search Reservations' />
+                    <span class='keyword-clear'></span>
+                </span>
+                <span class='keywordbox'></span>
+                <span class='button next oe_hidden highlight'>
+                    Select Customer
+                    <i class='fa fa-angle-double-right'></i>
+                </span>
+            </section>
+            <section class="full-content">
+                <div class='window'>
+                    <section class='subwindow collapsed'>
+                        <div class='subwindow-container collapsed'>
+                            <div class='subwindow-container-fix reservation-details-contents'>
+                            </div>
+                        </div>
+                    </section>
+                    <section class='subwindow'>
+                        <div class='subwindow-container'>
+                            <div class='subwindow-container-fix touch-scrollable scrollable-y'>
+                                <table class='reservation-list'>
+                                    <thead>
+                                        <tr>
+                                            <th>Batch</th>
+                                            <th>Order Number</th>
+                                            <th>Ticket</th>
+                                            <th>Quantity</th>
+                                            <th>Booker</th>
+                                            <th>Booker Phone</th>
+                                            <th>Contact</th>
+                                            <th>Contact Phone</th>
+                                            <th>Ticket Number</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class='reservation-list-contents'>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </div>
+    </t>
+    <t t-name="ReservationLine">
+        <tr class='reservation-line' t-att-data-id='reservation.id'>
+            <td class='reservation-cell'><t t-esc='reservation.booking_batch' /></td>
+            <td class='reservation-cell'><t t-esc='reservation.number' /></td>
+            <td class='reservation-cell'><t t-esc='reservation.ticket_name' /></td>
+            <td class='reservation-cell'><t t-esc='reservation.product_uom_qty' /></td>
+            <td class='reservation-cell' width="15%"><t t-esc='reservation.buyer or ""' /></td>
+            <td class='reservation-cell' width="12%"><t t-esc='reservation.buyer_tel or ""' /></td>
+            <td class='reservation-cell' width="13%"><t t-esc='reservation.contact or ""' /></td>
+            <td class='reservation-cell' width="12%"><t t-esc='reservation.contact_tel or ""' /></td>
+            <td class='reservation-cell' name="ref_ticket"><t t-esc='reservation.ref_ticket or ""' /></td>
+            <td t-if="reservation.pay_online" name="reprint_btn"><span class="reservation-reprint-btn" t-att-data-id="reservation.id">Reprint</span></td>
+            <td t-if="!reservation.pay_online" name="action_btn"><span class="reservation-cancel-btn" t-att-data-id="reservation.id">Cancel</span></td>
+        </tr>
+    </t>
+    <t t-name="BackToPlanButton">
+        <span class="order-button plan-button">
+            <i class='fa fa-angle-double-left'/>
+            <t t-esc="plan.name"/>
+            <span class='batch-name'>
+                ( <t t-esc="batch.name" /> )
+            </span>
+        </span>
+    </t>
+
+    <t t-name="PlanScreenWidget">
+        <div class='plan-screen screen'>
+            <div class='screen-content-flexbox'>
+                <t t-if='widget.pos.plans.length > 1'>
+                    <div class='plan-selector'>
+                        <t t-foreach="widget.pos.plans" t-as="plan">
+                            <t t-if="plan.id === widget.plan.id">
+                                <span class='button button-plan active' t-att-data-id="plan.id"><t t-esc="plan.name" /> <span t-att-name="'amt_' + plan.id"></span></span>
+                            </t>
+                            <t t-if="plan.id !== widget.plan.id">
+                                <span class='button button-plan' t-att-data-id="plan.id"><t t-esc="plan.name" /> <span t-att-name="'amt_' + plan.id"></span></span>
+                            </t>
+                        </t>
+                    </div>
+                </t>
+                <div class='plan-map' t-att-style='widget.get_plan_style()' >
+                    <div class='empty-plan oe_hidden'>
+                        There is no ticket today!
+                    </div>
+                    <div class='batches'></div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

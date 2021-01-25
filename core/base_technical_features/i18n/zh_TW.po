@@ -1,0 +1,98 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* base_technical_features
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-29 03:55+0000\n"
+"PO-Revision-Date: 2017-10-29 03:55+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_account_bank_statement_import_journal_creation_check_sequence_id
+msgid "Check Sequence"
+msgstr "Check Sequence"
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_account_bank_statement_import_journal_creation_check_printing_payment_method_selected
+msgid "Check printing payment method selected"
+msgstr "Check printing payment method selected"
+
+#. module: base_technical_features
+#: model:ir.model.fields,help:base_technical_features.field_account_bank_statement_import_journal_creation_check_manual_sequencing
+msgid "Check this option if your pre-printed checks are not numbered."
+msgstr "Check this option if your pre-printed checks are not numbered."
+
+#. module: base_technical_features
+#: model:ir.model.fields,help:base_technical_features.field_account_bank_statement_import_journal_creation_check_sequence_id
+msgid "Checks numbering sequence."
+msgstr "Checks numbering sequence."
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_account_bank_statement_import_journal_creation_check_manual_sequencing
+msgid "Manual Numbering"
+msgstr "手動編碼"
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_account_bank_statement_import_journal_creation_check_next_number
+msgid "Next Check Number"
+msgstr "下一個支票號碼"
+
+#. module: base_technical_features
+#: model:ir.model.fields,help:base_technical_features.field_account_bank_statement_import_journal_creation_check_next_number
+msgid "Sequence number of the next printed check."
+msgstr "Sequence number of the next printed check."
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users_show_technical_features
+msgid "Show field Technical Features"
+msgstr "Show field Technical Features"
+
+#. module: base_technical_features
+#: model:res.groups,name:base_technical_features.group_technical_features
+msgid "Technical Features (w/o debug mode)"
+msgstr "進階功能 (非除錯模式)"
+
+#. module: base_technical_features
+#: model:ir.model.fields,help:base_technical_features.field_account_bank_statement_import_journal_creation_check_printing_payment_method_selected
+msgid "Technical feature used to know whether check printing was enabled as payment method."
+msgstr "Technical feature used to know whether check printing was enabled as payment method."
+
+#. module: base_technical_features
+#: model:ir.model.fields,field_description:base_technical_features.field_res_users_technical_features
+msgid "Technical features"
+msgstr "進階功能"
+
+#. module: base_technical_features
+#: code:addons/base_technical_features/models/res_users.py:48
+#, python-format
+msgid "The user does not have access to technical features."
+msgstr "The user does not have access to technical features."
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_res_users
+msgid "Users"
+msgstr "使用者"
+
+#. module: base_technical_features
+#: model:ir.model.fields,help:base_technical_features.field_res_users_show_technical_features
+msgid "Whether to display the technical features field in the user preferences."
+msgstr "Whether to display the technical features field in the user preferences."
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_base
+msgid "base"
+msgstr "base"
+
+#. module: base_technical_features
+#: model:ir.model,name:base_technical_features.model_ir_ui_menu
+msgid "ir.ui.menu"
+msgstr "ir.ui.menu"
+

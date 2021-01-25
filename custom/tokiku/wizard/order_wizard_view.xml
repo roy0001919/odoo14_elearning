@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="create_po_from_wizard_view" model="ir.ui.view">
+        <field name="name">Create PO from Wizard</field>
+        <field name="model">tokiku.po_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create PO from Wizard">
+                <field name="tmp_grid" widget="grid">
+                    <tree>
+                        <field name="ref_prod"/>
+                        <field name="name"/>
+                        <field name="qty"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="create_po" string="Create PO" type="object" class="oe_highlight"/> or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="print_lioulibridge_report_view" model="ir.ui.view">
+        <field name="name">Print LiouliBridge Report</field>
+        <field name="model">lioulibridge.report</field>
+        <field name="arch" type="xml">
+            <form string="Print Pre-numbered Checks">
+                <!--<p>Please enter the number of the first pre-printed check that you are about to print on.</p><p>This will allow to save on payments the number of the corresponding check.</p>-->
+                <group>
+                        <field name="report_date"/>
+                </group>
+                <footer>
+                    <button name="print_report" string="Get Report" type="object" class="oe_highlight"/> or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+                <!--<group>-->
+                    <!--<group>-->
+                        <!--<field name="report_month"/>-->
+                    <!--</group>-->
+                    <!--<group>-->
+                        <!--<field name="report_year"/>-->
+                    <!--</group>-->
+                <!--</group>-->
+                <!--<footer>-->
+                    <!--<button name="print_month" string="Get Monthly Report" type="object" class="oe_highlight"/> or-->
+                    <!--<button name="print_year" string="Get Annual Report" type="object" class="oe_highlight"/> or-->
+                    <!--<button string="Cancel" class="oe_link" special="cancel"/>-->
+                <!--</footer>-->
+            </form>
+        </field>
+    </record>
+    <record id="action_lioulibridge_report_all" model="ir.actions.act_window">
+        <field name="name">LiouliBridge Reports</field>
+        <field name="res_model">lioulibridge.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="print_lioulibridge_report_view"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem name="Sales"
+          action="sale.action_order_report_all"
+          id="menu_action_order_report_all"
+          parent="biznavi_ticket.menu_main_ticket"
+          sequence="11"/>
+
+    <menuitem name="Daily Report"
+          action="action_lioulibridge_report_all"
+          id="menu_action_daily_report"
+          parent="biznavi_ticket.menu_main_ticket"
+          sequence="12"/>
+    <!--<menuitem name="Reports" action="action_lioulibridge_report_all" id="menu_action_lioulibridge_report_all" parent="sales_team.menu_sale_report" sequence="20"/>-->
+</odoo>

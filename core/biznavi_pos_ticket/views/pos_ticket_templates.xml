@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <template id="assets" inherit_id="point_of_sale.assets">
+          <xpath expr="." position="inside">
+              <script type="text/javascript" src="/biznavi_pos_ticket/static/src/js/db.js"></script>
+              <script type="text/javascript" src="/biznavi_pos_ticket/static/src/js/batch.js"></script>
+              <script type="text/javascript" src="/biznavi_pos_ticket/static/src/js/devices.js"></script>
+          </xpath>
+          <xpath expr="//link[@id='pos-stylesheet']" position="after">
+              <link rel="stylesheet" href="/biznavi_pos_ticket/static/src/css/batch.css" />
+          </xpath>
+        </template>
+</odoo>

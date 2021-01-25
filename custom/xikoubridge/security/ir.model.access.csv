@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_lioulibridge_lioulibridge_report,lioulibridge.lioulibridge_report,model_lioulibridge_lioulibridge_report,,1,0,0,0

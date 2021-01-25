@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* biznavi_hr_payroll
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-13 11:41+0000\n"
+"PO-Revision-Date: 2016-06-13 11:41+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: biznavi_hr_payroll
+#: model:ir.model,name:biznavi_hr_payroll.model_hr_contract
+msgid "Contract"
+msgstr ""
+
+#. module: biznavi_hr_payroll
+#: model:ir.model.fields,field_description:biznavi_hr_payroll.field_hr_contract_raise_amount
+msgid "Dependents Number"
+msgstr ""
+
+#. module: biznavi_hr_payroll
+#: model:ir.model.fields,field_description:biznavi_hr_payroll.field_hr_contract_wi_self_provide_rate
+msgid "Individual retirement pay"
+msgstr ""
+
+#. module: biznavi_hr_payroll
+#: code:addons/biznavi_hr_payroll/models.py:33
+#, python-format
+msgid "Individual retirement pay can not be greater than 6%(0.06)"
+msgstr ""
+
+#. module: biznavi_hr_payroll
+#: model:ir.model.fields,field_description:biznavi_hr_payroll.field_hr_contract_wi_join_date
+msgid "Labor insurance join day"
+msgstr ""
+

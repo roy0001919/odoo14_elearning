@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="acquirer_form_easystore" model="ir.ui.view">
+            <field name="name">acquirer.form.easystore</field>
+            <field name="model">payment.acquirer</field>
+            <field name="inherit_id" ref="payment.acquirer_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//group[@name="acquirer"]' position='after'>
+                    <group attrs="{'invisible': [('provider', '!=', 'easystore')]}">
+                        <field name="easystore_shop_num"/>
+                        <field name="easystore_client_name"/>
+                        <field name="easystore_test_key_one"/>
+                        <field name="easystore_test_key_two"/>
+                        <field name="easystore_test_key_thr"/>
+                        <field name="easystore_prod_key_one"/>
+                        <field name="easystore_prod_key_two"/>
+                        <field name="easystore_prod_key_thr"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

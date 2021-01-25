@@ -1,0 +1,210 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* gangshan
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-25 09:28+0000\n"
+"PO-Revision-Date: 2018-02-25 09:28+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: gangshan
+#: model:ir.ui.view,arch_db:gangshan.print_gangshan_report_view
+msgid "Cancel"
+msgstr "取消"
+
+#. module: gangshan
+#: model:ir.ui.view,arch_db:gangshan.wizard_checkout
+msgid "Confirmation\n"
+"                        <span class=\"chevron\"/>"
+msgstr "確認\n"
+"                        <span class=\"chevron\"/>"
+
+#. module: gangshan
+#: model:ir.model.fields,field_description:gangshan.field_gangshan_report_create_uid
+msgid "Created by"
+msgstr "建立者"
+
+#. module: gangshan
+#: model:ir.model.fields,field_description:gangshan.field_gangshan_report_create_date
+msgid "Created on"
+msgstr "建立於"
+
+#. module: gangshan
+#: model:ir.ui.menu,name:gangshan.menu_action_daily_report
+msgid "Daily Report"
+msgstr "日報表"
+
+#. module: gangshan
+#: model:ir.model.fields,field_description:gangshan.field_sale_order_line_p_date
+msgid "Date for Print"
+msgstr "要列印日期"
+
+#. module: gangshan
+#: model:ir.model.fields,field_description:gangshan.field_gangshan_report_display_name
+msgid "Display Name"
+msgstr "顯示名稱"
+
+#. module: gangshan
+#: model:ir.ui.view,arch_db:gangshan.print_gangshan_report_view
+msgid "Get Report"
+msgstr "取得報表"
+
+#. module: gangshan
+#: model:ir.model.fields,field_description:gangshan.field_gangshan_report_id
+msgid "ID"
+msgstr "編號"
+
+#. module: gangshan
+#: model:ir.model.fields,field_description:gangshan.field_gangshan_report___last_update
+msgid "Last Modified on"
+msgstr "最後修改於"
+
+#. module: gangshan
+#: model:ir.model.fields,field_description:gangshan.field_gangshan_report_write_uid
+msgid "Last Updated by"
+msgstr "最後更新："
+
+#. module: gangshan
+#: model:ir.model.fields,field_description:gangshan.field_gangshan_report_write_date
+msgid "Last Updated on"
+msgstr "最後更新於"
+
+#. module: gangshan
+#: model:ir.model.fields,field_description:gangshan.field_sale_order_line_order_user
+msgid "Name"
+msgstr "名稱"
+
+#. module: gangshan
+#: model:ir.model.fields,field_description:gangshan.field_sale_order_line_order_num
+msgid "Order Reference"
+msgstr "訂單號碼"
+
+#. module: gangshan
+#: code:addons/gangshan/wizard/gangshan_report.py:20
+#, python-format
+msgid "Please Select Target Year!!"
+msgstr "請選擇日標年份!!"
+
+#. module: gangshan
+#: model:ir.model,name:gangshan.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "Point of Sale Orders"
+
+#. module: gangshan
+#: model:ir.ui.view,arch_db:gangshan.print_gangshan_report_view
+msgid "Print Pre-numbered Checks"
+msgstr "Print Pre-numbered Checks"
+
+#. module: gangshan
+#: model:ir.model,name:gangshan.model_gangshan_report
+msgid "Print Skywalk Park Report"
+msgstr "Print Skywalk Park Report"
+
+#. module: gangshan
+#: model:ir.ui.view,arch_db:gangshan.product_price
+msgid "Product not available"
+msgstr "Product not available"
+
+#. module: gangshan
+#: model:ir.model.fields,field_description:gangshan.field_gangshan_report_report_date
+msgid "Report Date"
+msgstr "報表日期"
+
+#. module: gangshan
+#: model:ir.ui.view,arch_db:gangshan.wizard_checkout
+msgid "Reserve\n"
+"                        <span class=\"chevron\"/>"
+msgstr "預約\n"
+"                        <span class=\"chevron\"/>"
+
+#. module: gangshan
+#: model:ir.ui.view,arch_db:gangshan.wizard_checkout
+msgid "Review Order\n"
+"                                <span class=\"chevron\"/>"
+msgstr "訂單<span class=\"chevron\"/>"
+
+#. module: gangshan
+#: model:ir.ui.view,arch_db:gangshan.wizard_checkout
+msgid "Review Order\n"
+"                            <span class=\"chevron\"/>"
+msgstr "訂單<span class=\"chevron\"/>"
+
+#. module: gangshan
+#: model:ir.ui.menu,name:gangshan.menu_action_order_report_all
+msgid "Sales"
+msgstr "銷售"
+
+#. module: gangshan
+#: model:ir.model,name:gangshan.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "銷售訂單細項"
+
+#. module: gangshan
+#: model:ir.actions.act_window,name:gangshan.action_gangshan_report_all
+msgid "Skywalk Park Reports"
+msgstr "Skywalk Park Reports"
+
+#. module: gangshan
+#: model:ir.ui.view,arch_db:gangshan.print_gangshan_report_view
+msgid "or"
+msgstr "或"
+
+#. module: gangshan
+#: model:ir.ui.view,arch_db:gangshan.report_quotation_inherit
+msgid "收款銀行：永豐銀行台北分行\n"
+"                        <br/>\n"
+"                        銀行代號: 807\n"
+"                        <br/>\n"
+"                        匯款分行代號: 0210\n"
+"                        <br/>\n"
+"                        匯款戶名: 網易收服務ATM專戶\n"
+"                        <br/>\n"
+"                        轉帳"
+msgstr "收款銀行：永豐銀行台北分行\n"
+"                        <br/>\n"
+"                        銀行代號: 807\n"
+"                        <br/>\n"
+"                        匯款分行代號: 0210\n"
+"                        <br/>\n"
+"                        匯款戶名: 網易收服務ATM專戶\n"
+"                        <br/>\n"
+"                        轉帳"
+
+#. module: gangshan
+#. openerp-web
+#: code:addons/gangshan/static/src/js/website_booking_calendar.js:341
+#, python-format
+msgid "退票手續費 20 元，確定要退票嗎?"
+msgstr "退票手續費 20 元，確定要退票嗎?"
+
+#. module: gangshan
+#: model:ir.ui.view,arch_db:gangshan.report_quotation_inherit
+msgid "預約參訪民眾配合事項:\n"
+"                    <br/>\n"
+"                    1. 團體預約入場者，請於入場前10日完成匯款。\n"
+"                    <br/>\n"
+"                    2. 請持電子票券搭乘接駁車至園區入口(需付費)，由現場人員驗票後始得入園參觀，另為加速通行，建議先行下載或列印本通知信附檔的 PDF 電子票劵(QR code)。\n"
+"                    <br/>\n"
+"                    3. 購買免費票遊客請攜帶相關證明俾現場驗票人員查驗，團體帶隊人員須帶身份證明文件及團員名單資料以縮短預約團體身份資料辨識時間，倘有無法辨識情形將取消預約資格。\n"
+"                    <br/>\n"
+"                    4. 請於預約參訪時間前10分鐘至入口處排隊等候入場,逾時不候。\n"
+"                    <br/>"
+msgstr "預約參訪民眾配合事項:\n"
+"                    <br/>\n"
+"                    1. 團體預約入場者，請於入場前10日完成匯款。\n"
+"                    <br/>\n"
+"                    2. 請持電子票券搭乘接駁車至園區入口(需付費)，由現場人員驗票後始得入園參觀，另為加速通行，建議先行下載或列印本通知信附檔的 PDF 電子票劵(QR code)。\n"
+"                    <br/>\n"
+"                    3. 購買免費票遊客請攜帶相關證明俾現場驗票人員查驗，團體帶隊人員須帶身份證明文件及團員名單資料以縮短預約團體身份資料辨識時間，倘有無法辨識情形將取消預約資格。\n"
+"                    <br/>\n"
+"                    4. 請於預約參訪時間前10分鐘至入口處排隊等候入場,逾時不候。\n"
+"                    <br/>"
+

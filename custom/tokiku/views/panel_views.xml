@@ -1,0 +1,1918 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_panel_mold_form" model="ir.ui.view">
+        <field name="name">tokiku.panel.mold.form</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel" create="false" edit="false">
+                <header>
+                    <button name="open_mold" string="Demand" type="object" class="btn btn-sm btn-primary"/>
+                    <button name="open_po" string="Order Form" type="object" class="btn btn-sm btn-primary"
+                            context="{'default_stage': 'material'}"/>
+                    <button name="open_order_panel" string="Order Panel" type="object" class="btn btn-sm btn-primary"/>
+<!--                    <button name="calculate" string="Refresh" type="object" class="btn btn-sm" groups="base.group_system"/>-->
+<!--                    <button name="calAll" string="Refresh All Panels" type="object" class="btn btn-sm"/>-->
+                </header>
+                <field name="project_id" invisible="1"/>
+                <field name="line_ids" widget="grid">
+                    <tree>
+                        <field name="default_code" pinned="left" widget="url" readonly="1"/>
+                        <field name="seller_name" pinned="left" readonly="1"/>
+                        <field name="mold_supplier_part_no" pinned="left" readonly="1"/>
+                        <field name="description" pinned="left" string="Classification" readonly="1"/>
+                        <field name="mold_material" pinned="left" string="Mold Material" readonly="1"/>
+                        <field name="mold_weight" pinned="left" readonly="1"/>
+                        <field name="paint_area" readonly="1" precision_3="1"/>
+                        <field name="coating" readonly="1"/>
+                        <field name="min_qty" readonly="1"/>
+                        <field name="ingot" readonly="1"/>
+                        <field name="demand_qty" readonly="1"/>
+                        <field name="rest_demand_qty" readonly="1"/>
+                        <field name="order_qty" readonly="1"/>
+                        <field name="qty_received" readonly="1"/>
+                        <field name="qty_stock" readonly="1"/>
+                        <field name="mold_drawing_trial_date" readonly="1"/>
+                        <field name="mold_drawing_signing_date" readonly="1"/>
+                        <field name="mold_drawing_status" readonly="1"/>
+                        <field name="material_actual_delivery_date" readonly="1"/>
+                        <field name="material_signing_date" readonly="1"/>
+                        <field name="material_status" readonly="1"/>
+                        <field name="date_order" readonly="1"/>
+                        <field name="order_num" string="Order Number" readonly="1"/>
+                        <field name="mold_expected_arrival_date" readonly="1"/>
+                        <field name="material_expected_delivery_date" readonly="1"/>
+                        <field name="remark"/>
+                        <field name="product_write_uid" string='Last Updated UID'/>
+                        <field name="product_write_date" string='Last Updated Date'/>
+                    </tree>
+                </field>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_raw_dashboard" model="ir.ui.view">
+        <field name="name">tokiku.raw.dashboard</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <group>
+                    <label for="id" string="Panel"/>
+                    <div>
+                        <button name="open_aluminum_panel" string="Aluminum Raw Material Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_order_panel" string="Order Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_material" string="Material Sum" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_aluminum_tree_panel" string="New Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Demand"/>
+                    <div>
+                        <button name="open_demand" string="Demand" type="object" class="btn btn-sm btn-primary"
+                                style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Order"/>
+                    <div>
+                        <button name="open_po" string="Order Form" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'material'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_aluminum_dashboard" model="ir.ui.view">
+        <field name="name">tokiku.refine.dashboard</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <group>
+                    <label for="id" string="Panel"/>
+                    <div>
+                        <button name="open_refine_panel" string="Aluminum Refine Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_order_panel" string="Order Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_refine_tree_panel" string="New Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_refine_account_panel" string="Account Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Order"/>
+                    <div>
+                        <button name="open_po" string="Order Form" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'material'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_process_po" string="Refine Order" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"
+                                context="{'default_stage': 'refine'}"/>
+                        <button name="open_process_po" string="Heat order" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'heat'}" style="margin:5px;width:145px;height:50px;"
+                                invisible="context.get('categ_code') not in ['aluminum']"/>
+                        <button name="open_process_po" string="Paint order" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Refine"/>
+                    <div>
+                        <button name="open_picking" string="Ship" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'ship'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Refine" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'refine'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Heat" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'heat'}" style="margin:5px;width:145px;height:50px;"
+                                invisible="context.get('categ_code') not in ['aluminum']"/>
+                        <button name="open_picking" string="Paint" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Assembly"/>
+                    <div>
+                        <button name="open_picking" string="Assembly" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'assembly'}" style="margin:5px;width:145px;height:50px;"
+                                invisible="0"/>
+                        <button name="open_picking" string="Construction site" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'site'}" style="margin:5px;width:145px;height:50px;"
+                                invisible="0"/>
+                    </div>
+                </group>
+
+<!--                                <button name="open_material" string="Material Sum" type="object" class="btn btn-sm btn-primary" invisible="context.get('categ_code') not in ['aluminum']"/>-->
+
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_glass_dashboard" model="ir.ui.view">
+        <field name="name">tokiku.glass.dashboard</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <group>
+                    <label for="id" string="Panel"/>
+                    <div>
+                        <button name="open_glass_panel" string="Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_order_panel" string="Order Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_glass_tree_panel" string="New Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Order"/>
+                    <div>
+                        <button name="open_po" string="Order Form" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'material'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_process_po" string="Refine Order" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"
+                                context="{'default_stage': 'refine'}"/>
+<!--                        <button name="open_process_po" string="Paint order" type="object" class="btn btn-sm btn-primary"-->
+<!--                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>-->
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Refine"/>
+                    <div>
+                        <button name="open_picking" string="Ship" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'ship'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Refine" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'refine'}" style="margin:5px;width:145px;height:50px;"/>
+<!--                        <button name="open_picking" string="Paint" type="object" class="btn btn-sm btn-primary"-->
+<!--                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>-->
+
+                    </div>
+                </group>
+                                <group>
+                                    <label for="id" string="Assembly"/>
+                                    <div>
+                                        <button name="open_picking" string="Assembly" type="object" class="btn btn-sm btn-primary"
+                                                context="{'default_stage': 'assembly'}" style="margin:5px;width:145px;height:50px;"/>
+                                         <button name="open_picking" string="Construction site" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'site'}" style="margin:5px;width:145px;height:50px;"
+                                invisible="0"/>
+                                    </div>
+                                </group>
+
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_plate_dashboard" model="ir.ui.view">
+        <field name="name">tokiku.plate.dashboard</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <group>
+                    <label for="id" string="Panel"/>
+                    <div>
+                        <button name="open_plate_panel" string="Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_order_panel" string="Order Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_plate_tree_panel" string="New Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_plate_account_panel" string="Account Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Order"/>
+                    <div>
+                        <button name="open_po" string="Order Form" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'material'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_process_po" string="Refine Order" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"
+                                context="{'default_stage': 'refine'}"/>
+                        <button name="open_process_po" string="Paint order" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Refine"/>
+                    <div>
+                        <button name="open_picking" string="Ship" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'ship'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Refine" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'refine'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Paint" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                                <group>
+                                    <label for="id" string="Assembly"/>
+                                    <div>
+                                        <button name="open_picking" string="Assembly" type="object" class="btn btn-sm btn-primary"
+                                                context="{'default_stage': 'assembly'}" style="margin:5px;width:145px;height:50px;"/>
+                                    <button name="open_picking" string="Construction site" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'site'}" style="margin:5px;width:145px;height:50px;"
+                                invisible="0"/>
+                                    </div>
+                                </group>
+
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_steel_dashboard" model="ir.ui.view">
+        <field name="name">tokiku.steel.dashboard</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <group>
+                    <label for="id" string="Panel"/>
+                    <div>
+                        <button name="open_steel_panel" string="Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_order_panel" string="Order Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_steel_tree_panel" string="New Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_steel_account_panel" string="Account Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Order"/>
+                    <div>
+                        <button name="open_po" string="Order Form" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'material'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_process_po" string="Refine Order" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"
+                                context="{'default_stage': 'refine'}"/>
+                        <button name="open_process_po" string="Paint order" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Refine"/>
+                    <div>
+                        <button name="open_picking" string="Ship" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'ship'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Refine" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'refine'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Paint" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                                <group>
+                                    <label for="id" string="Assembly"/>
+                                    <div>
+                                        <button name="open_picking" string="Assembly" type="object" class="btn btn-sm btn-primary"
+                                                context="{'default_stage': 'assembly'}" style="margin:5px;width:145px;height:50px;"/>
+                                        <button name="open_picking" string="Construction site" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'site'}" style="margin:5px;width:145px;height:50px;"
+                                invisible="0"/>
+                                    </div>
+                                </group>
+
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_iron_dashboard" model="ir.ui.view">
+        <field name="name">tokiku.iron.dashboard</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <group>
+                    <label for="id" string="Panel"/>
+                    <div>
+                        <button name="open_iron_panel" string="Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_order_panel" string="Order Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_iron_tree_panel" string="New Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_iron_account_panel" string="Account Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Order"/>
+                    <div>
+                        <button name="open_po" string="Order Form" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'material'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_process_po" string="Refine Order" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"
+                                context="{'default_stage': 'refine'}"/>
+                        <button name="open_process_po" string="Paint order" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Refine"/>
+                    <div>
+                        <button name="open_picking" string="Ship" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'ship'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Refine" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'refine'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Paint" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                                <group>
+                                    <label for="id" string="Assembly"/>
+                                    <div>
+                                        <button name="open_picking" string="Assembly" type="object" class="btn btn-sm btn-primary"
+                                                context="{'default_stage': 'assembly'}" style="margin:5px;width:145px;height:50px;"/>
+                                        <button name="open_picking" string="Construction site" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'site'}" style="margin:5px;width:145px;height:50px;"
+                                invisible="0"/>
+                                    </div>
+                                </group>
+
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_stone_dashboard" model="ir.ui.view">
+        <field name="name">tokiku.stone.dashboard</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <group>
+                    <label for="id" string="Panel"/>
+                    <div>
+                        <button name="open_stone_panel" string="Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_order_panel" string="Order Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_stone_tree_panel" string="New Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Order"/>
+                    <div>
+                        <button name="open_po" string="Order Form" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'material'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_process_po" string="Refine Order" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"
+                                context="{'default_stage': 'refine'}"/>
+                        <button name="open_process_po" string="Paint order" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Refine"/>
+                    <div>
+                        <button name="open_picking" string="Ship" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'ship'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Refine" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'refine'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Paint" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                                <group>
+                                    <label for="id" string="Assembly"/>
+                                    <div>
+                                        <button name="open_picking" string="Assembly" type="object" class="btn btn-sm btn-primary"
+                                                context="{'default_stage': 'assembly'}" style="margin:5px;width:145px;height:50px;"/>
+                                        <button name="open_picking" string="Construction site" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'site'}" style="margin:5px;width:145px;height:50px;"
+                                invisible="0"/>
+                                    </div>
+                                </group>
+
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_silicon_dashboard" model="ir.ui.view">
+        <field name="name">tokiku.silicon.dashboard</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <group>
+                    <label for="id" string="Panel"/>
+                    <div>
+                        <button name="open_silicon_panel" string="Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_order_panel" string="Order Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_silicon_tree_panel" string="New Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Order"/>
+                    <div>
+                        <button name="open_po" string="Order Form" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'material'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_process_po" string="Refine Order" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"
+                                context="{'default_stage': 'refine'}"/>
+                        <button name="open_process_po" string="Paint order" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Refine"/>
+                    <div>
+                        <button name="open_picking" string="Ship" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'ship'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Refine" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'refine'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Paint" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                                <group>
+                                    <label for="id" string="Assembly"/>
+                                    <div>
+                                        <button name="open_picking" string="Assembly" type="object" class="btn btn-sm btn-primary"
+                                                context="{'default_stage': 'assembly'}" style="margin:5px;width:145px;height:50px;"/>
+                                        <button name="open_picking" string="Construction site" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'site'}" style="margin:5px;width:145px;height:50px;"
+                                invisible="0"/>
+                                    </div>
+                                </group>
+
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_rubber_dashboard" model="ir.ui.view">
+        <field name="name">tokiku.rubber.dashboard</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <group>
+                    <label for="id" string="Panel"/>
+                    <div>
+                        <button name="open_rubber_panel" string="Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_order_panel" string="Order Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_rubber_tree_panel" string="New Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Order"/>
+                    <div>
+                        <button name="open_po" string="Order Form" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'material'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_process_po" string="Refine Order" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"
+                                context="{'default_stage': 'refine'}"/>
+                        <button name="open_process_po" string="Paint order" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Refine"/>
+                    <div>
+                        <button name="open_picking" string="Ship" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'ship'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Refine" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'refine'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Paint" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                                <group>
+                                    <label for="id" string="Assembly"/>
+                                    <div>
+                                        <button name="open_picking" string="Assembly" type="object" class="btn btn-sm btn-primary"
+                                                context="{'default_stage': 'assembly'}" style="margin:5px;width:145px;height:50px;"/>
+                                        <button name="open_picking" string="Construction site" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'site'}" style="margin:5px;width:145px;height:50px;"
+                                invisible="0"/>
+                                    </div>
+                                </group>
+
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mineral_dashboard" model="ir.ui.view">
+        <field name="name">tokiku.mineral.dashboard</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <group>
+                    <label for="id" string="Panel"/>
+                    <div>
+                        <button name="open_mineral_panel" string="Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_order_panel" string="Order Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_mineral_tree_panel" string="New Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Order"/>
+                    <div>
+                        <button name="open_po" string="Order Form" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'material'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_process_po" string="Refine Order" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"
+                                context="{'default_stage': 'refine'}"/>
+                        <button name="open_process_po" string="Paint order" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Refine"/>
+                    <div>
+                        <button name="open_picking" string="Ship" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'ship'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Refine" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'refine'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Paint" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                                <group>
+                                    <label for="id" string="Assembly"/>
+                                    <div>
+                                        <button name="open_picking" string="Assembly" type="object" class="btn btn-sm btn-primary"
+                                                context="{'default_stage': 'assembly'}" style="margin:5px;width:145px;height:50px;"/>
+                                        <button name="open_picking" string="Construction site" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'site'}" style="margin:5px;width:145px;height:50px;"
+                                invisible="0"/>
+                                    </div>
+                                </group>
+
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_accessories_dashboard" model="ir.ui.view">
+        <field name="name">tokiku.accessories.dashboard</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <group>
+                    <label for="id" string="Panel"/>
+                    <div>
+                        <button name="open_accessories_panel" string="Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_order_panel" string="Order Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_accessories_tree_panel" string="New Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Order"/>
+                    <div>
+                        <button name="open_po" string="Order Form" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'material'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_process_po" string="Refine Order" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"
+                                context="{'default_stage': 'refine'}"/>
+                        <button name="open_process_po" string="Paint order" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Refine"/>
+                    <div>
+                        <button name="open_picking" string="Ship" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'ship'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Refine" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'refine'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Paint" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                                <group>
+                                    <label for="id" string="Assembly"/>
+                                    <div>
+                                        <button name="open_picking" string="Assembly" type="object" class="btn btn-sm btn-primary"
+                                                context="{'default_stage': 'assembly'}" style="margin:5px;width:145px;height:50px;"/>
+                                        <button name="open_picking" string="Construction site" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'site'}" style="margin:5px;width:145px;height:50px;"
+                                invisible="0"/>
+                                    </div>
+                                </group>
+
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_others_dashboard" model="ir.ui.view">
+        <field name="name">tokiku.others.dashboard</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <group>
+                    <label for="id" string="Panel"/>
+                    <div>
+                        <button name="open_others_panel" string="Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_order_panel" string="Order Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_others_tree_panel" string="New Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_others_account_panel" string="Account Panel" type="object" class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Order"/>
+                    <div>
+                        <button name="open_po" string="Order Form" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'material'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_process_po" string="Refine Order" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"
+                                context="{'default_stage': 'refine'}"/>
+                        <button name="open_process_po" string="Paint order" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Refine"/>
+                    <div>
+                        <button name="open_picking" string="Ship" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'ship'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Refine" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'refine'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_picking" string="Paint" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'paint'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                                <group>
+                                    <label for="id" string="Assembly"/>
+                                    <div>
+                                        <button name="open_picking" string="Assembly" type="object" class="btn btn-sm btn-primary"
+                                                context="{'default_stage': 'assembly'}" style="margin:5px;width:145px;height:50px;"/>
+                                        <button name="open_picking" string="Construction site" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'site'}" style="margin:5px;width:145px;height:50px;"
+                                invisible="0"/>
+                                    </div>
+                                </group>
+                <button name="open_material" string="Material Sum" type="object" class="btn btn-sm btn-primary" invisible="context.get('categ_code') not in ['aluminum']"/>
+
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_assembly_dashboard" model="ir.ui.view">
+        <field name="name">tokiku.assembly.dashboard</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <group>
+                    <label for="id" string="Panel"/>
+                    <div>
+                        <button name="open_assembly_preparation_panel" string="Assembly Preparation Panel" type="object"
+                                class="oe_highlight"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_assembly_panel" string="Assembly Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_order_panel" string="Order Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_summary_panel" string="Assembly Overview" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <!--                        <button name="act_building_demands" type="object" string="Building Demands"-->
+                        <!--                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>-->
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Order"/>
+                    <div>
+                        <button name="open_assembly_po" string="Assembly Order Form" type="object"
+                                class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'assembly'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Assembly"/>
+                    <div>
+                        <button name="open_preparation_order" string="Preparation Order Form" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_assembly_order" string="Assembly Work Order" type="object"
+                                class="btn btn-sm btn-primary" context="{'default_stage': 'assembly'}"
+                                style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_production_record" string="Production Record" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Ship"/>
+                    <div>
+                        <button name="open_picking" string="Ship" type="object" class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'ship'}" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_installation_dashboard" model="ir.ui.view">
+        <field name="name">tokiku.installation.dashboard</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <group>
+                    <label for="id" string="Panel"/>
+                    <div>
+                        <button name="open_installation_panel" string="Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_order_panel" string="Order Panel" type="object"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+<!--                        <button name="open_installation_summary_panel" string="Installation Overview" type="object"-->
+<!--                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>-->
+<!--                        <button name="open_installation_progress_panel" string="Progress Overview" type="object"-->
+<!--                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>-->
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Demand"/>
+                    <div>
+                        <button name="open_installation_demand" string="Installation Demand" type="object"
+                                class="btn btn-sm btn-primary"
+                                style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Order"/>
+                    <div>
+                        <button name="open_installation_po" string="Installation Order Form" type="object"
+                                class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'installation'}" style="margin:5px;width:145px;height:50px;"/>
+                        <button name="open_installation_valuation" string="Installation Valuation Form" type="object"
+                                class="btn btn-sm btn-primary"
+                                context="{'default_stage': 'installation'}"
+                                style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <!--                <group>-->
+                <!--                    <label for="id" string="Valuation"/>-->
+                <!--                    <div>-->
+                <!--                        <button name="open_valuation" string="Install Valuation" type="object" class="btn btn-sm btn-primary"-->
+                <!--                                style="margin:5px;width:145px;height:50px;"/>-->
+                <!--                    </div>-->
+                <!--                </group>-->
+                <group>
+                    <label for="id" string="Installation"/>
+                    <div>
+                        <button name="open_installation_production_record" string="Production Record" type="object"
+                                context="{'default_stage': 'installation'}"
+                                class="btn btn-sm btn-primary" style="margin:5px;width:145px;height:50px;"/>
+                    </div>
+                </group>
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+            </form>
+        </field>
+    </record>
+
+    <!--    <record id="building_demand_view" model="ir.ui.view">-->
+    <!--        <field name="name">Building Demands</field>-->
+    <!--        <field name="model">tokiku.panel</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <form string="Building Demands">-->
+    <!--                <field name="building_demand_ids" widget="x2many_2d_matrix" field_x_axis="building_id"-->
+    <!--                       field_y_axis="assembly_panel_line_id" field_extra_y_axis="total_demand" field_value="quantity"/>-->
+    <!--            </form>-->
+    <!--        </field>-->
+    <!--    </record>-->
+<record id="view_panel_line_raw_tree" model="ir.ui.view">
+        <field name="name">tokiku.panel_line.tree</field>
+        <field name="model">tokiku.panel_line</field>
+        <field name="arch" type="xml">
+            <tree class="grid">
+                <field name="prod_categ_id" invisible="1"/>
+                <field name="default_code" string="Part Number" readonly="1"/>
+                <field name="supplier_part_no" string='Supplier Part Number'  invisible="context.get('categ_code') not in ['raw']"/>
+                <field name="code" string="Part Number" pinned="1" readonly="1" invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="material" readonly="1"/>
+                <field name="description" readonly="1" invisible="context.get('categ_code') in ['raw']"/>
+                <field name="surface_coating" readonly="1"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <field name="color_code" readonly="1"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <field name="heating" readonly="1"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <field name="weight" digits="(16,3)" readonly="1" invisible="context.get('categ_code') not in ['raw','aluminum']"/>
+                <field name="cutting_length" readonly="1" invisible="context.get('categ_code') in ['raw']"/>
+                <field name="cutting_length" readonly="1" invisible="context.get('categ_code') not in ['raw']" string="Order Length"/>
+                <field name="cutting_width" readonly="1" invisible="context.get('categ_code') in ['raw','aluminum']"/>
+                <field name="unit_area" readonly="1" invisible="context.get('categ_code') in ['raw','aluminum']"/>
+                <field name="mold_seller_id" invisible="1"/>
+                <field name="mold_id" invisible="1"/>
+
+                <field name="demand_qty" header_group="需求數量"/>
+                <button name="act_raw_demand_qty" string="Details" type="object" icon="fa-eye" header_group="需求數量"/>
+                <field name="area" header_group="需求數量" invisible="context.get('categ_code') in ['raw']"/>
+                <field name="weight_sub" header_group="需求數量"/>
+                <field name="rest_demand_qty" header_group="需求數量"/>
+                <field name="qty_cut_done" string='Shipped Qty' invisible="context.get('categ_code') not in ['glass']"/>
+
+                <!--                <field name="order_qty" header_group="加工訂單總計"/>-->
+                <!--                <field name="spare_qty" header_group="加工訂單總計"/>-->
+                <!--                <field name="qty_backorder" header_group="加工訂單總計"/>-->
+
+                <field name="order_qty" header_group="訂單總計"/>
+                <field name="spare_qty" header_group="訂單總計"/>
+                <field name="qty_backorder" header_group="訂單總計"/>
+                <field name="total_ordered_qty" header_group="訂單總計"/>
+                <button name="act_order_qty" string="Details" type="object" icon="fa-eye" header_group="訂單總計"/>
+                <field name="order_weight" header_group="訂單總計"/>
+                <!--<button name="act_order_weight" string="Details" type="object" icon="fa-eye" header_group="訂單總計" invisible="context.get('categ_code') not in ['raw']"/>-->
+                <field name="qty_cut_done" header_group="裁切待加工"
+                       invisible="context.get('categ_code') in ['raw','glass']"/>
+
+                <field name="raw_un_ship_qty" header_group="出貨狀況"
+                       invisible="context.get('categ_code') not in ['raw']"/>
+                <field name="raw_un_ship_weight" header_group="出貨狀況"
+                       invisible="context.get('categ_code') not in ['raw']"/>
+                <field name="raw_ship_qty" header_group="出貨狀況"
+                       invisible="context.get('categ_code') not in ['raw']"/>
+                <field name="raw_ship_weight" header_group="出貨狀況"
+                       invisible="context.get('categ_code') not in ['raw']"/>
+                <button name="act_raw_qty" string="Details" type="object" icon="fa-eye" header_group="出貨狀況"
+                        invisible="context.get('categ_code') not in ['raw']"/>
+
+                <field name="refined_qty" header_group="加工登記"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <button name="act_refined_qty" string="Details" type="object" icon="fa-eye" header_group="加工登記"
+                        invisible="context.get('categ_code') in ['raw']"/>
+                <field name="refined_weight" header_group="加工登記"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <field name="un_refined_qty" header_group="加工登記"
+                       invisible="context.get('categ_code')  in ['raw']"/>
+
+                <field name="ship_qty_refine" header_group="加工登記-出貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <button name="act_ship_qty_refine" string="Details" type="object" icon="fa-eye" header_group="加工登記-出貨"
+                        invisible="context.get('categ_code') in ['raw']"/>
+                <field name="refine_percent" header_group="加工登記-出貨"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="ship_weight_refine" header_group="加工登記-出貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <field name="wait_ship_refine_qty" header_group="加工登記-出貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <field name="un_ship_refine_qty" header_group="加工登記-出貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+
+                <field name="qty_heat" header_group="熱處理訂單總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <button name="act_qty_heat" string="Details" type="object" icon="fa-eye" header_group="熱處理訂單總計"
+                        invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="weight_heat" header_group="熱處理訂單總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="not_heat_order_qty" header_group="熱處理訂單總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+
+                <field name="ship_qty_heat" header_group="熱處理出貨總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <button name="act_ship_qty_heat" string="Details" type="object" icon="fa-eye" header_group="熱處理出貨總計"
+                        invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="heat_percent" header_group="熱處理出貨總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="ship_weight_heat" header_group="熱處理出貨總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="un_ship_heat" header_group="熱處理出貨總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+
+                <field name="heat_to_assembly" header_group="熱處理出貨狀況"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <button name="act_heat_to_assembly" string="Details" type="object" icon="fa-eye"
+                        header_group="熱處理出貨狀況" invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="heat_to_paint" header_group="熱處理出貨狀況"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <button name="act_heat_to_paint" string="Details" type="object" icon="fa-eye" header_group="熱處理出貨狀況"
+                        invisible="context.get('categ_code') not in ['aluminum']"/>
+
+                <field name="qty_paint" header_group="烤漆訂單總計"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <button name="act_qty_paint" string="Details" type="object" icon="fa-eye" header_group="烤漆訂單總計"
+                        invisible="context.get('categ_code') in ['raw']"/>
+                <field name="weight_paint" header_group="烤漆訂單總計"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <field name="not_paint_order_qty" header_group="烤漆訂單總計"
+                       invisible="context.get('categ_code') in ['raw']"/>
+
+                <field name="paint_to_assembly_qty" header_group="烤漆出貨狀況(組裝)"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <button name="act_paint_to_assembly_qty" string="Details" type="object" icon="fa-eye"
+                        header_group="烤漆出貨狀況(組裝)" invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="paint_to_assembly_percent" header_group="烤漆出貨狀況(組裝)"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="paint_to_assembly_weight" header_group="烤漆出貨狀況(組裝)"
+                       invisible="context.get('categ_code') in ['raw']"/>
+
+                <field name="paint_to_site_qty" header_group="烤漆出貨狀況(工地)"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <button name="act_paint_to_site_qty" string="Details" type="object" icon="fa-eye"
+                        header_group="烤漆出貨狀況(工地)" invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="paint_to_site_percent" header_group="烤漆出貨狀況(工地)"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="paint_to_site_weight" header_group="烤漆出貨狀況(工地)"
+                       invisible="context.get('categ_code') in ['raw']"/>
+
+                <field name="qty_receive_assembly" header_group="組裝廠"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <button name="act_qty_receive_assembly" string="Details" type="object" icon="fa-eye"
+                        header_group="組裝廠" invisible="context.get('categ_code') in ['raw']"/>
+                <field name="qty_unstock_assembly" header_group="組裝廠" invisible="context.get('categ_code') in ['raw']"/>
+
+
+
+                <field name="return_qty_refine" header_group="加工廠退貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <field name="return_weight_refine" header_group="加工廠退貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+
+                <field name="return_qty_heat" header_group="熱處理廠退貨"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="return_weight_heat" header_group="熱處理廠退貨"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+
+                <field name="return_qty_paint" header_group="烤漆廠退貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <field name="return_weight_paint" header_group="烤漆廠退貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_panel_line_raw_demand_qty" model="ir.ui.view">
+        <field name="name">tokiku.panel_line_raw.demand_qty</field>
+        <field name="model">tokiku.demand_line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref_demand_form_num"/>
+                <field name="ref_supplier"/>
+                <field name="ref_name" string="Position"/>
+                <field name="ref_file_date"/>
+                <field name="qty"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_panel_line_tree" model="ir.ui.view">
+        <field name="name">tokiku.panel_line.tree</field>
+        <field name="model">tokiku.panel_line</field>
+        <field name="arch" type="xml">
+            <tree class="grid">
+                <field name="prod_categ_id" invisible="1"/>
+                <field name="atlas_id" string="Processing Atlas" pinned="1" readonly="1"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <field name="categ_name" invisible="context.get('categ_code') not in ['accessories']"
+                               pinned="1" readonly="1"/>
+                <field name="default_code" string="Processing Number" pinned="1" readonly="1" invisible="context.get('categ_code') in ['raw']"/>
+
+                <field name="supplier_part_no" string='Supplier Part Number'  invisible="context.get('categ_code') not in ['raw']"/>
+                <field name="code" string="Part Number" pinned="1" readonly="1" invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="material" readonly="1" invisible="context.get('categ_code') in ['glass','silicon','rubber','mineral','accessories']"/>
+                <field name="description" readonly="1" invisible="context.get('categ_code') in ['raw']"/>
+                <field name="surface_coating" readonly="1"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories']"/>
+                <field name="color_code" readonly="1"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories']"/>
+                <field name="heating" readonly="1"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories']"/>
+                <field name="weight" readonly="1" invisible="context.get('categ_code') not in ['raw','aluminum']"/>
+                <field name="cutting_length" readonly="1" invisible="context.get('categ_code') in ['raw']"/>
+                <field name="cutting_length" readonly="1" invisible="context.get('categ_code') not in ['raw']" string="Order Length"/>
+                <field name="cutting_width" readonly="1" invisible="context.get('categ_code') in ['raw','aluminum']"/>
+                <field name="unit_area" readonly="1" invisible="context.get('categ_code') in ['raw','aluminum']"/>
+                <field name="mold_seller_id" invisible="1"/>
+                <field name="mold_id" invisible="1"/>
+
+                <field name="demand_qty" header_group="需求數量"/>
+                <field name="area" header_group="需求數量" invisible="context.get('categ_code') in ['raw']"/>
+                <field name="weight_sub" header_group="需求數量"/>
+                <field name="rest_demand_qty" header_group="需求數量"/>
+                <field name="qty_cut_done" string="Shipped Qty" invisible="context.get('categ_code') not in ['glass']"/>
+                <!--                <field name="order_qty" header_group="加工訂單總計"/>-->
+                <!--                <field name="spare_qty" header_group="加工訂單總計"/>-->
+                <!--                <field name="qty_backorder" header_group="加工訂單總計"/>-->
+
+                <field name="order_qty" header_group="訂單總計"/>
+                <field name="spare_qty" header_group="訂單總計"/>
+                <field name="qty_backorder" header_group="訂單總計"/>
+                <field name="total_ordered_qty" header_group="訂單總計"/>
+                <button name="act_order_qty" string="Details" type="object" icon="fa-eye" header_group="訂單總計"/>
+                <field name="order_weight" header_group="訂單總計"/>
+                <!--<button name="act_order_weight" string="Details" type="object" icon="fa-eye" header_group="訂單總計" invisible="context.get('categ_code') not in ['raw']"/>-->
+                <field name="qty_cut_done" string="qty_cut_done" invisible="context.get('categ_code') not in ['aluminum']"/>
+
+                <field name="refined_qty" header_group="加工登記"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories','plate','steel','iron']"/>
+                <button name="act_refined_qty" string="Details" type="object" icon="fa-eye" header_group="加工登記"
+                        invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories','plate','steel','iron']"/>
+                <field name="refined_weight" header_group="加工登記"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories','plate','steel','iron']"/>
+                <field name="un_refined_qty" header_group="加工登記"
+                       invisible="context.get('categ_code')  in ['raw','glass','silicon','rubber','mineral','accessories','plate','steel','iron']"/>
+
+                <field name="ship_qty_refine" header_group="加工登記-出貨"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories','plate','steel','iron']"/>
+                <button name="act_ship_qty_refine" string="Details" type="object" icon="fa-eye" header_group="加工登記-出貨"
+                        invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories','plate','steel','iron']"/>
+                <field name="refine_percent" header_group="加工登記-出貨"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="ship_weight_refine" header_group="加工登記-出貨"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories','plate','steel','iron']"/>
+                <field name="wait_ship_refine_qty" header_group="加工登記-出貨"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories','plate','steel','iron']"/>
+                <field name="un_ship_refine_qty" header_group="加工登記-出貨"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories','plate','steel','iron']"/>
+
+                <field name="qty_heat" header_group="熱處理訂單總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <button name="act_qty_heat" string="Details" type="object" icon="fa-eye" header_group="熱處理訂單總計"
+                        invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="weight_heat" header_group="熱處理訂單總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="not_heat_order_qty" header_group="熱處理訂單總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+
+                <field name="ship_qty_heat" header_group="熱處理出貨總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <button name="act_ship_qty_heat" string="Details" type="object" icon="fa-eye" header_group="熱處理出貨總計"
+                        invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="heat_percent" header_group="熱處理出貨總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="ship_weight_heat" header_group="熱處理出貨總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="un_ship_heat" header_group="熱處理出貨總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+
+                <field name="heat_to_assembly" header_group="熱處理出貨狀況"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <button name="act_heat_to_assembly" string="Details" type="object" icon="fa-eye"
+                        header_group="熱處理出貨狀況" invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="heat_to_paint" header_group="熱處理出貨狀況"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <button name="act_heat_to_paint" string="Details" type="object" icon="fa-eye" header_group="熱處理出貨狀況"
+                        invisible="context.get('categ_code') not in ['aluminum']"/>
+
+                <field name="qty_paint" header_group="烤漆訂單總計"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories','plate','steel','iron']"/>
+                <button name="act_qty_paint" string="Details" type="object" icon="fa-eye" header_group="烤漆訂單總計"
+                        invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories','plate','steel','iron']"/>
+                <field name="weight_paint" header_group="烤漆訂單總計"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories','plate','steel','iron']"/>
+                <field name="not_paint_order_qty" header_group="烤漆訂單總計"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories','plate','steel','iron']"/>
+
+                <field name="paint_to_assembly_qty" header_group="烤漆出貨狀況(組裝)"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories']"/>
+                <button name="act_paint_to_assembly_qty" string="Details" type="object" icon="fa-eye"
+                        header_group="烤漆出貨狀況(組裝)" invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="paint_to_assembly_percent" header_group="烤漆出貨狀況(組裝)"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="paint_to_assembly_weight" header_group="烤漆出貨狀況(組裝)"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories']"/>
+
+                <field name="paint_to_site_qty" header_group="烤漆出貨狀況(工地)"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories']"/>
+                <button name="act_paint_to_site_qty" string="Details" type="object" icon="fa-eye"
+                        header_group="烤漆出貨狀況(工地)" invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="paint_to_site_percent" header_group="烤漆出貨狀況(工地)"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="paint_to_site_weight" header_group="烤漆出貨狀況(工地)"
+                       invisible="context.get('categ_code') in ['raw','glass','silicon','rubber','mineral','accessories']"/>
+
+                <field name="qty_receive_assembly" header_group="組裝廠"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <button name="act_qty_receive_assembly" string="Details" type="object" icon="fa-eye"
+                        header_group="組裝廠" invisible="context.get('categ_code') in ['raw']"/>
+                <field name="qty_unstock_assembly" header_group="組裝廠" invisible="context.get('categ_code') in ['raw']"/>
+
+                <field name="qty_receive_site" header_group="工地"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <button name="act_qty_receive_site" string="Details" type="object" icon="fa-eye"
+                        header_group="工地" invisible="context.get('categ_code') in ['raw']"/>
+                <field name="qty_unstock_site" header_group="工地" invisible="context.get('categ_code') in ['raw']"/>
+
+
+
+                <field name="return_qty_refine" header_group="加工廠退貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <field name="return_weight_refine" header_group="加工廠退貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+
+                <field name="return_qty_heat" header_group="熱處理廠退貨"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="return_weight_heat" header_group="熱處理廠退貨"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+
+                <field name="return_qty_paint" header_group="烤漆廠退貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <field name="return_weight_paint" header_group="烤漆廠退貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+
+                <field name="return_qty_assembly" header_group="組裝廠退貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <field name="return_weight_assembly" header_group="組裝廠退貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+
+                <field name="return_qty_site" header_group="工地廠退貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+                <field name="return_weight_site" header_group="工地廠退貨"
+                       invisible="context.get('categ_code') in ['raw']"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_panel_line_filter" model="ir.ui.view">
+        <field name="name">tokiku.panel.line.filter</field>
+        <field name="model">tokiku.panel_line</field>
+        <field name="arch" type="xml">
+            <search string="Filter Panel Line">
+                <field name="default_code"
+                       filter_domain="['|', ('default_code','ilike',self),'|', ('code','=like',str(self)+'%'), ('description','ilike',self)]"
+                       string="Keyword"/>
+                <filter name="atlas" string="Atlas" context="{'group_by':'atlas_id'}"/>
+                <filter name="default_code" string="Processing Number" context="{'group_by':'default_code'}"/>
+                <filter name="code" string="Part Number" context="{'group_by':'code'}"/>
+                <filter name="material_sum_name" string="Material Sum Name" context="{'group_by':'material_sum_name'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_panel_line_raw_qty" model="ir.ui.view">
+        <field name="name">tokiku.stock_picking.raw_qty</field>
+        <field name="model">stock.pack.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref_picking_name"/>
+                <field name="ref_partner_name"/>
+                <field name="location_id"/>
+                <field name="owner_id"/>
+                <field name="location_dest_id"/>
+                <field name="ref_min_date"/>
+                <field name="qty_done"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_panel_line_order_qty" model="ir.ui.view">
+        <field name="name">tokiku.panel_line.order_qty</field>
+        <field name="model">purchase.order.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="order_id"/>
+                <field name="partner_id"/>
+                <field name="date_order"/>
+                <field name="order_qty"/>
+                <field name="spare_qty"/>
+                <field name="order_category"/>
+                <field name="product_qty"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_refined_qty" model="ir.ui.view">
+        <field name="name">tokiku.stock_picking.refined_qty</field>
+        <field name="model">stock.pack.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref_picking_name"/>
+                <field name="ref_partner_name"/>
+                <field name="location_id"/>
+                <field name="owner_id"/>
+                <field name="location_dest_id"/>
+                <field name="ref_min_date"/>
+                <field name="qty_done"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_ship_qty_refine" model="ir.ui.view">
+        <field name="name">tokiku.stock_picking.ship_qty_refine</field>
+        <field name="model">stock.pack.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref_picking_name"/>
+                <field name="ref_partner_name"/>
+                <field name="location_id"/>
+                <field name="owner_id"/>
+                <field name="location_dest_id"/>
+                <field name="ref_min_date"/>
+                <field name="qty_done"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_qty_heat" model="ir.ui.view">
+        <field name="name">tokiku.stock_picking.qty_heat</field>
+        <field name="model">stock.pack.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref_picking_name"/>
+                <field name="ref_partner_name"/>
+                <field name="location_id"/>
+                <field name="owner_id"/>
+                <field name="location_dest_id"/>
+                <field name="ref_min_date"/>
+                <field name="qty_done"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_ship_qty_heat" model="ir.ui.view">
+        <field name="name">tokiku.stock_picking.ship_qty_heat</field>
+        <field name="model">stock.pack.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref_picking_name"/>
+                <field name="ref_partner_name"/>
+                <field name="location_id"/>
+                <field name="owner_id"/>
+                <field name="location_dest_id"/>
+                <field name="ref_min_date"/>
+                <field name="qty_done"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_heat_to_assembly" model="ir.ui.view">
+        <field name="name">tokiku.stock_picking.heat_to_assembly</field>
+        <field name="model">stock.pack.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref_picking_name"/>
+                <field name="ref_partner_name"/>
+                <field name="location_id"/>
+                <field name="owner_id"/>
+                <field name="location_dest_id"/>
+                <field name="ref_min_date"/>
+                <field name="qty_done"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_heat_to_paint" model="ir.ui.view">
+        <field name="name">tokiku.stock_picking.heat_to_paint</field>
+        <field name="model">stock.pack.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref_picking_name"/>
+                <field name="ref_partner_name"/>
+                <field name="location_id"/>
+                <field name="owner_id"/>
+                <field name="location_dest_id"/>
+                <field name="ref_min_date"/>
+                <field name="qty_done"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_qty_paint" model="ir.ui.view">
+        <field name="name">tokiku.stock_picking.qty_paint</field>
+        <field name="model">stock.pack.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref_picking_name"/>
+                <field name="ref_partner_name"/>
+                <field name="location_id"/>
+                <field name="owner_id"/>
+                <field name="location_dest_id"/>
+                <field name="ref_min_date"/>
+                <field name="qty_done"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_paint_to_assembly_qty" model="ir.ui.view">
+        <field name="name">tokiku.stock_picking_paint_to_assembly_qty</field>
+        <field name="model">stock.pack.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref_picking_name"/>
+                <field name="ref_partner_name"/>
+                <field name="location_id"/>
+                <field name="owner_id"/>
+                <field name="location_dest_id"/>
+                <field name="ref_min_date"/>
+                <field name="qty_done"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_paint_to_site_qty" model="ir.ui.view">
+        <field name="name">tokiku.stock_picking_paint_to_site_qty</field>
+        <field name="model">stock.pack.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref_picking_name"/>
+                <field name="ref_partner_name"/>
+                <field name="location_id"/>
+                <field name="owner_id"/>
+                <field name="location_dest_id"/>
+                <field name="ref_min_date"/>
+                <field name="qty_done"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_qty_receive_assembly" model="ir.ui.view">
+        <field name="name">tokiku.stock_picking_qty_receive_assembly</field>
+        <field name="model">stock.pack.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref_picking_name"/>
+                <field name="ref_partner_name"/>
+                <field name="location_id"/>
+                <field name="owner_id"/>
+                <field name="location_dest_id"/>
+                <field name="ref_min_date"/>
+                <field name="qty_done"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_qty_receive_site" model="ir.ui.view">
+        <field name="name">tokiku.stock_picking_qty_receive_site</field>
+        <field name="model">stock.pack.operation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="ref_picking_name"/>
+                <field name="ref_partner_name"/>
+                <field name="location_id"/>
+                <field name="owner_id"/>
+                <field name="location_dest_id"/>
+                <field name="ref_min_date"/>
+                <field name="qty_done"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_panel_form" model="ir.ui.view">
+        <field name="name">tokiku.panel.form</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+                <field name="line_ids" widget="grid"
+                       context="{'project_id': project_id, 'categ_id': categ_id, 'panel_id': id}">
+                    <tree default_order="sequence,id asc">
+                        <field name="sequence" invisible="1"/>
+                        <field name="atlas_id" string="Processing Atlas" pinned="left" readonly="1"/>
+                        <field name="prod_categ_id" invisible="1"/>
+                        <field name="categ_name" invisible="context.get('categ_code') not in ['accessories']"
+                               pinned="left" readonly="1"/>
+                        <field name="material" invisible="0"/>
+                        <field name="default_code" string="Processing Number" pinned="left" readonly="1"/>
+                        <field name="code" pinned="left" string="Part Number" readonly="1"
+                               invisible="context.get('categ_code') not in ['aluminum']"/>
+                        <field name="description" readonly="1"/>
+                        <field name="surface_coating" readonly="1"/>
+                        <field name="color_code" readonly="1"/>
+                        <field name="heating" readonly="1"/>
+                        <field name="weight" readonly="1" invisible="context.get('categ_code') not in ['aluminum']"/>
+                        <field name="cutting_length" readonly="1"/>
+                        <field name="cutting_width" readonly="1" invisible="context.get('categ_code') in ['raw','aluminum']"/>
+                        <field name="unit_area" readonly="1" invisible="context.get('categ_code') in ['raw','aluminum']"/>
+                        <field name="mold_seller_id" invisible="1"/>
+                        <field name="mold_id" invisible="1"/>
+
+                        <field name="demand_qty" header_group="需求數量"/>
+                        <field name="area" header_group="需求數量" invisible="context.get('categ_code') in ['raw','aluminum']"/>
+                        <field name="weight_sub" header_group="需求數量"
+                               invisible="context.get('categ_code') not in ['aluminum']"/>
+                        <field name="rest_demand_qty" header_group="需求數量"/>
+                        <field name="qty_cut_done" string='Shipped Qty' invisible="context.get('categ_code') not in ['glass']"/>
+
+                        <field name="order_qty" header_group="加工訂單總計"/>
+                        <field name="spare_qty" header_group="加工訂單總計"/>
+                        <field name="qty_backorder" header_group="加工訂單總計"/>
+                        <field name="total_ordered_qty" header_group="加工訂單總計"/>
+                        <field name="order_weight" header_group="加工訂單總計"/>
+                        <field name="xx_order_qty" header_group="加工訂單總計" open_show="1"/>
+
+                        <field name="qty_cut_done" header_group="裁切待加工" invisible="context.get('categ_code') in ['glass']"/>
+
+                        <field name="refined_qty" header_group="加工登記"/>
+                        <field name="refined_weight" header_group="加工登記"/>
+                        <field name="un_refined_qty" header_group="加工登記"/>
+
+                        <field name="ship_qty_refine" header_group="加工登記-出貨"/>
+                        <field name="ship_weight_refine" header_group="加工登記-出貨"/>
+                        <field name="wait_ship_refine_qty" header_group="加工登記-出貨"/>
+                        <field name="un_ship_refine_qty" header_group="加工登記-出貨"/>
+
+                        <field name="qty_heat" header_group="熱處理訂單總計"
+                               invisible="context.get('categ_code') not in ['aluminum']"/>
+                        <field name="weight_heat" header_group="熱處理訂單總計"
+                               invisible="context.get('categ_code') not in ['aluminum']"/>
+                        <field name="not_heat_order_qty" header_group="熱處理訂單總計"
+                               invisible="context.get('categ_code') not in ['aluminum']"/>
+
+                        <field name="ship_qty_heat" header_group="熱處理出貨總計"
+                               invisible="context.get('categ_code') not in ['aluminum']"/>
+                        <field name="ship_weight_heat" header_group="熱處理出貨總計"
+                               invisible="context.get('categ_code') not in ['aluminum']"/>
+                        <field name="un_ship_heat" header_group="熱處理出貨總計"
+                               invisible="context.get('categ_code') not in ['aluminum']"/>
+
+                        <field name="heat_to_assembly" header_group="熱處理出貨狀況"
+                               invisible="context.get('categ_code') not in ['aluminum']"/>
+                        <field name="heat_to_paint" header_group="熱處理出貨狀況"
+                               invisible="context.get('categ_code') not in ['aluminum']"/>
+
+                        <field name="qty_paint" header_group="烤漆訂單總計"/>
+                        <field name="weight_paint" header_group="烤漆訂單總計"/>
+                        <field name="not_paint_order_qty" header_group="烤漆訂單總計"/>
+
+                        <field name="paint_to_assembly_qty" header_group="烤漆出貨狀況(組裝)"/>
+                        <field name="paint_to_assembly_weight" header_group="烤漆出貨狀況(組裝)"/>
+
+                        <field name="paint_to_site_qty" header_group="烤漆出貨狀況(工地)"/>
+                        <field name="paint_to_site_weight" header_group="烤漆出貨狀況(工地)"/>
+
+                        <field name="qty_receive_assembly" header_group="組裝廠"/>
+                        <field name="qty_unstock_assembly" header_group="組裝廠"/>
+
+                        <field name="return_qty_refine" header_group="加工廠退貨"/>
+                        <field name="return_weight_refine" header_group="加工廠退貨"/>
+
+                        <field name="return_qty_heat" header_group="熱處理廠退貨"
+                               invisible="context.get('categ_code') not in ['aluminum']"/>
+                        <field name="return_weight_heat" header_group="熱處理廠退貨"
+                               invisible="context.get('categ_code') not in ['aluminum']"/>
+
+                        <field name="return_qty_paint" header_group="烤漆廠退貨"/>
+                        <field name="return_weight_paint" header_group="烤漆廠退貨"/>
+                    </tree>
+                </field>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_panel_raw_form" model="ir.ui.view">
+        <field name="name">tokiku.panel.raw.form</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Panel">
+                <!--                <header>-->
+                <!--                    <button name="open_demand" string="Demand" type="object" class="btn btn-sm btn-primary"/>-->
+                <!--                    <button name="open_po" string="Order Form" type="object" class="btn btn-sm btn-primary"-->
+                <!--                            context="{'default_stage': 'material'}"/>-->
+                <!--                    <button name="open_order_panel" string="Order Panel" type="object" class="btn btn-sm btn-primary"/>-->
+                <!--                    <button name="open_material" string="Material Sum" type="object" class="btn btn-sm btn-primary"/>-->
+                <!--                </header>-->
+                <field name="project_id" invisible="1"/>
+                <field name="categ_id" invisible="1"/>
+                <field name="line_ids" widget="grid"
+                       context="{'project_id': project_id, 'categ_id': categ_id, 'panel_id': id}">
+                    <tree>
+                        <field name="sequence" invisible="1"/>
+                        <field name="default_code" string="Part Number" pinned="left"/>
+                        <field name="supplier_part_no" string='Supplier Part Number' pinned="left"/>
+                        <field name="material" pinned="left" string="Material"/>
+                        <field name="weight" pinned="left"/>
+                        <field name="cutting_length" pinned="left" string="Order Length"/>
+                        <field name="demand_qty" header_group="需求數量"/>
+                        <field name="weight_sub" header_group="需求數量"/>
+                        <field name="rest_demand_qty" header_group="需求數量"/>
+                        <field name="qty_cut_done" string='Shipped Qty' invisible="context.get('categ_code') not in ['glass']"/>
+
+                        <field name="order_qty" header_group="訂單總數量"/>
+                        <field name="spare_qty" header_group="訂單總數量"/>
+                        <field name="qty_backorder" header_group="訂單總數量"/>
+                        <field name="total_ordered_qty" header_group="訂單總數量"/>
+                        <field name="order_weight" header_group="訂單總數量"/>
+                        <field name="xx_order_qty" header_group="訂單總數量" open_show="1"/>
+                        <field name="mold_id" invisible="1"/>
+                    </tree>
+                </field>
+            </form>
+        </field>
+    </record>
+
+    <!--    <record id="view_panel_assembly_form" model="ir.ui.view">-->
+    <!--        <field name="name">tokiku.panel.assembly.form</field>-->
+    <!--        <field name="model">tokiku.panel</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <form string="Panel">-->
+    <!--                <field name="project_id" invisible="1"/>-->
+    <!--                <field name="categ_id" invisible="1"/>-->
+    <!--                <field name="assembly_panel_line_ids" widget="grid">-->
+    <!--                    <tree>-->
+    <!--                        &lt;!&ndash;                        <field name="partner_id"/>&ndash;&gt;-->
+    <!--                        <field name="atlas_id"/>-->
+    <!--                        <field name="building_id"/>-->
+    <!--                        <field name="bom_id"/>-->
+    <!--                        <field name="total_demand"/>-->
+
+    <!--                        <field name="completed_prep" header_group="框架組立"/>-->
+    <!--                        <field name="assembling" header_group="框架組立"/>-->
+    <!--                        <field name="assembled" header_group="框架組立"/>-->
+    <!--                        <field name="unassembled" header_group="框架組立"/>-->
+
+    <!--                        <field name="assembling" header_group="面材組立"/>-->
+    <!--                        <field name="assembled" header_group="面材組立"/>-->
+    <!--                        <field name="unassembled" header_group="面材組立"/>-->
+
+    <!--                        <field name="packaging_qty" header_group="出貨"/>-->
+    <!--                        <field name="shipped_qty" header_group="出貨"/>-->
+    <!--                        <field name="undelivered_qty" header_group="出貨"/>-->
+    <!--                        <field name="pending_shipment" header_group="出貨"/>-->
+
+    <!--                        <field name="remark"/>-->
+    <!--                        &lt;!&ndash;                        <field name="product_id" invisible="1"/>&ndash;&gt;-->
+    <!--                        &lt;!&ndash;                        <field name="product_uom_id" invisible="0"/>&ndash;&gt;-->
+    <!--                        &lt;!&ndash;                        <field name="state" invisible="1"/>&ndash;&gt;-->
+    <!--                    </tree>-->
+    <!--                </field>-->
+    <!--            </form>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <record id="view_panel_assembly_tree" model="ir.ui.view">
+        <field name="name">tokiku.panel.assembly.tree</field>
+        <field name="model">tokiku.assembly_panel_line</field>
+        <field name="arch" type="xml">
+            <tree class="grid">
+                <field name="atlas_id"/>
+                <field name="building_id"/>
+                <field name="bom_id" invisible="1"/>
+                <field name="default_code"/>
+                <field name="total_demand"/>
+
+                <field name="frame_completed_prep" header_group="框架組立"/>
+                <field name="frame_assembling" header_group="框架組立"/>
+                <field name="frame_assembled" header_group="框架組立"/>
+                <field name="frame_unassembled" header_group="框架組立"/>
+
+                <field name="completed_prep" header_group="面材組立"/>
+                <field name="assembling" header_group="面材組立"/>
+                <field name="assembled" header_group="面材組立"/>
+                <field name="unassembled" header_group="面材組立"/>
+
+                <!--                <field name="packaging_qty" header_group="出貨"/>-->
+                <field name="shipped_qty" header_group="出貨"/>
+                <field name="undelivered_qty" header_group="出貨"/>
+                <field name="pending_shipment" header_group="出貨"/>
+
+                <!--                <field name="remark"/>-->
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_panel_assembly_preparation_tree" model="ir.ui.view">
+        <field name="name">tokiku.panel.assembly.preparation.tree</field>
+        <field name="model">tokiku.assembly_panel_line</field>
+        <field name="arch" type="xml">
+            <tree class="grid">
+                <field name="supplier_name"/>
+                <!--                <field name="partner_id" readonly="1"/>-->
+                <field name="building_id"/>
+                <field name="atlas_id"/>
+                <field name="bom_id" invisible="1"/>
+                <field name="default_code"/>
+                <field name="total_demand"/>
+
+                <field name="frame_scheduled_assembly_qty" header_group="框架"/>
+                <field name="frame_completed_prep" header_group="框架"/>
+                <field name="frame_incomplete_prep" header_group="框架"/>
+
+                <field name="scheduled_assembly_qty" header_group="框面"/>
+                <field name="completed_prep" header_group="框面"/>
+                <field name="incomplete_prep" header_group="框面"/>
+                <button name="act_detail" string="BoM Details" type="object" context="{'default_bom_id': bom_id,}"/>
+
+                <!--                <field name="remark"/>-->
+            </tree>
+        </field>
+    </record>
+
+    <!--組裝總表-->
+    <record id="view_panel_summary_tree" model="ir.ui.view">
+        <field name="name">tokiku.panel.summary.tree</field>
+        <field name="model">tokiku.assembly_panel_line</field>
+        <field name="arch" type="xml">
+            <tree class="grid">
+                <field name="atlas_id"/>
+                <field name="building_id"/>
+
+                <field name="frame_assembling" header_group="框架組立"/>
+                <field name="frame_assembled" header_group="框架組立"/>
+                <field name="frame_comp_rate" header_group="框架組立"/>
+                <field name="frame_unassembled" header_group="框架組立"/>
+
+                <field name="assembling" header_group="面材組立"/>
+                <field name="assembled" header_group="面材組立"/>
+                <field name="complete_rate" header_group="面材組立"/>
+                <field name="unassembled" header_group="面材組立"/>
+
+                <field name="shipped_qty" header_group="出貨"/>
+                <field name="shipping_comp_rate" header_group="出貨"/>
+                <field name="undelivered_qty" header_group="出貨"/>
+                <field name="pending_shipment" header_group="出貨"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_assembly_detail" model="ir.ui.view">
+        <field name="name">tokiku.assembly.line.detail</field>
+        <field name="model">mrp.bom</field>
+        <field name="arch" type="xml">
+            <tree class="grid">
+                <field name="product_id"/>
+                <!--                <field name="assembly_section"/>-->
+                <!--                <field name="shared_mat_demand"/>-->
+                <!--                <field name="atlas_order_qty"/>-->
+                <!--                <field name="atlas_no_order_qty"/>-->
+                <!--                <field name="demand_total"/>-->
+                <!--                <field name="tkk_inv"/>-->
+                <!--                <field name="process_qty"/>-->
+                <!--                <field name="heat_qty"/>-->
+                <!--                <field name="paint_qty"/>-->
+                <!--                <field name="assembly_qty"/>-->
+            </tree>
+        </field>
+    </record>
+
+    <!--    <record id="view_assembly_detail" model="ir.ui.view">-->
+    <!--        <field name="name">tokiku.assembly.panel.line.detail</field>-->
+    <!--        <field name="model">tokiku.assembly_detail</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <form string="Show Detail">-->
+    <!--                <field name="tmp_grid" widget="grid">-->
+    <!--                    <tree>-->
+    <!--                        <field name="name" string="Processing Number"/>-->
+    <!--                        <field name="assembly_section" readonly="1"/>-->
+    <!--                        <field name="shared_mat_demand" readonly="1"/>-->
+    <!--                        <field name="atlas_order_qty" readonly="1"/>-->
+    <!--                        <field name="atlas_no_order_qty" readonly="1"/>-->
+    <!--                        <field name="demand_total" readonly="1"/>-->
+    <!--                        <field name="tkk_inv" readonly="1"/>-->
+    <!--                        <field name="process_qty" readonly="1"/>-->
+    <!--                        <field name="heat_qty" readonly="1"/>-->
+    <!--                        <field name="paint_qty" readonly="1"/>-->
+    <!--                        <field name="assembly_qty" readonly="1"/>-->
+    <!--                    </tree>-->
+    <!--                </field>-->
+    <!--                <footer>-->
+    <!--                    <button string="Cancel" class="oe_link" special="cancel"/>-->
+    <!--                </footer>-->
+    <!--            </form>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <record id="view_assembly_panel_line_filter" model="ir.ui.view">
+        <field name="name">tokiku.assembly.panel.line.filter</field>
+        <field name="model">tokiku.assembly_panel_line</field>
+        <field name="arch" type="xml">
+            <search string="Filter Assembly Panel Line">
+                <field name="remark"
+                       filter_domain="['|', ('bom_id.product_tmpl_id.name','ilike',self), '|', ('supplier_id.name','ilike',self), '|', ('atlas_id.name','ilike',self), ('remark','ilike',self)]"
+                       string="Keyword"/>
+                <field name="atlas_id" filter_domain="[('atlas_id.name','ilike',self)]"/>
+                <field name="building_id" filter_domain="[('building_id.name','ilike',self)]"/>
+                <field name="supplier_id" filter_domain="[('supplier_id.name','ilike',self)]"/>
+                <!--                <field name="partner_id" filter_domain="[('partner_id.name','ilike',self)]"/>-->
+                <field name="bom_id" filter_domain="[('bom_id.product_tmpl_id.name','ilike',self)]"/>
+                <filter name="atlas_id" context="{'group_by':'atlas_id'}" string="Atlas Name"/>
+                <filter name="supplier_id" context="{'group_by':'supplier_id'}" string="Supplier Name"/>
+                <!--                <filter name="partner_id" context="{'group_by':'partner_id'}" string="Supplier Name"/>-->
+                <filter name="building_id" context="{'group_by':'building_id'}" string="Building"/>
+                <filter name="bom_id" context="{'group_by':'bom_id'}" string="BOM Number"/>
+            </search>
+        </field>
+    </record>
+
+
+    <!--    鋁擠型毛料材質合計-->
+    <record id="view_panel_material_sum_tree" model="ir.ui.view">
+        <field name="name">tokiku.panel.material.sum.tree</field>
+        <field name="model">tokiku.panel_line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!--<field name="demand_qty"/>-->
+                <!--<field name="weight_sub"/>-->
+                <!--<field name="rest_demand_qty"/>-->
+                <!--<field name="rest_demand_weight"/>-->
+                <!--<field name="order_qty"/>-->
+                <!--<field name="order_weight"/>-->
+                <!--<field name="qty_received"/>-->
+                <!--<field name="qty_stock"/>-->
+                <!--<field name="qty_backorder"/>-->
+                <field name="demand_qty"/>
+                <field name="weight_sub"/>
+                <field name="rest_demand_qty"/>
+                <field name="rest_demand_weight"/>
+                <field name="order_qty" invisible="1"/>
+                <field name="total_ordered_qty"/>
+                <field name="order_weight"/>
+                <field name="qty_received"/>
+                <field name="qty_stock_rel"/>
+                <field name="qty_backorder"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_panel_not_purchase_table" model="ir.ui.view">
+        <field name="name">tokiku.panel.not.purchase.table</field>
+        <field name="model">tokiku.panel_line</field>
+        <field name="arch" type="xml">
+            <tree create="false" delete="false" edit="false" class="grid">
+                <field name="atlas_id" string="Processing Atlas"/>
+                <field name="atlas_bom"/>
+                <field name="default_code" string="Processing Number"/>
+                <field name="code" string="Part Number"/>
+                <field name="cutting_length"/>
+                <field name="cutting_width"/>
+                <field name="description"/>
+                <field name="surface_coating"/>
+                <field name="color_code"/>
+                <field name="heating"/>
+                <field name="atlas_unit_qty"/>
+                <field name="demand_qty"/>
+                <field name="order_qty"/>
+                <field name="rest_demand_qty"/>
+<!--                <field name="price_unit"/>-->
+<!--                <field name="estimated_amount"/>-->
+<!--                <field name="price_total"/>-->
+<!--                <field name="material_total"/>-->
+            </tree>
+        </field>
+    </record>
+
+<!--    <record id="view_panel_summary" model="ir.ui.view">-->
+<!--        <field name="name">tokiku.panel.summary</field>-->
+<!--        <field name="model">tokiku.panel_line</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree create="false" delete="false" edit="false" class="grid">-->
+<!--                <field name="atlas_id" string="Processing Atlas"/>-->
+<!--                <field name="atlas_bom"/>-->
+<!--                <field name="default_code" string="Processing Number"/>-->
+<!--                <field name="code" string="Part Number"/>-->
+<!--                <field name="cutting_length"/>-->
+<!--                <field name="cutting_width"/>-->
+<!--                <field name="description"/>-->
+<!--                <field name="surface_coating"/>-->
+<!--                <field name="color_code"/>-->
+<!--                <field name="heating"/>-->
+<!--                <field name="atlas_unit_qty"/>-->
+<!--                <field name="demand_qty"/>-->
+<!--                <field name="order_qty"/>-->
+<!--                <field name="rest_demand_qty"/>-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--     <record id="view_order_line_summary" model="ir.ui.view">-->
+<!--        <field name="name">tokiku.order_line.summary</field>-->
+<!--        <field name="model">purchase.order.line</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree>-->
+<!--                <field name="supplier_name"/>-->
+<!--                <field name="date_order"/>-->
+<!--                <field name="order_id"/>-->
+<!--                <field name="stage"/>-->
+<!--                <field name="description" readonly="1"/>-->
+<!--                <field name="product_uom" />-->
+<!--                <field name="price_unit" precision_0="1" readonly="1"/>-->
+<!--                <field name="product_qty"/>-->
+<!--                <field name="estimated_amount" groups="tokiku.group_tokiku_admin"/>-->
+<!--                <field name="price_total" readonly="1"/>-->
+<!--                <field name="remark"/>-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="view_panel_account_tree" model="ir.ui.view">
+        <field name="name">tokiku.panel_account.tree</field>
+        <field name="model">tokiku.panel_line</field>
+        <field name="arch" type="xml">
+            <tree class="grid">
+                <field name="prod_categ_id" invisible="1"/>
+                <field name="atlas_id" string="Processing Atlas" readonly="1"/>
+                <field name="default_code" string="Processing Number" readonly="1"/>
+                <field name="code" string="Part Number" readonly="1" invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="demand_qty"/>
+                <field name="total_ordered_qty"/>
+                <field name="ship_qty_refine" header_group="加工登記-出貨"/>
+                <field name="ship_weight_refine" header_group="加工登記-出貨"/>
+                <field name="ship_qty_heat" header_group="熱處理出貨總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="ship_weight_heat" header_group="熱處理出貨總計"
+                       invisible="context.get('categ_code') not in ['aluminum']"/>
+                <field name="paint_to_assembly_qty" header_group="烤漆出貨狀況(組裝)"/>
+                <field name="paint_to_assembly_weight" header_group="烤漆出貨狀況(組裝)"/>
+                <field name="paint_to_site_qty" header_group="烤漆出貨狀況(工地)"/>
+                <field name="paint_to_site_weight" header_group="烤漆出貨狀況(工地)"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_order_line_summary" model="ir.ui.view">
+        <field name="name">tokiku.order_line.summary</field>
+        <field name="model">purchase.order.line</field>
+        <field name="arch" type="xml">
+             <tree class="grid">
+                <field name="atlas_id" readonly="1" />
+                 <field name="order_id"/>
+<!--                 <field name="panel_code" invisible="1"/>-->
+                <field name="panel_categ_code"/>
+                <field name="code" string="Tokiku Default Code" readonly="1" />
+                <field name="default_code" string="Processing Number" readonly="1" />
+                <field name="description" readonly="1"/>
+                <field name="surface_coating" readonly="1"/>
+                <field name="order_length" readonly="1" />
+                <field name="cutting_width" invisible="1"/>
+                <field name="demand_qty" invisible="1"/>
+                <field name="order_qty"/>
+                <field name="spare_qty"/>
+                <field name="estimated_qty" groups="tokiku.group_tokiku_admin"/>
+                <field name="product_qty"/>
+                <field name="unit_weight"/>
+                <field name="refine_pricing_single_weight" precision_3="1"/>
+                <field name="refine_pricing_total_weight"
+                       invisible="context.get('default_stage') in ['paint']" precision_3="1"/>
+                <field name="valuation_price" invisible="1"/>
+                <field name="product_uom" />
+                 <field name="qty_not_received" header_group="到貨狀況"/>
+                <field name="qty_received" header_group="到貨狀況"/>
+                 <field name="left_qty" header_group="到貨狀況"/>
+                 <field name="price_unit" header_group="付款狀況" groups="tokiku.group_tokiku_admin"/>
+                <field name="estimated_amount" header_group="付款狀況" groups="tokiku.group_tokiku_admin"/>
+                 <field name="price_total" header_group="付款狀況" groups="tokiku.group_tokiku_admin"/>
+                <field name="remark"/>
+             </tree>
+        </field>
+    </record>
+</odoo>

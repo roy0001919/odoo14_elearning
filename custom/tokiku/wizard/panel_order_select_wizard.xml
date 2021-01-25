@@ -1,0 +1,185 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="mold_panel_order_select_wizard_view" model="ir.ui.view">
+        <field name="name">Mold Panel Order Select Wizard</field>
+        <field name="model">tokiku.po_select_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select PO from Wizard">
+                <group>
+                    <field name="partner_id" invisible="1"/>
+                </group>
+                <div>
+                    請按表格左上鉤鉤，刪除非訂購商品。
+                    此表僅保留欲訂購商品。
+                    <!--<span class="oe_inline"></span>-->
+                </div>
+                <field name="tmp_grid" widget="grid">
+                   <tree default_order="default_code,id asc" no_empty_row="1">
+                        <field name="name" readonly="1"/>
+                        <field name="default_code" string="Tokiku Default Code" readonly="1"/>
+                        <field name="seller_id" invisible="1"/>
+                        <field name="product_id" invisible="1"/>
+                        <field name="product_uom" invisible="1"/>
+                        <field name="demand_qty" readonly="1"/>
+                        <field name="net_weight" readonly="1"/>
+                        <field name="total_ordered_qty" readonly="1"/>
+                        <field name="order_qty"/>
+                        <field name="product_qty" invisible="1"/>
+                        <field name="date_planned"/>
+                        <field name="order_id" invisible="1"/>
+                        <field name="price_per_set" invisible="1"/>
+                        <field name="price_unit"/>
+                        <field name="mold_material"/>
+                        <field name="mold_weight"/>
+                        <field name="ingot"/>
+                        <field name="mold_supplier_part_no"/>
+                        <field name="taxes_id" invisible="1"/>
+                        <field name="mold_id" invisible="1"/>
+                        <field name="mold_seller_id" invisible="1"/>
+                        <field name="panel_line_id" invisible="1"/>
+                        <field name="panel_id" invisible="1"/>
+                   </tree>
+                </field>
+                <footer>
+                    <button name="back_po" string="Back PO" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+<!--        <record id="assembly_po_select_wizard_view" model="ir.ui.view">-->
+<!--        <field name="name">Panel Order Select Wizard</field>-->
+<!--        <field name="model">tokiku.po_select_wizard</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Select PO from Wizard">-->
+<!--                <group>-->
+<!--                    <field name="partner_id" invisible="1"/>-->
+<!--                </group>-->
+<!--                <div>-->
+<!--                    請按表格左上鉤鉤，刪除非訂購商品。-->
+<!--                    此表僅保留欲訂購商品。-->
+<!--                </div>-->
+<!--                <field name="tmp_grid" widget="grid">-->
+<!--                   <tree>-->
+<!--                        <field name="building_id" readonly="1"/>-->
+<!--                        <field name="partner_id" string="Assembly Factory" readonly="1"/>-->
+<!--                        <field name="atlas_id" readonly="1"/>-->
+<!--                        <field name="bom_id" readonly="1"/>-->
+<!--                        <field name="description" readonly="1"/>-->
+<!--                        <field name="demand_qty" readonly="1"/>-->
+<!--                        <field name="order_qty"/>-->
+<!--                        <field name="single_surface"/>-->
+<!--                        <field name="unit_price"/>-->
+<!--                        <field name="value_unit"/>-->
+<!--                        <field name="total_surface_qty" readonly="1"/>-->
+<!--                        <field name="assembly_pps" readonly="1"/>-->
+<!--                        <field name="total" readonly="1"/>-->
+<!--                    </tree>-->
+<!--                </field>-->
+<!--                <footer>-->
+<!--                    <button name="back_po" string="Back PO" type="object" class="oe_highlight"/>-->
+<!--                    <button string="Cancel" class="oe_link" special="cancel"/>-->
+<!--                </footer>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <record id="panel_order_select_wizard_view" model="ir.ui.view">
+        <field name="name">Panel Order Select Wizard</field>
+        <field name="model">tokiku.po_select_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select PO from Wizard">
+                <group>
+                    <field name="partner_id" invisible="1"/>
+                </group>
+                <div>
+                    請按表格左上鉤鉤，刪除非訂購商品。
+                    此表僅保留欲訂購商品。
+                </div>
+                <field name="tmp_grid" widget="grid">
+                   <tree>
+                        <field name="name" invisible="1"/>
+                        <field name="panel_line_id" invisible="1"/>
+                        <field name="panel_id" invisible="1"/>
+                        <field name="atlas_id" readonly="1" pinned="left"/>
+                        <field name="default_code" string="Processing Number" readonly="1" pinned="left"/>
+                        <field name="code" string="Material Code" readonly="1" pinned="left"/>
+                        <field name="order_length" readonly="1" pinned="left"/>
+                        <field name="order_width" readonly="1"/>
+                        <field name="description" readonly="1"/>
+                        <field name="surface_coating" readonly="1"/>
+                        <field name="color_code" readonly="1"/>
+                        <field name="demand_qty" readonly="1"/>
+                        <field name="total_ordered_qty" readonly="1" invisible="1"/>
+                        <field name="price_unit"/>
+                        <field name="order_qty"/>
+                        <field name="spare_qty"/>
+                        <field name="unit_area"/>
+                        <field name="estimated_delivery_date"/>
+                        <field name="material" invisible="1"/>
+                        <field name="prod_categ_id" invisible="1"/>
+                        <field name="product_id" invisible="1"/>
+                        <field name="product_uom" invisible="1"/>
+                        <field name="date_planned" invisible="1"/>
+                        <field name="order_id" invisible="1"/>
+                        <field name="product_qty" invisible="1"/>
+                        <field name="refine_weight" invisible="1"/>
+                        <field name="mold_seller_id" invisible="1"/>
+                        <field name="mold_id" invisible="1"/>
+                        <field name="taxes_id" invisible="1"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="back_po" string="Back PO" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="raw_panel_order_select_wizard_view" model="ir.ui.view">
+        <field name="name">Panel Order Select Wizard</field>
+        <field name="model">tokiku.po_select_wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select PO from Wizard">
+                <group>
+                    <field name="partner_id" invisible="1"/>
+                </group>
+                <div>
+                    請按表格左上鉤鉤，刪除非訂購商品。
+                    此表僅保留欲訂購商品。
+                </div>
+                <field name="tmp_grid" widget="grid">
+                   <tree>
+                        <field name="name" readonly="1"/>
+                        <field name="default_code" readonly="1"/>
+                        <field name="order_length" readonly="1"/>
+                        <field name="product_uom" />
+                        <field name="description" readonly="1"/>
+                        <field name="demand_qty" readonly="1"/>
+                        <field name="total_ordered_qty" readonly="1"/>
+                        <field name="order_qty"/>
+                        <field name="spare_qty"/>
+                        <field name="price_unit"/>
+                        <field name="product_qty" readonly="1"/>
+                        <field name="unit_area"/>
+                        <field name="estimated_delivery_date"/>
+                        <field name="material" invisible="1"/>
+                        <field name="product_id" invisible="1"/>
+                        <field name="product_uom" invisible="1"/>
+                        <field name="date_planned" invisible="1"/>
+                        <field name="order_id" invisible="1"/>
+                        <field name="taxes_id" invisible="1"/>
+                        <field name="panel_id" invisible="1"/>
+                        <field name="panel_line_id" invisible="1"/>
+                    </tree>
+                </field>
+                <footer>
+                    <button name="back_po" string="Back PO" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

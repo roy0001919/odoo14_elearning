@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_panel_form" model="ir.ui.view">
+        <field name="name">tokiku.order_panel.form</field>
+        <field name="model">tokiku.panel</field>
+        <field name="arch" type="xml">
+            <form string="Order">
+                <field name="name" invisible="1"/>
+                <field name="categ_code" invisible="1"/>
+                <field name="order_line_ids" widget="grid">
+                    <tree>
+                        <field name="contract_id" pinned="left" invisible="context.get('default_categ_code') in ['mold']" readonly="1"/>
+                        <!--aluminum-->
+                        <!--<field name="building" invisible="context.get('default_categ_code') in ['mold', 'raw']"/>-->
+                        <field name="stage" pinned="left" invisible="context.get('default_categ_code') in ['mold', 'raw']"/>
+                        <field name="atlas_id" pinned="left" invisible="context.get('default_categ_code') in ['mold', 'raw']"/>
+                        <field name="building" pinned="left" invisible="context.get('default_categ_code') in ['mold', 'raw', 'glass']"/>
+                        <!--<field name="demand_id" invisible="context.get('default_categ_code') not in ['mold', 'raw']"/>-->
+                        <!--aluminum-->
+
+                        <field name="order_id" pinned="left"/>
+                        <field name="default_code" pinned="left"/>
+                        <field name="supplier_name" pinned="left"/>
+                        <field name="supplier_part_no" invisible="context.get('default_categ_code') not in ['mold', 'raw']"/>
+
+                        <field name="mold_material" invisible="context.get('default_categ_code') not in ['mold']"/>
+                        <field name="name" invisible="context.get('default_categ_code') not in ['raw']" string="Material"/>
+                        <field name="mold_weight" invisible="context.get('default_categ_code') not in ['mold']"/>
+                        <field name="net_weight" invisible="context.get('default_categ_code') not in ['raw']"/>
+                        <field name="ingot" invisible="context.get('default_categ_code') not in ['mold']"/>
+
+                        <!--aluminum-->
+                        <field name="description" invisible="context.get('default_categ_code') in ['mold', 'raw']"/>
+                        <field name="surface_coating" invisible="context.get('default_categ_code') in ['mold', 'raw', 'glass']"/>
+                        <field name="color_code" invisible="context.get('default_categ_code') in ['mold', 'raw', 'glass']"/>
+                        <field name="unit_paint_area" invisible="context.get('default_categ_code') in ['mold', 'raw']"/>
+                        <field name="unit_weight" invisible="context.get('default_categ_code') not in ['aluminum']"/>
+                        <!--aluminum-->
+
+                        <field name="min_qty" invisible="context.get('default_categ_code') not in ['mold', 'raw']"/>
+                        <field name="order_length" invisible="context.get('default_categ_code') in ['mold']"/>
+
+                        <!--aluminum-->
+                        <field name="order_width" invisible="context.get('default_categ_code') in ['mold', 'raw']"/>
+                        <!--<field name="pricing_area" invisible="context.get('default_categ_code') in ['mold', 'raw']"/>-->
+                        <field name="unit" invisible="context.get('default_categ_code') in ['mold', 'raw', 'glass']"/>
+                        <!--aluminum-->
+
+                        <field name="qty_normal"/>
+                        <field name="spare_qty"/>
+                        <field name="qty_back_order"/>
+                        <field name="product_qty" invisible="1"/>
+                        <field name="order_weight" invisible="context.get('default_categ_code') not in ['aluminum']" precision_3="1"/>
+
+                        <!--<field name="total_ordered_qty"/>-->
+                        <!--<field name="order_weight"/>-->
+                        <field name="estimated_delivery_date"/>
+                        <!--<field name="material_expected_delivery_date" invisible="context.get('default_categ_code') not in ['raw']"/>-->
+                        <field name="remark"/>
+                        <field name="qty_not_received" header_group="到貨狀況"/>
+                        <!--<field name="out_of_stock_weight" header_group="到貨狀況"/>-->
+                        <field name="not_received_weight" header_group="到貨狀況" invisible="context.get('default_categ_code') not in ['raw']"/>
+                        <field name="alumi_not_received_weight" header_group="到貨狀況" invisible="context.get('default_categ_code') not in ['aluminum']"/>
+                        <field name="not_received_area" header_group="到貨狀況" invisible="context.get('default_categ_code') in ['mold', 'raw', 'aluminum']"/>
+
+                        <field name="qty_received" string="" header_group="到貨狀況"/>
+                        <field name="received_weight" header_group="到貨狀況" invisible="context.get('default_categ_code') not in ['raw']"/>
+                        <field name="alumi_received_weight" header_group="到貨狀況" invisible="context.get('default_categ_code') not in ['aluminum']"/>
+                        <field name="received_area" header_group="到貨狀況" invisible="context.get('default_categ_code') in ['mold', 'raw', 'aluminum']"/>
+                        <!--<field name="xx_qty_received" header_group="到貨狀況"/>-->
+                        <!--&lt;!&ndash;以下鋁擠型訂製單管控表才有&ndash;&gt;-->
+                        <!--<field name="qty_return" header_group="退貨狀況" invisible="context.get('default_categ_code') not in ['mold', 'raw']"/>-->
+                        <!--<field name="return_weight" header_group="退貨狀況" invisible="context.get('default_categ_code') not in ['mold', 'raw']"/>-->
+
+                        <!--<field name="qty_received" header_group="退貨狀況" invisible="context.get('default_categ_code') not in ['mold', 'raw']"/>-->
+                        <!--<field name="received_weight" header_group="退貨狀況" invisible="context.get('default_categ_code') not in ['mold', 'raw']"/>-->
+
+                        <!--<field name="qty_deduction" header_group="退貨狀況" invisible="context.get('default_categ_code') not in ['mold', 'raw']"/>-->
+                        <!--<field name="deduction_weight" header_group="退貨狀況" invisible="context.get('default_categ_code') not in ['mold', 'raw']"/>-->
+                        <!--&lt;!&ndash;以上鋁擠型訂製單管控表才有&ndash;&gt;-->
+
+                        <!--<field name="xx_return_qty" header_group="退貨"/>-->
+                        <!--<field name="xx_qty_received" header_group="收貨"/>-->
+                        <!--<field name="xx_deduction" header_group="扣款"/>-->
+                        <!--&lt;!&ndash;以下鋁擠型訂製單管控表才有&ndash;&gt;-->
+                        <!--<field name="xx_return_closed" header_group="退貨結案"/>-->
+                        <!--&lt;!&ndash;以上鋁擠型訂製單管控表才有&ndash;&gt;-->
+
+                        <!--<field name="XX_return_order" header_group="退貨狀況" invisible="context.get('default_categ_code') in ['mold', 'raw']"/>-->
+                        <!--<field name="XX_return_reversal" header_group="退貨狀況" invisible="context.get('default_categ_code') in ['mold', 'raw']"/>-->
+
+                        <!--<field name="un_priced_qty" header_group="付款狀況"/>-->
+                        <!--<field name="un_priced_weight" header_group="付款狀況"/>-->
+                        <!--<field name="priced_qty" header_group="付款狀況"/>-->
+                        <!--<field name="priced_weight" header_group="付款狀況"/>-->
+                        <!--<field name="xx_priced_date" header_group="付款狀況"/>-->
+                    </tree>
+                </field>
+            </form>
+        </field>
+    </record>
+</odoo>

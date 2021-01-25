@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="view_order_form_acquirer" model="ir.ui.view">
+            <field name="name">biznavi_ticket.sale.order.form.acquirer</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="website_sale.view_order_form_acquirer"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_acquirer_id']" position="replace">
+                    <field name="payment_acquirer_id" style="width:100px"  domain="[('environment', '=', 'prod')]" attrs="{'invisible': [('payment_acquirer_id', '=', False)]}" options='{"no_open":True, "no_create":True, "no_create_edit":True}'/>
+                </xpath>
+            </field>
+        </record>
+</odoo>

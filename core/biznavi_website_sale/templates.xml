@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="confirmation" inherit_id="website_sale.confirmation" customize_show="True">
+            <xpath expr="//div[@class='oe_cart']//th[4]" position="attributes">
+                <attribute name="style">display:none;</attribute>
+            </xpath>
+            <xpath expr="//div[@class='oe_cart']//tbody//tr//td[4]" position="attributes">
+                <attribute name="style">display:none;</attribute>
+            </xpath>
+            <xpath expr="//div[@class='oe_cart']//tfooter//tr[1]" position="attributes">
+                <attribute name="style">display:none;</attribute>
+            </xpath>
+            <xpath expr="//div[@class='oe_cart']//tfooter//tr[2]" position="attributes">
+                <attribute name="style">display:none;</attribute>
+            </xpath>
+            <xpath expr="//div[@class='oe_cart']//tfooter//tr[3]//td[1]" position="attributes">
+                <attribute name="colspan">1</attribute>
+            </xpath>
+        </template>
+        <template id="biznavi_website.layout_footer_copyright" inherit_id="website.layout_footer_copyright" name="Footer Copyright">
+            <xpath expr="//footer//div[@class='pull-right']" position="replace">
+                <div class="pull-right" t-ignore="true" t-if="not editable">                    Powered by                    
+                    <a class="label label-default" href="https://www.cenoq.com/page/biznavi">                        BizNavi                    </a>
+                </div>
+            </xpath>
+        </template>
+        <template id="total" inherit_id="website_sale.total" customize_show="True">
+            <xpath expr="//div[@id='order_total_untaxed']" position="attributes">
+                <attribute name="style">display:none;</attribute>
+            </xpath>
+            <xpath expr="//div[@id='order_total_taxes']" position="attributes">
+                <attribute name="style">display:none;</attribute>
+            </xpath>
+        </template>
+        <template id="orders_followup" inherit_id="website_portal_sale.orders_followup" name="Sales Order">
+            <xpath expr="//div[@class='panel-body']//div[@class='row'][2]//div[@class='col-md-6']" position="attributes">
+                <attribute name="class">col-md-8</attribute>
+            </xpath>
+            <xpath expr="//div[@class='col-md-2 text-right'][3]" position="attributes">
+                <attribute name="style">display:none;</attribute>
+            </xpath>
+            <xpath expr="//div[@class='row orders_vertical_align']//div[@class='col-md-5']" position="attributes">
+                <attribute name="class">col-md-7</attribute>
+            </xpath>
+            <xpath expr="//div[@class='row orders_vertical_align']//div[5]" position="attributes">
+                <attribute name="style">display:none;</attribute>
+            </xpath>
+            <xpath expr="//div[@class='panel-body']//div[@class='row'][3]//div[@class='row'][1]" position="attributes">
+                <attribute name="style">display:none;</attribute>
+            </xpath>
+            <xpath expr="//div[@class='panel-body']//div[@class='row'][3]//div[@class='row'][2]" position="attributes">
+                <attribute name="style">display:none;</attribute>
+            </xpath>
+        </template>
+        <template id="cart" inherit_id="website_sale.cart" priority="20">
+            <!-- Show normal "Checkout" button if user is logged in or external login
+                 is disabled -->
+            <xpath expr="//a[@href='/shop/checkout']" position="attributes">
+                <attribute name="t-if">(                    user_id != website.user_id or                    env['ir.config_parameter'].get_param(                    'auth_signup.allow_uninvited') != 'True' and                    not optional_products and website_sale_order and                    website_sale_order.website_order_line                    )                </attribute>
+            </xpath>
+            <!-- Show choice in other cases -->
+            <xpath expr="//a[@href='/shop/checkout']" position="after">
+                <a t-if="user_id == website.user_id" class="btn btn-primary pull-right mb32" href="/web/login?redirect=/shop/checkout">
+                    <span>Log in and checkout</span>
+                    <span class="fa fa-long-arrow-right"/>
+                </a>
+                <t t-if="(user_id == website.user_id and                      env['ir.config_parameter'].get_param(                          'auth_signup.allow_uninvited') == 'True' and                      not optional_products and website_sale_order and                      website_sale_order.website_order_line)">
+                    <!--<a class="btn btn-primary pull-right mb32"-->
+                    <!--href="/web/signup?redirect=/shop/checkout">-->
+                    <!--<span>Sign up and checkout</span>-->
+                    <!--<span class="fa fa-long-arrow-right"/>-->
+                    <!--</a>-->
+                    <!--<a id="anonymous_checkout" class="btn btn-default mb32" href="/shop/checkout">-->
+                    <!--<span>Checkout without sign up</span>-->
+                    <!--</a>-->
+                </t>
+            </xpath>
+        </template>
+        <template id="cart_lines" inherit_id="website_sale.cart_lines" priority="20">
+            <xpath expr="//td[@id='td-qty']" position="replace">
+                <td class="text-center" id="td-qty">
+                    <div class="input-group oe_website_spinner">
+                        <input type="text" class="js_quantity form-control" t-att-data-line-id="line.id" readonly="readonly" t-att-data-product-id="line.product_id.id" t-att-value="int(line.product_uom_qty)"/>
+                    </div>
+                </td>
+            </xpath>
+        </template>
+        <template id="product_quantity" inherit_id="website_sale.product_quantity" customize_show="True" name="Select Quantity">
+            <xpath expr="//div[@class='css_quantity input-group oe_website_spinner']" position="before">
+                <strong>Qty: </strong>
+            </xpath>
+        </template>
+    </data>
+</openerp>

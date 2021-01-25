@@ -1,0 +1,159 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* biznavi_invoice_merge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-30 07:34+0000\n"
+"PO-Revision-Date: 2016-08-30 07:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: biznavi_invoice_merge
+#: model:ir.ui.view,arch_db:biznavi_invoice_merge.view_invoice_merge
+msgid "Are you sure you want to merge these invoices ?"
+msgstr "Are you sure you want to merge these invoices ?"
+
+#. module: biznavi_invoice_merge
+#: code:addons/biznavi_invoice_merge/wizard/invoice_merge.py:49
+#, python-format
+msgid "At least one of the selected invoices is %s!"
+msgstr "At least one of the selected invoices is %s!"
+
+#. module: biznavi_invoice_merge
+#: model:ir.ui.view,arch_db:biznavi_invoice_merge.view_invoice_merge
+msgid "Cancel"
+msgstr "取消"
+
+#. module: biznavi_invoice_merge
+#: model:ir.model.fields,field_description:biznavi_invoice_merge.field_invoice_merge_create_uid
+msgid "Created by"
+msgstr "建立者"
+
+#. module: biznavi_invoice_merge
+#: model:ir.model.fields,field_description:biznavi_invoice_merge.field_invoice_merge_create_date
+msgid "Created on"
+msgstr "建立於"
+
+#. module: biznavi_invoice_merge
+#: model:ir.model.fields,field_description:biznavi_invoice_merge.field_invoice_merge_display_name
+msgid "Display Name"
+msgstr "顯示名稱"
+
+#. module: biznavi_invoice_merge
+#: model:ir.model.fields,field_description:biznavi_invoice_merge.field_invoice_merge_id
+msgid "ID"
+msgstr "編號"
+
+#. module: biznavi_invoice_merge
+#: model:ir.model,name:biznavi_invoice_merge.model_account_invoice
+msgid "Invoice"
+msgstr "發票"
+
+#. module: biznavi_invoice_merge
+#: model:ir.model.fields,field_description:biznavi_invoice_merge.field_invoice_merge_date_invoice
+msgid "Invoice Date"
+msgstr "發票日期"
+
+#. module: biznavi_invoice_merge
+#: model:ir.model.fields,field_description:biznavi_invoice_merge.field_invoice_merge_keep_references
+msgid "Keep references from original invoices"
+msgstr "Keep references from original invoices"
+
+#. module: biznavi_invoice_merge
+#: model:ir.model.fields,field_description:biznavi_invoice_merge.field_invoice_merge___last_update
+msgid "Last Modified on"
+msgstr "最後修改於"
+
+#. module: biznavi_invoice_merge
+#: model:ir.model.fields,field_description:biznavi_invoice_merge.field_invoice_merge_write_uid
+msgid "Last Updated by"
+msgstr "最後更新："
+
+#. module: biznavi_invoice_merge
+#: model:ir.model.fields,field_description:biznavi_invoice_merge.field_invoice_merge_write_date
+msgid "Last Updated on"
+msgstr "最後更新於"
+
+#. module: biznavi_invoice_merge
+#: model:ir.ui.view,arch_db:biznavi_invoice_merge.view_invoice_merge
+msgid "Merge Invoices"
+msgstr "Merge Invoices"
+
+#. module: biznavi_invoice_merge
+#: model:ir.actions.act_window,name:biznavi_invoice_merge.action_view_invoice_merge
+#: model:ir.model,name:biznavi_invoice_merge.model_invoice_merge
+#: model:ir.ui.view,arch_db:biznavi_invoice_merge.view_invoice_merge
+msgid "Merge Partner Invoice"
+msgstr "Merge Partner Invoice"
+
+#. module: biznavi_invoice_merge
+#: code:addons/biznavi_invoice_merge/wizard/invoice_merge.py:56
+#, python-format
+msgid "Not all invoices are at the same company!"
+msgstr "Not all invoices are at the same company!"
+
+#. module: biznavi_invoice_merge
+#: code:addons/biznavi_invoice_merge/wizard/invoice_merge.py:65
+#, python-format
+msgid "Not all invoices are at the same currency!"
+msgstr "Not all invoices are at the same currency!"
+
+#. module: biznavi_invoice_merge
+#: code:addons/biznavi_invoice_merge/wizard/invoice_merge.py:68
+#, python-format
+msgid "Not all invoices are at the same journal!"
+msgstr "Not all invoices are at the same journal!"
+
+#. module: biznavi_invoice_merge
+#: code:addons/biznavi_invoice_merge/wizard/invoice_merge.py:59
+#, python-format
+msgid "Not all invoices are for the same partner!"
+msgstr "Not all invoices are for the same partner!"
+
+#. module: biznavi_invoice_merge
+#: code:addons/biznavi_invoice_merge/wizard/invoice_merge.py:62
+#, python-format
+msgid "Not all invoices are of the same type!"
+msgstr "Not all invoices are of the same type!"
+
+#. module: biznavi_invoice_merge
+#: code:addons/biznavi_invoice_merge/wizard/invoice_merge.py:53
+#, python-format
+msgid "Not all invoices use the same account!"
+msgstr "Not all invoices use the same account!"
+
+#. module: biznavi_invoice_merge
+#: model:ir.ui.view,arch_db:biznavi_invoice_merge.view_invoice_merge
+msgid "Please note that:<br/><br/>\n"
+"Invoices will only be merged if:<br/>\n"
+"* Invoices are in draft<br/>\n"
+"* Invoices belong to the same partner<br/>\n"
+"* Invoices are have same company, partner, address, currency, journal, salesman, account, type<br/><br/>\n"
+"Lines will only be merged if:<br/>\n"
+"* Invoice lines are exactly the same except for the product,quantity and unit<br/>"
+msgstr "Please note that:<br/><br/>\n"
+"Invoices will only be merged if:<br/>\n"
+"* Invoices are in draft<br/>\n"
+"* Invoices belong to the same partner<br/>\n"
+"* Invoices are have same company, partner, address, currency, journal, salesman, account, type<br/><br/>\n"
+"Lines will only be merged if:<br/>\n"
+"* Invoice lines are exactly the same except for the product,quantity and unit<br/>"
+
+#. module: biznavi_invoice_merge
+#: code:addons/biznavi_invoice_merge/wizard/invoice_merge.py:40
+#, python-format
+msgid "Please select multiple invoice to merge in the list view."
+msgstr "Please select multiple invoice to merge in the list view."
+
+#. module: biznavi_invoice_merge
+#: model:ir.ui.view,arch_db:biznavi_invoice_merge.view_invoice_merge
+msgid "or"
+msgstr "或"
+

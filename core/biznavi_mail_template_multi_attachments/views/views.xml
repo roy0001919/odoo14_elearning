@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <record id="email_template_form_inherit" model="ir.ui.view">
+            <field name="name">email.template.form.inherit</field>
+            <field name="model">mail.template</field>
+            <field name="inherit_id" ref="mail.email_template_form"/>
+            <field name="arch" type="xml">
+                <!-- find field description and add the field
+                     idea_ids after it -->
+                <xpath expr="//field[@name='report_name']" position="after">
+                    <field name="template_detail_ids" mode="tree" widget="one2many_list">
+                        <tree string="Reports" editable="bottom">
+                            <field name="report_template"/>
+                            <field name="report_name"/>
+                        </tree>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

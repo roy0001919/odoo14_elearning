@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_tokiku_config"
+                  name="Configure"
+                  parent="tokiku.menu_profile"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="99"/>
+
+        <!--pay Method-->
+        <record id="view_tokiku_pay_method_tree" model="ir.ui.view">
+            <field name="name">tokiku.pay_method.tree</field>
+            <field name="model">tokiku.pay_method</field>
+            <field name="arch" type="xml">
+                <tree string="Pay Method">
+                    <field name="payMethod"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tokiku_pay_method_form" model="ir.ui.view">
+            <field name="name">tokiku.pay_method.form</field>
+            <field name="model">tokiku.pay_method</field>
+            <field name="arch" type="xml">
+                <form string="Pay Method">
+                    <sheet>
+                        <group>
+                            <field name="payMethod"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_pay_method_filter" model="ir.ui.view">
+            <field name="name">tokiku.pay_method.filter</field>
+            <field name="model">tokiku.pay_method</field>
+            <field name="arch" type="xml">
+                <search string="Search Pay Method">
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tokiku_pay_method" model="ir.actions.act_window">
+            <field name="name">Pay Method</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tokiku.pay_method</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="filter" eval="True"/>
+        </record>
+
+        <menuitem id="menu_tokiku_pay_method"
+                  name="Pay Method"
+                  action="action_tokiku_pay_method"
+                  parent="tokiku.menu_tokiku_config"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="10"/>
+
+        <!--Payment-->
+        <record id="view_tokiku_payment_tree" model="ir.ui.view">
+            <field name="name">tokiku.payment.tree</field>
+            <field name="model">tokiku.payment</field>
+            <field name="arch" type="xml">
+                <tree string="Payment">
+                    <field name="payment"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tokiku_payment_form" model="ir.ui.view">
+            <field name="name">tokiku.payment.form</field>
+            <field name="model">tokiku.payment</field>
+            <field name="arch" type="xml">
+                <form string="Payment">
+                    <sheet>
+                        <group>
+                            <field name="payment"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_payment_filter" model="ir.ui.view">
+            <field name="name">tokiku.payment.filter</field>
+            <field name="model">tokiku.payment</field>
+            <field name="arch" type="xml">
+                <search string="Search Payment">
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tokiku_payment" model="ir.actions.act_window">
+            <field name="name">Payment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tokiku.payment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="filter" eval="True"/>
+        </record>
+
+        <menuitem id="menu_tokiku_payment"
+                  name="Payment"
+                  action="action_tokiku_payment"
+                  parent="tokiku.menu_tokiku_config"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="20"/>
+
+        <!--TxCategory-->
+        <record id="view_tokiku_tx_category_tree" model="ir.ui.view">
+            <field name="name">tokiku.tx_category.tree</field>
+            <field name="model">tokiku.tx_category</field>
+            <field name="arch" type="xml">
+                <tree string="Tx Category">
+                    <field name="txCategory"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tokiku_tx_category_form" model="ir.ui.view">
+            <field name="name">tokiku.tx_category.form</field>
+            <field name="model">tokiku.tx_category</field>
+            <field name="arch" type="xml">
+                <form string="Tx Category">
+                    <sheet>
+                        <group>
+                            <field name="txCategory"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_tx_category_filter" model="ir.ui.view">
+            <field name="name">tokiku.tx_category.filter</field>
+            <field name="model">tokiku.tx_category</field>
+            <field name="arch" type="xml">
+                <search string="Search Tx Category">
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tokiku_tx_category" model="ir.actions.act_window">
+            <field name="name">Tx Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tokiku.tx_category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="filter" eval="True"/>
+        </record>
+
+        <menuitem id="menu_tokiku_tx_category"
+                  name="Tx Category"
+                  action="action_tokiku_tx_category"
+                  parent="tokiku.menu_tokiku_config"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="30"/>
+
+        <!--drawing_reply-->
+        <record id="view_tokiku_drawing_reply_tree" model="ir.ui.view">
+            <field name="name">tokiku.drawing_reply.tree</field>
+            <field name="model">tokiku.drawing_reply</field>
+            <field name="arch" type="xml">
+                <tree string="Reply Content">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tokiku_drawing_reply_form" model="ir.ui.view">
+            <field name="name">tokiku.drawing_reply.form</field>
+            <field name="model">tokiku.drawing_reply</field>
+            <field name="arch" type="xml">
+                <form string="Reply Content">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_drawing_reply_filter" model="ir.ui.view">
+            <field name="name">tokiku.drawing_reply.filter</field>
+            <field name="model">tokiku.drawing_reply</field>
+            <field name="arch" type="xml">
+                <search string="Search Reply Content">
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tokiku_drawing_reply" model="ir.actions.act_window">
+            <field name="name">Reply Content</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tokiku.drawing_reply</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="filter" eval="True"/>
+        </record>
+
+        <menuitem id="menu_tokiku_drawing_reply"
+                  name="Reply Content"
+                  action="action_tokiku_drawing_reply"
+                  parent="tokiku.menu_tokiku_config"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="50"/>
+
+        <!--order_category-->
+        <record id="view_tokiku_order_category_tree" model="ir.ui.view">
+            <field name="name">tokiku.order_category.tree</field>
+            <field name="model">tokiku.order_category</field>
+            <field name="arch" type="xml">
+                <tree string="Order Category">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tokiku_order_category_form" model="ir.ui.view">
+            <field name="name">tokiku.order_category.form</field>
+            <field name="model">tokiku.order_category</field>
+            <field name="arch" type="xml">
+                <form string="Order Category">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="code"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_order_category_filter" model="ir.ui.view">
+            <field name="name">tokiku.order_category.filter</field>
+            <field name="model">tokiku.order_category</field>
+            <field name="arch" type="xml">
+                <search string="Search Order Category">
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tokiku_order_category" model="ir.actions.act_window">
+            <field name="name">Order Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tokiku.order_category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="filter" eval="True"/>
+        </record>
+
+        <menuitem id="menu_tokiku_order_category"
+                  name="Order Category"
+                  action="action_tokiku_order_category"
+                  parent="tokiku.menu_tokiku_config"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="60"/>
+
+        <!--mold Combination-->
+        <record id="view_tokiku_mold_combination_tree" model="ir.ui.view">
+            <field name="name">tokiku.mold_combinaiton.tree</field>
+            <field name="model">tokiku.mold_combinaiton</field>
+            <field name="arch" type="xml">
+                <tree string="Mold Combinaiton">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tokiku_mold_combination_form" model="ir.ui.view">
+            <field name="name">tokiku.mold_combinaiton.form</field>
+            <field name="model">tokiku.mold_combinaiton</field>
+            <field name="arch" type="xml">
+                <form string="Mold Combination">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_mold_combinaiton_filter" model="ir.ui.view">
+            <field name="name">tokiku.mold_combinaiton.filter</field>
+            <field name="model">tokiku.mold_combinaiton</field>
+            <field name="arch" type="xml">
+                <search string="Search Mold Combination">
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tokiku_mold_combinaiton" model="ir.actions.act_window">
+            <field name="name">Mold Combination</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tokiku.mold_combinaiton</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_tokiku_mold_combinaiton"
+                  name="Mold Combination"
+                  action="action_tokiku_mold_combinaiton"
+                  parent="tokiku.menu_tokiku_config"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="11"/>
+
+
+        <!--ordering Unit-->
+        <record id="view_tokiku_order_unit_tree" model="ir.ui.view">
+            <field name="name">tokiku.order_unit.tree</field>
+            <field name="model">tokiku.order_unit</field>
+            <field name="arch" type="xml">
+                <tree string="Order Unit">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tokiku_order_unit_form" model="ir.ui.view">
+            <field name="name">tokiku.order_unit.form</field>
+            <field name="model">tokiku.order_unit</field>
+            <field name="arch" type="xml">
+                <form string="Order Unit">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_order_unit_filter" model="ir.ui.view">
+            <field name="name">tokiku.order_unit.filter</field>
+            <field name="model">tokiku.order_unit</field>
+            <field name="arch" type="xml">
+                <search string="Search Order Unit">
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tokiku_order_unit" model="ir.actions.act_window">
+            <field name="name">Order Unit</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tokiku.order_unit</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_tokiku_order_unit"
+                  name="Order Unit"
+                  action="action_tokiku_order_unit"
+                  parent="tokiku.menu_tokiku_config"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="12"/>
+
+
+    <!--Payment Unit-->
+        <record id="view_tokiku_payment_unit_tree" model="ir.ui.view">
+            <field name="name">tokiku.payment_unit.tree</field>
+            <field name="model">tokiku.payment_unit</field>
+            <field name="arch" type="xml">
+                <tree string="Payment Unit">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tokiku_payment_unit_form" model="ir.ui.view">
+            <field name="name">tokiku.payment_unit.form</field>
+            <field name="model">tokiku.payment_unit</field>
+            <field name="arch" type="xml">
+                <form string="Payment Unit">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_payment_unit_filter" model="ir.ui.view">
+            <field name="name">tokiku.payment_unit.filter</field>
+            <field name="model">tokiku.payment_unit</field>
+            <field name="arch" type="xml">
+                <search string="Search Payment Unit">
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tokiku_payment_unit" model="ir.actions.act_window">
+            <field name="name">Payment Unit</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tokiku.payment_unit</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_tokiku_payment_unit"
+                  name="Payment Unit"
+                  action="action_tokiku_payment_unit"
+                  parent="tokiku.menu_tokiku_config"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="13"/>
+
+
+        <!--Demand Unit-->
+        <record id="view_tokiku_demand_unit_tree" model="ir.ui.view">
+            <field name="name">tokiku.demand_unit.tree</field>
+            <field name="model">tokiku.demand_unit</field>
+            <field name="arch" type="xml">
+                <tree string="Demand Unit">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tokiku_demand_unit_form" model="ir.ui.view">
+            <field name="name">tokiku.demand_unit.form</field>
+            <field name="model">tokiku.demand_unit</field>
+            <field name="arch" type="xml">
+                <form string="Demand Unit">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_demand_unit_filter" model="ir.ui.view">
+            <field name="name">tokiku.demand_unit.filter</field>
+            <field name="model">tokiku.demand_unit</field>
+            <field name="arch" type="xml">
+                <search string="Search Demand Unit">
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tokiku_demand_unit" model="ir.actions.act_window">
+            <field name="name">Demand Unit</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tokiku.demand_unit</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_tokiku_demand_unit"
+                  name="Demand Unit"
+                  action="action_tokiku_demand_unit"
+                  parent="tokiku.menu_tokiku_config"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="14"/>
+
+
+        <!--Assembling Installation price-->
+        <record id="view_tokiku_assembling_installation_price_tree" model="ir.ui.view">
+            <field name="name">tokiku.assembling_installation_price.tree</field>
+            <field name="model">tokiku.assembling_installation_price</field>
+            <field name="arch" type="xml">
+                <tree string="Assembling Installation Price">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tokiku_assembling_installation_price_form" model="ir.ui.view">
+            <field name="name">tokiku.assembling_installation_price.form</field>
+            <field name="model">tokiku.assembling_installation_price</field>
+            <field name="arch" type="xml">
+                <form string="Assembling Installation Price">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_assembling_installation_price_filter" model="ir.ui.view">
+            <field name="name">tokiku.assembling_installation_price.filter</field>
+            <field name="model">tokiku.assembling_installation_price</field>
+            <field name="arch" type="xml">
+                <search string="Search Assembling Installation Price">
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tokiku_assembling_installation_price" model="ir.actions.act_window">
+            <field name="name">Assembling Installation Price</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tokiku.assembling_installation_price</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_tokiku_assembling_installation_price"
+                  name="Assembling Installation Price"
+                  action="action_tokiku_assembling_installation_price"
+                  parent="tokiku.menu_tokiku_config"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="15"/>
+
+
+        <!--User Customized Price Unit-->
+        <record id="view_tokiku_user_customized_price_unit_tree" model="ir.ui.view">
+            <field name="name">tokiku.user_customized_price_unit.tree</field>
+            <field name="model">tokiku.user_customized_price_unit</field>
+            <field name="arch" type="xml">
+                <tree string="User Customized Price Unit">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tokiku_user_customized_price_unit_form" model="ir.ui.view">
+            <field name="name">tokiku.user_customized_price_unit.form</field>
+            <field name="model">tokiku.user_customized_price_unit</field>
+            <field name="arch" type="xml">
+                <form string="User Customized Price Unit">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_user_customized_price_unit_filter" model="ir.ui.view">
+            <field name="name">tokiku.user_customized_price_unit.filter</field>
+            <field name="model">tokiku.user_customized_price_unit</field>
+            <field name="arch" type="xml">
+                <search string="Search User Customized Price Unit">
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tokiku_user_customized_price_unit" model="ir.actions.act_window">
+            <field name="name">User Customized Price Unit</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tokiku.user_customized_price_unit</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_tokiku_user_customized_price_unit"
+                  name="User Customized Price Unit"
+                  action="action_tokiku_user_customized_price_unit"
+                  parent="tokiku.menu_tokiku_config"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="16"/>
+
+
+        <!--examining_result-->
+        <record id="view_tokiku_examining_result_tree" model="ir.ui.view">
+            <field name="name">tokiku.examining_result.tree</field>
+            <field name="model">tokiku.examining_result</field>
+            <field name="arch" type="xml">
+                <tree string="Examining Result" delete="false">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tokiku_examining_result_form" model="ir.ui.view">
+            <field name="name">tokiku.examining_result.form</field>
+            <field name="model">tokiku.examining_result</field>
+            <field name="arch" type="xml">
+                <form string="Examining Result">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_examining_result_filter" model="ir.ui.view">
+            <field name="name">tokiku.examining_result.filter</field>
+            <field name="model">tokiku.examining_result</field>
+            <field name="arch" type="xml">
+                <search string="Search Examining Result">
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tokiku_examining_result" model="ir.actions.act_window">
+            <field name="name">Examining Result</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tokiku.examining_result</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_tokiku_examining_result"
+                  name="Examining Result"
+                  action="action_tokiku_examining_result"
+                  parent="tokiku.menu_tokiku_config"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="17"/>
+
+
+        <!--construction_section-->
+        <record id="view_tokiku_construction_section_tree" model="ir.ui.view">
+            <field name="name">tokiku.construction_section.tree</field>
+            <field name="model">tokiku.construction_section</field>
+            <field name="arch" type="xml">
+                <tree string="Construction Section">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tokiku_construction_section_form" model="ir.ui.view">
+            <field name="name">tokiku.construction_section.form</field>
+            <field name="model">tokiku.construction_section</field>
+            <field name="arch" type="xml">
+                <form string="construction_section">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_construction_section_filter" model="ir.ui.view">
+            <field name="name">tokiku.construction_section.filter</field>
+            <field name="model">tokiku.construction_section</field>
+            <field name="arch" type="xml">
+                <search string="Search Construction Section">
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tokiku_construction_section" model="ir.actions.act_window">
+            <field name="name">Construction Section</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tokiku.construction_section</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_tokiku_construction_section"
+                  name="Construction Section"
+                  action="action_tokiku_construction_section"
+                  parent="tokiku.menu_tokiku_config"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="18"/>
+
+        <!--installation category-->
+        <record id="view_tokiku_installation_categ_tree" model="ir.ui.view">
+            <field name="name">tokiku.installation_categ.tree</field>
+            <field name="model">tokiku.installation_category</field>
+            <field name="arch" type="xml">
+                <tree string="Installation Category">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tokiku_install_categ_form" model="ir.ui.view">
+            <field name="name">tokiku.install_categ.form</field>
+            <field name="model">tokiku.installation_category</field>
+            <field name="arch" type="xml">
+                <form string="Installation Category">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_install_categ_filter" model="ir.ui.view">
+            <field name="name">tokiku.install_categ.filter</field>
+            <field name="model">tokiku.installation_category</field>
+            <field name="arch" type="xml">
+                <search string="Search Installation Category">
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tokiku_install_categ" model="ir.actions.act_window">
+            <field name="name">Installation Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tokiku.installation_category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_tokiku_install_categ"
+                  name="Installation Category"
+                  action="action_tokiku_install_categ"
+                  parent="tokiku.menu_tokiku_config"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="21"/>
+
+        <!--install location-->
+        <record id="view_tokiku_install_location_tree" model="ir.ui.view">
+            <field name="name">tokiku.install_location.tree</field>
+            <field name="model">tokiku.install_location</field>
+            <field name="arch" type="xml">
+                <tree string="Install Location">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_tokiku_install_location_form" model="ir.ui.view">
+            <field name="name">tokiku.install_location.form</field>
+            <field name="model">tokiku.install_location</field>
+            <field name="arch" type="xml">
+                <form string="Install Location">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_tokiku_install_location_filter" model="ir.ui.view">
+            <field name="name">tokiku.install_location.filter</field>
+            <field name="model">tokiku.install_location</field>
+            <field name="arch" type="xml">
+                <search string="Search Install Location">
+                </search>
+            </field>
+        </record>
+
+        <record id="action_tokiku_install_location" model="ir.actions.act_window">
+            <field name="name">Install Location</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tokiku.install_location</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+
+        <menuitem id="menu_tokiku_install_location"
+                  name="Install Location"
+                  action="action_tokiku_install_location"
+                  parent="tokiku.menu_tokiku_config"
+                  groups="group_tokiku_admin,group_tokiku_user"
+                  sequence="22"/>
+    </data>
+</odoo>

@@ -1,0 +1,41 @@
+
+
+
+/*List view color changes*/
+table.o_list_view tbody tr:hover{
+    background-color: #b3e9ff;
+}
+table.o_list_view tbody tr:nth-of-type(2n+1):hover{
+    background-color: #b3e9ff !important;
+}
+.row_hover {
+    background-color: #b3e9ff !important;
+}
+.row_selected {
+    /*content: "";*/
+    background-color: #eecbff;
+    /*width: 500px;*/
+    color:#000000;
+    /*opacity: 0.5;*/
+    /*z-index: -1;*/
+
+}
+.fixed_column {
+    position: absolute;
+    top: 0;
+}
+.fixed_column thead tr {
+    opacity: 1.0;
+    background-color: rgba(226, 226, 224, 1);
+}
+.fixed_column tbody tr {
+    opacity: 1.0;
+    background-color: rgba(255, 255, 255, 1);
+}
+.grid thead th, .grid tbody td, .grid .o_group_name, .o_form_field_x2many_list_row_add {
+    border-right: 1px grey solid !important;
+    white-space: nowrap;
+}
+.grid > .table-responsive {
+    overflow-x: visible;
+}

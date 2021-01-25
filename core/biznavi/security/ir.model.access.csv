@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_l10n_zh_tw_hr_holidays_l10n_zh_tw_hr_holidays,l10n_zh_tw_hr_holidays.l10n_zh_tw_hr_holidays,model_l10n_zh_tw_hr_holidays_l10n_zh_tw_hr_holidays,,1,0,0,0

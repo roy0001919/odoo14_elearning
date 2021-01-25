@@ -1,0 +1,5 @@
+<templates>
+    <t t-name="FieldX2ManyGrid">
+        <div t-att-class="widget.widget_class"/>
+    </t>
+</templates>

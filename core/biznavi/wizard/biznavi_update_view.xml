@@ -1,0 +1,28 @@
+<openerp>
+   <data>
+        <record id="update_form" model="ir.ui.view">
+            <field name="name">Update BizNavi</field>
+            <field name="model">biznavi.update</field>
+            <field eval="20" name="priority"/>
+            <field name="arch" type="xml">
+                <form string="Update">
+                    <field name="message" string="Message"/>
+                    <footer>
+                        <button name="act_ok" string="OK" type="object" class="btn-primary"/>
+                        <!--<button special="cancel" string="Cancel" type="object" class="btn-default"/>-->
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_warning" model="ir.actions.act_window">
+            <field name="name">BizNavi Update</field>
+            <field name="res_model">biznavi.update</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="update_form" />
+            <field name="target">new</field>
+        </record>
+    </data>
+
+</openerp>

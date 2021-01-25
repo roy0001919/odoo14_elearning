@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <template id="sinopac_acquirer_button">
+            <form t-if="acquirer.sinopac_merchant_id" t-att-action="tx_url" method="post" target="_self">
+                <!-- New API -->
+                <!--<input type="hidden" name="mid" t-att-value="mid"/>-->
+                <!--<input type="hidden" name="tid" t-att-value="tid"/>-->
+                <!--<INPUT type="hidden" name="installment" t-att-value="installment"/>-->
+                <!--<INPUT type="hidden" name="oid" t-att-value="oid"/>-->
+                <!--<INPUT type="hidden" name="transMode" t-att-value="transMode"/>-->
+                <!--<INPUT type="hidden" name="transAmt" t-att-value="transAmt"/>-->
+                <!--<INPUT type="hidden" name="frontendUrl" t-att-value="AuthResURL"/>-->
+
+                <!-- Old API -->
+                <input type="hidden" name="MerchantID" t-att-value="MerchantID"/>
+                <input type="hidden" name="TerminalID" t-att-value="TerminalID"/>
+                <input type="hidden" name="merID" t-att-value="merID"/>
+                <input type="hidden" name="MerchantName" t-att-value="MerchantName"/>
+                <input type="hidden" name="purchAmt" t-att-value="purchAmt"/>
+                <input type="hidden" name="lidm" t-att-value="lidm"/>
+                <input type="hidden" name="AutoCap" t-att-value="AutoCap"/>
+                <input type="hidden" name="LocalDate" t-att-value="LocalDate"/>
+                <input type="hidden" name="LocalTime" t-att-value="LocalTime"/>
+                <input type="hidden" name="CurrencyNote" t-att-value="CurrencyNote"/>
+
+                <input type="hidden" name="reqToken" t-att-value="reqToken"/>
+                <input type="hidden" name="AuthResURL" t-att-value="AuthResURL"/>
+
+                <button type="submit" width="100px" t-att-class="submit_class">
+                    <img t-if="not submit_txt" src="/payment_sinopac/static/src/img/VisaMastercard.png"/>
+                    <span t-if="submit_txt"><t t-esc="submit_txt"/> <span class="fa fa-long-arrow-right"/></span>
+                </button>
+            </form>
+        </template>
+    </data>
+</odoo>

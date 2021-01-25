@@ -1,0 +1,476 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* biznavi
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-10-28 13:33+0000\n"
+"PO-Revision-Date: 2017-10-28 13:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: biznavi
+#: code:addons/biznavi/res_config.py:263
+#, python-format
+msgid "Account Chart Reset"
+msgstr "Account Chart Reset"
+
+#. module: biznavi
+#: code:addons/biznavi/res_config.py:258
+#, python-format
+msgid "Account Chart Reseted for %s"
+msgstr "Account Chart Reseted for %s"
+
+#. module: biznavi
+#: model:ir.ui.view,arch_db:biznavi.view_biznavi_config
+msgid "Accounting"
+msgstr "財會"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_module_biznavi_invoice_merge
+#: model:ir.model.fields,help:biznavi.field_biznavi_config_settings_module_biznavi_invoice_merge
+msgid "Add invoice merge Feature"
+msgstr "可合併開發票"
+
+#. module: biznavi
+#: code:addons/biznavi/res_config.py:95
+#, python-format
+msgid "Already up-to-date"
+msgstr "已為最新版本"
+
+#. module: biznavi
+#: model:ir.ui.view,arch_db:biznavi.view_biznavi_config
+msgid "Apply"
+msgstr "套用"
+
+#. module: biznavi
+#: model:ir.ui.view,arch_db:biznavi.view_biznavi_config
+msgid "Base"
+msgstr "基本"
+
+#. module: biznavi
+#. openerp-web
+#: code:addons/biznavi/static/src/xml/base.xml:33
+#: model:ir.actions.act_window,name:biznavi.biznavi_settings_action
+#: model:ir.ui.menu,name:biznavi.biznavi_settings_menu
+#: model:ir.ui.view,arch_db:biznavi.view_biznavi_config
+#, python-format
+msgid "BizNavi"
+msgstr "BizNavi"
+
+#. module: biznavi
+#. openerp-web
+#: code:addons/biznavi/static/src/xml/base.xml:37
+#, python-format
+msgid "BizNavi 3 (Enterprise Edition)"
+msgstr "BizNavi 3 (Enterprise Edition)"
+
+#. module: biznavi
+#: model:ir.model,name:biznavi.model_biznavi_config_settings
+msgid "BizNavi Config"
+msgstr "BizNavi 設定"
+
+#. module: biznavi
+#: model:ir.actions.act_window,name:biznavi.action_message
+msgid "BizNavi Message"
+msgstr "BizNavi 訊息"
+
+#. module: biznavi
+#: model:ir.model,name:biznavi.model_biznavi_msgbox
+msgid "BizNavi Message Box"
+msgstr "BizNavi 訊息框"
+
+#. module: biznavi
+#: code:addons/biznavi/res_config.py:135
+#: code:addons/biznavi/wizard/translation_writeback_wizard.py:50
+#, python-format
+msgid "BizNavi Translation Writeback"
+msgstr "BizNavi 翻譯詞彙回寫"
+
+#. module: biznavi
+#: code:addons/biznavi/res_config.py:123
+#: model:ir.actions.act_window,name:biznavi.action_warning
+#, python-format
+msgid "BizNavi Update"
+msgstr "BizNavi 更新"
+
+#. module: biznavi
+#: code:addons/biznavi/res_config.py:159
+#: code:addons/biznavi/res_config.py:177
+#, python-format
+msgid "BizNavi Upload"
+msgstr "BizNavi 上傳"
+
+#. module: biznavi
+#. openerp-web
+#: code:addons/biznavi/static/src/xml/base.xml:45
+#, python-format
+msgid "BizNavi is a trademark of"
+msgstr "BizNavi is a trademark of"
+
+#. module: biznavi
+#: code:addons/biznavi/res_config.py:93
+#, python-format
+msgid "BizNavi update failed!"
+msgstr "BizNavi 更新失敗!"
+
+#. module: biznavi
+#. openerp-web
+#: code:addons/biznavi/static/src/xml/base.xml:45
+#, python-format
+msgid "CENOQ Corp."
+msgstr "CENOQ Corp."
+
+#. module: biznavi
+#: model:ir.ui.view,arch_db:biznavi.view_biznavi_config
+#: model:ir.ui.view,arch_db:biznavi.writeback_form
+msgid "Cancel"
+msgstr "取消"
+
+#. module: biznavi
+#: model:ir.ui.menu,name:biznavi.biznavi_settings_config
+msgid "Config"
+msgstr "設定"
+
+#. module: biznavi
+#. openerp-web
+#: code:addons/biznavi/static/src/xml/base.xml:44
+#, python-format
+msgid "Copyright © 2006-2016 CENOQ Corp."
+msgstr "版權所有 © 2006-2016 CENOQ Corp."
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_create_uid
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_msgbox_create_uid
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_translation_writeback_wizard_create_uid
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_update_create_uid
+msgid "Created by"
+msgstr "建立者"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_create_date
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_msgbox_create_date
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_translation_writeback_wizard_create_date
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_update_create_date
+msgid "Created on"
+msgstr "建立於"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_display_name
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_msgbox_display_name
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_translation_writeback_wizard_display_name
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_update_display_name
+msgid "Display Name"
+msgstr "顯示名稱"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_module_biznavi_base_vat
+msgid "Enable Taiwan VAT number rule"
+msgstr "啟用台灣統一編號規則"
+
+#. module: biznavi
+#: model:ir.ui.view,arch_db:biznavi.writeback_form
+msgid "Execute Writeback"
+msgstr "執行回寫"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_exp_date
+msgid "Expired Date"
+msgstr "到期日"
+
+#. module: biznavi
+#: code:addons/biznavi/res_config.py:110
+#, python-format
+msgid "Following modules are not installed or unknown: %s"
+msgstr "以下為未安裝或不知名模組：%s"
+
+#. module: biznavi
+#. openerp-web
+#: code:addons/biznavi/static/src/xml/base.xml:46
+#, python-format
+msgid "For more information visit"
+msgstr "更多資訊請造訪"
+
+#. module: biznavi
+#: model:ir.ui.view,arch_db:biznavi.view_biznavi_config
+msgid "HR Holidays"
+msgstr "人事請假"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_module_biznavi_hr_holidays_expired
+msgid "Holidays auto expired feature"
+msgstr "假期自動過期功能"
+
+#. module: biznavi
+#: model:ir.ui.view,arch_db:biznavi.view_biznavi_config
+msgid "Human Resources"
+msgstr "人事"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_id
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_msgbox_id
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_translation_writeback_wizard_id
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_update_id
+msgid "ID"
+msgstr "編號"
+
+#. module: biznavi
+#: model:ir.model.fields,help:biznavi.field_biznavi_config_settings_module_l10n_tw
+msgid "Install Taiwan Accounting Package"
+msgstr "安裝台灣會計科目模組"
+
+#. module: biznavi
+#: model:ir.model.fields,help:biznavi.field_biznavi_config_settings_module_biznavi_account_invoice_report
+msgid "Install Taiwan Computer Invoice Report"
+msgstr "安裝台灣電子計算機發票報表模組"
+
+#. module: biznavi
+#: model:ir.model.fields,help:biznavi.field_biznavi_config_settings_module_biznavi_base_vat
+msgid "Install Taiwan VAT Number rule"
+msgstr "安裝台灣統一編號規則"
+
+#. module: biznavi
+#: model:ir.model.fields,help:biznavi.field_biznavi_config_settings_module_biznavi_hr_payroll
+msgid "Install Taiwanese payroll calculation feature"
+msgstr "安裝台灣薪資計算功能"
+
+#. module: biznavi
+#: model:ir.model.fields,help:biznavi.field_biznavi_config_settings_module_biznavi_hr_holidays_expired
+msgid "Install holidays auto expired feature"
+msgstr "安裝假期自動過期功能"
+
+#. module: biznavi
+#: model:ir.model.fields,help:biznavi.field_biznavi_config_settings_module_biznavi_hr_holidays_public
+msgid "Install public holidays feature"
+msgstr "安裝法定假期功能"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_key
+msgid "Key"
+msgstr "Key"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings___last_update
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_msgbox___last_update
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_translation_writeback_wizard___last_update
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_update___last_update
+msgid "Last Modified on"
+msgstr "最後修改於"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_write_uid
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_msgbox_write_uid
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_translation_writeback_wizard_write_uid
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_update_write_uid
+msgid "Last Updated by"
+msgstr "最後更新："
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_write_date
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_msgbox_write_date
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_translation_writeback_wizard_write_date
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_update_write_date
+msgid "Last Updated on"
+msgstr "最後更新於"
+
+#. module: biznavi
+#. openerp-web
+#: code:addons/biznavi/static/src/xml/base.xml:8
+#, python-format
+msgid "Log out"
+msgstr "登出"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_msgbox_message
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_update_message
+#: model:ir.ui.view,arch_db:biznavi.msg_form
+#: model:ir.ui.view,arch_db:biznavi.update_form
+msgid "Message"
+msgstr "訊息"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_translation_writeback_wizard_modules
+msgid "Modules"
+msgstr "模組"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_added
+msgid "Number of modules added"
+msgstr "已新增之模組個數"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_updated
+msgid "Number of modules updated"
+msgstr "已更新模組數"
+
+#. module: biznavi
+#: model:ir.ui.view,arch_db:biznavi.msg_form
+#: model:ir.ui.view,arch_db:biznavi.update_form
+msgid "OK"
+msgstr "確定"
+
+#. module: biznavi
+#. openerp-web
+#: code:addons/biznavi/static/src/xml/base.xml:7
+#, python-format
+msgid "Preferences"
+msgstr "偏好設定"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_translation_writeback_wizard_process_base
+msgid "Process base"
+msgstr "處理基本模組"
+
+#. module: biznavi
+#: code:addons/biznavi/res_config.py:154
+#, python-format
+msgid "Push Finished!"
+msgstr "上傳完成!"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_translation_writeback_wizard_rewrite_pot
+msgid "Rewrite pot"
+msgstr "覆寫 pot"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_server_id
+msgid "Server ID"
+msgstr "Server ID"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_state
+msgid "Status"
+msgstr "狀態"
+
+#. module: biznavi
+#: model:ir.ui.view,arch_db:biznavi.view_biznavi_config
+msgid "Subscription"
+msgstr "訂閱"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_module_l10n_tw
+msgid "Taiwan Accounting Package"
+msgstr "台灣會計科目模組"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_module_biznavi_account_invoice_report
+msgid "Taiwan Computer Invoice"
+msgstr "台灣電子計算機發票"
+
+#. module: biznavi
+#: model:ir.ui.view,arch_db:biznavi.view_biznavi_config
+msgid "Taiwan VAT"
+msgstr "台灣統一編號"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_module_biznavi_hr_payroll
+msgid "Taiwanese payroll calculation feature"
+msgstr "台灣薪資計算功能"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_biznavi_theme
+msgid "Theme"
+msgstr "Theme"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_msgbox_title
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_update_title
+msgid "Title"
+msgstr "標題"
+
+#. module: biznavi
+#: model:ir.ui.view,arch_db:biznavi.view_biznavi_config
+msgid "Translation Clean"
+msgstr "翻譯清除"
+
+#. module: biznavi
+#: code:addons/biznavi/res_config.py:172
+#, python-format
+msgid "Translation Cleaned!"
+msgstr "翻譯清除!"
+
+#. module: biznavi
+#: model:ir.model,name:biznavi.model_biznavi_translation_writeback_wizard
+#: model:ir.ui.view,arch_db:biznavi.view_biznavi_config
+msgid "Translation Writeback"
+msgstr "回寫翻譯"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_msgbox_updatable
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_update_updatable
+msgid "Updatable"
+msgstr "可更新"
+
+#. module: biznavi
+#: model:ir.ui.view,arch_db:biznavi.update_form
+#: model:ir.ui.view,arch_db:biznavi.view_biznavi_config
+msgid "Update"
+msgstr "更新"
+
+#. module: biznavi
+#: model:ir.model,name:biznavi.model_biznavi_update
+msgid "Update BizNavi"
+msgstr "更新 BizNavi"
+
+#. module: biznavi
+#: model:ir.ui.view,arch_db:biznavi.view_biznavi_config
+msgid "Upload"
+msgstr "上傳"
+
+#. module: biznavi
+#: code:addons/biznavi/wizard/translation_writeback_wizard.py:45
+#, python-format
+msgid "Writeback Completed!\n"
+""
+msgstr "回寫完成!\n"
+""
+
+#. module: biznavi
+#: selection:biznavi.config.settings,biznavi_theme:0
+msgid "base"
+msgstr "base"
+
+#. module: biznavi
+#: selection:biznavi.config.settings,biznavi_theme:0
+msgid "blue"
+msgstr "blue"
+
+#. module: biznavi
+#. openerp-web
+#: code:addons/biznavi/static/src/xml/base.xml:46
+#, python-format
+msgid "cenoq.com"
+msgstr "cenoq.com"
+
+#. module: biznavi
+#: selection:biznavi.config.settings,state:0
+msgid "done"
+msgstr "完成"
+
+#. module: biznavi
+#: selection:biznavi.config.settings,state:0
+msgid "init"
+msgstr "init"
+
+#. module: biznavi
+#: model:ir.ui.view,arch_db:biznavi.view_biznavi_config
+#: model:ir.ui.view,arch_db:biznavi.writeback_form
+msgid "or"
+msgstr "或"
+
+#. module: biznavi
+#: model:ir.model.fields,field_description:biznavi.field_biznavi_config_settings_module_biznavi_hr_holidays_public
+msgid "public holidays feature"
+msgstr "法定假期功能"
+
+#. module: biznavi
+#: model:ir.ui.view,arch_db:biznavi.writeback_form
+msgid "writeback"
+msgstr "回寫"
+

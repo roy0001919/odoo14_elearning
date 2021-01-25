@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp_bom_line_tree_view_ext" model="ir.ui.view">
+            <field name="name">mrp.bom.tree.ext</field>
+            <field name="model">mrp.bom.line</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_line_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="product_qty"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

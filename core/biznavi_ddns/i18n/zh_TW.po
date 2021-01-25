@@ -1,0 +1,228 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* biznavi_ddns
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-25 09:40+0000\n"
+"PO-Revision-Date: 2016-11-25 09:40+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_godaddy_name
+msgid "Account"
+msgstr "帳號"
+
+#. module: biznavi_ddns
+#: model:ir.actions.act_window,name:biznavi_ddns.action_ddns_form
+#: model:ir.ui.menu,name:biznavi_ddns.ddns_conf_menu
+msgid "Configure DDNS"
+msgstr "設定 DDNS"
+
+#. module: biznavi_ddns
+#: model:ir.actions.act_window,name:biznavi_ddns.action_godaddy_form
+#: model:ir.ui.menu,name:biznavi_ddns.godaddy_conf_menu
+msgid "Configure GoDaddy"
+msgstr "設定 GoDaddy"
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_create_uid
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_godaddy_create_uid
+msgid "Created by"
+msgstr "建立者"
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_create_date
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_godaddy_create_date
+msgid "Created on"
+msgstr "建立於"
+
+#. module: biznavi_ddns
+#: model:ir.ui.menu,name:biznavi_ddns.ddns_menu
+#: model:ir.ui.view,arch_db:biznavi_ddns.view_ddns_conf_form
+#: model:ir.ui.view,arch_db:biznavi_ddns.view_ddns_tree
+msgid "DDNS"
+msgstr "DDNS"
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_ttl
+msgid "DNS TTL"
+msgstr "DNS TTL"
+
+#. module: biznavi_ddns
+#: code:addons/biznavi_ddns/ddns.py:137
+#, python-format
+msgid "DNS Update"
+msgstr "更新 DNS"
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_godaddy_default_account
+msgid "Default Value"
+msgstr "預設值"
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_display_name
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_godaddy_display_name
+msgid "Display Name"
+msgstr "顯示名稱"
+
+#. module: biznavi_ddns
+#: model:ir.ui.view,arch_db:biznavi_ddns.view_godaddy_conf_form
+#: model:ir.ui.view,arch_db:biznavi_ddns.view_godaddy_tree
+msgid "Godaddy"
+msgstr "Godaddy"
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_godaddy
+msgid "Godaddy Account"
+msgstr "GoDaddy 帳戶"
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_host
+msgid "Host"
+msgstr "Host"
+
+#. module: biznavi_ddns
+#: code:addons/biznavi_ddns/ddns.py:73
+#, python-format
+msgid "Hostname \"{}\" is not a fully-qualified host name of form \"HOST.DOMAIN.TOP\"."
+msgstr "Hostname \"{}\" is not a fully-qualified host name of form \"HOST.DOMAIN.TOP\"."
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_godaddy_id
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_id
+msgid "ID"
+msgstr "編號"
+
+#. module: biznavi_ddns
+#: code:addons/biznavi_ddns/ddns.py:132
+#, python-format
+msgid "IP address for %s set to %s."
+msgstr "%s 的IP位址已設定為 %s"
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_godaddy_key
+msgid "Key"
+msgstr "Key"
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns___last_update
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_godaddy___last_update
+msgid "Last Modified on"
+msgstr "最後修改於"
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_godaddy_write_uid
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_write_uid
+msgid "Last Updated by"
+msgstr "最後更新："
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_godaddy_write_date
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_write_date
+msgid "Last Updated on"
+msgstr "最後更新於"
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_name
+msgid "Name"
+msgstr "名稱"
+
+#. module: biznavi_ddns
+#: model:ir.ui.view,arch_db:biznavi_ddns.view_ddns_search
+msgid "Search options"
+msgstr "搜尋選項"
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_godaddy_secret
+msgid "Secret"
+msgstr "Secret"
+
+#. module: biznavi_ddns
+#: code:addons/biznavi_ddns/ddns.py:83
+#, python-format
+msgid "Unable to automatically obtain IP address from http://ipv4.icanhazip.com/."
+msgstr "無法從 http://ipv4.icanhazip.com/ 自動取得 IP 位址。"
+
+#. module: biznavi_ddns
+#: code:addons/biznavi_ddns/ddns.py:122
+#, python-format
+msgid "Unable to set IP address: \"{}\" has invalid domain."
+msgstr "Unable to set IP address: \"{}\" has invalid domain."
+
+#. module: biznavi_ddns
+#: code:addons/biznavi_ddns/ddns.py:111
+#, python-format
+msgid "Unable to set IP address: --key or --secret option incorrect.\n"
+"	Correct values can be obtained from from https://developer.godaddy.com/keys/ and are ideally placed in a @ file."
+msgstr "Unable to set IP address: --key or --secret option incorrect.\n"
+"	Correct values can be obtained from from https://developer.godaddy.com/keys/ and are ideally placed in a @ file."
+
+#. module: biznavi_ddns
+#: code:addons/biznavi_ddns/ddns.py:114
+#, python-format
+msgid "Unable to set IP address: --key or --secret option missing.\n"
+"	Correct values can be obtained from from https://developer.godaddy.com/keys/ and are ideally placed in a @ file."
+msgstr "Unable to set IP address: --key or --secret option missing.\n"
+"	Correct values can be obtained from from https://developer.godaddy.com/keys/ and are ideally placed in a @ file."
+
+#. module: biznavi_ddns
+#: code:addons/biznavi_ddns/ddns.py:108
+#, python-format
+msgid "Unable to set IP address: GoDaddy API URL ({}) was malformed."
+msgstr "Unable to set IP address: GoDaddy API URL ({}) was malformed."
+
+#. module: biznavi_ddns
+#: code:addons/biznavi_ddns/ddns.py:126
+#: code:addons/biznavi_ddns/ddns.py:129
+#, python-format
+msgid "Unable to set IP address: GoDaddy API failure because \"{}\"."
+msgstr "Unable to set IP address: GoDaddy API failure because \"{}\"."
+
+#. module: biznavi_ddns
+#: code:addons/biznavi_ddns/ddns.py:117
+#, python-format
+msgid "Unable to set IP address: customer identified by --key and --secret options denied permission.\n"
+"	Correct values can be obtained from from https://developer.godaddy.com/keys/ and are ideally placed in a @ file."
+msgstr "Unable to set IP address: customer identified by --key and --secret options denied permission.\n"
+"	Correct values can be obtained from from https://developer.godaddy.com/keys/ and are ideally placed in a @ file."
+
+#. module: biznavi_ddns
+#: code:addons/biznavi_ddns/ddns.py:124
+#, python-format
+msgid "Unable to set IP address: too many requests to GoDaddy within brief period."
+msgstr "Unable to set IP address: too many requests to GoDaddy within brief period."
+
+#. module: biznavi_ddns
+#: code:addons/biznavi_ddns/ddns.py:120
+#, python-format
+msgid "Unable to set IP address: {} not found at GoDaddy."
+msgstr "Unable to set IP address: {} not found at GoDaddy."
+
+#. module: biznavi_ddns
+#: model:ir.ui.view,arch_db:biznavi_ddns.view_ddns_conf_form
+msgid "Update DNS"
+msgstr "更新 DNS"
+
+#. module: biznavi_ddns
+#: model:ir.model,name:biznavi_ddns.model_biznavi_ddns
+msgid "biznavi.ddns"
+msgstr "biznavi.ddns"
+
+#. module: biznavi_ddns
+#: model:ir.model,name:biznavi_ddns.model_biznavi_ddns_godaddy
+msgid "biznavi.ddns.godaddy"
+msgstr "biznavi.ddns.godaddy"
+
+#. module: biznavi_ddns
+#: model:ir.model.fields,field_description:biznavi_ddns.field_biznavi_ddns_ip
+msgid "ip"
+msgstr "ip"
+

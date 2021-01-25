@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="biznavi_accounting_report_view" model="ir.ui.view">
+        <field name="model">accounting.report</field>
+        <field name="inherit_id" ref="account.accounting_report_view"/>
+        <field name="arch" type="xml">
+            <field name="date_to" position="after">
+                <field name="show_level"/>
+                <field name="show_percentage"/>
+                <field name="display_account" widget="radio"/>
+                <field name="horizontal" attrs="{'invisible':[('account_report_id', '!=', 4)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <!--<record id="action_account_report_bs" model="ir.actions.act_window">-->
+        <!--<field name="name">Balance Sheet</field>-->
+        <!--<field name="res_model">accounting.report</field>-->
+        <!--<field name="type">ir.actions.act_window</field>-->
+        <!--<field name="view_type">form</field>-->
+        <!--<field name="view_mode">form</field>-->
+        <!--<field name="view_id" ref="accounting_report_view"/>-->
+        <!--<field name="target">new</field>-->
+        <!--<field name="context" eval="{'default_account_report_id':ref('account.account_financial_report_balancesheet0')}"/>-->
+    <!--</record>-->
+
+    <!--<menuitem id="menu_account_report_bs" name="Balance Sheet" action="action_account_report_bs" parent="menu_finance_legal_statement"/>-->
+
+    <!--<record id="action_account_report_pl" model="ir.actions.act_window">-->
+        <!--<field name="name">Profit and Loss</field>-->
+        <!--<field name="res_model">accounting.report</field>-->
+        <!--<field name="type">ir.actions.act_window</field>-->
+        <!--<field name="view_type">form</field>-->
+        <!--<field name="view_mode">form</field>-->
+        <!--<field name="view_id" ref="accounting_report_view"/>-->
+        <!--<field name="target">new</field>-->
+        <!--<field name="context" eval="{'default_account_report_id':ref('account.account_financial_report_profitandloss0')}"/>-->
+    <!--</record>-->
+
+    <!--<menuitem id="menu_account_report_pl" name="Profit and Loss" action="action_account_report_pl" parent="menu_finance_legal_statement"/>-->
+
+    <!--<record id="action_account_report" model="ir.actions.act_window">-->
+        <!--<field name="name">Financial Reports</field>-->
+        <!--<field name="res_model">accounting.report</field>-->
+        <!--<field name="type">ir.actions.act_window</field>-->
+        <!--<field name="view_type">form</field>-->
+        <!--<field name="view_mode">form</field>-->
+        <!--<field name="view_id" ref="accounting_report_view"/>-->
+        <!--<field name="target">new</field>-->
+    <!--</record>-->
+
+    <!--<menuitem id="menu_account_report" name="Financial Report" action="action_account_report" parent="menu_finance_legal_statement" sequence="100"/>-->
+
+</odoo>

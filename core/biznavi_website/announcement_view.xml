@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_announcement_tree" model="ir.ui.view">
+        <field name="name">biznavi_website.announcement.tree</field>
+        <field name="model">biznavi_website.announcement</field>
+        <field name="arch" type="xml">
+            <tree string="Announcement">
+                <field name="name"/>
+                <field name="content"/>
+                <field name="color"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_announcement_form" model="ir.ui.view">
+        <field name="name">biznavi_website.announcement.form</field>
+        <field name="model">biznavi_website.announcement</field>
+        <field name="arch" type="xml">
+            <form string="Announcement">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="date_from" widget="date"/>
+                            <field name="date_to" widget="date"/>
+                        </group>
+                        <group>
+                            <field name="color" widget="color"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="content"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_announcement">
+        <field name="name">Announcement</field>
+        <field name="res_model">biznavi_website.announcement</field>
+        <field name="view_id" ref="view_announcement_tree"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_announcement_tree">
+        <field name="act_window_id" ref="action_announcement"/>
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="view_announcement_tree"/>
+    </record>
+    <record model="ir.actions.act_window.view" id="action_announcement_form">
+        <field name="act_window_id" ref="action_announcement"/>
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_announcement_form"/>
+    </record>
+    <!--<menuitem name="Announcement"-->
+              <!--action="action_announcement"-->
+              <!--id="menu_action_announcement"-->
+              <!--groups="biznavi_website.group_biznavi_website_announcement"-->
+              <!--sequence="1"/>-->
+    <!--parent="website.menu_website_configuration" -->
+</odoo>

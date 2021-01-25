@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- QWeb Reports -->
+        <report 
+            id="action_report_financial_horizontal"
+            model="account.financial.report"
+            string="Financial report"
+            report_type="qweb-pdf"
+            name="account.report_financial_horizontal"
+            file="account.report_financial_horizontal"
+            />
+
+    </data>
+</openerp>

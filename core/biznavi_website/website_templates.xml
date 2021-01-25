@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="assets_frontend" inherit_id="website.assets_frontend" name="Assets Include">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/biznavi_website/static/src/css/addtohomescreen.css"/>
+                <script type="text/javascript" src="/biznavi_website/static/src/js/addtohomescreen.min.js"></script>
+                <script>addToHomescreen();</script>
+            </xpath>
+        </template>
+        <template id="website.layout_header" inherit_id="website.layout" name="Fixed Menu">
+            <xpath expr="//div[@class='navbar navbar-default navbar-static-top']" position="after">
+                <div t-att-style="'' if editable or translatable else 'height:51px;'"></div>
+            </xpath>
+            <xpath expr="//div[@class='navbar navbar-default navbar-static-top']" position="attributes">
+                <attribute name="class"></attribute>
+                <attribute name="t-att-class">'navbar navbar-default navbar-static-top' if editable or translatable else 'navbar navbar-default navbar-fixed-top'</attribute>
+            </xpath>
+        </template>
+        <template id="website.modal" inherit_id="website.layout" name="Website Modal">
+            <xpath expr="//main" position="inside">
+                <t t-call="biznavi_website.warning_dialog"/>
+                <t t-call="biznavi_website.info_dialog"/>
+                <t t-call="biznavi_website.loading_modal"/>
+            </xpath>
+        </template>
+        <template id="website.layout_footer_copyright" inherit_id="website.layout" name="Footer Copyright">
+            <xpath expr="//footer" position="inside">
+                <div class="container mt16 mb8">
+                    <div class="pull-right" t-ignore="true" t-if="not editable">                        Create a 
+                        <a href="http://www.cenoq.com/page/biznavi">powerful website</a> with                        
+                        <a class="label label-default" href="http://www.cenoq.com/page/biznavi">BizNavi</a>
+                    </div>
+                    <div class="pull-left text-muted" itemscope="itemscope" itemtype="http://schema.org/Organization">                        Copyright &amp;copy;                        
+                        <span t-field="res_company.name" itemprop="name">Company name</span>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+        <template id="warning_dialog">
+            <div class="modal fade" id="booking_warning_dialog">
+                <div class="modal-dialog modal-content">
+                    <div class="modal-header alert alert-warning">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">x</span>
+                        </button>
+                        <h4 class="modal-title">Warning!</h4>
+                    </div>
+                    <div class="modal-body"></div>
+                </div>
+            </div>
+        </template>
+        <template id="info_dialog">
+            <div class="modal fade" id="booking_info_dialog">
+                <div class="modal-dialog modal-content">
+                    <div class="modal-header alert alert-warning">
+                        <h6 class="modal-title">Info!</h6>
+                    </div>
+                    <div class="modal-body"></div>
+                    <div style="text-align: center" class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                            <span aria-hidden="true">Close</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template id="loading_modal">
+            <div class="modal fade" id="loading_modal" style="z-index: 1111; position: fixed; padding: 0px; margin: 0px; width: 30%; top: 40%; left: 35%; text-align: center; color: #446E9B; border: 0px; cursor: wait;">
+                <div class="fa fa-3x fa-spin fa-spinner fa-pulse"/>
+                <br/>
+                <br/>
+                <div class="oe_throbber_message-body" style="color:white">Loading ...</div>
+            </div>
+        </template>
+    </data>
+</openerp>

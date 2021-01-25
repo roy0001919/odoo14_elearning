@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_biznavi_config" model="ir.ui.view">
+            <field name="name">BizNavi</field>
+            <field name="model">biznavi.config.settings</field>
+            <field name="arch" type="xml">
+                <form string="BizNavi" class="o_form_view oe_form_configuration o_form_nosheet o_form_editable">
+                    <header class="o_statusbar_buttons">
+                        <button string="Apply" type="object"
+                                name="execute" class="btn btn-sm btn-primary"/>
+                        or
+                        <button string="Cancel" type="object"
+                                name="cancel" class="btn btn-sm"/>
+                        <button string="Update" type="object"
+                                name="act_update" class="btn btn-sm btn-primary"/>
+                        <button string="Translation Clean" type="object"
+                                name="act_clean_translation" class="btn btn-sm btn-primary"/>
+                        <button string="Translation Writeback" type="object"
+                                name="act_writeback_translation" class="btn btn-sm btn-primary"/>
+                        <button string="Upload" type="object"
+                                name="act_push" class="btn btn-sm btn-primary"/>
+                    </header>
+                    <!--<group string="Theme">-->
+                    <!--<label for="id" string="Theme"/>-->
+                    <!--<div>-->
+                    <!--<div name="biznavi_theme">-->
+                    <!--<field name="biznavi_theme" class="oe_inline"/>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</group>-->
+                    <group string="Base">
+                        <label for="id" string="Taiwan VAT"/>
+                        <div>
+                            <div name="biznavi_base_vat">
+                                <field name="module_biznavi_base_vat" class="oe_inline"/>
+                                <label for="module_biznavi_base_vat"/>
+                            </div>
+                        </div>
+                    </group>
+                    <group string="Accounting">
+                        <label for="id" string="Accounting"/>
+                        <div>
+                            <div name="biznavi_l10n_tw">
+                                <field name="module_l10n_tw" class="oe_inline"/>
+                                <label for="module_l10n_tw"/>
+                            </div>
+                            <div name="biznavi_account_invoice_report">
+                                <field name="module_biznavi_account_invoice_report" class="oe_inline"/>
+                                <label for="module_biznavi_account_invoice_report"/>
+                            </div>
+                            <div name="biznavi_invoice_merge">
+                                <field name="module_biznavi_invoice_merge" class="oe_inline"/>
+                                <label for="module_biznavi_invoice_merge"/>
+                            </div>
+                            <!--<div name="biznavi_reset_account_charts">-->
+                            <!--<button name="act_reset_charts" string="Reset Charts" type="object" class="btn-primary"/>-->
+                            <!--</div>-->
+                        </div>
+                    </group>
+                    <group string="Human Resources">
+                        <label for="id" string="HR Holidays"/>
+                        <div>
+                            <div name="biznavi_hr_holidays_public">
+                                <field name="module_biznavi_hr_holidays_public" class="oe_inline"/>
+                                <label for="module_biznavi_hr_holidays_public"/>
+                            </div>
+                            <div name="biznavi_hr_holidays_expired">
+                                <field name="module_biznavi_hr_holidays_expired" class="oe_inline"/>
+                                <label for="module_biznavi_hr_holidays_expired"/>
+                            </div>
+                            <div name="biznavi_hr_payroll">
+                                <field name="module_biznavi_hr_payroll" class="oe_inline"/>
+                                <label for="module_biznavi_hr_payroll"/>
+                            </div>
+                        </div>
+                    </group>
+                    <group string="Subscription">
+                        <field name="server_id" readonly="1"/>
+                        <field name="exp_date" readonly="1"/>
+                        <field name="key"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="biznavi_settings_action" model="ir.actions.act_window">
+            <field name="name">BizNavi</field>
+            <field name="res_model">biznavi.config.settings</field>
+            <field name="view_id" ref="view_biznavi_config"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+
+        <menuitem id="biznavi_settings_menu" name="BizNavi"
+                  parent="base.menu_administration"/>
+
+        <menuitem id="biznavi_settings_config" name="Config"
+                  parent="biznavi_settings_menu" action="biznavi_settings_action"/>
+
+
+    </data>
+</openerp>

@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* theme_cenoq
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-27 07:15+0000\n"
+"PO-Revision-Date: 2016-06-27 07:15+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: theme_cenoq
+#: model:ir.ui.view,arch_db:theme_cenoq.customize_modal
+msgid "<span style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px\">Helvetica</span>\n"
+"                                      <span style=\"font-family:Georgia, 'Times New Roman', Times, serif; font-size:11px\">/ Georgia</span>"
+msgstr "<span style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px\">Helvetica</span>\n"
+"                                      <span style=\"font-family:Georgia, 'Times New Roman', Times, serif; font-size:11px\">/ Georgia</span>"
+
+#. module: theme_cenoq
+#: model:ir.ui.view,arch_db:theme_cenoq.customize_modal
+msgid "<span style=\"font-family:Georgia, 'Times New Roman', Times, serif; font-size:11px\">Georgia</span>\n"
+"                                      <span style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px\">/ Helvetica</span>"
+msgstr "<span style=\"font-family:Georgia, 'Times New Roman', Times, serif; font-size:11px\">Georgia</span>\n"
+"                                      <span style=\"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:11px\">/ Helvetica</span>"
+
+#. module: theme_cenoq
+#: model:ir.ui.view,arch_db:theme_cenoq.customize_modal
+msgid "Amethyst"
+msgstr "Amethyst"
+
+#. module: theme_cenoq
+#: model:ir.ui.view,arch_db:theme_cenoq.customize_modal
+msgid "BOXED"
+msgstr "BOXED"
+
+#. module: theme_cenoq
+#: model:ir.ui.view,arch_db:theme_cenoq.customize_modal
+msgid "Blue"
+msgstr "Blue"
+
+#. module: theme_cenoq
+#: model:ir.ui.view,arch_db:theme_cenoq.customize_modal
+msgid "Cobalt"
+msgstr "Cobalt"
+
+#. module: theme_cenoq
+#: model:ir.ui.view,arch_db:theme_cenoq.customize_modal
+msgid "Customize this default theme"
+msgstr "Customize this default theme"
+
+#. module: theme_cenoq
+#: model:ir.ui.view,arch_db:theme_cenoq.customize_modal
+msgid "Emerald"
+msgstr "Emerald"
+
+#. module: theme_cenoq
+#: model:ir.ui.view,arch_db:theme_cenoq.customize_modal
+msgid "FONTS COMBINATIONS"
+msgstr "FONTS COMBINATIONS"
+
+#. module: theme_cenoq
+#: model:ir.ui.view,arch_db:theme_cenoq.customize_modal
+msgid "FULL WIDTH"
+msgstr "FULL WIDTH"
+
+#. module: theme_cenoq
+#: model:ir.ui.view,arch_db:theme_cenoq.customize_modal
+msgid "Gold"
+msgstr "Gold"
+
+#. module: theme_cenoq
+#: model:ir.ui.view,arch_db:theme_cenoq.customize_modal
+msgid "LAYOUT"
+msgstr "LAYOUT"
+
+#. module: theme_cenoq
+#: model:ir.ui.view,arch_db:theme_cenoq.customize_modal
+msgid "MAIN COLOR"
+msgstr "MAIN COLOR"
+
+#. module: theme_cenoq
+#: model:ir.ui.view,arch_db:theme_cenoq.customize_modal
+msgid "Stone"
+msgstr "Stone"
+

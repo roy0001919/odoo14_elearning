@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--<template id="web.biznavi_layout" inherit_id="web.layout">-->
+            <!--<xpath expr="//link[@rel='shortcut icon']" position="replace">-->
+                <!--<link rel="shortcut icon" href="/biznavi/static/src/img/favicon.ico" type="image/x-icon"/>-->
+            <!--</xpath>-->
+        <!--</template>-->
+        <template id="web.biznavi_login_layout" inherit_id="web.login_layout">
+            <xpath expr="//div" position="before">
+                <t t-set="disable_database_manager" t-value="True"/>
+                <t t-set="disable_footer" t-value="True"/>
+            </xpath>
+            <xpath expr="//div" position="after">
+                <div class="text-center">
+                    <a href="https://www.cenoq.com" target="_blank">Powered by <span>CENOQ</span></a>
+                </div>
+            </xpath>
+        </template>
+        <template id="web.biznavi_menu_secondary" inherit_id="web.menu_secondary">
+            <xpath expr="//div[@class='o_sub_menu_footer']" position="replace">
+                <div class="o_sub_menu_footer">
+                    BizNavi3@<a href="https://www.cenoq.com" target="_blank"><span>CENOQ</span></a>
+                </div>
+            </xpath>
+        </template>
+        <template id="web.biznavi_backend" inherit_id="web.assets_backend">
+            <xpath expr="//link[last()]" position="after">
+                <t t-set= "theme_name">blue</t>
+                <!--<link rel="stylesheet" t-att-href="'/biznavi/static/src/less/%s_vars.less'%theme_name"/>-->
+                <!--<link rel="stylesheet" href="/biznavi/static/src/less/base.less"/>-->
+                <!--<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu"/>-->
+            </xpath>
+            <xpath expr="//script[last()]" position="after">
+                <!--<script type="text/javascript" src="/biznavi/static/src/js/menu.js"></script>-->
+                <script type="text/javascript" src="/biznavi/static/src/js/custom.js"></script>
+            </xpath>
+        </template>
+        <template id="web.biznavi_webclient_bootstrap" inherit_id="web.webclient_bootstrap">
+            <xpath expr="//div[@class='navbar-header']" position="inside">
+                <!--<ul class="ul_toggle_leftmenu">-->
+                    <!--<li class="btn-link toggle_leftmenu">-->
+                        <!--<span class="fa fa-bars fa-2"></span>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            </xpath>
+            <!--<xpath expr="//div[@class='o_sub_menu']" position="attributes">-->
+                <!--<attribute name="id">leftbar</attribute>-->
+            <!--</xpath>-->
+        </template>
+        <!--<template id="website.layout_footer_copyright" inherit_id="website.layout" name="Footer Copyright">-->
+            <!--<xpath expr="//footer" position="inside">-->
+                <!--<div class="container mt16 mb8">-->
+                    <!--<div class="pull-right" t-ignore="true" t-if="not editable">-->
+                        <!--Powered by <a class="label label-default" href="http://www.cenoq.com/page/biznavi" target="_blank">BizNavi</a>-->
+                    <!--</div>-->
+                    <!--<div class="pull-left text-muted">-->
+                        <!--Copyright &amp;copy; <span t-field="res_company.name">Company name</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</xpath>-->
+        <!--</template>-->
+    </data>
+</openerp>

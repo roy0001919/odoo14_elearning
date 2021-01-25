@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <record id="group_biznavi_website_announcement" model="res.groups">
+            <field name="name">Website Announcement</field>
+            <!--<field name="category_id" ref="tokiku.module_tokiku"/>-->
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+    </data>
+</openerp>

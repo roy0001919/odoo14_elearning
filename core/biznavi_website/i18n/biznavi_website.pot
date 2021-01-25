@@ -1,0 +1,130 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* biznavi_website
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-06 08:24+0000\n"
+"PO-Revision-Date: 2018-06-06 08:24+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: biznavi_website
+#: model:ir.ui.view,arch_db:biznavi_website.info_dialog
+msgid "<span aria-hidden=\"true\">Close</span>"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model.fields,field_description:biznavi_website.field_biznavi_website_announcement_active
+msgid "Active"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.actions.act_window,name:biznavi_website.action_announcement
+#: model:ir.model,name:biznavi_website.model_biznavi_website_announcement
+#: model:ir.ui.view,arch_db:biznavi_website.view_announcement_form
+#: model:ir.ui.view,arch_db:biznavi_website.view_announcement_tree
+msgid "Announcement"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model.fields,field_description:biznavi_website.field_biznavi_website_announcement_color
+msgid "Color"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model,name:biznavi_website.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model.fields,field_description:biznavi_website.field_biznavi_website_announcement_content
+msgid "Content"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model.fields,field_description:biznavi_website.field_biznavi_website_announcement_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model.fields,field_description:biznavi_website.field_biznavi_website_announcement_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model.fields,field_description:biznavi_website.field_biznavi_website_announcement_date_to
+msgid "Date end"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model.fields,field_description:biznavi_website.field_biznavi_website_announcement_date_from
+msgid "Date start"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model.fields,field_description:biznavi_website.field_biznavi_website_announcement_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model.fields,field_description:biznavi_website.field_biznavi_website_announcement_id
+msgid "ID"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.ui.view,arch_db:biznavi_website.info_dialog
+msgid "Info!"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model.fields,field_description:biznavi_website.field_biznavi_website_announcement___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model.fields,field_description:biznavi_website.field_biznavi_website_announcement_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model.fields,field_description:biznavi_website.field_biznavi_website_announcement_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.ui.view,arch_db:biznavi_website.loading_modal
+msgid "Loading ..."
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model,name:biznavi_website.model_mail_message
+msgid "Message"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model,name:biznavi_website.model_res_partner
+msgid "Partner"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.model.fields,field_description:biznavi_website.field_biznavi_website_announcement_name
+msgid "Subject"
+msgstr ""
+
+#. module: biznavi_website
+#: model:ir.ui.view,arch_db:biznavi_website.warning_dialog
+msgid "Warning!"
+msgstr ""
+
+#. module: biznavi_website
+#: model:res.groups,name:biznavi_website.group_biznavi_website_announcement
+msgid "Website Announcement"
+msgstr ""
+

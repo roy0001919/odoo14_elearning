@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="page_style">
+            <style type="text/css">
+                @font-face {
+                font-family: 'YaHei';
+                src: url(/biznavi/static/src/fonts/YaHei.ttf);
+                }
+                @font-face {
+                font-family: "DejaVu Sans";
+                src: url(/biznavi/static/src/fonts/DejaVuSans.ttf);
+                }
+                *{font-family: 'DejaVu Sans', Arial;}
+                body {
+                width: 800pt;
+                }
+            </style>
+        </template>
+        <!-- <template id="listing"> -->
+        <!--   <ul> -->
+        <!--     <li t-foreach="objects" t-as="object"> -->
+        <!--       <a t-attf-href="#{ root }/objects/#{ object.id }"> -->
+        <!--         <t t-esc="object.display_name"/> -->
+        <!--       </a> -->
+        <!--     </li> -->
+        <!--   </ul> -->
+        <!-- </template> -->
+        <!-- <template id="object"> -->
+        <!--   <h1><t t-esc="object.display_name"/></h1> -->
+        <!--   <dl> -->
+        <!--     <t t-foreach="object._fields" t-as="field"> -->
+        <!--       <dt><t t-esc="field"/></dt> -->
+        <!--       <dd><t t-esc="object[field]"/></dd> -->
+        <!--     </t> -->
+        <!--   </dl> -->
+        <!-- </template> -->
+    </data>
+</openerp>

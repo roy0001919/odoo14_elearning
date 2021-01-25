@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_ddns_conf_form">
+            <field name="name">Configure DDNS</field>
+            <field name="model">biznavi.ddns</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="DDNS">
+                    <header>
+                        <button string="Update DNS" type="object"
+                            name="act_update_dns" class="oe_highlight"/>
+                    </header>
+                    <group>
+                        <field name='name'/>
+                        <field name='host'/>
+                        <field name='ip'/>
+                        <field name='ttl'/>
+                        <field name='godaddy'/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_ddns_tree">
+            <field name="name">Configure DDNS</field>
+            <field name="model">biznavi.ddns</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="DDNS">
+                    <field name='name'/>
+                    <field name='host'/>
+                    <field name='ip'/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_ddns_search">
+            <field name="name">Configure DDNS</field>
+            <field name="model">biznavi.ddns</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search options">
+                    <field name='name'/>
+                    <field name='host'/>
+                    <field name='ip'/>
+                    <field name='godaddy'/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_ddns_form">
+            <field name="name">Configure DDNS</field>
+            <field name="res_model">biznavi.ddns</field>
+            <field name="view_type">form</field>
+            <field name='view_mode'>tree,form</field>
+            <field name='view_id' ref='view_ddns_tree'/>
+        </record>
+
+        <record model="ir.ui.view" id="view_godaddy_conf_form">
+            <field name="name">Configure GoDaddy</field>
+            <field name="model">biznavi.ddns.godaddy</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Godaddy">
+                    <group>
+                        <field name='name'/>
+                        <field name='key'/>
+                        <field name='secret'/>
+                        <field name='default_account'/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_godaddy_tree">
+            <field name="name">Configure GoDaddy</field>
+            <field name="model">biznavi.ddns.godaddy</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Godaddy">
+                    <field name='name'/>
+                    <field name='default_account'/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_godaddy_form">
+            <field name="name">Configure GoDaddy</field>
+            <field name="res_model">biznavi.ddns.godaddy</field>
+            <field name="view_type">form</field>
+            <field name='view_mode'>tree,form</field>
+            <field name='view_id' ref='view_godaddy_tree'/>
+        </record>
+
+        <menuitem id="ddns_menu" name="DDNS"
+                  parent="base.menu_custom" sequence="1"/>
+        <menuitem parent="ddns_menu" action="action_ddns_form" id="ddns_conf_menu"/>
+        <menuitem parent="ddns_menu" action="action_godaddy_form" id="godaddy_conf_menu"/>
+    </data>
+</openerp>

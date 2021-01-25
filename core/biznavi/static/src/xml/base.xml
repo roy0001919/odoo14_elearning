@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="UserMenu">
+        <t t-jquery="ul.dropdown-menu" t-operation="replace">
+            <ul class="dropdown-menu user_menu" style="background-color:#3379b7">
+                <li><a href="#" data-menu="settings" style="color:#fff">Preferences</a></li>
+                <li><a href="#" data-menu="logout" style="color:#fff">Log out</a></li>
+            </ul>
+        </t>
+    </t>
+
+    <!--<t t-extend="DashboardEnterprise">-->
+        <!--<t t-jquery="hr" t-operation="replace">-->
+        <!--</t>-->
+        <!--<t t-jquery="div" t-operation="replace">-->
+        <!--</t>-->
+    <!--</t>-->
+
+    <!--&lt;!&ndash;CENOQ: Enable many2many_tags for one2many field&ndash;&gt;-->
+    <!--<t t-extend="FieldMany2ManyTag">-->
+        <!--<t t-jquery="span" t-operation="replace">-->
+            <!--<span t-attf-class="badge dropdown #{'o_tag_color_' + (el['color'] || 0)}" t-att-data-color="(el['color'] || 0)" t-att-data-index="el_index" t-att-data-id="el['id']">-->
+                <!--<t t-esc="(el['display_name'])?el['display_name']:el['name']"/>-->
+                <!--<span t-if="!readonly" class="fa fa-times o_delete"/>-->
+            <!--</span>-->
+        <!--</t>-->
+    <!--</t>-->
+
+    <t t-extend="DashboardShare">
+        <t t-jquery="div.user-image" t-operation="replace">
+            <div class="user-image">
+                <img src="/biznavi/static/src/img/biznavi2_logo.png" alt="BizNavi" title="BizNavi" />
+            </div>
+        </t>
+        <t t-jquery="h3" t-operation="replace">
+            <h3>
+                BizNavi 3 (Enterprise Edition)
+            </h3>
+        </t>
+        <t t-jquery="div.tab-content" t-operation="replace">
+            <div class="tab-content">
+                <div id="settings" class="tab-pane active">
+                    <h4>Copyright © 2006-2016 CENOQ Corp.</h4>
+                    <p>BizNavi is a trademark of <a target="_blank" href="https://www.cenoq.com" style="text-decoration: underline;">CENOQ Corp.</a></p>
+                    <p>For more information visit <a target="_blank" href="https://www.cenoq.com" style="text-decoration: underline;">cenoq.com</a></p>
+                </div>
+            </div>
+        </t>
+    </t>
+
+    <!--<t t-extend="Chrome">-->
+        <!--<t t-jquery="img" t-operation="replace">-->
+            <!--<img class="pos-logo" src="/biznavi/static/src/img/pos_logo.png" />-->
+        <!--</t>-->
+    <!--</t>-->
+</templates>

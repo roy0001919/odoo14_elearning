@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="account.report_financial_horizontal">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="report.internal_layout">
+                    <div class="page">
+                        <h2 t-esc="data['account_report_id'][1]"/>
+
+                        <div class="row mt32 mb32">
+                            <div class="col-xs-4">
+                                <strong>Target Moves:</strong>
+                                <p>
+                                    <span t-if="data['target_move'] == 'all'">All Entries</span>
+                                    <span t-if="data['target_move'] == 'posted'">All Posted Entries</span>
+                                </p>
+                            </div>
+                            <div class="col-xs-4">
+                                <p>
+                                    <t t-if="data['date_from']">
+                                        <strong>Date from :</strong>
+                                        <span t-esc="data['date_from']"/>
+                                        <br/>
+                                    </t>
+                                    <t t-if="data['date_to']">
+                                        <strong>Date to :</strong>
+                                        <span t-esc="data['date_to']"/>
+                                    </t>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6" t-foreach="[get_left_lines, get_right_lines]" t-as="lines">
+                                <table class="table table-condensed" t-if="data['debit_credit'] == 1">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th class="text-right">Debit</th>
+                                            <th class="text-right">Credit</th>
+                                            <th class="text-right">Balance</th>
+                                            <th class="text-right" t-if="data['show_percentage']">%%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="lines" t-as="a">
+                                            <t t-if="a['level'] != 0 and (data['display_account'] != 'not_zero' or a.get('balance') != 0) and (data['display_account'] != 'movement' or a.get('debit') != 0 or a.get('credit') != 0) and a.get('level', 0) &lt;= data['show_level']">
+                                                <t t-if="a.get('level') == 1">
+                                                    <t t-set="t" t-value="a.get('balance')"/>
+                                                </t>
+                                                <t t-if="a.get('level') &gt; 3">
+                                                    <t t-set="style" t-value="'font-weight: normal;'"/>
+                                                </t>
+                                                <t t-if="not a.get('level') &gt; 3">
+                                                    <t t-set="style" t-value="'font-weight: bold;'"/>
+                                                </t>
+
+                                                <td>
+                                                    <span style="color: white;" t-esc="'..' * a.get('level', 0)"/>
+                                                    <span t-att-style="style" t-esc="a.get('name')"/>
+                                                </td>
+                                                <td class="text-right" style="white-space: text-nowrap;">
+                                                    <span t-att-style="style" t-esc="a.get('debit')" t-options='{"widget": "monetary", "display_currency": "res_company.currency_id"}'/>
+                                                </td>
+                                                <td class="text-right" style="white-space: text-nowrap;">
+                                                    <span t-att-style="style" t-esc="a.get('credit')" t-options='{"widget": "monetary", "display_currency": "res_company.currency_id"}'/>
+                                                </td>
+                                                <td class="text-right" style="white-space: text-nowrap;">
+                                                    <span t-att-style="style" t-esc="a.get('balance') * -1 if lines_index == 1 and a.get('balance') != 0 else a.get('balance')" t-options='{"widget": "monetary", "display_currency": "res_company.currency_id"}'/>
+                                                </td>
+                                                <td class="text-right" t-if="data['show_percentage']">
+                                                    <span t-att-style="style" t-esc="round(a.get('balance') / t * 100, 1) if a.get('balance') != 0 else 0.0 if t != 0 else '-'"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="table table-condensed" t-if="not data['enable_filter'] and not data['debit_credit']">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th class="text-right">Balance</th>
+                                            <th class="text-right" t-if="data['show_percentage']">%%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="lines" t-as="a">
+                                            <t t-if="a['level'] != 0 and (data['display_account'] != 'not_zero' or a.get('balance') != 0) and (data['display_account'] != 'movement' or a.get('debit') != 0 or a.get('credit') != 0) and a.get('level', 0) &lt;= data['show_level']">
+                                                <t t-if="a.get('level') == 1">
+                                                    <t t-set="t" t-value="a.get('balance')"/>
+                                                </t>
+                                                <t t-if="a.get('level') &gt; 3">
+                                                    <t t-set="style" t-value="'font-weight: normal;'"/>
+                                                </t>
+                                                <t t-if="not a.get('level') &gt; 3">
+                                                    <t t-set="style" t-value="'font-weight: bold;'"/>
+                                                </t>
+
+                                                <td>
+                                                    <span style="color: white;" t-esc="'..' * a.get('level', 0)"/>
+                                                    <span t-att-style="style" t-esc="a.get('name')"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-att-style="style" t-esc="a.get('balance') * -1 if lines_index == 1 and a.get('balance') != 0 else a.get('balance')" t-options='{"widget": "monetary", "display_currency": "res_company.currency_id"}'/>
+                                                </td>
+                                                <td class="text-right" t-if="data['show_percentage']">
+                                                    <span t-att-style="style" t-esc="round(a.get('balance') / t * 100, 1) if a.get('balance') != 0 else 0.0 if t != 0 else '-'"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="table table-condensed" t-if="data['enable_filter'] == 1 and not data['debit_credit']">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th class="text-right">Balance</th>
+                                            <th class="text-right" t-if="data['show_percentage']">%%</th>
+                                            <th class="text-right">
+                                                <span t-esc="data['label_filter']"/>
+                                            </th>
+                                            <th class="text-right" t-if="data['show_percentage']">%%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="lines" t-as="a">
+                                            <t t-if="a['level'] != 0 and (data['display_account'] != 'not_zero' or a.get('balance') != 0) and (data['display_account'] != 'movement' or a.get('debit') != 0 or a.get('credit') != 0) and a.get('level', 0) &lt;= data['show_level']">
+                                                <t t-if="a.get('level') == 1">
+                                                    <t t-set="t" t-value="a.get('balance')"/>
+                                                    <t t-set="ct" t-value="a.get('balance_cmp')"/>
+                                                </t>
+                                                <t t-if="a.get('level') &gt; 3">
+                                                    <t t-set="style" t-value="'font-weight: normal;'"/>
+                                                </t>
+                                                <t t-if="not a.get('level') &gt; 3">
+                                                    <t t-set="style" t-value="'font-weight: bold;'"/>
+                                                </t>
+                                                <td>
+                                                    <span style="color: white;" t-esc="'..' * a.get('level', 0)"/>
+                                                    <span t-att-style="style" t-esc="a.get('name')"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-att-style="style" t-esc="a.get('balance') * -1 if lines_index == 1 and a.get('balance') != 0 else a.get('balance')" t-options='{"widget": "monetary", "display_currency": "res_company.currency_id"}'/>
+                                                </td>
+                                                <td class="text-right" t-if="data['show_percentage']">
+                                                    <span t-att-style="style" t-esc="round(a.get('balance') / t * 100, 1) if a.get('balance') != 0 else 0.0 if t != 0 else '-'"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <span t-att-style="style" t-esc="a.get('balance_cmp') * -1 if lines_index == 1 and a.get('balance_cmp') != 0 else a.get('balance_cmp')"/>
+                                                </td>
+                                                <td class="text-right" t-if="data['show_percentage']">
+                                                    <span t-att-style="style" t-esc="round(a.get('balance_cmp') / ct * 100, 1) if a.get('balance_cmp') != 0 else 0.0 if ct != 0 else '-'"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

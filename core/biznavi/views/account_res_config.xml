@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_biznavi_account_config_settings" model="ir.ui.view">
+            <field name="name">account settings</field>
+            <field name="model">account.config.settings</field>
+            <field name="inherit_id" ref="account.view_account_config_settings" />
+            <field name="arch" type="xml">
+                <field name="module_account_reports" position="replace">
+                </field>
+                <field name="module_account_yodlee" position="replace">
+                </field>
+                <field name="module_account_plaid" position="replace">
+                </field>
+                <field name="module_account_bank_statement_import_qif" position="replace">
+                </field>
+                <field name="module_account_bank_statement_import_ofx" position="replace">
+                </field>
+                <field name="module_account_sepa" position="replace">
+                </field>
+                <field name="module_l10n_us_check_printing" position="replace">
+                </field>
+                <field name="module_account_reports_followup" position="replace">
+                </field>
+                <field name="module_account_batch_deposit" position="replace">
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

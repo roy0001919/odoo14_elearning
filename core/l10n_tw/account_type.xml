@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="True">
+        <record id="user_type_all" model="account.account.type">
+            <field name="name">不顯示於報表</field>
+        </record>
+        <record id="user_type_income_tax_exp" model="account.account.type">
+            <field name="name">Income Tax Expense</field>
+        </record>
+        <record id="user_type_income_on_disc_op" model="account.account.type">
+            <field name="name">Income(loss) on Discontinued operation</field>
+        </record>
+        <record id="user_type_other_comp_income" model="account.account.type">
+            <field name="name">Other Comprehensive Income</field>
+        </record>
+    </data>
+</odoo>

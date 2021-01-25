@@ -1,0 +1,430 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* web_widget_grid
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-22 05:02+0000\n"
+"PO-Revision-Date: 2017-09-22 05:02+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:88
+#, python-format
+msgid "Apply Filter..."
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:122
+#, python-format
+msgid "Autosize All"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:121
+#, python-format
+msgid "Autosize This"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:144
+#, python-format
+msgid "Average"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:130
+#, python-format
+msgid "CSV Export"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:127
+#, python-format
+msgid "Collapse All"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:104
+#, python-format
+msgid "Columns"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:147
+#, python-format
+msgid "Copy"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:148
+#, python-format
+msgid "Copy With Headers"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:143
+#, python-format
+msgid "Count"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:91
+#, python-format
+msgid "Equals"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:131
+#, python-format
+msgid "Excel Export"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:126
+#, python-format
+msgid "Expand All"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:129
+#, python-format
+msgid "Export"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:87
+#, python-format
+msgid "Filter..."
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:77
+#, python-format
+msgid "First"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:93
+#, python-format
+msgid "Greater Than"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:101
+#, python-format
+msgid "Group"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:123
+#, python-format
+msgid "Group by"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:109
+#, python-format
+msgid "Groups"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:76
+#, python-format
+msgid "Last"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:92
+#, python-format
+msgid "Less han"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:79
+#, python-format
+msgid "Loading..."
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:141
+#, python-format
+msgid "Max"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:140
+#, python-format
+msgid "Min"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:75
+#, python-format
+msgid "Next"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:136
+#, python-format
+msgid "No Pin"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:116
+#, python-format
+msgid "No rows to show"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:142
+#, python-format
+msgid "None"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:150
+#, python-format
+msgid "Paste"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:119
+#, python-format
+msgid "Pin Column"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:134
+#, python-format
+msgid "Pin Left"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:135
+#, python-format
+msgid "Pin Right"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:105
+#, python-format
+msgid "Pivot Cols"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:108
+#, python-format
+msgid "Pivot-Mode"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:111
+#, python-format
+msgid "Pivots"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:78
+#, python-format
+msgid "Previous"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:125
+#, python-format
+msgid "Reset Those Cols"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:83
+#, python-format
+msgid "Search..."
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:82
+#, python-format
+msgid "Select All"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:139
+#, python-format
+msgid "Sum"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:128
+#, python-format
+msgid "Tool Panel"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:124
+#, python-format
+msgid "UnGroup by"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:120
+#, python-format
+msgid "Value Aggregation"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:107
+#, python-format
+msgid "Value Cols"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:110
+#, python-format
+msgid "Values"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:84
+#, python-format
+msgid "blanks"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:96
+#, python-format
+msgid "contains"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:149
+#, python-format
+msgid "ctrl + C"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:151
+#, python-format
+msgid "ctrl + V"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:112
+#, python-format
+msgid "drag cols to aggregate"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:106
+#, python-format
+msgid "drag cols to group"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:113
+#, python-format
+msgid "drag here to pivot"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:98
+#, python-format
+msgid "ends with"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:72
+#, python-format
+msgid "more"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:74
+#, python-format
+msgid "of"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:71
+#, python-format
+msgid "page"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:97
+#, python-format
+msgid "starts with"
+msgstr ""
+
+#. module: web_widget_grid
+#. openerp-web
+#: code:addons/web_widget_grid/static/src/js/web_widget_grid.js:73
+#, python-format
+msgid "to"
+msgstr ""
+

@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* payment_allpay
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-04 12:19+0000\n"
+"PO-Revision-Date: 2016-12-04 12:19+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: payment_allpay
+#: model:ir.model,name:payment_allpay.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr "金流處理單位"
+
+#. module: payment_allpay
+#: model:ir.model,name:payment_allpay.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "付款交易"
+
+#. module: payment_allpay
+#: model:ir.model.fields,field_description:payment_allpay.field_payment_transaction_allpay_txn_id
+msgid "Transaction ID"
+msgstr "交易編號"
+
+#. module: payment_allpay
+#: model:ir.model.fields,field_description:payment_allpay.field_payment_transaction_allpay_txn_type
+msgid "Transaction type"
+msgstr "交易方式"
+
+#. module: payment_allpay
+#: model:ir.model.fields,field_description:payment_allpay.field_payment_acquirer_allpay_hash_iv
+msgid "allPay Hash IV"
+msgstr "歐付寶 Hash IV"
+
+#. module: payment_allpay
+#: model:ir.model.fields,field_description:payment_allpay.field_payment_acquirer_allpay_hash_key
+msgid "allPay Hash Key"
+msgstr "歐付寶 Hash Key"
+
+#. module: payment_allpay
+#: model:ir.model.fields,field_description:payment_allpay.field_payment_acquirer_allpay_merchant_id
+msgid "allPay Merchant ID"
+msgstr "歐付寶 Merchant ID"
+
+#. module: payment_allpay
+#: model:ir.ui.view,arch_db:payment_allpay.transaction_form_allpay
+msgid "allPay TX Details"
+msgstr "歐付寶交易詳情"
+
